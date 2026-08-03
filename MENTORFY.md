@@ -46,14 +46,14 @@ Rota registrada em `api/routes/api.php`, no grupo público:
 ```bash
 SELF_HOSTED=true
 CASHIER_KEY=
-APP_URL=https://forms.mentorfy.com.br
+APP_URL=https://forms.mentorfy.io
 
 MENTORFY_SSO_ENABLED=true
 MENTORFY_SSO_PUBLIC_KEY="-----BEGIN PUBLIC KEY-----\n…"
 MENTORFY_SSO_ISSUER=mentorfy
 MENTORFY_SSO_AUDIENCE=opnform
-MENTORFY_SERVICE_ACCOUNT_EMAIL=servico@mentorfy.com.br
-MENTORFY_PROVISIONED_CALLBACK_URL=https://api.mentorfy.com.br/opnform/hooks/provisioned
+MENTORFY_SERVICE_ACCOUNT_EMAIL=gestao@mentorfy.io
+MENTORFY_PROVISIONED_CALLBACK_URL=https://api.mentorfy.io/api/v1/opnform/hooks/provisioned
 MENTORFY_API_KEY=<mesmo valor de OPNFORM_WEBHOOK_API_KEY na Mentorfy>
 MENTORFY_WORKSPACE_NAME=Meus formulários
 ```
