@@ -6,7 +6,7 @@
     "watchPatterns": ["api/**", "docker/Dockerfile.api", "docker/php-fpm-entrypoint"]
   },
   "deploy": {
-    "startCommand": "php artisan schedule:work",
+    "startCommand": "/usr/local/bin/opnform-entrypoint php artisan schedule:work",
     "restartPolicyType": "ALWAYS",
     "numReplicas": 1
   }
