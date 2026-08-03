@@ -1,0 +1,29 @@
+# Ingress do OpnForm para o Railway.
+#
+# Este serviço NÃO é opcional. O Dockerfile.api termina em php-fpm, que fala
+# FastCGI na porta 9000 — não HTTP. Sem um nginx na frente não existe nada que o
+# Railway consiga rotear, e o serviço da API responderia 502 para sempre.
+#
+# No Docker Compose este papel é da imagem nginx:1 com a config vinda de volume.
+# No Railway não há volume no build, então a config entra na imagem.
+FROM nginx:1-alpine
+
+# Só variáveis com estes prefixos são substituídas no template. Sem o filtro, o
+# envsubst comeria $uri, $host e $remote_addr — que são variáveis do próprio
+# nginx e precisam sobreviver.
+ENV NGINX_ENVSUBST_FILTER="^(PORT|NGINX_|OPNFORM_)"
+
+# Padrões. Sobrescreva no painel do Railway se os serviços tiverem outro nome.
+ENV NGINX_MAX_BODY_SIZE=64m \
+    OPNFORM_API_HOST=api.railway.internal:9000 \
+    OPNFORM_CLIENT_HOST=client.railway.internal:3000 \
+    PORT=8080
+
+COPY docker/nginx.railway.conf /etc/nginx/templates/default.conf.template
+
+# Traduz o X-Forwarded-Proto do proxy do Railway para o parâmetro HTTPS do
+# FastCGI. Sem isso o Laravel acha que está em http:// e gera links quebrados —
+# o que derruba o redirect do SSO. Precisa viver no contexto http, fora do
+# server, por isso é um arquivo separado em conf.d.
+RUN printf 'map $http_x_forwarded_proto $https_flag {\n    default off;\n    https   on;\n}\n' \
+    > /etc/nginx/conf.d/00-https-flag.conf

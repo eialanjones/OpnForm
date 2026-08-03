@@ -82,6 +82,17 @@ apply_php_configuration() {
         echo "post_max_size = 55M" >> $PHP_CUSTOM_CONFIG_FILE
     fi
     
+    # Endereço de escuta do php-fpm.
+    #
+    # A imagem base escuta em 9000 sobre IPv4. A rede privada do Railway
+    # recomenda escutar em :: para funcionar também em ambientes IPv6-only —
+    # sem isso, o ingress não alcança a API e todo request vira 502.
+    if [ -n "$PHP_FPM_LISTEN" ]; then
+        echo "Setting php-fpm listen address to $PHP_FPM_LISTEN"
+        printf '[www]\nlisten = %s\n' "$PHP_FPM_LISTEN" \
+            > /usr/local/etc/php-fpm.d/zz-listen.conf
+    fi
+
     # Log applied configuration
     echo "Applied PHP configuration:"
     cat $PHP_CUSTOM_CONFIG_FILE
