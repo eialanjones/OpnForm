@@ -23,7 +23,7 @@ que os arquivos em `railway/` fazem.
 
 | Serviço | Config as code | Domínio público | Escuta |
 |---|---|---|---|
-| `ingress` | `railway/ingress.json` | ✅ `forms.mentorfy.com.br` | `$PORT` |
+| `ingress` | `railway/ingress.json` | ✅ `forms.mentorfy.io` | `$PORT` |
 | `api` | `railway/api.json` | ❌ | `[::]:9000` |
 | `client` | `railway/client.json` | ❌ | `[::]:3000` |
 | `worker` | `railway/worker.json` | ❌ | — |
@@ -36,12 +36,34 @@ config-as-code (Settings → Config as Code) e as variáveis.
 
 ## Nome dos serviços importa
 
-O `ingress` alcança os outros por `api.railway.internal:9000` e
-`client.railway.internal:3000`. Se você nomear diferente, ajuste
-`OPNFORM_API_HOST` e `OPNFORM_CLIENT_HOST` no serviço `ingress`.
+Os defaults do `Dockerfile.ingress` são `api.railway.internal:9000` e
+`client.railway.internal:3000`. **Eles quase nunca servem.** O Railway deriva o
+host privado do nome do serviço, então "OpnForm API" vira
+`opnform.railway.internal` e "OpnForm Cliente" vira
+`opnform-cliente.railway.internal`. Confira o `RAILWAY_PRIVATE_DOMAIN` de cada
+serviço e ajuste `OPNFORM_API_HOST` e `OPNFORM_CLIENT_HOST` no `ingress`.
+
+O erro aqui é silencioso na origem: o nginx só reclama quando chega uma
+requisição, com `could not be resolved` no log, e o navegador vê um 502 igual ao
+de qualquer outra falha.
 
 Na rede privada do Railway a porta **não** é inferida — tem que vir explícita no
 host, e é por isso que ela aparece nessas duas variáveis.
+
+## O startCommand substitui o ENTRYPOINT
+
+O `Dockerfile.api` define `ENTRYPOINT ["/usr/local/bin/opnform-entrypoint"]` com
+`CMD ["php-fpm"]`. No Railway, o `startCommand` do config-as-code substitui os
+**dois** — não só o `CMD`. Um `startCommand: "php-fpm"` sobe o container sem
+nunca passar pelo entrypoint: sem migration, sem `prep_storage`, e ignorando
+`PHP_FPM_LISTEN` em silêncio.
+
+E o serviço fica **verde**, porque o `wait_for_db` nunca chega a rodar. Foi assim
+que a `api` ficou "Online" por quase uma hora sem existir banco no projeto.
+
+Por isso `railway/api.json` não define `startCommand` (cai no `CMD` do
+Dockerfile), e `worker.json` e `scheduler.json` chamam o entrypoint
+explicitamente antes do `artisan`.
 
 ## Variáveis
 
@@ -50,9 +72,13 @@ host, e é por isso que ela aparece nessas duas variáveis.
 ```bash
 APP_ENV=production
 APP_KEY=                      # php artisan key:generate --show
-APP_URL=https://forms.mentorfy.com.br
+JWT_SECRET=                   # php artisan jwt:secret --show (64 chars aleatórios)
+APP_URL=https://forms.mentorfy.io
 SELF_HOSTED=true
 CASHIER_KEY=
+
+LOG_CHANNEL=errorlog
+LOG_LEVEL=warning
 
 DB_CONNECTION=pgsql
 DB_HOST=${{Postgres.PGHOST}}
@@ -77,6 +103,30 @@ PHP_POST_MAX_SIZE=64M
 Mais o bloco do `opnform-secrets/env-fork.txt` (chave pública do SSO, conta de
 serviço, callback, API key).
 
+`APP_KEY` e `JWT_SECRET` precisam ser **iguais nos três serviços**: sessões e
+tokens emitidos pela `api` são lidos pelo `worker`.
+
+Esquecer o `JWT_SECRET` é a falha mais cara da lista, porque o sintoma não
+aponta para ele. O grupo de middleware `api` começa com `throttle`, que chama
+`$request->user()` e resolve o guard JWT em **toda** requisição, autenticada ou
+não. Sem o segredo, o provider do `tymon/jwt-auth` recebe `null` e explode antes
+do controller: todo endpoint devolve `{"message":"Server Error"}`, inclusive o
+`/api/healthcheck`, que trata as próprias exceções e por isso parecia inocente.
+Rota inexistente continua devolvendo 404 limpo — é o teste que separa "app não
+sobe" de "middleware quebrado".
+
+`LOG_CHANNEL=errorlog` não é preferência. Em php-fpm o `stderr` do worker é
+descartado por padrão, então `LOG_CHANNEL=stderr` não produz **nada**: a
+requisição volta 500 e o log do container fica limpo. O canal `errorlog` escreve
+no error_log do master, que a imagem oficial já aponta para o stderr do PID 1.
+O `docker/php-fpm-entrypoint` também liga `catch_workers_output`, que cobre erro
+fatal de PHP — o que acontece antes do Laravel conseguir logar qualquer coisa.
+
+Falta ainda o bloco `MAIL_*`. O default de `config/mail.php` é `ses`, sem
+credencial nenhuma. Cadastro funciona (o e-mail vai para a fila e falha no
+worker, sem derrubar a requisição), mas verificação de e-mail e reset de senha
+não saem.
+
 ### Só no `api`
 
 ```bash
@@ -93,24 +143,39 @@ funcionar também em ambientes IPv6-only. Adicionei suporte a essa variável no
 ```bash
 HOST=::
 PORT=3000
-NUXT_PUBLIC_API_BASE=https://forms.mentorfy.com.br/api
-NUXT_PUBLIC_APP_URL=https://forms.mentorfy.com.br
-NUXT_PRIVATE_API_BASE=http://api.railway.internal:9000   # não usado hoje, mas é o par server-side
+NUXT_PUBLIC_API_BASE=https://forms.mentorfy.io/api
+NUXT_PUBLIC_APP_URL=https://forms.mentorfy.io
+NUXT_PRIVATE_API_BASE=http://opnform-ingress.railway.internal:8080/api
 NUXT_PUBLIC_ENV=production
 ```
 
 O `runtimeConfig.js` lê tudo em **runtime**, não no build — então não precisa de
 build args, e mudar uma dessas variáveis não exige rebuild da imagem.
 
+O `NUXT_PRIVATE_API_BASE` aponta para o **ingress**, não para a `api`. A porta
+9000 fala FastCGI, não HTTP — mandar o SSR para lá quebra toda requisição
+server-side. O caminho tem que incluir `/api`, senão o nginx casa o `location /`
+e devolve a requisição para o próprio client.
+
+Deixar essas duas variáveis vazias não degrada para "sem API": degrada para
+**recursão**. Com `baseURL` vazio, o `$fetch` do servidor vira URL relativa,
+volta para o próprio Nitro, cai no catch-all de SSR, renderiza a página, que
+dispara o plugin `feature-flags.server.js` de novo. O processo chega a 4 GB em
+uns 3 minutos e morre de OOM, sem uma única requisição no log.
+
 `HOST=::` pelo mesmo motivo do php-fpm: o Nitro escuta em IPv4 por padrão.
 
 ### Só no `ingress`
 
 ```bash
-OPNFORM_API_HOST=api.railway.internal:9000
-OPNFORM_CLIENT_HOST=client.railway.internal:3000
+PORT=8080
+OPNFORM_API_HOST=opnform.railway.internal:9000
+OPNFORM_CLIENT_HOST=opnform-cliente.railway.internal:3000
 NGINX_MAX_BODY_SIZE=64m
 ```
+
+Esses dois hosts vêm dos nomes reais dos serviços — confira o
+`RAILWAY_PRIVATE_DOMAIN` de cada um antes de copiar.
 
 ## Storage: vá de S3 desde o começo
 
@@ -152,7 +217,7 @@ serviços subirem juntos.
 
 ## Depois que tudo estiver no ar
 
-1. `https://forms.mentorfy.com.br/api/healthcheck` responde
+1. `https://forms.mentorfy.io/api/healthcheck` responde
 2. Crie o usuário de `MENTORFY_SERVICE_ACCOUNT_EMAIL` e gere o PAT
    (`opnform-secrets/README.md` tem os escopos exatos)
 3. Preencha `OPNFORM_SERVICE_TOKEN` no `mentorfy-backend`
