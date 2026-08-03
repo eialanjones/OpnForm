@@ -40,7 +40,7 @@ Steps to reproduce the behavior:
 
     <!--[e.g. chrome, safari] -->
 
--   #### OpnForm version 
+-   #### Forms Mentorfy version 
 
     <!--[e.g. 22] -->
 

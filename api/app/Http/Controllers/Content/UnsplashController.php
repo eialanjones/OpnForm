@@ -65,7 +65,7 @@ class UnsplashController extends Controller
         // Trigger download tracking with proper headers and authorization
         $response = Http::withHeaders([
             'Accept-Version' => 'v1',
-            'User-Agent' => 'OpnForm (https://opnform.com)',
+            'User-Agent' => config('app.name') . ' (' . config('app.url') . ')',
         ])->get($downloadLocation, [
             'client_id' => $accessKey,
         ]);

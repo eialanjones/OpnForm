@@ -39,7 +39,7 @@
 
     <p class="mt-6">
       <span class="text-red-600">Invalid AppSumo license</span>. The license was
-      probably already attached to an OpnForm account. Please contact support.
+      probably already attached to a Forms Mentorfy account. Please contact support.
     </p>
   </div>
 </template>

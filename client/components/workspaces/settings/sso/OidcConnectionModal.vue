@@ -119,7 +119,7 @@
             </template>
             <div class="space-y-4 pt-2">
               <p class="text-xs text-neutral-500">
-                Map IdP claim field names to OpnForm fields. Use this if your IdP uses different field names (e.g., "preferred_username" for email).
+                Map IdP claim field names to Forms Mentorfy fields. Use this if your IdP uses different field names (e.g., "preferred_username" for email).
               </p>
               
               <div class="space-y-2">

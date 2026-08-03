@@ -326,7 +326,7 @@
                 Nonprofit & Student Discount — 50%
               </p>
               <p class="mt-1 text-base font-medium leading-7 text-yellow-600">
-                Whether your nonprofit is large or small, OpnForm's online Form
+                Whether your nonprofit is large or small, Forms Mentorfy's online Form
                 Builder helps your organization help others. It takes just a few
                 minutes to create and publish your forms online. As an exclusive
                 benefit, we offer nonprofits & students a 50-percent discount!
@@ -360,14 +360,14 @@
           <div
             v-for="q in [
               {
-                question: 'Is there a free version of OpnForm available?',
+                question: 'Is there a free version of Forms Mentorfy available?',
                 answer:
-                  'Yes, OpnForm offers a free version with access to 99% of features, including unlimited forms, submissions, fields, webhooks, API access tokens, and more. Our goal is to provide robust functionality for all users without limitations.',
+                  'Yes, Forms Mentorfy offers a free version with access to 99% of features, including unlimited forms, submissions, fields, webhooks, API access tokens, and more. Our goal is to provide robust functionality for all users without limitations.',
               },
               {
                 question: 'What does the Pro Plan include?',
                 answer:
-                  'The OpnForm Pro Plan is designed to meet the advanced needs of teams and creators. It includes features like form confirmation emails, Slack and Discord notifications, editable submissions, custom domain, custom code integration, larger file uploads, removal of OpnForm branding, priority support, and more.',
+                  'The Forms Mentorfy Pro Plan is designed to meet the advanced needs of teams and creators. It includes features like form confirmation emails, Slack and Discord notifications, editable submissions, custom domain, custom code integration, larger file uploads, removal of Forms Mentorfy branding, priority support, and more.',
               },
               {
                 question: 'Is there a discount for annual plans?',
@@ -377,12 +377,12 @@
               {
                 question: 'How does the nonprofit and student discount work?',
                 answer:
-                  'OpnForm is committed to supporting nonprofits and students. We provide an exclusive 50% discount on the Pro Plan for nonprofit organizations and students. This discount helps you make the most of our form builder while staying within your budget.',
+                  'Forms Mentorfy is committed to supporting nonprofits and students. We provide an exclusive 50% discount on the Pro Plan for nonprofit organizations and students. This discount helps you make the most of our form builder while staying within your budget.',
               },
               {
                 question: 'Can I cancel or change my plan at any time?',
                 answer:
-                  'Yes, you have the flexibility to upgrade, downgrade, or cancel your OpnForm Pro Plan at any time. Changes will take effect immediately, and you\'ll only be billed based on the plan you\'re currently on.',
+                  'Yes, you have the flexibility to upgrade, downgrade, or cancel your Forms Mentorfy Pro Plan at any time. Changes will take effect immediately, and you\'ll only be billed based on the plan you\'re currently on.',
               },
             ]"
             :key="q.question"
@@ -427,7 +427,7 @@ export default {
     useOpnSeoMeta({
       title: "Pricing",
       description:
-        "All of our core features are free, and there is no quantity limit. You can also created more advanced and customized forms with OpnForms Pro.",
+        "All of our core features are free, and there is no quantity limit. You can also created more advanced and customized forms with Forms Mentorfy Pro.",
     })
 
     definePageMeta({

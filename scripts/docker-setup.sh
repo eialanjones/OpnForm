@@ -36,7 +36,7 @@ done
 
 cd "$PROJECT_ROOT"
 
-echo -e "${BLUE}Starting OpnForm Docker setup...${NC}"
+echo -e "${BLUE}Starting Forms Mentorfy Docker setup...${NC}"
 
 # Run the environment setup script with --docker flag (only for production)
 if [ "$DEV_MODE" = false ]; then

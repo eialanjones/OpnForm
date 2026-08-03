@@ -37,7 +37,7 @@
                 <svg class="w-full h-full transform -rotate-90" viewBox="0 0 64 64">
                   <circle cx="32" cy="32" r="28" fill="none" stroke="#e5e7eb" stroke-width="4"></circle>
                   <circle 
-                    cx="32" cy="32" r="28" fill="none" stroke="#3b82f6" stroke-width="4"
+                    cx="32" cy="32" r="28" fill="none" stroke="#fe7d22" stroke-width="4"
                     stroke-linecap="round"
                     stroke-dasharray="175.93"
                     :stroke-dashoffset="175.93 - (175.93 * smoothProgress / 100)"

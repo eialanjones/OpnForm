@@ -108,7 +108,7 @@
         </div>
       </div>
 
-      <div class="bg-[#f4f9ff] max-w-6xl mx-auto rounded-3xl m-10 p-10 flex justify-between items-center">
+      <div class="bg-blue-50 max-w-6xl mx-auto rounded-3xl m-10 p-10 flex justify-between items-center">
         <div class="max-w-md">
           <h2 class="text-3xl font-bold text-neutral-900">
             Need help?
@@ -202,7 +202,7 @@ const setupGuides = [
   {
     title: 'Email Integration Setup',
     steps: [
-      'Navigate to <b>OpnForm</b> > <b>Integrations</b>.',
+      'Navigate to <b>Forms Mentorfy</b> > <b>Integrations</b>.',
       'Select <b>Email</b> and configure SMTP settings.',
       'Set up email rules for notifications.',
       'Save & activate email alerts.'
@@ -211,7 +211,7 @@ const setupGuides = [
   {
     title: 'Slack Integration Setup',
     steps: [
-      'Navigate to <b>OpnForm</b> > <b>Integrations</b>.',
+      'Navigate to <b>Forms Mentorfy</b> > <b>Integrations</b>.',
       'Select <b>Slack</b> and authorize your workspace.',
       'Choose a channel & customize messages.',
       'Save & activate Slack alerts.'
@@ -220,7 +220,7 @@ const setupGuides = [
   {
     title: 'WebHook Integration Setup',
     steps: [
-      'Navigate to <b>OpnForm</b> > <b>Integrations</b>.',
+      'Navigate to <b>Forms Mentorfy</b> > <b>Integrations</b>.',
       'Select <b>WebHook</b> and enter your endpoint URL.',
       'Map fields & configure triggers.',
       'Save & activate WebHook alerts.'

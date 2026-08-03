@@ -1,6 +1,6 @@
 {
     "app": {
-        "name": "OpnForm"
+        "name": "Forms Mentorfy"
     },
     "forms": {
         "buttons": {
@@ -13,7 +13,7 @@
         "password_protected": "Aquest formulari està protegit amb contrasenya.",
         "invalid_password": "Contrasenya no vàlida.",
         "password_required": "Es requereix contrasenya.",
-        "create_form_free": "Crea el teu formulari gratuïtament amb OpnForm",
+        "create_form_free": "Crea el teu formulari gratuïtament amb Forms Mentorfy",
         "submit": "Enviar",
         "wrong_form_structure": "Hi ha alguna cosa malament amb l'estructura d'aquest formulari. Si ets el propietari del formulari, contacta amb nosaltres.",
         "cannot_access_here": "No es pot accedir a aquest contingut aquí. Fes clic a l'enllaç de sota per accedir-hi.",

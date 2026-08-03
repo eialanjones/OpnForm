@@ -21,7 +21,7 @@
           class="w-10 h-10 text-blue-800"
         />
         <div class="p-5 text-blue-800 text-center">
-          OpnForm is not optimized for mobile devices. Please open this page on a device with a larger screen.
+          Forms Mentorfy is not optimized for mobile devices. Please open this page on a device with a larger screen.
         </div>
         <div>
           <UButton

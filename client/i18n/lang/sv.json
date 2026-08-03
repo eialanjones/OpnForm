@@ -1,6 +1,6 @@
 {
     "app": {
-        "name": "OpnForm"
+        "name": "Forms Mentorfy"
     },
     "forms": {
         "buttons": {
@@ -13,7 +13,7 @@
         "password_protected": "Detta formulär är lösenordsskyddat.",
         "invalid_password": "Ogiltigt lösenord.",
         "password_required": "Lösenord krävs.",
-        "create_form_free": "Skapa ditt formulär gratis med OpnForm",
+        "create_form_free": "Skapa ditt formulär gratis med Forms Mentorfy",
         "submit": "Skicka",
         "wrong_form_structure": "Något är fel med formulärets struktur. Om du är formulärets ägare, kontakta oss.",
         "cannot_access_here": "Detta innehåll kan inte nås här. Klicka på länken nedan för att få åtkomst.",

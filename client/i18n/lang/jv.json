@@ -1,6 +1,6 @@
 {
     "app": {
-        "name": "OpnForm"
+        "name": "Forms Mentorfy"
     },
     "forms": {
         "buttons": {
@@ -13,7 +13,7 @@
         "password_protected": "Formulir iki dilindhungi tembung sandi.",
         "invalid_password": "Tembung sandi ora bener.",
         "password_required": "Tembung sandi dibutuhake.",
-        "create_form_free": "Gawe formulir sampeyan kanthi gratis nganggo OpnForm",
+        "create_form_free": "Gawe formulir sampeyan kanthi gratis nganggo Forms Mentorfy",
         "submit": "Kirim",
         "wrong_form_structure": "Ana sing salah karo struktur formulir iki. Yen sampeyan pemilik formulir, mangga hubungi kita.",
         "cannot_access_here": "Konten iki ora bisa diakses ing kene. Klik link ing ngisor iki kanggo ngakses.",

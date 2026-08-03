@@ -1,6 +1,6 @@
 {
     "app": {
-        "name": "OpnForm"
+        "name": "Forms Mentorfy"
     },
     "forms": {
         "buttons": {
@@ -13,7 +13,7 @@
         "password_protected": "このフォームはパスワードで保護されています。",
         "invalid_password": "無効なパスワード。",
         "password_required": "パスワードが必要です。",
-        "create_form_free": "OpnForm で無料でフォームを作成",
+        "create_form_free": "Forms Mentorfy で無料でフォームを作成",
         "submit": "送信",
         "wrong_form_structure": "このフォームの構造に問題があります。フォームの所有者であれば、お問い合わせください。",
         "cannot_access_here": "このコンテンツはここでアクセスできません。下のリンクをクリックしてアクセスしてください。",

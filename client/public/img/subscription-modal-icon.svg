@@ -266,10 +266,10 @@
               y2="25.7654"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#B4D5FF" />
+              <stop stop-color="#fed4a9" />
               <stop
                 offset="1"
-                stop-color="#2B88FD"
+                stop-color="#fe7d22"
               />
             </linearGradient>
             <linearGradient
@@ -280,10 +280,10 @@
               y2="25.7654"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#B4D5FF" />
+              <stop stop-color="#fed4a9" />
               <stop
                 offset="1"
-                stop-color="#2B88FD"
+                stop-color="#fe7d22"
               />
             </linearGradient>
             <linearGradient
@@ -294,10 +294,10 @@
               y2="25.7654"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#B4D5FF" />
+              <stop stop-color="#fed4a9" />
               <stop
                 offset="1"
-                stop-color="#2B88FD"
+                stop-color="#fe7d22"
               />
             </linearGradient>
           </defs>

@@ -36,6 +36,6 @@ class UserInvitationEmail extends Mailable implements ShouldQueue
             ->markdown('mail.user.invitation', [
                 'workspaceName' => $workspaceName,
                 'inviteLink' => $this->invite->getLink(),
-            ])->subject('You are invited to join ' . $workspaceName . ' on OpnForm');
+            ])->subject('You are invited to join ' . $workspaceName . ' on Forms Mentorfy');
     }
 }

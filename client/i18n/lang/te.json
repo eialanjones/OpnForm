@@ -1,6 +1,6 @@
 {
     "app": {
-        "name": "OpnForm"
+        "name": "Forms Mentorfy"
     },
     "forms": {
         "buttons": {
@@ -13,7 +13,7 @@
         "password_protected": "ఈ ఫారమ్ పాస్‌వర్డ్‌తో రక్షించబడింది.",
         "invalid_password": "చెల్లని పాస్‌వర్డ్.",
         "password_required": "పాస్‌వర్డ్ అవసరం.",
-        "create_form_free": "OpnForm తో మీ ఫారమ్‌ను ఉచితంగా సృష్టించండి",
+        "create_form_free": "Forms Mentorfy తో మీ ఫారమ్‌ను ఉచితంగా సృష్టించండి",
         "submit": "సమర్పించండి",
         "wrong_form_structure": "ఈ ఫారమ్ నిర్మాణంలో ఏదో తప్పు ఉంది. మీరు ఫారమ్ యజమాని అయితే, దయచేసి మమ్మల్ని సంప్రదించండి.",
         "cannot_access_here": "ఈ కంటెంట్‌ను ఇక్కడ యాక్సెస్ చేయలేరు. దీన్ని యాక్సెస్ చేయడానికి దిగువ లింక్‌పై క్లిక్ చేయండి.",

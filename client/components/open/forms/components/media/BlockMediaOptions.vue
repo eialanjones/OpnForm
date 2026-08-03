@@ -35,8 +35,8 @@ const isEmpty = computed(() => !props.model?.image || !props.model.image?.url)
 const headerIconClass = computed(() => isEmpty.value ? 'text-blue-500! animate-pulse' : '')
 
 // DRY icon classes
-const iconBaseClass = 'w-[70px] h-[50px] rounded transition-colors duration-150 ease-out [--icon-fg:#737373] [--icon-muted:#D4D4D4] group-hover:[--icon-fg:#3b82f6] group-hover:[--icon-muted:#60a5fa] text-neutral-500 group-hover:text-blue-500 group-aria-selected:[--icon-fg:#3b82f6] group-aria-selected:[--icon-muted:#60a5fa] group-[aria-selected=true]:[--icon-fg:#3b82f6] group-[aria-selected=true]:[--icon-muted:#60a5fa] group-aria-selected:text-blue-500 group-[aria-selected=true]:text-blue-500'
-const iconSelectedClass = '[--icon-fg:#3b82f6] [--icon-muted:#60a5fa] text-blue-500'
+const iconBaseClass = 'w-[70px] h-[50px] rounded transition-colors duration-150 ease-out [--icon-fg:#737373] [--icon-muted:#D4D4D4] group-hover:[--icon-fg:#fe7d22] group-hover:[--icon-muted:#fe9a4f] text-neutral-500 group-hover:text-blue-500 group-aria-selected:[--icon-fg:#fe7d22] group-aria-selected:[--icon-muted:#fe9a4f] group-[aria-selected=true]:[--icon-fg:#fe7d22] group-[aria-selected=true]:[--icon-muted:#fe9a4f] group-aria-selected:text-blue-500 group-[aria-selected=true]:text-blue-500'
+const iconSelectedClass = '[--icon-fg:#fe7d22] [--icon-muted:#fe9a4f] text-blue-500'
 
 const layoutOptions = [
   { name: 'between',      icon: 'opnform:form-layout-between',      iconClass: iconBaseClass, iconSelectedClass },

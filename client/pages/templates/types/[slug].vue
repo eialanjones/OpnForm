@@ -105,13 +105,13 @@ useHead({
     if (
       type.value &&
       type.value.meta_title.length < 60 &&
-      !type.value.meta_title.toLowerCase().includes("opnform")
+      !type.value.meta_title.toLowerCase().includes("forms mentorfy")
     ) {
       return titleChunk
-        ? `${titleChunk} - OpnForm`
-        : "Form Templates - OpnForm"
+        ? `${titleChunk} - Forms Mentorfy`
+        : "Form Templates - Forms Mentorfy"
     }
-    return titleChunk ? titleChunk : "Form Templates - OpnForm"
+    return titleChunk ? titleChunk : "Form Templates - Forms Mentorfy"
   },
 })
 </script>

@@ -11,7 +11,7 @@ A clear and concise description of the deployment or self-hosting issue you're e
 
 **Deployment Environment**
 
--   OpnForm Version: [e.g. 1.0.22]
+-   Forms Mentorfy Version: [e.g. 1.0.22]
 -   Hosting Platform: [e.g. AWS, DigitalOcean, Self-hosted server]
 -   OS: [e.g. Ubuntu 20.04, CentOS 8]
 

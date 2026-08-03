@@ -73,7 +73,7 @@ export const useAuthFlow = () => {
       if (tokenData.appsumo_license === false) {
         useAlert().error(
           "Invalid AppSumo license. This probably happened because this license was already" +
-          " attached to another OpnForm account. Please contact support."
+          " attached to another Forms Mentorfy account. Please contact support."
         )
       } else if (tokenData.appsumo_license === true) {
         useAlert().success(

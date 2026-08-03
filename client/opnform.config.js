@@ -1,11 +1,14 @@
 export default {
-  app_ame: "OpnForm",
+  app_name: "Forms Mentorfy",
+  company_name: "Mentorfy Educação LTDA",
   locale: "en",
   locales: { en: "EN" },
   githubAuth: null,
   notion: { worker: "https://notion-forms-worker.notionforms.workers.dev/v1" },
   links: {
-    help_url: "https://help.opnform.com",
+    // Mentorfy-owned. The remaining links below belong to the upstream OpnForm
+    // project and are kept for developer docs and AGPL attribution.
+    help_url: "https://www.mentorfy.com.br",
     github_url: "https://github.com/OpnForm/OpnForm",
     github_forum_url: "https://github.com/OpnForm/OpnForm/discussions",
     discord: "https://discord.gg/YTSjU2a9TS",

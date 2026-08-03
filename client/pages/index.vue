@@ -282,19 +282,6 @@
           </TrackClick>
         </div>
 
-        <p class="mt-12 text-white text-lg">
-          The form below is an OpnForm, give it a try !
-        </p>
-        <div
-          class="md:max-w-5xl md:mx-auto w-full bg-white rounded-md mt-6 p-4 shadow-lg"
-        >
-          <iframe
-            class="mt-4"
-            style="border: none; width: 100%"
-            height="480px"
-            src="https://opnform.com/forms/opnform-contact"
-          />
-        </div>
       </div>
 
       <open-form-footer class="dark:border-t border-t" />
@@ -330,7 +317,7 @@ const configLinks = computed(() => config.links)
 }
 
 .ticks {
-  color: #2563eb;
+  color: #de5d00;
 }
 
 @screen md {

@@ -9,7 +9,13 @@ We generally support the latest release series and the `main` branch. Security f
 ## Reporting a Vulnerability
 
 -   Please do not open public GitHub issues for security reports.
--   Email [julien@opnform.com](mailto:julien@opnform.com?subject=Security%20Vulnerability%20Report%20for%20OpnForm&body=Please%20describe%20the%20vulnerability%20in%20detail%20including%20affected%20version%2C%20steps%20to%20reproduce%2C%20impact%2C%20and%20any%20suggested%20mitigations.) with details.
+-   For anything specific to Forms Mentorfy — this deployment, the Mentorfy SSO
+    flow, or Mentorfy data — contact Mentorfy through
+    [mentorfy.com.br](https://www.mentorfy.com.br).
+-   For a vulnerability in the upstream codebase that also affects other OpnForm
+    installations, please report it to the
+    [OpnForm project](https://github.com/OpnForm/OpnForm/security) so every
+    deployment gets the fix.
 
 When reporting, include as much information as possible:
 

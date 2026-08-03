@@ -111,10 +111,10 @@ class GenerateTaxExport extends Command
 
         $aggregatedReport = $this->aggregateReport($processedInvoices);
 
-        $filePath = 'opnform-tax-export-per-invoice_' . $startDate . '_' . $endDate . '.xlsx';
+        $filePath = 'forms-mentorfy-tax-export-per-invoice_' . $startDate . '_' . $endDate . '.xlsx';
         $this->exportAsXlsx($processedInvoices, $filePath);
 
-        $aggregatedReportFilePath = 'opnform-tax-export-aggregated_' . $startDate . '_' . $endDate . '.xlsx';
+        $aggregatedReportFilePath = 'forms-mentorfy-tax-export-aggregated_' . $startDate . '_' . $endDate . '.xlsx';
         $this->exportAsXlsx($aggregatedReport, $aggregatedReportFilePath);
 
         // Calculate processing time

@@ -45,7 +45,7 @@
           </p>
           <ul class="mt-4 space-y-2 text-sm">
             <li>
-              Do you want to know why users choose OpnForm? 
+              Do you want to know why users choose Forms Mentorfy? 
               <NuxtLink
                 class="text-blue-500 hover:text-blue-600"
                 :to="{ name: 'ai-form-builder' }"
@@ -105,7 +105,7 @@ const actions = [
   {
     to: { name: 'index' },
     icon: 'i-heroicons-document-magnifying-glass',
-    text: 'Explore OpnForm'
+    text: 'Explore Forms Mentorfy'
   },
   {
     href: '#',

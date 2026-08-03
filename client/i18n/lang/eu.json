@@ -1,6 +1,6 @@
 {
     "app": {
-        "name": "OpnForm"
+        "name": "Forms Mentorfy"
     },
     "forms": {
         "buttons": {
@@ -13,7 +13,7 @@
         "password_protected": "Inprimaki hau pasahitz bidez babestuta dago.",
         "invalid_password": "Pasahitz okerra.",
         "password_required": "Pasahitza beharrezkoa da.",
-        "create_form_free": "Sortu zure inprimakia doan OpnForm-ekin",
+        "create_form_free": "Sortu zure inprimakia doan Forms Mentorfy-ekin",
         "submit": "Bidali",
         "wrong_form_structure": "Zerbait gaizki dago inprimaki honen egituran. Inprimakiaren jabea bazara, jar zaitez gurekin harremanetan.",
         "cannot_access_here": "Ezin da eduki honetara hemen sartu. Egin klik beheko estekan sartzeko.",

@@ -1,6 +1,6 @@
 {
     "app": {
-        "name": "OpnForm"
+        "name": "Forms Mentorfy"
     },
     "forms": {
         "buttons": {
@@ -13,7 +13,7 @@
         "password_protected": "Biểu mẫu này được bảo vệ bằng mật khẩu.",
         "invalid_password": "Mật khẩu không hợp lệ.",
         "password_required": "Yêu cầu mật khẩu.",
-        "create_form_free": "Tạo biểu mẫu miễn phí với OpnForm",
+        "create_form_free": "Tạo biểu mẫu miễn phí với Forms Mentorfy",
         "submit": "Gửi",
         "wrong_form_structure": "Có lỗi với cấu trúc của biểu mẫu này. Nếu bạn là chủ sở hữu biểu mẫu, vui lòng liên hệ với chúng tôi.",
         "cannot_access_here": "Không thể truy cập nội dung này tại đây. Nhấp vào liên kết bên dưới để truy cập.",

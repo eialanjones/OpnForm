@@ -32,7 +32,7 @@
        align-items:center;
        justify-content:center;
        text-align: center;
-       background-color: #3B82F6;
+       background-color: #FE7D22;
        padding: 8px 10px;
        border: none;
        cursor: pointer;
@@ -113,7 +113,7 @@
   // Settings
   const emoji = nfData?.emoji || "💬"
   const position = nfData?.position === "left" ? "nf-left" : ""
-  const emojiBgColor = nfData?.bgcolor || "#3B82F6"
+  const emojiBgColor = nfData?.bgcolor || "#FE7D22"
   const width = nfData?.width || 500
 
   // Remove old popup, if there
@@ -146,7 +146,7 @@
     if (!iframeCreated) {
       iframe = document.createElement("iframe")
       iframe.src = formUrl
-      iframe.title = "OpnForm"
+      iframe.title = "Forms Mentorfy"
       iframe.style.maxWidth = `${width}px`
       popupDiv.appendChild(iframe)
       iframeCreated = true

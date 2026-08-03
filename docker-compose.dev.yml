@@ -33,7 +33,7 @@ services:
       # Mail settings (development - uses log driver)
       MAIL_MAILER: log
       MAIL_FROM_ADDRESS: dev@localhost
-      MAIL_FROM_NAME: OpnForm-Dev
+      MAIL_FROM_NAME: Forms Mentorfy Dev
       # PHP Configuration
       PHP_MEMORY_LIMIT: "1G"
       PHP_MAX_EXECUTION_TIME: "600"

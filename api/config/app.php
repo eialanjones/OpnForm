@@ -13,7 +13,19 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'OpnForm'),
+    'name' => env('APP_NAME', 'Forms Mentorfy'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Legal Entity
+    |--------------------------------------------------------------------------
+    |
+    | The company that owns this deployment. Used in copyright notices, e.g.
+    | the footer of every transactional email.
+    |
+    */
+
+    'company' => env('APP_COMPANY', 'Mentorfy Educação LTDA'),
 
     /*
     |--------------------------------------------------------------------------

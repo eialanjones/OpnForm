@@ -4,16 +4,16 @@
       <div class="flex justify-center items-center mb-6">
         <img
           src="/img/logo.svg"
-          alt="OpnForm logo"
+          alt="Forms Mentorfy logo"
           class="w-8 h-8"
         >
         <h1 class="ml-2 text-xl font-semibold text-black">
-          OpnForm
+          Forms Mentorfy
         </h1>
       </div>
       
       <p class="mt-2 text-center text-sm text-neutral-600">
-        Welcome to OpnForm! Let's get you set up. Create your admin account to start building beautiful forms.
+        Welcome to Forms Mentorfy! Let's get you set up. Create your admin account to start building beautiful forms.
       </p>
     </div>
 
@@ -46,8 +46,8 @@ if (!setupRequired || !selfHosted) {
 
 // SEO
 useOpnSeoMeta({
-  title: "Setup - OpnForm",
-  description: "Set up your OpnForm instance",
+  title: "Setup - Forms Mentorfy",
+  description: "Set up your Forms Mentorfy instance",
   robots: "noindex, nofollow"
 })
 
@@ -63,7 +63,7 @@ const handleSetupComplete = async () => {
   // Show success message
   useAlert().success({
     title: "Setup Complete! 🎉",
-    description: "Your OpnForm instance is ready. Time to create your first form!"
+    description: "Your Forms Mentorfy instance is ready. Time to create your first form!"
   })
   
   // Redirect to dashboard

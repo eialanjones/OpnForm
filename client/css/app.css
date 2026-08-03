@@ -29,6 +29,30 @@
 
     --color-light-gray: #f8fafc;
 
+    /*
+     * Mentorfy brand palette.
+     *
+     * The upstream codebase paints the brand with literal `blue-*` utilities in
+     * ~80 components rather than a `primary` token, so the `blue` scale itself is
+     * remapped to Mentorfy orange. Every existing `bg-blue-500`, `text-blue-600`,
+     * `ring-blue-200` … renders in brand color with no per-component churn, and
+     * Nuxt UI's `primary: 'blue'` (app.config.ts) resolves here too.
+     *
+     * Informational (non-brand) blue lives on the `sky` scale — see `info` in
+     * app.config.ts.
+     */
+    --color-blue-50: #fff8eb;
+    --color-blue-100: #fff1d6;
+    --color-blue-200: #fed4a9;
+    --color-blue-300: #feb77c;
+    --color-blue-400: #fe9a4f;
+    --color-blue-500: #fe7d22;
+    --color-blue-600: #de5d00;
+    --color-blue-700: #ae4900;
+    --color-blue-800: #7e3500;
+    --color-blue-900: #4e2100;
+    --color-blue-950: #2e1300;
+
     /* Form color variable */
     --bg-form-color: var(--color-blue-500);
     --form-color: var(--color-blue-500);
@@ -120,31 +144,31 @@
         filter: drop-shadow(0 0px 10px rgba(255, 255, 255, 0.5));
     }
     .drop-shadow-blue {
-        filter: drop-shadow(0 0px 15px rgba(59, 130, 246, 0.8));
+        filter: drop-shadow(0 0px 15px rgba(254, 125, 34, 0.8));
     }
 
     /* Custom gradient backgrounds */
     .bg-gradient-core {
         background-image: linear-gradient(
             251deg,
-            #3b9cf6 0%,
-            #3b82f6 48%,
-            #3b82f6 100%
+            #fe9a4f 0%,
+            #fe7d22 48%,
+            #fe7d22 100%
         );
     }
     .bg-gradient-blue {
         background-image: linear-gradient(
             270deg,
-            #3b9cf6 0%,
-            #3b82f6 48%,
-            #3b82f6 100%
+            #fe9a4f 0%,
+            #fe7d22 48%,
+            #fe7d22 100%
         );
     }
     .bg-custom-gradient {
         background-image: linear-gradient(
             90deg,
-            #3b82f6 0.24%,
-            #60a5fa 100.24%
+            #fe7d22 0.24%,
+            #fe9a4f 100.24%
         );
     }
 }
@@ -257,7 +281,7 @@
 
     /* Gradient text utility */
     .gradient-text {
-        background: linear-gradient(90deg, #3b82f6 0.24%, #60a5fa 100.24%);
+        background: linear-gradient(90deg, #fe7d22 0.24%, #fe9a4f 100.24%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -370,7 +394,7 @@ body.dark * {
 
 /* Why NoteForms */
 .gradient-text {
-    background: linear-gradient(90deg, #3b82f6 0.24%, #60a5fa 100.24%);
+    background: linear-gradient(90deg, #fe7d22 0.24%, #fe9a4f 100.24%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

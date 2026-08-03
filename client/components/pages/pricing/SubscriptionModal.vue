@@ -118,7 +118,7 @@
                           class="w-5 h-5 text-blue-500"
                         />
                         <p class="mt-2">
-                          <strong class="font-semibold text-slate-800">Remove OpnForm branding.</strong>
+                          <strong class="font-semibold text-slate-800">Remove Forms Mentorfy branding.</strong>
                           <span class="text-slate-500"> Remove our watermark, create forms that match your brand.</span>
                         </p>
                       </div>
@@ -233,7 +233,7 @@
                 >
                   <div class="flex w-full">
                     <p class="text-blue-500 capitalize font-medium flex-grow">
-                      OpnForm - {{ currentPlan == 'default' ? 'Pro' : 'Team' }} plan
+                      Forms Mentorfy - {{ currentPlan == 'default' ? 'Pro' : 'Team' }} plan
                     </p>
                     <UBadge
                       :color="isYearly?'success':'warning'"
@@ -358,7 +358,7 @@ const props = defineProps({
   },
   modal_description: {
     type: String,
-    default: 'Unlock all features and get the most out of OpnForm.'
+    default: 'Unlock all features and get the most out of Forms Mentorfy.'
   },
   plan: {
     type: String,
@@ -475,12 +475,12 @@ watch(broadcastData, () => {
 
     if (user.value.has_enterprise_subscription) {
       useAlert().success(
-        'Awesome! Your subscription to OpnForm is now confirmed! You now have access to all Team '
-        + 'features. No need to invite your teammates, just ask them to create a OpnForm account and to connect the same Notion workspace. Feel free to contact us if you have any question 🙌'
+        'Awesome! Your subscription to Forms Mentorfy is now confirmed! You now have access to all Team '
+        + 'features. No need to invite your teammates, just ask them to create a Forms Mentorfy account and to connect the same Notion workspace. Feel free to contact us if you have any question 🙌'
       )
     } else {
       useAlert().success(
-        'Awesome! Your subscription to OpnForm is now confirmed! You now have access to all Pro '
+        'Awesome! Your subscription to Forms Mentorfy is now confirmed! You now have access to all Pro '
         + 'features. Feel free to contact us if you have any question 🙌'
       )
     }

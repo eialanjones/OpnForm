@@ -1,6 +1,6 @@
 {
     "app": {
-        "name": "OpnForm"
+        "name": "Forms Mentorfy"
     },
     "forms": {
         "buttons": {
@@ -13,7 +13,7 @@
         "password_protected": "Ovaj formular je zaštićen lozinkom.",
         "invalid_password": "Neispravna lozinka.",
         "password_required": "Lozinka je obavezna.",
-        "create_form_free": "Kreiraj svoj formular besplatno uz OpnForm",
+        "create_form_free": "Kreiraj svoj formular besplatno uz Forms Mentorfy",
         "submit": "Pošalji",
         "wrong_form_structure": "Nešto nije u redu sa strukturom ovog formulara. Ako ste vlasnik formulara, kontaktirajte nas.",
         "cannot_access_here": "Ovom sadržaju nije moguće pristupiti ovde. Kliknite na link ispod za pristup.",

@@ -75,14 +75,14 @@ const styleOptions = [
     name: 'classic',
     label: 'Classic',
     icon: 'opnform:form-style-classic',
-    iconClass: 'w-[91px] h-[65px] rounded shadow *:transition-colors duration-150 ease-out [--icon-fg:#737373] [--icon-muted:#D4D4D4] group-hover:[--icon-fg:#1d4ed8] group-hover:[--icon-muted:#60a5fa] group-aria-selected:[--icon-fg:#1d4ed8] group-aria-selected:[--icon-muted:#60a5fa] group-[aria-selected=true]:[--icon-fg:#1d4ed8] group-[aria-selected=true]:[--icon-muted:#60a5fa]',
+    iconClass: 'w-[91px] h-[65px] rounded shadow *:transition-colors duration-150 ease-out [--icon-fg:#737373] [--icon-muted:#D4D4D4] group-hover:[--icon-fg:#ae4900] group-hover:[--icon-muted:#fe9a4f] group-aria-selected:[--icon-fg:#ae4900] group-aria-selected:[--icon-muted:#fe9a4f] group-[aria-selected=true]:[--icon-fg:#ae4900] group-[aria-selected=true]:[--icon-muted:#fe9a4f]',
     tooltip: 'Classic form: multiple inputs per page, multi-line layout, supports multiple pages and layout blocks.'
   },
   {
     name: 'focused',
     label: 'Focused',
     icon: 'opnform:form-style-focused',
-    iconClass: 'w-[91px] h-[65px] rounded shadow *:transition-colors duration-150 ease-out [--icon-fg:#737373] [--icon-muted:#D4D4D4] group-hover:[--icon-fg:#1d4ed8] group-hover:[--icon-muted:#60a5fa] group-aria-selected:[--icon-fg:#1d4ed8] group-aria-selected:[--icon-muted:#60a5fa] group-[aria-selected=true]:[--icon-fg:#1d4ed8] group-[aria-selected=true]:[--icon-muted:#60a5fa]',
+    iconClass: 'w-[91px] h-[65px] rounded shadow *:transition-colors duration-150 ease-out [--icon-fg:#737373] [--icon-muted:#D4D4D4] group-hover:[--icon-fg:#ae4900] group-hover:[--icon-muted:#fe9a4f] group-aria-selected:[--icon-fg:#ae4900] group-aria-selected:[--icon-muted:#fe9a4f] group-[aria-selected=true]:[--icon-fg:#ae4900] group-[aria-selected=true]:[--icon-muted:#fe9a4f]',
     tooltip: 'Typeform-like, one question per step.'
   }
 ]

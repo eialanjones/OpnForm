@@ -19,11 +19,11 @@ const props = defineProps({
   },
   label: {
     type: String,
-    default: 'Made with OpnForm'
+    default: 'Made with Forms Mentorfy'
   },
   color: {
     type: String,
-    default: '#3B82F6' // Default blue
+    default: '#FE7D22' // Mentorfy brand orange
   }
 })
 

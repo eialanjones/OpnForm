@@ -20,7 +20,7 @@
 /**
  * Ponte de SSO da Mentorfy.
  *
- * Recebe o token curto na query, troca por um JWT do OpnForm e grava no mesmo
+ * Recebe o token curto na query, troca por um JWT do Forms Mentorfy e grava no mesmo
  * cookie que o login normal usa — daí para frente a aplicação não sabe (nem
  * precisa saber) que a sessão veio de fora.
  *

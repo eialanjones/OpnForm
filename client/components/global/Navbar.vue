@@ -12,12 +12,12 @@
           >
             <img
               src="/img/logo.svg"
-              alt="notion tools logo"
+              alt="Forms Mentorfy logo"
               class="w-6 h-6"
             >
             <span
               class="ml-2 text-md hidden sm:inline text-black dark:text-white"
-            >OpnForm</span>
+            >Forms Mentorfy</span>
           </NuxtLink>
           <WorkspaceDropdown class="ml-6">
             <template #default="{ workspace }">

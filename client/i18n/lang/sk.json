@@ -1,6 +1,6 @@
 {
     "app": {
-        "name": "OpnForm"
+        "name": "Forms Mentorfy"
     },
     "forms": {
         "buttons": {
@@ -13,7 +13,7 @@
         "password_protected": "Tento formulár je chránený heslom.",
         "invalid_password": "Neplatné heslo.",
         "password_required": "Heslo je povinné.",
-        "create_form_free": "Vytvorte si svoj formulár zadarmo s OpnForm",
+        "create_form_free": "Vytvorte si svoj formulár zadarmo s Forms Mentorfy",
         "submit": "Odoslať",
         "wrong_form_structure": "Niečo nie je v poriadku so štruktúrou tohto formulára. Ak ste vlastníkom formulára, kontaktujte nás.",
         "cannot_access_here": "K tomuto obsahu sa tu nedá pristupovať. Kliknite na odkaz nižšie pre prístup.",

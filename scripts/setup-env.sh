@@ -2,7 +2,7 @@
 
 set -e
 
-# Welcome to the OpnForm environment setup script!
+# Welcome to the Forms Mentorfy environment setup script!
 
 # Paths to the environment files
 ENV_FILE="api/.env"
@@ -19,7 +19,7 @@ for arg in "$@"; do
     USE_DOCKER_ENV=true
     ENV_EXAMPLE="api/.env.docker"
     CLIENT_ENV_EXAMPLE="client/.env.docker"
-    echo "OpnForm setup detected the --docker flag. Preparing Docker-specific environment..."
+    echo "Forms Mentorfy setup detected the --docker flag. Preparing Docker-specific environment..."
     break
   fi
 done
@@ -58,12 +58,12 @@ set_env_value() {
 
 # Check if the main .env file exists
 if [ -f "$ENV_FILE" ]; then
-  echo "OpnForm's main .env file is already in place. No further action is needed."
+  echo "Forms Mentorfy's main .env file is already in place. No further action is needed."
 else
-  echo "Creating OpnForm's main .env file from the template..."
+  echo "Creating Forms Mentorfy's main .env file from the template..."
   cp "$ENV_EXAMPLE" "$ENV_FILE"
 
-  # Secure your OpnForm instance with a unique APP_KEY
+  # Secure your Forms Mentorfy instance with a unique APP_KEY
   APP_KEY=$(generate_base64_key)
   set_env_value "$ENV_FILE" "APP_KEY" "base64:$APP_KEY"
 
@@ -78,11 +78,11 @@ fi
 
 # Check if the client .env file exists
 if [ -f "$CLIENT_ENV_FILE" ]; then
-  echo "OpnForm's client .env file is already configured. Moving on..."
+  echo "Forms Mentorfy's client .env file is already configured. Moving on..."
 else
-  echo "Creating OpnForm's client .env file from the template..."
+  echo "Creating Forms Mentorfy's client .env file from the template..."
   cp "$CLIENT_ENV_EXAMPLE" "$CLIENT_ENV_FILE"
   set_env_value "$CLIENT_ENV_FILE" "NUXT_API_SECRET" "$SHARED_SECRET"
 fi
 
-echo "✅ OpnForm environment setup is now complete. Enjoy building your forms!"
+echo "✅ Forms Mentorfy environment setup is now complete. Enjoy building your forms!"

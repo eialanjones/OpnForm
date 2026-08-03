@@ -4,12 +4,14 @@ export default defineAppConfig({
     },
     ui: {
         colors: {
+            // `blue` is remapped to Mentorfy orange in css/app.css.
             primary: 'blue',
             secondary: 'blue',
             success: 'green',
             error: 'red',
             warning: 'amber',
-            info: 'blue',
+            // Real blue, so informational states stay distinct from the brand.
+            info: 'sky',
             neutral: 'neutral',
             form: 'form'
         },

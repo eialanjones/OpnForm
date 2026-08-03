@@ -6,7 +6,7 @@
     color="primary"
     variant="subtle"
     title="Discover our Pro plan"
-    description="Remove OpnForm branding, customize forms further, use your custom domain, integrate with your favorite tools, invite users, and more!"
+    description="Remove Forms Mentorfy branding, customize forms further, use your custom domain, integrate with your favorite tools, invite users, and more!"
     :actions="[
       {
         label: 'Upgrade now',

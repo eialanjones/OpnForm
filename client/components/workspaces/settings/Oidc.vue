@@ -154,7 +154,7 @@ const alertConfig = computed(() => {
     icon: 'i-heroicons-exclamation-triangle',
     color: 'warning',
     title: 'Beta Feature - Future Changes',
-    description: 'OIDC SSO is currently in beta and free for self-hosted installations. Future updates of OpnForm will require an enterprise license to use this feature.',
+    description: 'OIDC SSO is currently in beta and free for self-hosted installations. Future updates of Forms Mentorfy will require an enterprise license to use this feature.',
     actions: []
   }
 })

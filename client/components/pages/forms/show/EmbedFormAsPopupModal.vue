@@ -130,7 +130,7 @@ const isModalOpen = computed({
 const advancedOptions = ref({
   emoji: "💬",
   position: "right",
-  bgcolor: "#3B82F6",
+  bgcolor: "#FE7D22",
   width: "500",
 })
 

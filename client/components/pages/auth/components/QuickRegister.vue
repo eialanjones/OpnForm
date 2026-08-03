@@ -3,7 +3,7 @@
     <!--  Login modal  -->
     <UModal
       v-model:open="isLoginModalOpen"
-      title="Login to OpnForm"
+      title="Login to Forms Mentorfy"
       :dismissible="!appStore.isUnauthorizedError"
       @pointer-down-outside="handlePointerDownOutside"
     >

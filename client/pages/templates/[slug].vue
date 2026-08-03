@@ -230,7 +230,7 @@
             <h4
               class="text-xl font-bold tracking-tight text-neutral-900 sm:text-2xl"
             >
-              How OpnForm works
+              How Forms Mentorfy works
             </h4>
           </div>
 

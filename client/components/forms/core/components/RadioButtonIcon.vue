@@ -24,7 +24,7 @@ const props = defineProps({
   },
   color: {
     type: String,
-    default: '#3B82F6'
+    default: '#FE7D22'
   },
   // Theme configuration as strings for tailwind-variants
   size: {type: String, default: null}, 

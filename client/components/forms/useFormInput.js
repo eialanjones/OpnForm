@@ -23,7 +23,7 @@ export const inputProps = {
   showCharLimit: {type: Boolean, default: false},
   help: {type: String, default: null},
   helpPosition: {type: String, default: "below_input"},
-  color: {type: String, default: "#3B82F6"},
+  color: {type: String, default: "#FE7D22"},
   wrapperClass: { type: String, default: "" },
   media: { type: Object, default: null },
   isDark: { type: Boolean, default: false },

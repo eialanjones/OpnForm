@@ -66,20 +66,25 @@ const previewTitle = computed(() => {
   if (props.form.seo_meta?.page_title) {
     return props.form.seo_meta.page_title
   }
-  return props.form?.title ? `${props.form.title} - OpnForm` : 'OpnForm'
+  return props.form?.title ? `${props.form.title} - Forms Mentorfy` : 'Forms Mentorfy'
 })
 
 const previewDescription = computed(() => {
   if (props.form.seo_meta?.page_description) {
     return props.form.seo_meta.page_description
   }
-  return 'Build beautiful, powerful forms for free with OpnForm. Unlimited submissions, rich features, and seamless integrations — fully open-source and easy to use.'
+  return 'Build beautiful, powerful forms with Forms Mentorfy. Unlimited submissions, rich features, and seamless integrations.'
 })
 
 const previewDomain = computed(() => {
   if (props.form?.custom_domain) {
     return props.form.custom_domain.toUpperCase()
   }
-  return 'OPNFORM.COM'
+  // Whatever host this instance is actually served from.
+  const configured = useRuntimeConfig().public.appUrl
+  if (configured) {
+    return new URL(configured).host.toUpperCase()
+  }
+  return import.meta.client ? window.location.host.toUpperCase() : ''
 })
 </script>

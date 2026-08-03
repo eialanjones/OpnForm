@@ -4,7 +4,7 @@
       id="app"
       class="bg-white dark:bg-notion-dark"
     >
-      <NuxtLoadingIndicator color="#2563eb" />
+      <NuxtLoadingIndicator color="#de5d00" />
       <NuxtLayout>
         <NuxtPage />
       </NuxtLayout>
@@ -40,9 +40,9 @@ const isPublicFormPage = computed(() => route.name === 'forms-slug')
 
 // SEO and head configuration
 useOpnSeoMeta({
-  title: "Free Form Builder with Unlimited Submissions",
+  title: "Form Builder with Unlimited Submissions",
   description:
-    "Build beautiful, powerful forms for free with OpnForm. Unlimited submissions, rich features, and seamless integrations — fully open-source and easy to use.",
+    "Build beautiful, powerful forms with Forms Mentorfy. Unlimited submissions, rich features, and seamless integrations.",
   ogImage: "/img/social-preview.jpg",
   robots: () => {
     return config.public.env === "production" ? null : "noindex, nofollow"
@@ -51,7 +51,7 @@ useOpnSeoMeta({
 
 useHead({
   titleTemplate: (titleChunk) => {
-    return titleChunk ? `${titleChunk} - OpnForm` : "OpnForm"
+    return titleChunk ? `${titleChunk} - Forms Mentorfy` : "Forms Mentorfy"
   },
   meta: [
     {
@@ -67,7 +67,8 @@ useHead({
     {
       rel: 'apple-touch-icon',
       type: 'image/png',
-      href: '/favicon.ico'
+      sizes: '180x180',
+      href: '/apple-touch-icon.png'
     }
   ],
   htmlAttrs: () => ({

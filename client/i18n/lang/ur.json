@@ -1,6 +1,6 @@
 {
     "app": {
-        "name": "OpnForm"
+        "name": "Forms Mentorfy"
     },
     "forms": {
         "buttons": {
@@ -13,7 +13,7 @@
         "password_protected": "یہ فارم پاس ورڈ سے محفوظ ہے۔",
         "invalid_password": "غلط پاس ورڈ۔",
         "password_required": "پاس ورڈ درکار ہے۔",
-        "create_form_free": "OpnForm کے ساتھ اپنا فارم مفت میں بنائیں",
+        "create_form_free": "Forms Mentorfy کے ساتھ اپنا فارم مفت میں بنائیں",
         "submit": "جمع کرائیں",
         "wrong_form_structure": "اس فارم کی ساخت میں کچھ غلط ہے۔ اگر آپ فارم کے مالک ہیں تو براہ کرم ہم سے رابطہ کریں۔",
         "cannot_access_here": "اس مواد تک یہاں رسائی نہیں ہو سکتی۔ اس تک رسائی کے لیے نیچے دیے گئے لنک پر کلک کریں۔",

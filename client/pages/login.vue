@@ -7,7 +7,7 @@
         <div class="w-full md:w-1/2 md:p-6">
           <div class="border rounded-md p-6 shadow-md sticky top-4">
             <h2 class="font-semibold text-2xl">
-              Login to OpnForm
+              Login to Forms Mentorfy
             </h2>
             <p class="text-sm text-neutral-500">
               Welcome back! Please enter your details.

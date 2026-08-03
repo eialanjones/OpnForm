@@ -1,6 +1,6 @@
 {
     "app": {
-        "name": "OpnForm"
+        "name": "Forms Mentorfy"
     },
     "forms": {
         "buttons": {
@@ -13,7 +13,7 @@
         "password_protected": "Este formulario está protegido por contraseña.",
         "invalid_password": "Contraseña inválida.",
         "password_required": "Se requiere contraseña.",
-        "create_form_free": "Crea tu formulario gratis con OpnForm",
+        "create_form_free": "Crea tu formulario gratis con Forms Mentorfy",
         "submit": "Enviar",
         "wrong_form_structure": "Hay un problema con la estructura de este formulario. Si eres el propietario del formulario, contáctanos.",
         "cannot_access_here": "No se puede acceder a este contenido aquí. Haz clic en el enlace de abajo para acceder.",

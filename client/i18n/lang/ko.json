@@ -1,6 +1,6 @@
 {
     "app": {
-        "name": "OpnForm"
+        "name": "Forms Mentorfy"
     },
     "forms": {
         "buttons": {
@@ -13,7 +13,7 @@
         "password_protected": "이 양식은 비밀번호로 보호되어 있습니다.",
         "invalid_password": "잘못된 비밀번호입니다.",
         "password_required": "비밀번호가 필요합니다.",
-        "create_form_free": "OpnForm로 무료로 양식 만들기",
+        "create_form_free": "Forms Mentorfy로 무료로 양식 만들기",
         "submit": "제출",
         "wrong_form_structure": "이 양식의 구조에 문제가 있습니다. 양식 소유자인 경우 저희에게 연락해 주세요.",
         "cannot_access_here": "이 콘텐츠는 여기서 접근할 수 없습니다. 아래 링크를 클릭하여 접근하세요.",

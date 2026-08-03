@@ -126,7 +126,7 @@ const handleTwoFactorVerifiedAndRedirect = async (tokenData) => {
   // Handle redirect based on user status
   if (tokenData.new_user) {
     router.push({ name: "forms-create" })
-    useAlert().success("You're now registered with your Google account! Welcome to OpnForm.")
+    useAlert().success("You're now registered with your Google account! Welcome to Forms Mentorfy.")
     useAlert().success("Time to create your first form!")
   } else {
     useAlert().success('Successfully signed in with Google!')
@@ -159,7 +159,7 @@ const handleAuthenticationResponse = async (response) => {
     } else {
       // Handle new user registration
       router.push({ name: "forms-create" })
-      useAlert().success("You're now registered with your Google account! Welcome to OpnForm.")
+      useAlert().success("You're now registered with your Google account! Welcome to Forms Mentorfy.")
       useAlert().success("Time to create your first form!")
     }
   } catch (error) {

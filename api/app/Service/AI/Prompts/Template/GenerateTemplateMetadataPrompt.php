@@ -27,14 +27,14 @@ class GenerateTemplateMetadataPrompt extends Prompt
         Please generate the following information for this template:
         
         1. SHORT DESCRIPTION:
-        Create a single-sentence description that is concise, clearly explains what the form is about, highlights the main purpose or benefit, and is suitable for OpnForm (a free-to-use form builder). Do not use quotation marks.
+        Create a single-sentence description that is concise, clearly explains what the form is about, highlights the main purpose or benefit, and is suitable for Forms Mentorfy (a free-to-use form builder). Do not use quotation marks.
         
         2. DETAILED DESCRIPTION:
         Create detailed HTML content with the following structure:
         - A paragraph explaining what the template is about
         - A section with heading (h2) explaining why and when to use such a form
         - A section with heading (h2) explaining who the target audience is and why it's beneficial
-        - A section with heading (h2) explaining that OpnForm is the best tool to build this form
+        - A section with heading (h2) explaining that Forms Mentorfy is the best tool to build this form
         Use only h2, p, ul, and li HTML tags. Each section (except for the first) MUST start with an h2 tag.
         
         3. TITLE:
@@ -56,7 +56,7 @@ class GenerateTemplateMetadataPrompt extends Prompt
         - The purpose and benefits of this form template
         - When and why to use this form
         - Who the target audience is
-        - Why OpnForm is the best option to create this form
+        - Why Forms Mentorfy is the best option to create this form
         
         Reply with a valid JSON object containing all these elements.
     EOD;

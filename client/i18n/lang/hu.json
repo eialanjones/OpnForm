@@ -1,6 +1,6 @@
 {
     "app": {
-        "name": "OpnForm"
+        "name": "Forms Mentorfy"
     },
     "forms": {
         "buttons": {
@@ -13,7 +13,7 @@
         "password_protected": "Ez az űrlap jelszóval védett.",
         "invalid_password": "Érvénytelen jelszó.",
         "password_required": "A jelszó megadása kötelező.",
-        "create_form_free": "Készítsd el az űrlapodat ingyen az OpnFormmal",
+        "create_form_free": "Készítsd el az űrlapodat ingyen az Forms Mentorfymal",
         "submit": "Beküldés",
         "wrong_form_structure": "Valami nincs rendben ennek az űrlapnak a szerkezetével. Ha te vagy az űrlap tulajdonosa, kérjük, vedd fel velünk a kapcsolatot.",
         "cannot_access_here": "Ez a tartalom innen nem érhető el. Kattints az alábbi linkre a megnyitásához.",

@@ -32,13 +32,13 @@
                   clip-rule="evenodd"
                 />
               </svg>
-              Introducing OpnForm AI
+              Introducing Forms Mentorfy AI
             </span>
 
             <h2
               class="mt-6 text-2xl font-semibold tracking-tight text-neutral-900 sm:text-3xl lg:text-4xl"
             >
-              Say goodbye to tedious form building with OpnForm's new
+              Say goodbye to tedious form building with Forms Mentorfy's new
               <span
                 class="text-transparent bg-clip-text bg-gradient-to-r lg:block from-blue-600 to-blue-300"
               >AI-powered feature!</span>

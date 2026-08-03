@@ -11,7 +11,7 @@
         :disabled="disabled ? true : null"
         :style="colorStyle"
         :ui="{
-          base: 'data-[state=checked]:bg-[var(--form-color,#3B82F6)] focus-visible:outline-[var(--form-color,#3B82F6)]'
+          base: 'data-[state=checked]:bg-[var(--form-color,#FE7D22)] focus-visible:outline-[var(--form-color,#FE7D22)]'
         }"
         @keydown="handleKeydown"
       />

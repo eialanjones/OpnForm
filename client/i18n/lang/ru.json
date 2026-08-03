@@ -1,6 +1,6 @@
 {
     "app": {
-        "name": "OpnForm"
+        "name": "Forms Mentorfy"
     },
     "forms": {
         "buttons": {
@@ -13,7 +13,7 @@
         "password_protected": "Эта форма защищена паролем.",
         "invalid_password": "Неверный пароль.",
         "password_required": "Требуется пароль.",
-        "create_form_free": "Создайте свою форму бесплатно с OpnForm",
+        "create_form_free": "Создайте свою форму бесплатно с Forms Mentorfy",
         "submit": "Отправить",
         "wrong_form_structure": "Что-то не так со структурой этой формы. Если вы владелец формы, пожалуйста, свяжитесь с нами.",
         "cannot_access_here": "Этот контент недоступен здесь. Нажмите на ссылку ниже, чтобы получить доступ.",

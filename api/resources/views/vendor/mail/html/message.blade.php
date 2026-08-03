@@ -34,7 +34,7 @@ $logoUrl = $appearance['logoUrl'] ?? null;
     <x-slot:footer>
         <x-mail::footer>
             @if (!(isset($noBranding) && $noBranding))
-            © {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')
+            © {{ date('Y') }} {{ config('app.company') }}. @lang('All rights reserved.')
             @endif
         </x-mail::footer>
     </x-slot:footer>

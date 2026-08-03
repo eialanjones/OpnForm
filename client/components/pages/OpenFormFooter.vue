@@ -3,7 +3,7 @@
     <div class="grid md:grid-cols-3 my-8">
       <div class="flex mt-2 items-center">
         <p class="text-sm text-neutral-600 dark:text-neutral-400 text-center w-full">
-          © Copyright {{ currYear }}. All Rights Reserved
+          © {{ currYear }} {{ opnformConfig.company_name }}. All Rights Reserved
           <span v-if="version">
             <br>Version {{ version }}
           </span>
@@ -16,10 +16,10 @@
         >
           <img
             src="/img/logo.svg"
-            alt="notion tools logo"
+            alt="Forms Mentorfy logo"
             class="w-10 h-10"
           >
-          <span class="ml-2 text-xl text-black dark:text-white"> OpnForm </span>
+          <span class="ml-2 text-xl text-black dark:text-white"> Forms Mentorfy </span>
         </router-link>
       </div>
       <div class="flex justify-center mt-5 md:mt-0">

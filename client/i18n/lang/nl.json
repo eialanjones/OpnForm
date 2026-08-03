@@ -1,6 +1,6 @@
 {
     "app": {
-        "name": "OpnForm"
+        "name": "Forms Mentorfy"
     },
     "forms": {
         "buttons": {
@@ -13,7 +13,7 @@
         "password_protected": "Dit formulier is beveiligd met een wachtwoord.",
         "invalid_password": "Ongeldig wachtwoord.",
         "password_required": "Wachtwoord is verplicht.",
-        "create_form_free": "Maak gratis je formulier met OpnForm",
+        "create_form_free": "Maak gratis je formulier met Forms Mentorfy",
         "submit": "Verzenden",
         "wrong_form_structure": "Er is iets mis met de structuur van dit formulier. Als je de eigenaar van het formulier bent, neem dan contact met ons op.",
         "cannot_access_here": "Deze inhoud is hier niet toegankelijk. Klik op de onderstaande link om toegang te krijgen.",

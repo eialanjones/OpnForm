@@ -271,7 +271,7 @@ const register = () => {
       emit('registered')
     } else {
     useAlert().success({
-      title: "Welcome to OpnForm 👋",
+      title: "Welcome to Forms Mentorfy 👋",
       ...!props.isQuick ? {description: "Time to create your first form!"} : {}
     })
     redirect()

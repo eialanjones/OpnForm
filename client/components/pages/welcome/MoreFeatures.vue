@@ -6,7 +6,7 @@
           And many more features
         </h3>
         <p class="w-full mt-2 mb-8">
-          OpnForm makes form building easy and comes with powerful features.
+          Forms Mentorfy makes form building easy and comes with powerful features.
         </p>
         <div
           class="grid grid-cols-2 md:grid-cols-3 mt-10 mb-5 ml-5 md:ml-0 px-4"

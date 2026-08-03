@@ -150,9 +150,9 @@ const chartTypes = [
 
 // Consistent colors for all chart types
 const CHART_COLORS = [
-  '#2563eb', // blue-600 (1st item)
+  '#de5d00', // brand orange (1st item)
   '#16a34a', // green-600 (2nd item)
-  '#f59e0b', // amber-500 (3rd item)
+  '#0d9488', // teal-600 (3rd item) — amber would collide with the brand orange
   '#ec4899', // pink-500 (4th item)
   '#8b5cf6', // purple-500 (5th item)
   '#9ca3af', // gray-400 (Other)

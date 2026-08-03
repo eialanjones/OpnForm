@@ -244,7 +244,7 @@ function openSubscriptionModal () {
 onBeforeMount(() => {
   for (const [keyname, defaultValue] of Object.entries({
     send_to: user.value.email || '',
-    sender_name: "OpnForm",
+    sender_name: "Forms Mentorfy",
     subject: "We saved your answers",
     email_content: "Hello there 👋 <br>This is a confirmation that your submission was successfully saved.",
     include_submission_data: true,
