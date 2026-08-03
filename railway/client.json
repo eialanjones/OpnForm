@@ -3,7 +3,11 @@
   "build": {
     "builder": "DOCKERFILE",
     "dockerfilePath": "docker/Dockerfile.client",
-    "watchPatterns": ["client/**", "docker/Dockerfile.client"]
+    "watchPatterns": [
+      "client/**",
+      "docker/Dockerfile.client",
+      "railway/**"
+    ]
   },
   "deploy": {
     "startCommand": "node ./server/index.mjs",

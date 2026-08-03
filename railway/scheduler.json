@@ -3,7 +3,12 @@
   "build": {
     "builder": "DOCKERFILE",
     "dockerfilePath": "docker/Dockerfile.api",
-    "watchPatterns": ["api/**", "docker/Dockerfile.api", "docker/php-fpm-entrypoint"]
+    "watchPatterns": [
+      "api/**",
+      "docker/Dockerfile.api",
+      "docker/php-fpm-entrypoint",
+      "railway/**"
+    ]
   },
   "deploy": {
     "startCommand": "/usr/local/bin/opnform-entrypoint php artisan schedule:work",

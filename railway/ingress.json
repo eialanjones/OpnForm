@@ -3,7 +3,11 @@
   "build": {
     "builder": "DOCKERFILE",
     "dockerfilePath": "docker/Dockerfile.ingress",
-    "watchPatterns": ["docker/nginx.railway.conf", "docker/Dockerfile.ingress"]
+    "watchPatterns": [
+      "docker/nginx.railway.conf",
+      "docker/Dockerfile.ingress",
+      "railway/**"
+    ]
   },
   "deploy": {
     "restartPolicyType": "ON_FAILURE",

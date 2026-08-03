@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# Este script é o ENTRYPOINT do Dockerfile.api. Ele decide o papel a partir do
+# comando recebido, aplica a config do PHP, prepara storage, espera o banco e
+# roda as migrations.
+#
+# Cuidado ao usar plataformas que definem um start command próprio: no Railway,
+# o startCommand substitui o ENTRYPOINT junto com o CMD, e não só o CMD. Um
+# startCommand "php-fpm" faz o container subir sem nunca passar por aqui — sem
+# migration, sem storage preparado e ignorando PHP_FPM_LISTEN em silêncio. Pior:
+# o serviço fica verde, porque o wait_for_db nunca chega a rodar.
+#
+# Por isso o papel `api` em railway/api.json não define startCommand (cai no CMD
+# do Dockerfile), e worker e scheduler chamam este script explicitamente.
 main() {
     local COMMAND_AS_STRING="$*"
     local ROLE="api" # Default role
