@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\MentorfySsoController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\OAuthController;
-use App\Http\Controllers\Auth\OidcLinkController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\UserController;
@@ -48,7 +48,6 @@ if (config('app.self_hosted')) {
 
 Route::group(['middleware' => 'auth.multi'], function () {
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
-    Route::post('auth/oidc/link', [OidcLinkController::class, 'link'])->name('oidc.link');
 
     // Unsplash
     Route::get('/unsplash', [\App\Http\Controllers\Content\UnsplashController::class, 'index'])->name('unsplash.index');
@@ -151,15 +150,6 @@ Route::group(['middleware' => 'auth.multi'], function () {
                 Route::put('/custom-code-settings', [WorkspaceController::class, 'saveCustomCodeSettings'])->name('save-custom-code-settings');
                 Route::put('/', [WorkspaceController::class, 'update'])->name('update');
                 Route::delete('/', [WorkspaceController::class, 'delete'])->name('delete');
-
-                // OIDC Connections
-                Route::prefix('oidc-connections')->name('oidc-connections.')->group(function () {
-                    Route::get('/', [\App\Http\Controllers\Settings\OidcConnectionController::class, 'index'])->name('index');
-                    Route::post('/', [\App\Http\Controllers\Settings\OidcConnectionController::class, 'store'])->name('store');
-                    Route::get('/{connection}', [\App\Http\Controllers\Settings\OidcConnectionController::class, 'show'])->name('show');
-                    Route::patch('/{connection}', [\App\Http\Controllers\Settings\OidcConnectionController::class, 'update'])->name('update');
-                    Route::delete('/{connection}', [\App\Http\Controllers\Settings\OidcConnectionController::class, 'destroy'])->name('destroy');
-                });
 
                 Route::middleware('pro-form')->group(function () {
                     Route::get('form-stats/{form}', [FormStatsController::class, 'getFormStats'])->name('form.stats');
@@ -320,8 +310,11 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::post('email/verify/{user}', [VerificationController::class, 'verify'])->name('verification.verify');
     Route::post('email/resend', [VerificationController::class, 'resend']);
 
-    // OIDC email lookup endpoint (for login flow)
-    Route::post('auth/oidc/options', [\App\Http\Controllers\Auth\SsoController::class, 'getOptionsForEmail'])->name('sso.options');
+    // SSO da Mentorfy: troca o token curto assinado por um JWT do OpnForm.
+    // Throttle apertado: endpoint de autenticação sem credencial de usuário.
+    Route::post('auth/mentorfy/exchange', [MentorfySsoController::class, 'exchange'])
+        ->middleware('throttle:20,1')
+        ->name('mentorfy.sso.exchange');
 
     // Two-factor authentication verification (public, but requires pending auth token)
     Route::post('/auth/two-factor/verify', [\App\Http\Controllers\Auth\TwoFactorVerificationController::class, 'verify'])->name('two-factor.verify');
@@ -339,14 +332,6 @@ Route::prefix('oauth')->name('oauth.')->group(function () {
     Route::post('/connect/{provider}', [OAuthController::class, 'redirect'])->name('redirect');
     Route::post('/{provider}/callback', [OAuthController::class, 'callback'])->name('callback');
     Route::post('/widget-callback/{provider}', [OAuthController::class, 'handleWidgetCallback'])->name('widget.callback');
-});
-
-/*
- * OIDC SSO routes (public - authentication handled in controller)
- */
-Route::prefix('auth')->name('sso.')->middleware('throttle:10,1')->group(function () {
-    Route::post('/{slug}/redirect', [\App\Http\Controllers\Auth\SsoController::class, 'redirect'])->name('redirect');
-    Route::get('/{slug}/callback', [\App\Http\Controllers\Auth\SsoController::class, 'callback'])->name('callback');
 });
 
 /*

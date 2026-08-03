@@ -4,7 +4,7 @@ namespace App\Service\OAuth;
 
 use App\Integrations\OAuth\OAuthProviderService;
 use App\Models\User;
-use App\Enterprise\Oidc\ExternalUserFactory;
+use App\Service\User\ExternalUserFactory;
 use App\Service\WorkspaceInviteService;
 use Illuminate\Http\Exceptions\HttpResponseException;
 

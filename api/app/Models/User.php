@@ -346,16 +346,6 @@ class User extends Authenticatable implements JWTSubject, CachableAttributes, Tw
     }
 
     /**
-     * Get the OIDC user identities.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function userIdentities()
-    {
-        return $this->hasMany(\App\Enterprise\Oidc\Models\UserIdentity::class, 'user_id');
-    }
-
-    /**
      * @return int
      */
     public function getJWTIdentifier()

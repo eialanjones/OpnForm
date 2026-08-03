@@ -267,16 +267,6 @@ class Workspace extends Model implements CachableAttributes
     }
 
     /**
-     * Get the OIDC identity connections for this workspace.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function identityConnections()
-    {
-        return $this->hasMany(\App\Enterprise\Oidc\Models\IdentityConnection::class);
-    }
-
-    /**
      * Check if the given OAuthProvider ID belongs to any user in this workspace.
      *
      * @param int $providerId
