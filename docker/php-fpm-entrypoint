@@ -99,11 +99,21 @@ apply_php_configuration() {
     # A imagem base escuta em 9000 sobre IPv4. A rede privada do Railway
     # recomenda escutar em :: para funcionar também em ambientes IPv6-only —
     # sem isso, o ingress não alcança a API e todo request vira 502.
-    if [ -n "$PHP_FPM_LISTEN" ]; then
-        echo "Setting php-fpm listen address to $PHP_FPM_LISTEN"
-        printf '[www]\nlisten = %s\n' "$PHP_FPM_LISTEN" \
-            > /usr/local/etc/php-fpm.d/zz-listen.conf
-    fi
+    #
+    # catch_workers_output entra junto porque o php-fpm descarta o stderr dos
+    # workers por padrão. Num container isso significa que erro fatal de PHP e
+    # LOG_CHANNEL=stderr somem sem deixar rastro: a requisição volta 500 e o log
+    # do container não mostra nada. decorate_workers_output=no evita o prefixo
+    # que quebraria o parsing de log estruturado.
+    {
+        echo '[www]'
+        echo 'catch_workers_output = yes'
+        echo 'decorate_workers_output = no'
+        if [ -n "$PHP_FPM_LISTEN" ]; then
+            echo "Setting php-fpm listen address to $PHP_FPM_LISTEN" >&2
+            echo "listen = $PHP_FPM_LISTEN"
+        fi
+    } > /usr/local/etc/php-fpm.d/zz-railway.conf
 
     # Log applied configuration
     echo "Applied PHP configuration:"
