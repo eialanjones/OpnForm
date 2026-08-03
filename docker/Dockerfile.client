@@ -34,8 +34,11 @@ ENV NUXT_TELEMETRY_DISABLED=1
 # Optimize Vite build for memory
 ENV VITE_NODE_OPTIONS="--max-old-space-size=10240"
 # Run the build with additional memory optimizations and limited concurrency
-RUN --mount=type=tmpfs,target=/tmp \
-    NODE_OPTIONS="--max-old-space-size=10240" \
+#
+# No tmpfs mount for /tmp here: the Railway builder only accepts
+# --mount=type=cache and fails the build on any other mount type. This is the
+# builder stage, so the extra /tmp bytes never reach the final image.
+RUN NODE_OPTIONS="--max-old-space-size=10240" \
     NUXT_BUILD_CONCURRENCY=1 \
     npm run build
 

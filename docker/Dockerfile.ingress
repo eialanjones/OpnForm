@@ -21,6 +21,33 @@ ENV NGINX_MAX_BODY_SIZE=64m \
 
 COPY docker/nginx.railway.conf /etc/nginx/templates/default.conf.template
 
+# Preenche NGINX_LOCAL_RESOLVERS antes do envsubst rodar.
+#
+# A imagem oficial traz um 15-local-resolvers.envsh que faz isso, mas em
+# algumas versões ele só age quando NGINX_ENTRYPOINT_LOCAL_RESOLVERS está
+# setado. Se a variável chegar vazia no template, o envsubst gera
+# "resolver  valid=10s;" — erro de sintaxe, e aí o nginx não sobe de jeito
+# nenhum. Derivar aqui remove a dependência da versão da imagem.
+#
+# Os colchetes nos endereços IPv6 são exigência do nginx. O fallback existe
+# só para o config continuar parseável num ambiente sem nameserver — nesse
+# caso a rede privada já não funcionaria de qualquer forma.
+#
+# O sufixo .envsh faz o docker-entrypoint.sh dar source em vez de executar,
+# que é o necessário para a variável sobreviver até o passo do envsubst. Ele
+# só faz isso se o arquivo for executável, daí o chmod.
+RUN printf '%s\n' \
+    '#!/bin/sh' \
+    'if [ -z "${NGINX_LOCAL_RESOLVERS:-}" ]; then' \
+    '    NGINX_LOCAL_RESOLVERS=$(awk '"'"'BEGIN{ORS=" "} $1=="nameserver" {if ($2 ~ ":") {print "["$2"]"} else {print $2}}'"'"' /etc/resolv.conf)' \
+    'fi' \
+    'if [ -z "$(echo "$NGINX_LOCAL_RESOLVERS" | tr -d "[:space:]")" ]; then' \
+    '    NGINX_LOCAL_RESOLVERS=127.0.0.11' \
+    'fi' \
+    'export NGINX_LOCAL_RESOLVERS' \
+    > /docker-entrypoint.d/16-railway-resolvers.envsh \
+    && chmod +x /docker-entrypoint.d/16-railway-resolvers.envsh
+
 # Traduz o X-Forwarded-Proto do proxy do Railway para o parâmetro HTTPS do
 # FastCGI. Sem isso o Laravel acha que está em http:// e gera links quebrados —
 # o que derruba o redirect do SSO. Precisa viver no contexto http, fora do
