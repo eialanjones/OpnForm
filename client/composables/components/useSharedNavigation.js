@@ -1,25 +1,9 @@
 import opnformConfig from "~/opnform.config.js"
 
 export const useSharedNavigation = () => {
-  const appStore = useAppStore()
   const crisp = useCrisp()
-  
+
   const isSelfHosted = computed(() => useFeatureFlag('self_hosted'))
-  const featurebaseLoaded = computed(() => {
-    return import.meta.client && window.Featurebase
-  })
-
-  // Check for new changes in changelog
-  const hasNewChanges = computed(() => {
-    if (import.meta.server || !window.Featurebase || !appStore.featureBaseEnabled) return false
-    return window.Featurebase("unviewed_changelog_count") > 0
-  })
-
-  // Open changelog modal
-  function openChangelog() {
-    if (import.meta.server || !window.Featurebase) return
-    window.Featurebase("manually_open_changelog_popup")
-  }
 
   // Default button configuration
   const defaultButtonProps = {
@@ -69,49 +53,8 @@ export const useSharedNavigation = () => {
     }
   }
 
-  // Shared navigation sections (Product and Help)
+  // Shared navigation sections
   const sharedNavigationSections = computed(() => [
-    // Product section
-    {
-      name: 'Product',
-      items: [
-        // What's new - only show if feature base enabled
-        ...(appStore.featureBaseEnabled ? [createNavItem({
-          label: "What's new",
-          icon: 'i-heroicons-megaphone',
-          color: hasNewChanges.value ? 'primary' : 'neutral',
-          trailingIcon: hasNewChanges.value ? 'i-heroicons-sparkles-solid' : undefined,
-          ui: {
-            trailingIcon: 'text-blue-500'
-          },
-          onClick: openChangelog
-        })] : []),
-        createNavItem({
-          label: 'Roadmap',
-          icon: 'i-heroicons-map',
-          to: opnformConfig.links.roadmap,
-          target: '_blank'
-        }),
-        (featurebaseLoaded.value ? createNavItem({
-          label: 'Feature Requests',
-          icon: 'i-heroicons-light-bulb', 
-          onClick: () => {
-            window.postMessage({
-                target: 'FeaturebaseWidget',
-                data: { 
-                  action: 'openFeedbackWidget',
-                  setBoard: 'feature-requests', // optional - preselect a board
-                }
-            })
-          }
-        }):  createNavItem({
-          label: 'Feature Requests',
-          icon: 'i-heroicons-light-bulb', 
-          to: opnformConfig.links.feature_requests,
-          target: '_blank'
-        }))
-      ]
-    },
     // Help section
     {
       name: 'Help',

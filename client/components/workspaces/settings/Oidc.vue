@@ -149,12 +149,12 @@ const alertConfig = computed(() => {
     }
   }
 
-  // Self-hosted: Warning about future enterprise license requirement
+  // Self-hosted: beta warning
   return {
     icon: 'i-heroicons-exclamation-triangle',
     color: 'warning',
-    title: 'Beta Feature - Future Changes',
-    description: 'OIDC SSO is currently in beta and free for self-hosted installations. Future updates of Forms Mentorfy will require an enterprise license to use this feature.',
+    title: 'Beta Feature',
+    description: 'OIDC SSO is still in beta. Test it against your identity provider before rolling it out to your whole workspace.',
     actions: []
   }
 })

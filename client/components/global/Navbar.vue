@@ -54,27 +54,6 @@
           >
             Templates
           </NuxtLink>
-          <template v-if="appStore.featureBaseEnabled">
-            <button
-              v-if="user"
-              :class="navLinkClasses"
-              @click.prevent="openChangelog"
-            >
-              What's new? <span
-                v-if="hasNewChanges"
-                id="fb-update-badge"
-                class="bg-blue-500 rounded-full px-2 ml-1 text-white"
-              />
-            </button>
-            <a
-              v-else
-              :href="opnformConfig.links.changelog_url"
-              target="_blank"
-              :class="navLinkClasses"
-            >
-              What's new?
-            </a>
-          </template>
           <NuxtLink
             v-if="($route.name !== 'ai-form-builder' && user === null) && (!useFeatureFlag('self_hosted') && useFeatureFlag('ai_features'))"
             :to="{ name: 'ai-form-builder' }"
@@ -186,7 +165,6 @@ import TrackClick from '~/components/global/TrackClick.vue'
 
 // Stores & composables
 const { current: workspace } = useCurrentWorkspace()
-const appStore = useAppStore()
 
 const { data: user } = useAuth().user()
 const isIframe = useIsIframe()
@@ -220,15 +198,4 @@ const hasNavbar = computed(() => {
   }
   return true
 })
-
-const hasNewChanges = computed(() => {
-  if (import.meta.server || !window.Featurebase || !appStore.featureBaseEnabled) return false
-  return window.Featurebase('unviewed_changelog_count') > 0
-})
-
-// Methods
-function openChangelog() {
-  if (import.meta.server || !window.Featurebase) return
-  window.Featurebase('manually_open_changelog_popup')
-}
 </script>

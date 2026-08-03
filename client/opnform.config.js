@@ -6,20 +6,12 @@ export default {
   githubAuth: null,
   notion: { worker: "https://notion-forms-worker.notionforms.workers.dev/v1" },
   links: {
-    // Mentorfy-owned. The remaining links below belong to the upstream OpnForm
-    // project and are kept for developer docs and AGPL attribution.
     help_url: "https://www.mentorfy.com.br",
-    github_url: "https://github.com/OpnForm/OpnForm",
-    github_forum_url: "https://github.com/OpnForm/OpnForm/discussions",
-    discord: "https://discord.gg/YTSjU2a9TS",
-    twitter: "https://twitter.com/OpnForm",
-    zapier_integration:
-      "https://zapier.com/developer/public-invite/146950/58db583730cc46b821614468d94c35de/",
-    book_onboarding: "https://zcal.co/i/YQVGEULQ",
-    feature_requests: "https://feedback.opnform.com/",
-    changelog_url: "https://feedback.opnform.com/changelog",
-    roadmap: "https://feedback.opnform.com/roadmap",
-    tech_docs: "https://docs.opnform.com",
     api_docs: "https://docs.opnform.com/api-reference/introduction",
+    // AGPLv3 §13: a network-deployed modified version must offer its users the
+    // Corresponding Source. This is the only reason a repository link remains
+    // in the product — surfaced once, in the footer. Point it at a Mentorfy-hosted
+    // source archive if you would rather not link out to GitHub.
+    source_code: "https://github.com/eialanjones/OpnForm",
   },
 }

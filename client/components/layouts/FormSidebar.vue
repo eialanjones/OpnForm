@@ -14,7 +14,7 @@
         :key="section.name || 'main'"
         :class="[
           index !== navigationSections.length - 1 ? 'mb-6' : '',
-          // Push Product and Help sections to bottom
+          // Push shared sections to bottom
           index === 1 ? 'mt-auto' : ''
         ]"
       >
@@ -138,7 +138,7 @@ const navigationSections = computed(() => [
     name: null,
     items: formNavigationItems.value
   },
-  // Add shared navigation sections (Product and Help)
+  // Add shared navigation sections
   ...sharedNavigationSections.value
 ])
 </script> 
