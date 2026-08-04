@@ -3,7 +3,7 @@
     v-model:open="showEditUserModal"
     :ui="{ width: 'lg:max-w-lg' }"
     @close="$emit('close')"
-    title="Edit User Role"
+    :title="$t('admin.edit_workspace_user.title')"
   >
     <template #body>
       <UCard>
@@ -15,11 +15,11 @@
               <FlatSelectInput
                 v-model="userNewRole"
                 name="newUserRole"
-                :label="'New Role for '+props.user.name"
+                :label="$t('admin.edit_workspace_user.new_role_for', { name: props.user.name })"
                 :options="[
-                  { name: 'User', value: 'user' },
-                  { name: 'Admin', value: 'admin' },
-                  { name: 'Read Only', value: 'readonly' },
+                  { name: $t('admin.roles.user'), value: 'user' },
+                  { name: $t('admin.roles.admin'), value: 'admin' },
+                  { name: $t('admin.roles.readonly'), value: 'readonly' },
                 ]"
                 option-key="value"
                 display-key="name"
@@ -31,7 +31,7 @@
                 :loading="updateMutation.isPending.value"
                 class="my-3"
                 block
-                label="Update"
+                :label="$t('common.actions.update')"
               />
             </div>
           </form>
@@ -45,6 +45,7 @@
 const props = defineProps(['user', 'showEditUserModal'])
 const emit = defineEmits(['close', 'fetchUsers'])
 
+const { t } = useI18n()
 const { currentId } = useCurrentWorkspace()
 const { updateUserRole: updateUserRoleMutation } = useWorkspaceUsers()
 
@@ -61,11 +62,11 @@ const updateUserRole = () => {
     userId: props.user.id,
     data: { role: userNewRole.value }
   }).then(() => {
-    useAlert().success("User role updated.")
+    useAlert().success(t("admin.edit_workspace_user.updated"))
     emit('close')
     // No need to emit 'fetchUsers' - the mutation handles cache updates automatically
   }).catch(() => {
-    useAlert().error("There was an error updating user role")
+    useAlert().error(t("admin.edit_workspace_user.update_error"))
   })
 }
 </script>

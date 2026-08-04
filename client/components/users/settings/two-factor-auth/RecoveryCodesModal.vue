@@ -4,7 +4,7 @@
     :ui="{ content: 'sm:max-w-md' }"
   >
     <template #header>
-      <h2 class="text-lg font-semibold">Recovery Codes</h2>
+      <h2 class="text-lg font-semibold">{{ $t('user_settings.two_factor.recovery_codes_modal.title') }}</h2>
     </template>
 
     <template #body>
@@ -14,7 +14,7 @@
           <UAlert
             color="warning"
             variant="subtle"
-            description="These recovery codes will only be shown once. Please save them in a safe place. You can use them to access your account if you lose access to your authenticator device."
+            :description="$t('user_settings.two_factor.recovery_codes_modal.warning')"
           />
 
           <div class="space-y-2">
@@ -28,7 +28,7 @@
                 v-if="typeof codeItem === 'object' && codeItem.used_at"
                 class="text-xs text-neutral-500 ml-2 font-sans"
               >
-                Used {{ formatDate(codeItem.used_at) }}
+                {{ $t('user_settings.two_factor.recovery_codes_modal.used_at', { date: formatDate(codeItem.used_at) }) }}
               </span>
             </div>
           </div>
@@ -40,14 +40,14 @@
               variant="outline"
               @click="handleCopy"
             >
-              Copy All Codes
+              {{ $t('user_settings.two_factor.recovery_codes_modal.copy_all') }}
             </UButton>
             <UButton
               block
               color="primary"
               @click="handleClose"
             >
-              I've Saved These Codes
+              {{ $t('user_settings.two_factor.recovery_codes_modal.saved_button') }}
             </UButton>
           </div>
         </div>

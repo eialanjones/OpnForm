@@ -2,9 +2,9 @@
   <div class="space-y-4">
     <div class="flex flex-col flex-wrap items-start justify-between gap-4 sm:flex-row sm:items-center">
       <div>
-        <h3 class="text-lg font-medium text-neutral-900">Workspace Information</h3>
+        <h3 class="text-lg font-medium text-neutral-900">{{ $t('workspace.information.title') }}</h3>
         <p class="mt-1 text-sm text-neutral-500">
-          Update your workspace information.
+          {{ $t('workspace.information.description') }}
         </p>
       </div>
     </div>
@@ -16,17 +16,17 @@
             :disabled="workspace.is_readonly"
             :form="workspaceForm"
             name="name"
-            label="Workspace Name"
-            placeholder="My Workspace"
+            :label="$t('workspace.fields.workspace_name')"
+            :placeholder="$t('workspace.fields.workspace_name_placeholder')"
             :required="true"
           />
           <TextInput
             :disabled="workspace.is_readonly"
             :form="workspaceForm"
             name="emoji"
-            label="Emoji (optional)"
-            placeholder="Emoji"
-            help="Choose an emoji to represent your workspace"
+            :label="$t('workspace.fields.emoji')"
+            :placeholder="$t('workspace.fields.emoji_placeholder')"
+            :help="$t('workspace.fields.emoji_help')"
           />
         </div>
 
@@ -37,7 +37,7 @@
             :loading="workspaceForm.busy"
             color="primary"
           >
-            Save Changes
+            {{ $t('workspace.actions.save_changes') }}
           </UButton>
         </div>
     </VForm>
@@ -47,16 +47,16 @@
         v-if="workspace.is_admin" 
         class="space-y-2"
       >
-        <h4 class="text-red-800 font-medium">Delete Workspace</h4>
+        <h4 class="text-red-800 font-medium">{{ $t('workspace.information.delete_title') }}</h4>
         <p class="text-neutral-500 text-sm">
-          This will permanently delete your entire workspace. All forms created in this workspace will be removed. This cannot be undone.
+          {{ $t('workspace.information.delete_description') }}
         </p>
         <UButton
           color="error"
           :loading="removeMutation.isPending.value"
           @click="confirmDeleteWorkspace"
         >
-          Delete workspace
+          {{ $t('workspace.information.delete_button') }}
         </UButton>
       </div>
 
@@ -64,16 +64,16 @@
         v-else
         class="space-y-2"
       >
-        <h4 class="text-neutral-900 font-medium">Leave Workspace</h4>
+        <h4 class="text-neutral-900 font-medium">{{ $t('workspace.information.leave_title') }}</h4>
         <p class="text-neutral-500 text-sm">
-          This will remove you from the workspace. You will lose access to all forms in this workspace.
+          {{ $t('workspace.information.leave_description') }}
         </p>
         <UButton
           color="error"
           :loading="leaveMutation.isPending.value"
           @click="leaveWorkSpace"
         >
-          Leave workspace
+          {{ $t('workspace.information.leave_button') }}
         </UButton>
       </div>
     </div>
@@ -86,6 +86,7 @@ const { update, remove, leave } = useWorkspaces()
 const alert = useAlert()
 const { closeWorkspaceSettings } = useAppModals()
 const router = useRouter()
+const { t } = useI18n()
 
 const { current: workspace } = useCurrentWorkspace()
 
@@ -102,7 +103,7 @@ const workspaceForm = useForm({
 // Update profile
 const updateProfile = () => {
   workspaceForm.mutate(updateMutation).then(() => {
-    useAlert().success('Workspace information successfully updated!')
+    useAlert().success(t('workspace.information.updated'))
   }).catch((error) => {
       console.error('Error updating workspace:', error)
   })
@@ -111,7 +112,7 @@ const updateProfile = () => {
 // Delete workspace confirmation
 const confirmDeleteWorkspace = () => {
   alert.confirm(
-    'Do you really want to delete your workspace?',
+    t('workspace.information.delete_confirm'),
     deleteWorkspace
   )
 }
@@ -125,24 +126,24 @@ const deleteWorkspace = () => {
         router.push({ name: "home", query: {} })
       })
   }).catch((error) => {
-      alert.error(error.data?.message || 'Error deleting workspace')
+      alert.error(error.data?.message || t('workspace.information.delete_error'))
     })
 }
 
 // Leave workspace
 const leaveWorkSpace = () => {
   alert.confirm(
-    "Do you really want to leave this workspace? You will lose access to all forms in this workspace.",
+    t('workspace.information.leave_confirm'),
     () => {
       leaveMutation.mutateAsync(workspace.value.id).then(() => {
-        alert.success("You have left the workspace.")
+        alert.success(t('workspace.information.leave_success'))
         closeWorkspaceSettings()
         nextTick(() => {
           router.push({ name: "home", query: {} })
         })
       }).catch((error) => {
         console.error('Error leaving workspace:', error)
-        alert.error("There was an error leaving the workspace.")
+        alert.error(t('workspace.information.leave_error'))
       })
     },
   )

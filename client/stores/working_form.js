@@ -55,26 +55,27 @@ export const useWorkingFormStore = defineStore("working_form", {
     // Unified alert for disallowed custom code
     showCustomCodeDisabledAlert() {
       const selfHosted = !!useFeatureFlag('self_hosted')
+      const { t } = useNuxtApp().$i18n
       const actions = []
       let message = ''
       if (selfHosted) {
         // Self-hosted: safety notice + docs
-        message = 'Custom code is disabled for safety on self-hosted. See technical docs to learn more.'
+        message = t('runtime.working_form.custom_code_self_hosted')
         actions.push({
-          label: 'View docs',
+          label: t('runtime.working_form.view_docs'),
           icon: 'i-heroicons-book-open',
           onclick: () => { if (import.meta.client) window.open('https://docs.opnform.com/introduction', '_blank') }
         })
       } else {
         // Cloud: require custom domain + Crisp help
-        message = 'Your form needs to be using a custom domain to add a code block.'
+        message = t('runtime.working_form.custom_code_needs_domain')
         actions.push({
-          label: 'Help',
+          label: t('runtime.working_form.help'),
           icon: 'i-heroicons-question-mark-circle',
           onclick: () => { try { useCrisp().openHelpdeskArticle('how-do-i-add-custom-code-to-my-form-1amadj3') } catch { /* noop */ } }
         })
       }
-      useAlert().error(message, 10000, { title: 'Custom code disabled', actions })
+      useAlert().error(message, 10000, { title: t('runtime.working_form.custom_code_disabled_title'), actions })
     },
     set(form) {
       this.content = form
@@ -238,19 +239,21 @@ export const useWorkingFormStore = defineStore("working_form", {
         return
       }
 
+      const { t } = useNuxtApp().$i18n
+
       if (originalBlockDefinition?.self_hosted !== undefined && !originalBlockDefinition.self_hosted && useFeatureFlag('self_hosted')) {
-        useAlert().error(originalBlockDefinition?.title + ' is not allowed on self hosted. Please use our hosted version.')
+        useAlert().error(t('runtime.working_form.block_not_self_hosted', { block: originalBlockDefinition?.title }))
         return
       }
       if (originalBlockDefinition?.auth_required && !useIsAuthenticated().isAuthenticated.value) {
-        useAlert().error('Please login to add this block.')
+        useAlert().error(t('runtime.working_form.login_to_add_block'))
         return
       }
 
       if (originalBlockDefinition?.max_count !== undefined) {
         const currentCount = this.content.properties.filter(prop => prop && prop.type === type).length
         if (currentCount >= originalBlockDefinition.max_count) {
-          useAlert().error(`Only ${originalBlockDefinition.max_count} '${originalBlockDefinition.title}' block(s) allowed per form.`)
+          useAlert().error(t('runtime.working_form.block_max_count', { count: originalBlockDefinition.max_count, block: originalBlockDefinition.title }))
           return
         }
         openSettings = true 
@@ -314,10 +317,11 @@ export const useWorkingFormStore = defineStore("working_form", {
       const index = this.objectToIndex(field)
 
       if (index !== -1 && this.content?.properties) {
-        useAlert().success('Ctrl + Z to undo',10000,{
-          title: 'Field removed',
+        const { t } = useNuxtApp().$i18n
+        useAlert().success(t('runtime.working_form.undo_hint'),10000,{
+          title: t('runtime.working_form.field_removed'),
           actions: [{
-            label: 'Undo',
+            label: t('runtime.working_form.undo'),
             icon:"i-material-symbols-undo",
             onclick: () => {
               this.undo()

@@ -4,18 +4,19 @@
       <div class="flex flex-col flex-wrap items-start justify-between gap-4 sm:flex-row sm:items-center">
         <div>
           <h3 class="text-lg font-medium text-neutral-900">
-            Custom Code <ProTag
+            {{ $t('form_blocks.sections.custom_code') }} <ProTag
               class="mb-2 block"
-              upgrade-modal-title="Upgrade to Unlock Custom Code Capabilities"
-              upgrade-modal-description="On the Free plan, you can explore custom code features within the form editor. Upgrade your plan to implement custom scripts, styles, and advanced tracking in live forms. Elevate your form's functionality and design with unlimited customization options."
+              :upgrade-modal-title="$t('form_blocks.custom_code.pro_title')"
+              :upgrade-modal-description="$t('form_blocks.custom_code.pro_description')"
             />
           </h3>
-          <p class="mt-1 text-sm text-neutral-500">
-            The code will be injected in the <b>head</b> section of your form page.
-          </p>
+          <p
+            class="mt-1 text-sm text-neutral-500"
+            v-html="$t('form_blocks.custom_code.code_injection_help_html')"
+          />
         </div>
         <UButton
-          label="Help"
+          :label="$t('form_blocks.actions.help')"
           icon="i-heroicons-question-mark-circle"
           variant="outline"
           color="neutral"
@@ -30,7 +31,7 @@
         :form="form"
         :disabled="!canUseCustomCode"
         :help="customCodeHelp"
-        label="Custom Code"
+        :label="$t('form_blocks.custom_code.code_label')"
         placeholder="<script>console.log('Hello World!')</script>"
       />
 
@@ -38,18 +39,19 @@
         <div class="flex flex-col flex-wrap items-start justify-between gap-4 sm:flex-row sm:items-center">
           <div>
             <h3 class="text-lg font-medium text-neutral-900">
-              Custom CSS <ProTag
+              {{ $t('form_blocks.custom_code.css_heading') }} <ProTag
                 class="mb-2 block"
-                upgrade-modal-title="Upgrade to Unlock Custom CSS"
-                upgrade-modal-description="On the Free plan, you can explore custom CSS within the editor. Upgrade to apply custom styles to your live forms."
+                :upgrade-modal-title="$t('form_blocks.custom_code.css_pro_title')"
+                :upgrade-modal-description="$t('form_blocks.custom_code.css_pro_description')"
               />
             </h3>
-            <p class="mt-1 text-sm text-neutral-500">
-              The CSS will be injected in the <b>head</b> of your form page.
-            </p>
+            <p
+              class="mt-1 text-sm text-neutral-500"
+              v-html="$t('form_blocks.custom_code.css_injection_help_html')"
+            />
           </div>
           <UButton
-            label="Help"
+            :label="$t('form_blocks.actions.help')"
             icon="i-heroicons-question-mark-circle"
             variant="outline"
             color="neutral"
@@ -62,8 +64,8 @@
           name="custom_css"
           class="mt-4"
           :form="form"
-          help="CSS only. Example: body { background: #f8fafc }"
-          label="Custom CSS"
+          :help="$t('form_blocks.custom_code.css_input_help')"
+          :label="$t('form_blocks.custom_code.css_label')"
           placeholder="body { background: #f8fafc }"
         />
       </div>
@@ -74,6 +76,7 @@
 <script setup>
 import ProTag from "~/components/app/ProTag.vue"
 
+const { t } = useI18n()
 const workingFormStore = useWorkingFormStore()
 const { content: form } = storeToRefs(workingFormStore)
 const crisp = useCrisp()
@@ -85,13 +88,13 @@ const customCodeHelp = computed(() => {
   const selfHosted = !!useFeatureFlag('self_hosted', false)
   const allowSelfHosted = !!useFeatureFlag('custom_code.enable_self_hosted', false)
   if (canUseCustomCode.value) {
-    return 'Saves changes and visit the actual form page to test.'
+    return t('form_blocks.custom_code.help_enabled')
   }
   // In self-hosted mode with flag disabled (and no custom domain), show safety notice with docs link
   if (selfHosted && !allowSelfHosted && !hasCustomDomain) {
-    return 'Custom code is disabled for safety on self-hosted. Enable via CUSTOM_CODE_ENABLE_SELF_HOSTED=true. See technical docs: https://docs.opnform.com/introduction'
+    return t('form_blocks.custom_code.help_self_hosted_disabled')
   }
-  return 'Custom code requires to be using a custom domain.'
+  return t('form_blocks.custom_code.help_requires_custom_domain')
 })
 
 </script>

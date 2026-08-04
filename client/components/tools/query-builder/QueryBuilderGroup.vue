@@ -45,7 +45,7 @@
         <div v-else-if="child.operatorIdentifier" class="flex items-start gap-2">
           <!-- Group prefix - same logic as rules -->
           <div v-if="index === 0" class="flex-shrink-0 text-sm font-medium text-gray-600 w-17 text-right pt-3">
-            {{ whereText }}
+            {{ whereText || $t('form_logic.query_builder.where') }}
           </div>
           
           <div v-else-if="index === 1" class="flex-shrink-0 w-17 text-right pt-3">
@@ -61,7 +61,7 @@
           </div>
           
           <div v-else class="flex-shrink-0 text-sm font-medium text-gray-600 w-17 text-right pt-3">
-            {{ operatorOptions.find(op => op.value === selectedOperator)?.label || 'And' }}
+            {{ operatorOptions.find(op => op.value === selectedOperator)?.label || $t('form_logic.query_builder.and') }}
           </div>
 
           <!-- Group content -->
@@ -103,7 +103,7 @@
         :items="addMenuItems"
       >
         <UButton
-          label="Add rule"
+          :label="$t('form_logic.query_builder.add_rule_button')"
           icon="i-heroicons-plus"
           size="sm"
           color="neutral"
@@ -134,24 +134,26 @@ const props = defineProps({
   },
   whereText: {
     type: String,
-    default: 'Where'
+    default: ''
   }
 })
 
 const emit = defineEmits(['query-update'])
 
-const addMenuItems = [
+const { t } = useI18n()
+
+const addMenuItems = computed(() => [
   [
     {
-      label: 'Add Rule',
+      label: t('form_logic.query_builder.add_rule'),
       onClick: () => handleAddRule()
     },
     {
-      label: 'Add Rule Group',
+      label: t('form_logic.query_builder.add_rule_group'),
       onClick: () => addGroup()
     }
   ]
-]
+])
 
 const selectedOperator = computed({
   get: () => props.query.operatorIdentifier,
@@ -265,18 +267,18 @@ function getRuleMenuItems(index) {
   return [
     [
       {
-        label: 'Remove',
+        label: t('common.actions.remove'),
         icon: 'i-heroicons-trash',
         color: 'error',
         onClick: () => removeRule(index)
       },
       {
-        label: 'Duplicate',
+        label: t('common.actions.duplicate'),
         icon: 'i-heroicons-document-duplicate',
         onClick: () => duplicateRule(index)
       },
       {
-        label: 'Turn into group',
+        label: t('form_logic.query_builder.turn_into_group'),
         icon: 'i-heroicons-arrow-path',
         onClick: () => turnIntoGroup(index)
       }
@@ -290,13 +292,13 @@ function getGroupMenuItems(index) {
   
   const items = [
     {
-      label: 'Remove',
+      label: t('common.actions.remove'),
       icon: 'i-heroicons-trash',
       color: 'error',
       onClick: () => removeRule(index)
     },
     {
-      label: 'Duplicate',
+      label: t('common.actions.duplicate'),
       icon: 'i-heroicons-document-duplicate',
       onClick: () => duplicateGroup(index)
     }
@@ -304,7 +306,7 @@ function getGroupMenuItems(index) {
 
   if (canTurnIntoRule) {
     items.push({
-      label: 'Turn into rule',
+      label: t('form_logic.query_builder.turn_into_rule'),
       icon: 'i-heroicons-arrow-path',
       onClick: () => turnIntoRule(index)
     })

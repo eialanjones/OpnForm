@@ -2,14 +2,14 @@
   <div class="space-y-4">
     <div class="flex flex-col flex-wrap items-start justify-between gap-4 sm:flex-row sm:items-center">
       <div>
-        <h3 class="text-lg font-medium text-neutral-900">Email Settings</h3>
+        <h3 class="text-lg font-medium text-neutral-900">{{ $t('workspace.emails.title') }}</h3>
         <p class="mt-1 text-sm text-neutral-500">
-          Customize email sender - connect your SMTP server.
+          {{ $t('workspace.emails.description') }}
         </p>
       </div>
 
       <UButton
-        label="Help"
+        :label="$t('workspace.actions.help')"
         icon="i-heroicons-question-mark-circle"
         variant="outline"
         color="neutral"
@@ -23,10 +23,10 @@
       class="mb-4"
       color="warning"
       variant="subtle"
-      title="Pro plan required"
-      description="Please upgrade your account to setup an email settings."
+      :title="$t('workspace.pro.required_title')"
+      :description="$t('workspace.emails.pro_required_description')"
       :actions="[{
-        label: 'Try Pro plan',
+        label: $t('workspace.pro.try_pro'),
         color: 'warning',
         variant: 'solid',
         onClick: () => openSubscriptionModal()
@@ -43,7 +43,7 @@
             name="host"
             :required="true"
             :disabled="!workspace.is_pro"
-            label="Host/Server"
+            :label="$t('workspace.emails.host')"
             class="mt-2"
             placeholder="smtp.example.com"
           />
@@ -52,14 +52,14 @@
             name="port"
             :required="true"
             :disabled="!workspace.is_pro"
-            label="Port"
+            :label="$t('workspace.emails.port')"
             placeholder="587"
           />
           <OptionSelectorInput
             :form="emailSettingsForm"
             name="encryption"
             :disabled="!workspace.is_pro"
-            label="Encryption"
+            :label="$t('workspace.emails.encryption')"
             :options="encryptionOptions"
             :columns="3"
             seamless
@@ -69,8 +69,8 @@
             name="username"
             :required="true"
             :disabled="!workspace.is_pro"
-            label="Username"
-            placeholder="Username"
+            :label="$t('workspace.emails.username')"
+            :placeholder="$t('workspace.emails.username')"
           />
           <TextInput
             :form="emailSettingsForm"
@@ -78,14 +78,14 @@
             native-type="password"
             :required="true"
             :disabled="!workspace.is_pro"
-            label="Password"
-            placeholder="Password"
+            :label="$t('common.labels.password')"
+            :placeholder="$t('common.labels.password')"
           />
           <TextInput
             :form="emailSettingsForm"
             name="sender_address"
             :disabled="!workspace.is_pro"
-            label="Sender address"
+            :label="$t('workspace.emails.sender_address')"
             placeholder="sender@example.com"
           />
         </div>
@@ -96,7 +96,7 @@
             :loading="emailSettingsForm.busy"
             :disabled="!workspace.is_pro"
           >
-            Save Domain(s)
+            {{ $t('workspace.emails.save_button') }}
           </UButton>
           <UButton
             color="neutral"
@@ -105,7 +105,7 @@
             :disabled="!workspace.is_pro"
             @click="clearEmailSettings"
           >
-            Clear settings
+            {{ $t('workspace.emails.clear_button') }}
           </UButton>
         </div>
       </form>
@@ -120,16 +120,17 @@ const { current: workspace } = useCurrentWorkspace()
 
 const { openSubscriptionModal: openModal } = useAppModals()
 const crisp = useCrisp()
+const { t } = useI18n()
 
 const openSubscriptionModal = () => {
-  openModal({ modal_title: 'Upgrade to send emails using your own domain' })
+  openModal({ modal_title: t('workspace.emails.subscription_modal_title') })
 }
 
-const encryptionOptions = [
-  { name: 'tls', label: 'TLS' },
-  { name: 'ssl', label: 'SSL' },
-  { name: 'none', label: 'None' }
-]
+const encryptionOptions = computed(() => [
+  { name: 'tls', label: t('workspace.emails.encryption_tls') },
+  { name: 'ssl', label: t('workspace.emails.encryption_ssl') },
+  { name: 'none', label: t('common.labels.none') }
+])
 
 const emailSettingsForm = useForm({
   host: '',
@@ -171,10 +172,10 @@ const saveChanges = () => {
     })
     .then((_data) => {
       // Cache is updated automatically by TanStack Query mutations
-      alert.success("Email settings saved.")
+      alert.success(t('workspace.emails.saved'))
     })
     .catch((error) => {
-      alert.error("Failed to update email settings: " + error.response.data.message)
+      alert.error(t('workspace.emails.save_error', { message: error.response.data.message }))
     })
 }
 

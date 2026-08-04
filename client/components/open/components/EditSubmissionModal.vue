@@ -6,7 +6,7 @@
     <template #header>
       <div class="flex items-center justify-between w-full">
         <h2 class="font-semibold">
-          Edit Submission
+          {{ $t('submissions.edit_modal.title') }}
         </h2>
         <UButton
           v-if="props.form?.editable_submissions ?? false"
@@ -15,7 +15,7 @@
           :icon="copySuccess ? 'i-heroicons-check' : 'i-heroicons-clipboard-document'"
           @click.prevent="copyToClipboard"
         >
-          <span class="hidden md:inline">{{ copySuccess ? 'Copied!' : 'Copy Public Link' }}</span>
+          <span class="hidden md:inline">{{ copySuccess ? $t('common.states.copied') : $t('submissions.edit_modal.copy_public_link') }}</span>
         </UButton>
       </div>
     </template>
@@ -30,7 +30,7 @@
             class="mt-2"
             :loading="updateSubmissionMutation.isPending.value || isProcessing"
             @click.prevent="updateForm"
-            label="Update Submission"
+            :label="$t('submissions.edit_modal.update_button')"
           />
         </template>
       </OpenForm>

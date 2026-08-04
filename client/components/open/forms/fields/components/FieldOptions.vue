@@ -11,7 +11,7 @@
         :form="field"
         :required="true"
         wrapper-class="mb-2"
-        label="Field Name"
+        :label="$t('form_fields.options.field_name')"
       />
       <HiddenRequiredDisabled
         class="mt-4"
@@ -31,14 +31,14 @@
     >
       <EditorSectionHeader
         icon="i-heroicons-check-circle"
-        title="Checkbox"
+        :title="$t('form_fields.options.checkbox.title')"
       />
       <toggle-switch-input
         v-if="!isFocused"
         :form="field"
         name="use_toggle_switch"
-        label="Use toggle switch"
-        help="If enabled, checkbox will be replaced with a toggle switch"
+        :label="$t('form_fields.options.checkbox.use_toggle_switch')"
+        :help="$t('form_fields.options.checkbox.use_toggle_switch_help')"
       />
       <template v-else>
         <flat-select-input
@@ -47,8 +47,8 @@
           class="mt-3"
           :form="field"
           :options="focusedCheckboxStyleOptions"
-          label="Checkbox style"
-          help="Choose how the checkbox appears in focused mode"
+          :label="$t('form_fields.options.checkbox.style_label')"
+          :help="$t('form_fields.options.checkbox.style_help')"
           @update:model-value="onFieldFocusedCheckboxStyleChange"
         />
       </template>
@@ -61,25 +61,25 @@
     >
       <EditorSectionHeader
         icon="i-heroicons-paper-clip"
-        title="File uploads"
+        :title="$t('form_fields.options.files.title')"
       />
       <toggle-switch-input
         :form="field"
         name="multiple"
-        label="Allow multiple files"
+        :label="$t('form_fields.options.files.allow_multiple')"
       />
       <toggle-switch-input
         :form="field"
         name="camera_upload"
-        label="Allow Camera uploads"
+        :label="$t('form_fields.options.files.allow_camera')"
       />
       <text-input
         name="allowed_file_types"
         class="mt-3"
         :form="field"
-        label="Allowed file types"
+        :label="$t('form_fields.options.files.allowed_types_label')"
         placeholder="jpg,jpeg,png,gif"
-        help="Comma separated values, leave blank to allow all file types"
+        :help="$t('form_fields.options.files.allowed_types_help')"
       />
 
       <text-input
@@ -89,9 +89,9 @@
         native-type="number"
         :min="1"
         :max="mbLimit"
-        label="Maximum file size (in MB)"
+        :label="$t('form_fields.options.files.max_size_label')"
         :placeholder="`1MB - ${mbLimit}MB`"
-        help="Set the maximum file size that can be uploaded"
+        :help="$t('form_fields.options.files.max_size_help')"
       />
     </div>
 
@@ -102,17 +102,17 @@
     >
       <EditorSectionHeader
         icon="i-material-symbols-barcode-scanner-rounded"
-        title="Barcode Reader"
+        :title="$t('form_fields.options.barcode.title')"
       />
       <select-input
         name="decoders"
         class="mt-4"
         :form="field"
         :options="barcodeDecodersOptions"
-        label="Decoders"
+        :label="$t('form_fields.options.barcode.decoders_label')"
         :searchable="true"
         :multiple="true"
-        help="Select the decoders you want to use"
+        :help="$t('form_fields.options.barcode.decoders_help')"
       />
     </div>
 
@@ -122,7 +122,7 @@
     >
       <EditorSectionHeader
         icon="i-heroicons-star"
-        title="Rating"
+        :title="$t('form_fields.options.rating.title')"
       />
       <text-input
         name="rating_max_value"
@@ -131,7 +131,7 @@
         class="mt-3"
         :form="field"
         required
-        label="Max rating value"
+        :label="$t('form_fields.options.rating.max_value')"
       />
     </div>
 
@@ -141,7 +141,7 @@
     >
       <EditorSectionHeader
         icon="i-heroicons-scale-20-solid"
-        title="Scale"
+        :title="$t('form_fields.options.scale.title')"
       />
       <text-input
         name="scale_min_value"
@@ -149,7 +149,7 @@
         class="mt-4"
         :form="field"
         required
-        label="Min scale value"
+        :label="$t('form_fields.options.scale.min_value')"
       />
       <text-input
         name="scale_max_value"
@@ -158,7 +158,7 @@
         class="mt-4"
         :form="field"
         required
-        label="Max scale value"
+        :label="$t('form_fields.options.scale.max_value')"
       />
       <text-input
         name="scale_step_value"
@@ -167,7 +167,7 @@
         class="mt-4"
         :form="field"
         required
-        label="Scale steps value"
+        :label="$t('form_fields.options.scale.step_value')"
       />
     </div>
 
@@ -177,7 +177,7 @@
     >
       <EditorSectionHeader
         icon="i-heroicons-adjustments-horizontal"
-        title="Slider"
+        :title="$t('form_fields.options.slider.title')"
       />
       <text-input
         name="slider_min_value"
@@ -185,7 +185,7 @@
         class="mt-4"
         :form="field"
         required
-        label="Min slider value"
+        :label="$t('form_fields.options.slider.min_value')"
       />
       <text-input
         name="slider_max_value"
@@ -194,7 +194,7 @@
         class="mt-4"
         :form="field"
         required
-        label="Max slider value"
+        :label="$t('form_fields.options.slider.max_value')"
       />
       <text-input
         name="slider_step_value"
@@ -203,7 +203,7 @@
         class="mt-4"
         :form="field"
         required
-        label="Slider steps value"
+        :label="$t('form_fields.options.slider.step_value')"
       />
     </div>
 
@@ -225,26 +225,26 @@
     >
       <EditorSectionHeader
         icon="i-heroicons-bars-3-bottom-left"
-        title="Text Options"
+        :title="$t('form_fields.options.text.title')"
       />
       <toggle-switch-input
         :form="field"
         name="multi_lines"
-        label="Multi-lines input"
+        :label="$t('form_fields.options.text.multi_lines')"
         @update:model-value="onFieldMultiLinesChange"
       />
       <toggle-switch-input
         :form="field"
         name="secret_input"
-        help="Hide input content with * for privacy"
+        :help="$t('form_fields.options.text.secret_input_help')"
         @update:model-value="onFieldSecretInputChange"
       >
         <template #label>
           <span class="text-sm">
-            Secret input
+            {{ $t('form_fields.options.text.secret_input') }}
           </span>
           <pro-tag
-            upgrade-modal-title="Upgrade today to enable secret input"
+            :upgrade-modal-title="$t('form_fields.options.text.secret_input_upgrade')"
             class="-mt-1"
           />
         </template>
@@ -258,37 +258,37 @@
     >
       <EditorSectionHeader
         icon="i-heroicons-calendar-20-solid"
-        title="Date Options"
+        :title="$t('form_fields.options.date.title')"
       />
       <toggle-switch-input
         :form="field"
         class="mt-3"
         name="date_range"
-        label="Include end date"
+        :label="$t('form_fields.options.date.include_end_date')"
         @update:model-value="onFieldDateRangeChange"
       />
       <toggle-switch-input
         :form="field"
         name="prefill_today"
-        label="Prefill with 'today'"
+        :label="$t('form_fields.options.date.prefill_today')"
         @update:model-value="onFieldPrefillTodayChange"
       />
       <toggle-switch-input
         :form="field"
         name="disable_past_dates"
-        label="Disable past dates"
+        :label="$t('form_fields.options.date.disable_past_dates')"
         @update:model-value="onFieldDisablePastDatesChange"
       />
       <toggle-switch-input
         :form="field"
         name="disable_future_dates"
-        label="Disable future dates"
+        :label="$t('form_fields.options.date.disable_future_dates')"
         @update:model-value="onFieldDisableFutureDatesChange"
       />
       <toggle-switch-input
         :form="field"
         name="with_time"
-        label="Include time"
+        :label="$t('form_fields.options.date.include_time')"
       />
       <select-input
         v-if="field.with_time"
@@ -296,9 +296,9 @@
         class="mt-4"
         :form="field"
         :options="timezonesOptions"
-        label="Timezone"
+        :label="$t('form_fields.options.date.timezone_label')"
         :searchable="true"
-        help="Make sure to select the same timezone you're using in Notion. Leave blank otherwise."
+        :help="$t('form_fields.options.date.timezone_help')"
       />
       <flat-select-input
         v-if="field.with_time"
@@ -306,14 +306,14 @@
         class="mt-4"
         :form="field"
         :options="timeFormatOptions"
-        label="Time format"
+        :label="$t('form_fields.options.date.time_format_label')"
       />
       <flat-select-input
         name="date_format"
         class="mt-4"
         :form="field"
         :options="dateFormatOptions"
-        label="Date format"
+        :label="$t('form_fields.options.date.date_format_label')"
       />
     </div>
 
@@ -324,41 +324,41 @@
     >
       <EditorSectionHeader
         icon="i-heroicons-chevron-up-down-20-solid"
-        title="Select Options"
+        :title="$t('form_fields.options.select.title')"
       />
       <text-area-input
         v-model="optionsText"
         :name="field.id + '_options_text'"
         class="mt-3"
-        label="Set selection options"
-        help="Add one option per line"
+        :label="$t('form_fields.options.select.options_label')"
+        :help="$t('form_fields.options.select.options_help')"
         @update:model-value="onFieldOptionsChange"
       />
       <toggle-switch-input
         v-if="isFocused"
         :model-value="field.use_focused_selector === false"
-        label="Use dropdown instead"
-        help="Use classic dropdown instead of focused selector with keyboard shortcuts"
+        :label="$t('form_fields.options.select.use_dropdown_instead')"
+        :help="$t('form_fields.options.select.use_dropdown_instead_help')"
         @update:model-value="onFieldUseDropdownInFocusedChange"
       />
       <toggle-switch-input
         v-if="!isFocusedSelectorActive"
         :form="field"
         name="allow_creation"
-        label="Allow respondent to create new options"
+        :label="$t('form_fields.options.select.allow_creation')"
         @update:model-value="onFieldAllowCreationChange"
       />
       <toggle-switch-input
         v-if="!isFocusedSelectorActive"
         :form="field"
         name="without_dropdown"
-        label="Use radio buttons"
+        :label="$t('form_fields.options.select.without_dropdown')"
         @update:model-value="onFieldWithoutDropdownChange"
       />
       <toggle-switch-input
         :form="field"
         name="shuffle_options"
-        label="Randomize options order"
+        :label="$t('form_fields.options.select.shuffle_options')"
       />
       
       <!-- Min/Max Selection Constraints for multi_select only -->
@@ -370,7 +370,7 @@
           :min="0"
           class="flex-1"
           :form="field"
-          label="Min. required"
+          :label="$t('form_fields.options.select.min_selection_label')"
           placeholder="1"
           @update:model-value="onFieldMinSelectionChange"
         />
@@ -380,7 +380,7 @@
           :min="1"
           class="flex-1"
           :form="field"
-          label="Max. allowed"
+          :label="$t('form_fields.options.select.max_selection_label')"
           placeholder="2"
           @update:model-value="onFieldMaxSelectionChange"
         />
@@ -389,11 +389,11 @@
           color="neutral"
           variant="outline"
           class="self-end mb-1"
-          title="Clear both values"
+          :title="$t('form_fields.options.select.clear_min_max')"
           @click="clearMinMaxSelection"
         />
       </div>
-      <InputHelp help="Set min/max options allowed, or leave empty for unlimited. Save form to test changes." />
+      <InputHelp :help="$t('form_fields.options.select.min_max_help')" />
       </template>
     </div>
 
@@ -404,20 +404,20 @@
     >
       <EditorSectionHeader
         icon="i-heroicons-adjustments-horizontal"
-        title="Customization"
+        :title="$t('form_fields.options.customization.title')"
       />
 
       <toggle-switch-input
         :form="field"
         name="hide_field_name"
-        label="Hide field name"
+        :label="$t('form_fields.options.customization.hide_field_name')"
       />
 
       <toggle-switch-input
         v-if="field.type === 'phone_number'"
         :form="field"
         name="use_simple_text_input"
-        label="Use simple text input"
+        :label="$t('form_fields.options.customization.use_simple_text_input')"
       />
 
       <template v-if="field.type === 'phone_number' && !field.use_simple_text_input">
@@ -432,13 +432,13 @@
           :search-keys="['name']"
           :option-key="'code'"
           :emit-key="'code'"
-          label="Disabled countries"
-          :placeholder="'Select a country'"
-          help="Remove countries from the phone input"
+          :label="$t('form_fields.options.customization.disabled_countries_label')"
+          :placeholder="$t('form_fields.options.customization.disabled_countries_placeholder')"
+          :help="$t('form_fields.options.customization.disabled_countries_help')"
         >
           <template #selected="{ option }">
             <div class="flex items-center space-x-2 justify-center overflow-hidden">
-              {{ option.length }} selected
+              {{ $t('form_fields.options.customization.countries_selected', { count: option.length }) }}
             </div>
           </template>
           <template #option="{ option, selected }">
@@ -474,11 +474,11 @@
             href="#"
             class="grow"
             @click.prevent="selectAllCountries"
-          >Select All</a>
+          >{{ $t('form_fields.options.customization.select_all_countries') }}</a>
           <a
             href="#"
             @click.prevent="field.unavailable_countries = null"
-          >Un-select All</a>
+          >{{ $t('form_fields.options.customization.unselect_all_countries') }}</a>
         </small>
       </template>
 
@@ -487,7 +487,7 @@
         v-if="field.type == 'checkbox'"
         :form="field"
         name="prefill"
-        label="Pre-filled value"
+        :label="$t('form_fields.options.customization.prefill_label')"
         @update:model-value="field.prefill = $event"
       />
       <select-input
@@ -496,7 +496,7 @@
         class="mt-3"
         :form="field"
         :options="prefillSelectsOptions"
-        label="Pre-filled value"
+        :label="$t('form_fields.options.customization.prefill_label')"
         :searchable="shouldEnableSelectSearch"
         :multiple="field.type === 'multi_select'"
       />
@@ -506,7 +506,7 @@
           :rows="field.rows"
           :columns="field.columns"
           name="prefill"
-          label="Pre-filled value"
+          :label="$t('form_fields.options.customization.prefill_label')"
         />
       </template>
       <date-input
@@ -517,7 +517,7 @@
         :time-format="field.time_format"
         :with-time="field.with_time === true"
         :date-range="field.date_range === true"
-        label="Pre-filled value"
+        :label="$t('form_fields.options.customization.prefill_label')"
       />
       <text-input
         v-else-if="field.type==='date' && field.prefill_today===true"
@@ -525,8 +525,8 @@
         class="mt-4"
         disabled
         :form="field"
-        label="Pre-filled value"
-        placeholder="Pre-filled with current date"
+        :label="$t('form_fields.options.customization.prefill_label')"
+        :placeholder="$t('form_fields.options.customization.prefill_today_placeholder')"
       />
       <phone-input
         v-else-if="field.type === 'phone_number' && !field.use_simple_text_input"
@@ -535,21 +535,21 @@
         :form="field"
         :can-only-country="true"
         :unavailable-countries="field.unavailable_countries ?? []"
-        label="Pre-filled value"
+        :label="$t('form_fields.options.customization.prefill_label')"
       />
       <text-area-input
         v-else-if="field.type === 'text' && field.multi_lines"
         name="prefill"
         class="mt-3"
         :form="field"
-        label="Pre-filled value"
+        :label="$t('form_fields.options.customization.prefill_label')"
       />
       <file-input
         v-else-if="field.type === 'files'"
         name="prefill"
         class="mt-4"
         :form="field"
-        label="Pre-filled file"
+        :label="$t('form_fields.options.customization.prefill_file_label')"
         :multiple="field.multiple === true"
         :move-to-form-assets="true"
       />
@@ -559,24 +559,24 @@
         name="prefill"
         class="mt-3"
         :form="field"
-        label="Pre-filled value"
+        :label="$t('form_fields.options.customization.prefill_label')"
       />
       <text-input
         v-else-if="!['files', 'signature', 'rich_text', 'payment'].includes(field.type)"
         name="prefill"
         class="mt-3"
         :form="field"
-        label="Pre-filled value"
+        :label="$t('form_fields.options.customization.prefill_label')"
       />
       <div
         v-if="['select', 'multi_select'].includes(field.type)"
         class="-mt-3 mb-3 text-neutral-400 dark:text-neutral-500"
       >
         <small>
-          A problem? <a
+          {{ $t('form_fields.options.customization.prefill_problem') }} <a
             href="#"
             @click.prevent="field.prefill = null"
-          >Click here to clear your pre-fill</a>
+          >{{ $t('form_fields.options.customization.prefill_clear_link') }}</a>
         </small>
       </div>
 
@@ -586,14 +586,14 @@
         name="placeholder"
         class="mt-3"
         :form="field"
-        label="Empty Input Text - Placeholder"
+        :label="$t('form_fields.options.customization.placeholder_label')"
       />
       <text-input
         v-else-if="hasPlaceholder"
         name="placeholder"
         class="mt-3"
         :form="field"
-        label="Empty Input Text - Placeholder"
+        :label="$t('form_fields.options.customization.placeholder_label')"
       />
 
       <OptionSelectorInput
@@ -601,11 +601,11 @@
         name="width"
         class="mt-4"
         :form="field"
-        label="Block Width"
+        :label="$t('form_fields.width.label')"
         seamless
         v-if="!isFocused"
         :options="[
-          { name: 'full', label: 'Full' },
+          { name: 'full', label: $t('form_fields.width.full') },
           { name: '1/2', label: '1/2' },
           { name: '1/3', label: '1/3' },
           { name: '2/3', label: '2/3' },
@@ -622,7 +622,7 @@
         class="mt-3"
         :allow-fullscreen="true"
         :form="field"
-        label="Help Text"
+        :label="$t('form_fields.options.customization.help_label')"
         :editor-options="{
           formats: [
             'bold',
@@ -642,7 +642,7 @@
             ]
           }
         }"
-        help="Displayed below/above the field, like this text"
+        :help="$t('form_fields.options.customization.help_hint')"
         :help-position="field.help_position"
       />
       <OptionSelectorInput
@@ -650,11 +650,11 @@
         name="help_position"
         class="mt-4 w-2/3"
         :form="field"
-        label="Help Text Position"
+        :label="$t('form_fields.options.customization.help_position_label')"
         seamless
         :options="[
-          { name: 'below_input', label: 'Below input'},
-          { name: 'above_input', label: 'Above input'},
+          { name: 'below_input', label: $t('form_fields.options.customization.help_position_below')},
+          { name: 'above_input', label: $t('form_fields.options.customization.help_position_above')},
         ]"
         :multiple="false"
         :columns="2"
@@ -667,7 +667,7 @@
           native-type="number"
           :min="1"
           :form="field"
-          label="Max character limit"
+          :label="$t('form_fields.options.customization.max_char_limit')"
           :required="false"
           class="mt-3"
           @update:model-value="onFieldMaxCharLimitChange"
@@ -677,7 +677,7 @@
           name="show_char_limit"
           :form="field"
           class="mt-3"
-          label="Always show character limit"
+          :label="$t('form_fields.options.customization.show_char_limit')"
         />
       </template>
     </div>
@@ -689,21 +689,21 @@
     >
       <EditorSectionHeader
         icon="i-heroicons-bars-3-bottom-left"
-        title="Advanced Options"
+        :title="$t('form_fields.options.advanced.title')"
       />
       
       <toggle-switch-input
         :form="field"
         name="generates_uuid"
-        label="Generates a unique id"
-        help="If you enable this, we will hide this field and fill it with a unique id (UUID format) on each new form submission"
+        :label="$t('form_fields.options.advanced.generates_uuid')"
+        :help="$t('form_fields.options.advanced.generates_uuid_help')"
         @update:model-value="onFieldGenUIdChange"
       />
       <toggle-switch-input
         :form="field"
         name="generates_auto_increment_id"
-        label="Generates an auto-incremented id"
-        help="If you enable this, we will hide this field and fill it a unique incrementing number on each new form submission"
+        :label="$t('form_fields.options.advanced.generates_auto_increment_id')"
+        :help="$t('form_fields.options.advanced.generates_auto_increment_id_help')"
         @update:model-value="onFieldGenAutoIdChange"
       />
     </div>
@@ -746,20 +746,22 @@ export default {
   data() {
     return {
       typesWithoutPlaceholder: ['date', 'checkbox', 'files', 'payment', 'matrix', 'signature', 'barcode', 'scale', 'slider', 'rating'],
-      allCountries: countryCodes,
-      barcodeDecodersOptions: [
-        { name: 'QR Code', value: 'qr_reader' },
-        { name: 'EAN-13 (European Article Number)', value: 'ean_reader' },
-        { name: 'EAN-8 (European Article Number)', value: 'ean_8_reader' },
-        { name: 'UPC-A (Universal Product Code)', value: 'upc_reader' },
-        { name: 'UPC-E (Universal Product Code)', value: 'upc_e_reader' },
-        { name: 'Code 128', value: 'code_128_reader' },
-        { name: 'Code 39', value: 'code_39_reader' }
-      ]
+      allCountries: countryCodes
     }
   },
 
   computed: {
+    barcodeDecodersOptions() {
+      return [
+        { name: this.$t('form_fields.options.barcode.decoder_qr'), value: 'qr_reader' },
+        { name: this.$t('form_fields.options.barcode.decoder_ean_13'), value: 'ean_reader' },
+        { name: this.$t('form_fields.options.barcode.decoder_ean_8'), value: 'ean_8_reader' },
+        { name: this.$t('form_fields.options.barcode.decoder_upc_a'), value: 'upc_reader' },
+        { name: this.$t('form_fields.options.barcode.decoder_upc_e'), value: 'upc_e_reader' },
+        { name: this.$t('form_fields.options.barcode.decoder_code_128'), value: 'code_128_reader' },
+        { name: this.$t('form_fields.options.barcode.decoder_code_39'), value: 'code_39_reader' }
+      ]
+    },
     isFocused() {
       return this.form?.presentation_style === 'focused'
     },
@@ -772,9 +774,9 @@ export default {
     },
     focusedCheckboxStyleOptions() {
       return [
-        { name: 'Yes/No selector (Y/N shortcuts)', value: 'focused_toggle' },
-        { name: 'Toggle switch', value: 'toggle_switch' },
-        { name: 'Classic checkbox', value: 'checkbox' }
+        { name: this.$t('form_fields.options.checkbox.style_focused_toggle'), value: 'focused_toggle' },
+        { name: this.$t('form_fields.options.checkbox.style_toggle_switch'), value: 'toggle_switch' },
+        { name: this.$t('form_fields.options.checkbox.style_classic'), value: 'checkbox' }
       ]
     },
     mbLimit() {

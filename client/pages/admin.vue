@@ -50,7 +50,7 @@
       v-else
       class="font-semibold text-2xl text-neutral-900 mb-4"
     >
-      Admin settings
+      {{ $t('admin.page.heading') }}
     </h3>
 
 
@@ -63,16 +63,16 @@
         <TextInput
           name="identifier"
           :form="fetchUserForm"
-          label="Identifier"
+          :label="$t('admin.page.identifier_label')"
           :required="true"
-          help="User Id, User Email, Form Slug or View Slug"
+          :help="$t('admin.page.identifier_help')"
         />
         <UButton
           type="submit"
           :loading="loading"
           block
           class="mt-4"
-          label="Fetch User"
+          :label="$t('admin.page.fetch_user')"
         />
       </VForm>
 
@@ -84,16 +84,16 @@
         <TextAreaInput
           name="template_prompt"
           :form="createTemplateForm"
-          label="Template Description"
+          :label="$t('admin.page.template_description_label')"
           :required="true"
-          help="Describe the template you want to create"
+          :help="$t('admin.page.template_description_help')"
         />
         <UButton
           type="submit"
           :loading="templateLoading"
           block
           class="mt-4"
-          label="Create Template"
+          :label="$t('admin.page.create_template')"
         />
       </VForm>
     </template>
@@ -163,8 +163,10 @@ definePageMeta({
   layout: 'dashboard'
 })
 
+const { t } = useI18n()
+
 useOpnSeoMeta({
-  title: 'Admin'
+  title: t('admin.page.meta_title')
 })
 
 const alert = useAlert()
@@ -209,7 +211,7 @@ onMounted(() => {
 
 async function fetchUser() {
   if (!fetchUserForm.identifier) {
-    alert.error('Identifier is required.')
+    alert.error(t('admin.page.identifier_required'))
     return
   }
 
@@ -218,7 +220,7 @@ async function fetchUser() {
     loading.value = false
     userInfo.value = { ...data.user, workspaces: data.workspaces }
     getUserPlan(data.workspaces)
-    alert.success(`User Fetched: ${userInfo.value.name}`)
+    alert.success(t('admin.page.user_fetched', { name: userInfo.value.name }))
   })
     .catch((error) => {
       alert.error(error.data.message)
@@ -254,7 +256,7 @@ function refreshUser() {
 
 async function createTemplate() {
   if (!createTemplateForm.template_prompt) {
-    alert.error('Template prompt is required.')
+    alert.error(t('admin.page.template_prompt_required'))
     return
   }
 
@@ -264,7 +266,7 @@ async function createTemplate() {
   }).then((data) => {
     templateLoading.value = false
     createTemplateForm.reset()
-    alert.success('Template created.')
+    alert.success(t('admin.page.template_created'))
     router.push({ name: 'templates-slug', params: { slug: data.template_slug } })
   })
     .catch((error) => {

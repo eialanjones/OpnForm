@@ -1,0 +1,100 @@
+{
+    "app_shell": {
+        "breadcrumb": {
+            "home": "Home"
+        },
+        "pro_tag": {
+            "default_tooltip": "You need a Pro plan to use this feature"
+        },
+        "steps": {
+            "step_of": "Step: {current} of {total}",
+            "complete": "Complete!"
+        },
+        "upgrade_banner": {
+            "title": "Discover our Pro plan",
+            "description": "Remove Forms Mentorfy branding, customize forms further, use your custom domain, integrate with your favorite tools, invite users, and more!",
+            "upgrade_now": "Upgrade now",
+            "modal_title": "Upgrade to Pro plan"
+        },
+        "seo": {
+            "default_title": "Form Builder with Unlimited Submissions",
+            "default_description": "Build beautiful, powerful forms with Forms Mentorfy. Unlimited submissions, rich features, and seamless integrations."
+        },
+        "error_page": {
+            "seo_title": "404 - Page not found",
+            "image_alt": "Nice plant as we have nothing else to show!",
+            "title": "Whoops, something went wrong ({code})",
+            "go_home": "Go Home"
+        },
+        "user_dropdown": {
+            "admin": "Admin",
+            "logout": "Logout",
+            "language": "Language"
+        },
+        "workspace_dropdown": {
+            "invite_members": "Invite Members",
+            "create_workspace": "Create Workspace",
+            "pro_plan": "Pro Plan",
+            "free_plan": "Free Plan",
+            "member_count_one": "1 member",
+            "member_count_other": "{count} members",
+            "upgrade_workspaces_title": "Upgrade to create additional workspaces",
+            "upgrade_workspaces_description": "Try our Pro plan for free today, and unlock all of our features such as collaboration, multiple workspaces, custom domains, forms analytics, integrations, and more!",
+            "upgrade_invite_title": "Upgrade to invite users to your workspace"
+        },
+        "navbar": {
+            "logo_alt": "Forms Mentorfy logo",
+            "my_forms": "My Forms",
+            "templates": "Templates",
+            "ai_form_builder": "AI Form Builder",
+            "pricing": "Pricing",
+            "help": "Help",
+            "login": "Login",
+            "create_a_form": "Create a form"
+        },
+        "resize_handle": {
+            "tooltip": "Drag to resize"
+        },
+        "yearly_modal": {
+            "special_offer": "Special Offer",
+            "headline": "Upgrade to {plan} and Save Big",
+            "headline_plan": "Yearly",
+            "subtitle": "Get {offer} when you switch to annual billing",
+            "subtitle_offer": "2 months for free",
+            "monthly_plan": "Monthly plan",
+            "yearly_plan": "Yearly plan",
+            "per_month": "/month",
+            "best": "BEST",
+            "billed_annually": "$192 billed annually",
+            "cta": "Upgrade to Yearly Now",
+            "charge_notice": "By clicking, you'll be charged {amount}.",
+            "charge_amount": "$192 annually",
+            "no_thanks": "No thanks",
+            "benefits": {
+                "save": "Save 20% compared to monthly billing",
+                "lock_pricing": "Lock in current pricing for a full year",
+                "same_features": "Keep access to the same features"
+            },
+            "upgrade_error": "Failed to upgrade to yearly plan. Please try again later.",
+            "manage_billing": "Manage Billing"
+        },
+        "app_sidebar": {
+            "create_form": "Create Form",
+            "home": "Home",
+            "templates": "Templates",
+            "upgrade_to_pro": "Upgrade to Pro",
+            "upgrade_modal_title": "Upgrade to Pro plan"
+        },
+        "form_sidebar": {
+            "dashboard": "Dashboard",
+            "submissions": "Submissions",
+            "integrations": "Integrations",
+            "analytics": "Analytics"
+        },
+        "telegram_widget": {
+            "description": "{telegram} is a secure messaging app that works across all devices and platforms. Connect your account to receive instant notifications whenever someone submits this form!",
+            "login_button": "Log in with Telegram",
+            "unavailable": "Telegram login is not available"
+        }
+    }
+}

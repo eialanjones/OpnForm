@@ -1,11 +1,10 @@
 <template>
   <div>
     <h3 class="font-semibold text-xl">
-      Share Link
+      {{ $t('form_pages.share_link.heading') }}
     </h3>
     <p>
-      Share your form with anyone by copying this link. You can use it on social media,
-      in messages, or send it via email to reach your audience.
+      {{ $t('form_pages.share_link.description') }}
     </p>
     <copy-content
       :content="share_url"
@@ -29,7 +28,7 @@
           />
         </svg>
       </template>
-      Copy Link
+      {{ $t('form_pages.share_link.copy_button') }}
     </copy-content>
   </div>
 </template>

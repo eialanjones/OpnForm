@@ -23,7 +23,7 @@
         size="sm"
         @click="openHelp"
       >
-        Help
+        {{ $t('integrations.modal.help') }}
       </UButton>
     </template>
 
@@ -55,7 +55,7 @@
           :loading="loading"
           @click.prevent="save"
         >
-          Save
+          {{ $t('common.actions.save') }}
         </UButton>
         <UButton
           color="neutral"
@@ -63,7 +63,7 @@
           class="px-8"
           @click.prevent="isOpen = false"
         >
-          Close
+          {{ $t('common.actions.close') }}
         </UButton>
       </div>
     </template>
@@ -83,6 +83,7 @@ const props = defineProps({
   formIntegrationId: { type: Number, required: false, default: null }
 })
 
+const { t } = useI18n()
 const alert = useAlert()
 const emit = defineEmits(["close"])
 
@@ -185,7 +186,7 @@ const save = () => {
         alert.error(error.data.message)
       }
       catch {
-        alert.error('An error occurred while saving the integration')
+        alert.error(t('integrations.modal.save_error'))
       }
     })
 }

@@ -29,7 +29,7 @@
             :key="rowIndex"
             class="border-t border-neutral-300 dark:border-neutral-600"
             role="radiogroup"
-            :aria-label="`${row} options`"
+            :aria-label="$t('widgets.matrix_input.row_options_aria', { row })"
           >
             <td class="ltr:text-left rtl:text-right w-auto max-w-24 overflow-hidden">
               <div :class="ui.rowCell({ class: props.ui?.slots?.rowCell })">

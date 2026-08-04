@@ -16,9 +16,8 @@
     >
 
     <p class="mt-6">
-      <span class="text-green-500">We found your AppSumo Lifetime deal license!</span>
-      Just complete the registration form to finalize the activation of your
-      license.
+      <span class="text-green-500">{{ $t('admin.appsumo.register.found_license') }}</span>
+      {{ $t('admin.appsumo.register.complete_registration') }}
     </p>
   </div>
   <div
@@ -38,8 +37,8 @@
     >
 
     <p class="mt-6">
-      <span class="text-red-600">Invalid AppSumo license</span>. The license was
-      probably already attached to a Forms Mentorfy account. Please contact support.
+      <span class="text-red-600">{{ $t('admin.appsumo.register.invalid_license') }}</span>
+      {{ $t('admin.appsumo.register.invalid_license_details') }}
     </p>
   </div>
 </template>

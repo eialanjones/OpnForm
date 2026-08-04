@@ -11,19 +11,19 @@
       <FormStatusBadges class="hidden md:block" :form="form" :with-tags="false" size="sm" />
       
       <!-- Last Updated -->
-      <span class="hidden lg:inline text-xs whitespace-nowrap" title="Last updated">Updated {{ form.last_edited_human }}</span>
+      <span class="hidden lg:inline text-xs whitespace-nowrap" :title="$t('marketing.form_card.last_updated')">{{ $t('marketing.form_card.updated_at', { time: form.last_edited_human }) }}</span>
 
       <!-- Views -->
-      <UTooltip :text="`${formatNumberWithCommas(form.views_count)} views`">
-        <div class="flex items-center gap-1" title="Form views">
+      <UTooltip :text="$t('marketing.form_card.views_tooltip', { count: formatNumberWithCommas(form.views_count) })">
+        <div class="flex items-center gap-1" :title="$t('marketing.form_card.form_views')">
           <UIcon name="i-heroicons-eye" />
           <span>{{ formatNumber(form.views_count) }}</span>
         </div>
       </UTooltip>
       
       <!-- Submissions -->
-      <UTooltip :text="`${formatNumberWithCommas(form.submissions_count)} submissions`">
-        <div class="flex items-center gap-1" title="Form submissions">
+      <UTooltip :text="$t('marketing.form_card.submissions_tooltip', { count: formatNumberWithCommas(form.submissions_count) })">
+        <div class="flex items-center gap-1" :title="$t('marketing.form_card.form_submissions')">
           <UIcon name="i-heroicons-document-text" />
           <span>{{ formatNumber(form.submissions_count) }}</span>
         </div>

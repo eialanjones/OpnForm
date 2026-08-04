@@ -17,11 +17,10 @@
             id="notification-title"
             class="font-medium max-md:max-w-full text-blue-500"
           >
-            Upgrade to unlock all features
+            {{ $t('form_pages.cleanings.title') }}
           </h5>
           <p class="mt-2 max-md:max-w-full text-slate-500">
-            <span v-if="specifyFormOwner">Only you are seeing this notification, as owner of the form.</span> The
-            following features are disabled on the published form:
+            <span v-if="specifyFormOwner">{{ $t('form_pages.cleanings.owner_note') }}</span> {{ $t('form_pages.cleanings.description') }}
           </p>
           <div
             class="text-slate-500 break-words whitespace-break-spaces"
@@ -38,10 +37,10 @@
               @click.prevent="onUpgradeClick"
             >
               <template v-if="form.is_pro">
-                Upgrade plan - Unlock all features
+                {{ $t('form_pages.cleanings.upgrade_plan_button') }}
               </template>
               <template v-else>
-                Unlock all features
+                {{ $t('form_pages.cleanings.unlock_button') }}
               </template>
             </UButton>
           </TrackClick>
@@ -50,7 +49,7 @@
             variant="link"
             @click.prevent="dismissWarning"
           >
-            Dismiss
+            {{ $t('form_pages.cleanings.dismiss') }}
           </UButton>
         </div>
       </div>
@@ -70,6 +69,7 @@ const props = defineProps({
   useCookieDismissal: { type: Boolean, default: false }
 })
 
+const { t } = useI18n()
 const { openSubscriptionModal } = useAppModals()
 
 // Create a cookie to store dismissal state for each form
@@ -111,7 +111,7 @@ const cleaningContent = computed(() => {
   Object.keys(cleanings.value).forEach((key) => {
     let fieldName = key.charAt(0).toUpperCase() + key.slice(1)
     if (fieldName !== 'Form') {
-      fieldName = '"' + fieldName + '" field'
+      fieldName = t('form_pages.cleanings.field_name', { field: fieldName })
     }
     const safeFieldName = escapeHtml(fieldName)
     let fieldInfo = '<br><span class="font-semibold">' + safeFieldName + '</span><br/><ul class=\'list-disc list-inside\'>'
@@ -129,8 +129,8 @@ const cleaningContent = computed(() => {
 // Methods
 const onUpgradeClick = () => {
   openSubscriptionModal({
-    modal_title: 'Upgrade to unlock all features for your form',
-    modal_description: 'Some features are disabled on the published form. Upgrade your plan to unlock these features and much more. Gain full access to all advanced features.'
+    modal_title: t('form_pages.cleanings.modal_title'),
+    modal_description: t('form_pages.cleanings.modal_description')
   })
 }
 

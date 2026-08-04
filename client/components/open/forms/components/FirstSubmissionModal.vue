@@ -2,18 +2,18 @@
   <UModal
     v-model:open="isModalOpen"
     :ui="{ content: 'sm:max-w-2xl' }"
-    title="🎉 Your first submission!"
+    :title="$t('form_editor.first_submission.title')"
   >
     <template #body>
       <div class="text-sm text-neutral-500 mb-6">
-        Congratulations! Your form is now live and ready for action. Share it with others or check your submissions below.
+        {{ $t('form_editor.first_submission.congrats') }}
       </div>
 
       <!-- Quick Actions -->
       <div class="space-y-3 mb-6">
         <div class="flex gap-3 items-center">
           <p class="text-sm w-36 text-neutral-500 flex-shrink-0">
-            Share form URL:
+            {{ $t('form_editor.first_submission.share_url_label') }}
           </p>
           <ShareFormUrl
             class="flex-grow"
@@ -22,14 +22,14 @@
         </div>
         <div class="flex items-center">
           <p class="text-sm w-36 text-neutral-500 flex-shrink-0">
-            Check submissions:
+            {{ $t('form_editor.first_submission.check_submissions_label') }}
           </p>
           <UButton
             color="neutral"
             variant="outline"
             icon="i-heroicons-table-cells"
             @click="trackOpenDbClick"
-            label="View Submissions"
+            :label="$t('form_editor.first_submission.view_submissions')"
           />
         </div>
       </div>
@@ -38,7 +38,7 @@
       <div class="border-t border-neutral-200 dark:border-neutral-700 pt-5">
         <div class="flex items-center justify-between mb-3">
           <p class="text-neutral-700 dark:text-neutral-200 font-semibold text-sm">
-            🔗 Connect your form to other apps
+            {{ $t('form_editor.first_submission.connect_apps_title') }}
           </p>
           <NuxtLink
             :to="integrationsPageUrl"
@@ -46,7 +46,7 @@
             class="text-xs text-blue-600 hover:text-blue-700 dark:text-blue-400 hover:underline flex items-center gap-1"
             @click="trackIntegrationsLinkClick"
           >
-            View all integrations
+            {{ $t('form_editor.first_submission.view_all_integrations') }}
             <Icon
               name="heroicons:arrow-top-right-on-square-16-solid"
               size="12px"
@@ -54,7 +54,7 @@
           </NuxtLink>
         </div>
         <p class="text-xs text-neutral-500 mb-4">
-          Get notified instantly when someone submits your form, or sync data to your favorite tools.
+          {{ $t('form_editor.first_submission.integrations_description') }}
         </p>
 
         <!-- Featured Integration: Email -->
@@ -74,18 +74,18 @@
             <div class="flex-grow">
               <div class="flex items-center gap-2">
                 <p class="text-sm font-semibold text-neutral-800 dark:text-white">
-                  Email Notification
+                  {{ $t('form_editor.first_submission.email_integration_title') }}
                 </p>
                 <UBadge
                   variant="subtle"
                   color="success"
                   size="xs"
                 >
-                  Recommended
+                  {{ $t('form_editor.first_submission.recommended') }}
                 </UBadge>
               </div>
               <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-1">
-                Get an email every time someone submits your form. Perfect for staying on top of responses.
+                {{ $t('form_editor.first_submission.email_integration_description') }}
               </p>
             </div>
             <Icon
@@ -98,7 +98,7 @@
 
         <!-- Other Popular Integrations -->
         <p class="text-xs text-neutral-500 mb-2">
-          Other popular integrations:
+          {{ $t('form_editor.first_submission.other_integrations') }}
         </p>
         <div class="grid grid-cols-4 gap-2">
           <div

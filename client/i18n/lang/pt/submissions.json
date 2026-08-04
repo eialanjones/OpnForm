@@ -1,0 +1,66 @@
+{
+    "submissions": {
+        "edit_modal": {
+            "title": "Editar resposta",
+            "copy_public_link": "Copiar link público",
+            "update_button": "Atualizar resposta"
+        },
+        "view_modal": {
+            "title": "Ver resposta"
+        },
+        "record_operations": {
+            "delete_confirm": "Você realmente quer excluir este registro?"
+        },
+        "pagination": {
+            "page_of": "{page} de {total}"
+        },
+        "table": {
+            "search_placeholder": "Buscar...",
+            "delete_count": "Excluir ({count})",
+            "fullscreen": "Tela cheia",
+            "exit_fullscreen": "Sair da tela cheia",
+            "delete_selected_confirm": "Você realmente quer excluir {count} registro selecionado? | Você realmente quer excluir {count} registros selecionados?"
+        },
+        "status": {
+            "all": "Todas",
+            "submitted": "Enviada",
+            "in_progress": "Em andamento"
+        },
+        "column_popover": {
+            "pin_column": "Fixar coluna",
+            "text_wrapping": "Quebra de texto",
+            "visibility": "Visibilidade"
+        },
+        "column_manager": {
+            "columns": "Colunas",
+            "search_placeholder": "Buscar colunas...",
+            "column_removed": "A coluna foi removida do formulário",
+            "enable_text_wrapping": "Ativar quebra de texto",
+            "disable_text_wrapping": "Desativar quebra de texto",
+            "hide": "Ocultar",
+            "show": "Mostrar",
+            "pin_to_left": "Fixar coluna à esquerda",
+            "unpin": "Desafixar coluna",
+            "shown_section": "Exibidas na tabela",
+            "hidden_section": "Ocultas na tabela",
+            "hide_all": "Ocultar todas",
+            "show_all": "Mostrar todas"
+        },
+        "cells": {
+            "date_range_separator": "até",
+            "payment": "Pagamento"
+        },
+        "font_picker": {
+            "modal_title": "Google fonts",
+            "search_placeholder": "Buscar fontes",
+            "preview_text": "Um pequeno jabuti xereta viu dez cegonhas felizes"
+        },
+        "undo_redo": {
+            "undo": "Desfazer",
+            "redo": "Refazer"
+        },
+        "errors": {
+            "something_went_wrong": "Algo deu errado!"
+        }
+    }
+}

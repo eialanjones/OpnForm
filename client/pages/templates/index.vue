@@ -6,10 +6,10 @@
           <h1
             class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900"
           >
-            Form Templates
+            {{ $t('marketing.templates_index.title') }}
           </h1>
           <p class="text-neutral-600 mt-4 text-lg font-normal">
-            Our collection of beautiful templates to create your own forms!
+            {{ $t('marketing.templates_index.description') }}
           </p>
         </div>
       </div>
@@ -26,14 +26,15 @@
 </template>
 
 <script setup>
+const { t } = useI18n()
+
 defineRouteRules({
   swr: 3600,
 })
 
 useOpnSeoMeta({
-  title: "Form Templates",
-  description:
-    "Our collection of beautiful templates to create your own forms!",
+  title: t('marketing.templates_index.title'),
+  description: t('marketing.templates_index.description'),
 })
 
 const { data: templates, isLoading: loading } = useTemplates().list()

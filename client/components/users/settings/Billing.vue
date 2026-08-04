@@ -3,9 +3,9 @@
     <!-- Header -->
     <div class="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
       <div>
-        <h3 class="text-lg font-medium text-neutral-900">Billing Details</h3>
+        <h3 class="text-lg font-medium text-neutral-900">{{ $t('user_settings.billing.heading') }}</h3>
         <p class="mt-1 text-sm text-neutral-500">
-          Manage your billing. Download invoices, update your plan, or cancel it at any time.
+          {{ $t('user_settings.billing.description') }}
         </p>
       </div>
     </div>
@@ -13,12 +13,17 @@
     <!-- Billing Management -->
     <template v-if="user.has_customer_id">
       <div class="space-y-4">
-        <p
+        <i18n-t
           v-if="usersCount"
+          keypath="user_settings.billing.users_count"
+          scope="global"
+          tag="p"
           class="text-neutral-600"
         >
-          You currently have <span class="font-medium">{{ usersCount }} users</span> in your different workspaces.
-        </p>
+          <template #users>
+            <span class="font-medium">{{ $t('user_settings.billing.users_count_value', { count: usersCount }, usersCount) }}</span>
+          </template>
+        </i18n-t>
 
         <div class="flex flex-wrap gap-3">
           <UButton
@@ -28,7 +33,7 @@
             target="_blank"
           >
 
-            Billing & Invoices
+            {{ $t('user_settings.billing.portal_button') }}
           </UButton>
         </div>
       </div>

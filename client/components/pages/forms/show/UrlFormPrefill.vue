@@ -12,7 +12,7 @@
         color="neutral"
         icon="i-heroicons-link"
         @click="showUrlFormPrefillModal = true"
-        label="URL Pre-fill"
+        :label="$t('form_pages.url_prefill.trigger')"
       />
     </TrackClick>
 
@@ -23,7 +23,7 @@
       <template #header>
         <div class="flex items-center w-full gap-4 px-2">
           <h2 class="font-semibold">
-            Url Form Prefill
+            {{ $t('form_pages.url_prefill.modal_title') }}
           </h2>
         </div>
         <UButton
@@ -33,26 +33,22 @@
           size="sm"
           @click="crisp.openHelpdeskArticle('how-to-use-url-form-pre-fill-1juyi21')"
         >
-          Help
+          {{ $t('form_pages.shared.help') }}
         </UButton>
       </template>
 
       <template #body>
         <div ref="content">
           <p>
-            Create dynamic links when sharing your form (whether it's embedded or
-            not), that allows you to prefill your form fields. You can use this to
-            personalize the form when sending it to multiple contacts for
-            instance.
+            {{ $t('form_pages.url_prefill.description') }}
           </p>
 
           <h3 class="mt-6 border-t text-xl font-semibold mb-4 pt-6">
-            How does it work?
+            {{ $t('form_pages.shared.how_it_works') }}
           </h3>
 
           <p>
-            Complete your form below and fill only the fields you want to prefill.
-            You can even leave the required fields empty.
+            {{ $t('form_pages.url_prefill.instructions') }}
           </p>
 
           <div class="rounded-lg p-5 bg-neutral-100 dark:bg-neutral-900 mt-4">
@@ -66,14 +62,14 @@
                   class="mt-4"
                   :loading="loading"
                   @click="generateUrl"
-                  label="Generate Pre-filled URL"
+                  :label="$t('form_pages.url_prefill.generate_button')"
                 />
               </template>
             </OpenForm>
           </div>
 
           <h3 class="mt-6 text-xl font-semibold mb-4 pt-6">
-            Your Prefill url
+            {{ $t('form_pages.url_prefill.result_heading') }}
           </h3>
           <FormUrlPrefill
             :form="form"

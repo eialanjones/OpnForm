@@ -1,0 +1,149 @@
+{
+    "user_settings": {
+        "modal": {
+            "tabs": {
+                "account": "Account",
+                "security": "Security",
+                "connections": "Connections",
+                "access_tokens": "Access Tokens",
+                "billing": "Billing"
+            }
+        },
+        "account": {
+            "profile_heading": "Profile Information",
+            "profile_description": "Update your account profile information and email address.",
+            "name_label": "Full Name",
+            "name_placeholder": "Enter your full name",
+            "email_label": "Email Address",
+            "email_placeholder": "Enter your email",
+            "save_button": "Save Changes",
+            "profile_updated": "Your info has been updated!",
+            "profile_update_error": "Error updating profile",
+            "delete_heading": "Delete Account",
+            "delete_description": "This will permanently delete your entire account. This cannot be undone.",
+            "delete_button": "Delete Account",
+            "delete_confirm": "Do you really want to delete your account?",
+            "delete_success": "Your account has been deleted",
+            "delete_error": "Error deleting account"
+        },
+        "security": {
+            "password_heading": "Change Password",
+            "password_description": "Update your password to keep your account secure.",
+            "current_password_label": "Current Password",
+            "current_password_placeholder": "Enter current password",
+            "new_password_label": "New Password",
+            "new_password_placeholder": "Enter new password",
+            "confirm_password_label": "Confirm Password",
+            "confirm_password_placeholder": "Confirm new password",
+            "update_password_button": "Update Password",
+            "password_updated": "Password updated."
+        },
+        "two_factor": {
+            "heading": "Two-Factor Authentication",
+            "description": "Add an extra layer of security to your account using an authenticator app.",
+            "enabled_alert": "Two-factor authentication is enabled on your account.",
+            "regenerate_codes_button": "Regenerate Recovery Codes",
+            "disable_button": "Disable 2FA",
+            "enter_code_prompt": "Enter the 6-digit code from your authenticator app:",
+            "use_recovery_code": "Use recovery code instead",
+            "recovery_code_label": "Recovery Code",
+            "recovery_code_placeholder": "Enter recovery code",
+            "enable_error": "Failed to enable two-factor authentication",
+            "enable_success": "Two-factor authentication has been enabled successfully.",
+            "disable_success": "Two-factor authentication has been disabled.",
+            "invalid_code": "Invalid code. Please try again.",
+            "regenerate_success": "Recovery codes have been regenerated. Please save them in a safe place.",
+            "regenerate_error": "Failed to regenerate recovery codes",
+            "codes_copied": "Recovery codes copied to clipboard",
+            "enable_flow": {
+                "enable_button": "Enable Two-Factor Authentication",
+                "scan_qr": "Scan this QR code with your authenticator app:",
+                "manual_entry": "Or enter this code manually:",
+                "copy_secret": "Copy Secret",
+                "confirm_code_prompt": "Enter the 6-digit code from your authenticator app to confirm:",
+                "confirm_button": "Confirm and Enable"
+            },
+            "disable_modal": {
+                "title": "Disable Two-Factor Authentication",
+                "warning": "Disabling two-factor authentication will reduce the security of your account. Please verify with a code from your authenticator app."
+            },
+            "regenerate_modal": {
+                "title": "Regenerate Recovery Codes",
+                "warning": "Regenerating recovery codes will invalidate all existing codes. You'll need to save the new codes immediately.",
+                "submit_button": "Regenerate Codes"
+            },
+            "recovery_codes_modal": {
+                "title": "Recovery Codes",
+                "warning": "These recovery codes will only be shown once. Please save them in a safe place. You can use them to access your account if you lose access to your authenticator device.",
+                "used_at": "Used {date}",
+                "copy_all": "Copy All Codes",
+                "saved_button": "I've Saved These Codes"
+            }
+        },
+        "access_tokens": {
+            "heading": "API Access Tokens",
+            "description": "Manage your API access tokens for programmatic access.",
+            "api_docs_button": "API Docs",
+            "create_button": "Create New Token",
+            "empty_title": "No access tokens yet",
+            "empty_description": "Create your first API access token to start using our API programmatically.",
+            "create_first_button": "Create Your First Token",
+            "abilities": "Abilities",
+            "delete_confirm": "Do you really want to delete this token?",
+            "delete_success": "Token deleted successfully",
+            "delete_error": "An error occurred while deleting the token",
+            "api_info": {
+                "heading": "API Information",
+                "description": "Learn how to use your access tokens with our API.",
+                "getting_started_title": "Getting Started",
+                "getting_started_description": "Use your access tokens in the Authorization header:",
+                "security_title": "Security",
+                "security_description": "Keep your tokens secure and never share them publicly. Rotate them regularly for better security.",
+                "rate_limits_title": "Rate Limits",
+                "rate_limits_description": "API requests are rate limited. {link} for current limits and best practices.",
+                "rate_limits_link": "Check our documentation"
+            },
+            "modal": {
+                "title": "Create an access token",
+                "help_button": "Help",
+                "token_ready_title": "Copy your access token",
+                "token_ready_description": "Your token will only be shown once. Make sure to save it safely.",
+                "copy_token": "Copy Token",
+                "create_button": "Create Token",
+                "create_error": "An error occurred while creating the token"
+            }
+        },
+        "connections": {
+            "heading": "External Connections",
+            "description": "Manage your external connections and integrations.",
+            "connect_button": "Connect Account",
+            "empty_title": "No connections yet",
+            "empty_description": "Connect your accounts to enable integrations and streamline your workflow.",
+            "connect_first_button": "Connect Your First Account",
+            "table_service": "Service",
+            "table_account": "Account",
+            "disconnect_confirm": "Do you really want to disconnect this account?",
+            "disconnect_success": "Account disconnected successfully",
+            "disconnect_error": "An error occurred while disconnecting the account",
+            "modal": {
+                "title": "Connect account",
+                "connecting_title": "Connecting your account...",
+                "connecting_description": "Complete the authentication in the new tab that opened.",
+                "connected_success": "Account connected successfully!",
+                "service_disabled": "This service is not enabled. Please contact support."
+            },
+            "widget_modal": {
+                "auth_failed": "Authentication failed",
+                "connected_success": "Successfully connected",
+                "auth_error": "Failed to authenticate"
+            }
+        },
+        "billing": {
+            "heading": "Billing Details",
+            "description": "Manage your billing. Download invoices, update your plan, or cancel it at any time.",
+            "users_count": "You currently have {users} in your different workspaces.",
+            "users_count_value": "{count} user | {count} users",
+            "portal_button": "Billing & Invoices"
+        }
+    }
+}

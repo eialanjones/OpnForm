@@ -4,13 +4,13 @@
       <div class="flex mt-6">
         <div class="w-full md:w-2/3 md:mx-auto md:max-w-md">
           <img
-            alt="Nice plant as we have nothing else to show!"
+            :alt="$t('app_shell.error_page.image_alt')"
             src="/img/icons/plant.png"
             class="w-56 mb-5"
           >
 
           <h1 class="mb-6 font-semibold text-3xl text-neutral-900">
-            Whoops, something went wrong ({{ error.statusCode || '404' }})
+            {{ $t('app_shell.error_page.title', { code: error.statusCode || '404' }) }}
           </h1>
 
           <div class="links">
@@ -18,7 +18,7 @@
               :to="{ name: 'index' }"
               class="hover:underline text-neutral-700"
             >
-              Go Home
+              {{ $t('app_shell.error_page.go_home') }}
             </NuxtLink>
           </div>
         </div>
@@ -30,8 +30,10 @@
 <script setup>
 import { captureException } from '@sentry/core'
 
+const { t } = useI18n()
+
 useOpnSeoMeta({
-  title: "404 - Page not found",
+  title: () => t("app_shell.error_page.seo_title"),
 })
 
 const props = defineProps({

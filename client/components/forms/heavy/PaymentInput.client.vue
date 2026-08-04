@@ -13,7 +13,7 @@
             <div class="h-6 bg-neutral-200 dark:bg-neutral-800 rounded-md" />
           </div>
           <p class="text-sm text-neutral-500 dark:text-neutral-400 text-center">
-            Connect Stripe account to continue
+            {{ $t('widgets.payment_input.connect_stripe') }}
           </p>
         </div>
       </div>
@@ -34,14 +34,14 @@
           v-if="shouldShowPreviewMessage || (props.isAdminPreview && (!stripeState.stripeAccountId || !publishableKey || !isStripeJsLoaded))"
           :class="ui.section({ class: props.ui?.slots?.section }) + ' p-4 text-center text-sm text-blue-700 bg-blue-100 dark:bg-blue-900/50 dark:text-blue-300 rounded-md'"
         >
-          <p v-if="shouldShowPreviewMessage">Please save the form to activate the payment preview.</p>
+          <p v-if="shouldShowPreviewMessage">{{ $t('widgets.payment_input.save_form_to_preview') }}</p>
           <p v-else>
-            Payment component configuration incomplete. 
-            {{ !stripeState?.stripeAccountId ? 'Stripe account not connected': 'Stripe account connected' }}.
-            {{ !publishableKey ? 'Missing Stripe publishable key.' : '' }}
-            {{ !isStripeJsLoaded ? 'Stripe.js not loaded.' : '' }}
+            {{ $t('widgets.payment_input.config_incomplete') }}
+            {{ !stripeState?.stripeAccountId ? $t('widgets.payment_input.account_not_connected') : $t('widgets.payment_input.account_connected') }}.
+            {{ !publishableKey ? $t('widgets.payment_input.missing_publishable_key') : '' }}
+            {{ !isStripeJsLoaded ? $t('widgets.payment_input.stripe_js_not_loaded') : '' }}
           </p>
-          <p class="mt-2">The complete payment form will be visible to users when viewing the published form.</p>
+          <p class="mt-2">{{ $t('widgets.payment_input.published_form_notice') }}</p>
         </div>
         <div
           v-else-if="stripeState && stripeState.isLoadingAccount"
@@ -53,7 +53,7 @@
           v-else-if="stripeState && stripeState.hasAccountLoadingError"
           :class="ui.section({ class: props.ui?.slots?.section }) + ' p-4 text-center text-sm text-red-700 bg-red-100 dark:bg-red-900/50 dark:text-red-300 rounded-md'"
         >
-          <p>{{ stripeState.errorMessage || 'Failed to load payment configuration' }}</p>
+          <p>{{ stripeState.errorMessage || $t('widgets.payment_input.load_config_failed') }}</p>
         </div>
         <div
           v-else-if="stripeState && stripeState.stripeAccountId && isStripeJsLoaded && publishableKey"
@@ -110,14 +110,14 @@
         </div>
         <div v-else>
           <div v-if="props.isAdminPreview" class="my-4 p-4 text-center text-sm text-blue-700 bg-blue-100 dark:bg-blue-900/50 dark:text-blue-300 rounded-md">
-            <p>Payment component initializing. {{ !!stripeState?.stripeAccountId ? 'Stripe account connected': 'No Stripe account connected' }}.</p>
-            <p class="mt-2">The payment form will be visible to users when viewing the published form.</p>
-            <p v-if="!publishableKey" class="mt-2 text-red-500">Missing Stripe publishable key in configuration.</p>
-            <p v-if="!stripeState?.stripeAccountId" class="mt-2 text-red-500">Missing Stripe account connection. ID: {{ props.oauthProviderId }}</p>
+            <p>{{ $t('widgets.payment_input.initializing') }} {{ !!stripeState?.stripeAccountId ? $t('widgets.payment_input.account_connected') : $t('widgets.payment_input.no_account_connected') }}.</p>
+            <p class="mt-2">{{ $t('widgets.payment_input.published_form_notice_short') }}</p>
+            <p v-if="!publishableKey" class="mt-2 text-red-500">{{ $t('widgets.payment_input.missing_publishable_key_config') }}</p>
+            <p v-if="!stripeState?.stripeAccountId" class="mt-2 text-red-500">{{ $t('widgets.payment_input.missing_account_connection', { id: props.oauthProviderId }) }}</p>
           </div>
           <div v-else class="flex flex-col items-center justify-center py-4">
             <Loader class="mx-auto h-6 w-6" />
-            <p class="text-sm text-neutral-500 mt-2">Initializing payment system...</p>
+            <p class="text-sm text-neutral-500 mt-2">{{ $t('widgets.payment_input.initializing_system') }}</p>
           </div>
         </div>
       </template>
@@ -168,6 +168,7 @@ const { compVal, hasError, inputWrapperProps, ui } = useFormInput(props, { emit 
 
 const route = useRoute()
 const alert = useAlert()
+const { t } = useI18n()
 
 const publishableKey = computed(() => {
   return useFeatureFlag('billing.stripe_publishable_key', '')
@@ -249,7 +250,7 @@ onMounted(async () => {
       // Set error state if publishable key is missing
       if (!publishableKey.value && stripeState.value) {
         stripeState.value.hasAccountLoadingError = true
-        stripeState.value.errorMessage = 'Missing Stripe configuration. Please check your settings.'
+        stripeState.value.errorMessage = t('widgets.payment_input.missing_configuration')
       }
       return
     }
@@ -280,9 +281,9 @@ onMounted(async () => {
     console.error('[PaymentInput] Stripe initialization error:', error)
     if (stripeState.value) {
       stripeState.value.hasAccountLoadingError = true
-      stripeState.value.errorMessage = 'Failed to initialize Stripe. Please refresh and try again.'
+      stripeState.value.errorMessage = t('widgets.payment_input.init_failed')
     }
-    alert.error('Failed to initialize Stripe. Please refresh and try again.')
+    alert.error(t('widgets.payment_input.init_failed'))
   }
 })
 
@@ -327,13 +328,13 @@ const onStripeReady = ({ stripe, elements }) => {
 
 const onStripeError = (error) => {
   console.error('[PaymentInput] Stripe initialization error:', error)
-  const errorMessage = error?.message || 'Failed to load payment component'
+  const errorMessage = error?.message || t('widgets.payment_input.load_component_failed')
   
-  alert.error('Failed to load payment component. ' + errorMessage)
+  alert.error(t('widgets.payment_input.load_component_failed_detail', { message: errorMessage }))
   
   if (stripeState.value) {
     stripeState.value.hasAccountLoadingError = true
-    stripeState.value.errorMessage = errorMessage + '. Please check configuration or refresh.'
+    stripeState.value.errorMessage = t('widgets.payment_input.check_configuration', { message: errorMessage })
   }
 }
 

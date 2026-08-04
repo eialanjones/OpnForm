@@ -7,47 +7,49 @@
       <h2
         class="mb-6 font-sans text-4xl font-semibold leading-none tracking-tight text-neutral-900 dark:text-neutral-100 sm:text-4xl md:mx-auto"
       >
-        The easiest way to create forms. <br>
-        Generous unlimited <span class="text-blue-500">free plan.</span>
+        {{ $t('marketing.welcome.features.heading_line1') }} <br>
+        {{ $t('marketing.welcome.features.heading_line2') }} <span class="text-blue-500">{{ $t('marketing.welcome.features.heading_highlight') }}</span>
       </h2>
       <p class="text-base text-neutral-700 dark:text-neutral-300 md:text-lg">
-        Need a contact form? Doing a survey? Create a form in 2 minutes and
-        start receiving submissions.
+        {{ $t('marketing.welcome.features.subheading') }}
       </p>
     </div>
 
     <div
       v-for="(step, index) in [
         {
-          title: 'Create',
-          description:
-            'Create a form in 2 minutes. More than 10 input types, images, logic and much more.',
-          features: ['Build a simple form in minutes.', 'No coding needed.'],
+          id: 'create',
+          title: $t('marketing.welcome.features.steps.create.title'),
+          description: $t('marketing.welcome.features.steps.create.description'),
+          features: [
+            $t('marketing.welcome.features.steps.create.bullet_1'),
+            $t('marketing.welcome.features.steps.create.bullet_2'),
+          ],
           img: '/img/pages/welcome/step-1.jpg',
         },
         {
-          title: 'Share',
-          description:
-            'Your form has a unique link that you can share everywhere. Send the link, or even embed the form on your website.',
+          id: 'share',
+          title: $t('marketing.welcome.features.steps.share.title'),
+          description: $t('marketing.welcome.features.steps.share.description'),
           features: [
-            'Share the link to your form',
-            'Embed the form on your website',
+            $t('marketing.welcome.features.steps.share.bullet_1'),
+            $t('marketing.welcome.features.steps.share.bullet_2'),
           ],
           img: '/img/pages/welcome/step-2.jpg',
         },
         {
-          title: 'Get Results',
-          description:
-            'Receive your form submissions. Receive notifications, send confirmations. Export submissions and check your form analytics.',
+          id: 'results',
+          title: $t('marketing.welcome.features.steps.results.title'),
+          description: $t('marketing.welcome.features.steps.results.description'),
           features: [
-            'Unlimited form submissions for free',
-            'Easily export submissions as CSV',
-            'Views & Submissions Analytics',
+            $t('marketing.welcome.features.steps.results.bullet_1'),
+            $t('marketing.welcome.features.steps.results.bullet_2'),
+            $t('marketing.welcome.features.steps.results.bullet_3'),
           ],
           img: '/img/pages/welcome/step-3.jpg',
         },
       ]"
-      :key="step.title"
+      :key="step.id"
       class="flex flex-wrap items-center mt-16"
       :class="{ 'md:flex-row-reverse': index % 2 == 1 }"
     >
@@ -56,7 +58,7 @@
         :class="{ 'md:pl-4': index % 2 == 1, 'md:pr-4': index % 2 == 0 }"
       >
         <svg
-          v-if="step.title == 'Create'"
+          v-if="step.id == 'create'"
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +74,7 @@
           />
         </svg>
         <svg
-          v-else-if="step.title == 'Share'"
+          v-else-if="step.id == 'share'"
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +89,7 @@
           />
         </svg>
         <svg
-          v-else-if="step.title == 'Get Results'"
+          v-else-if="step.id == 'results'"
           class="w-10 h-10 text-blue-500"
           viewBox="0 0 48 48"
           fill="none"
@@ -141,7 +143,7 @@
           class="block rounded-2xl w-full"
           sizes="320px sm:530px"
           :src="step.img"
-          alt="product-feature-image"
+          :alt="$t('marketing.welcome.features.image_alt')"
         >
       </div>
     </div>
@@ -163,11 +165,10 @@
           />
         </svg>
         <h3 class="my-3 font-semibold">
-          Notifications
+          {{ $t('marketing.welcome.features.notifications.title') }}
         </h3>
         <p>
-          Receive notifications directly in Slack or in your mailbox whenever
-          your from has a new submission (if you want to).
+          {{ $t('marketing.welcome.features.notifications.description') }}
         </p>
       </div>
       <div class="mb-8 md:mr-10">
@@ -186,11 +187,10 @@
           />
         </svg>
         <h3 class="my-3 font-semibold">
-          File Uploads
+          {{ $t('marketing.welcome.features.file_uploads.title') }}
         </h3>
         <p>
-          Easily add file upload inputs to your forms. Uploaded files are
-          securely stored for you. Up to 5mb!
+          {{ $t('marketing.welcome.features.file_uploads.description') }}
         </p>
       </div>
       <div class="mb-8 md:mr-10">
@@ -230,11 +230,10 @@
           />
         </svg>
         <h3 class="my-3 font-semibold">
-          Customize Everything
+          {{ $t('marketing.welcome.features.customize.title') }}
         </h3>
         <p>
-          Change form themes, change texts, colors, add images, add custom thank
-          you pages and much more.
+          {{ $t('marketing.welcome.features.customize.description') }}
         </p>
       </div>
     </div>

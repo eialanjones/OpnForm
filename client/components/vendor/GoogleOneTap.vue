@@ -27,6 +27,8 @@ const { context = 'signin' } = defineProps({
   }
 })
 
+const { t } = useI18n()
+
 // Use a global state to track script loading status
 const scriptLoaded = useState('google-one-tap-script-loaded', () => false)
 
@@ -126,10 +128,10 @@ const handleTwoFactorVerifiedAndRedirect = async (tokenData) => {
   // Handle redirect based on user status
   if (tokenData.new_user) {
     router.push({ name: "forms-create" })
-    useAlert().success("You're now registered with your Google account! Welcome to Forms Mentorfy.")
-    useAlert().success("Time to create your first form!")
+    useAlert().success(t('admin.google_one_tap.registered_welcome'))
+    useAlert().success(t('admin.google_one_tap.create_first_form'))
   } else {
-    useAlert().success('Successfully signed in with Google!')
+    useAlert().success(t('admin.google_one_tap.signed_in'))
     router.push({ name: "home" })
   }
 }
@@ -152,19 +154,19 @@ const handleAuthenticationResponse = async (response) => {
     
     if (!response.new_user) {
       // Handle existing user login
-      useAlert().success('Successfully signed in with Google!')
-      
+      useAlert().success(t('admin.google_one_tap.signed_in'))
+
       // Redirect to home if no specific redirect
       router.push({ name: "home" })
     } else {
       // Handle new user registration
       router.push({ name: "forms-create" })
-      useAlert().success("You're now registered with your Google account! Welcome to Forms Mentorfy.")
-      useAlert().success("Time to create your first form!")
+      useAlert().success(t('admin.google_one_tap.registered_welcome'))
+      useAlert().success(t('admin.google_one_tap.create_first_form'))
     }
   } catch (error) {
     console.error('Google One Tap auth flow error:', error)
-    useAlert().error('Authentication failed')
+    useAlert().error(t('admin.google_one_tap.auth_failed'))
   }
 }
 
@@ -173,7 +175,7 @@ const handleAuthenticationResponse = async (response) => {
 const handleCredentialResponse = (response) => {
   if (!response.credential) {
     console.error('Google One Tap: No credential in response')
-    useAlert().error('Google One Tap authentication failed')
+    useAlert().error(t('admin.google_one_tap.one_tap_failed'))
     return
   }
 
@@ -205,7 +207,7 @@ const handleCredentialResponse = (response) => {
       // handleAuthSuccess will check for requires_2fa and show modal if needed
       handleAuthenticationResponse(response)
     } else {
-      useAlert().error('Google One Tap authentication failed')
+      useAlert().error(t('admin.google_one_tap.one_tap_failed'))
     }
   }).catch((error) => {
     // Handle 422 responses that indicate 2FA is required (not validation errors)
@@ -214,7 +216,7 @@ const handleCredentialResponse = (response) => {
       handleAuthenticationResponse(twoFactorResponse)
     } else {
       console.error('Google One Tap authentication error:', error)
-      useAlert().error(error.response?._data?.message || 'Google One Tap authentication failed')
+      useAlert().error(error.response?._data?.message || t('admin.google_one_tap.one_tap_failed'))
     }
   })
 }

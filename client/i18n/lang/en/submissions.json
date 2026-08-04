@@ -1,0 +1,66 @@
+{
+    "submissions": {
+        "edit_modal": {
+            "title": "Edit Submission",
+            "copy_public_link": "Copy Public Link",
+            "update_button": "Update Submission"
+        },
+        "view_modal": {
+            "title": "View Submission"
+        },
+        "record_operations": {
+            "delete_confirm": "Do you really want to delete this record?"
+        },
+        "pagination": {
+            "page_of": "{page} of {total}"
+        },
+        "table": {
+            "search_placeholder": "Search...",
+            "delete_count": "Delete ({count})",
+            "fullscreen": "Fullscreen",
+            "exit_fullscreen": "Exit fullscreen",
+            "delete_selected_confirm": "Do you really want to delete selected {count} record? | Do you really want to delete selected {count} records?"
+        },
+        "status": {
+            "all": "All",
+            "submitted": "Submitted",
+            "in_progress": "In Progress"
+        },
+        "column_popover": {
+            "pin_column": "Pin Column",
+            "text_wrapping": "Text Wrapping",
+            "visibility": "Visibility"
+        },
+        "column_manager": {
+            "columns": "Columns",
+            "search_placeholder": "Search columns...",
+            "column_removed": "Column was removed from form",
+            "enable_text_wrapping": "Enable text wrapping",
+            "disable_text_wrapping": "Disable text wrapping",
+            "hide": "Hide",
+            "show": "Show",
+            "pin_to_left": "Pin column to left",
+            "unpin": "Unpin column",
+            "shown_section": "Shown in table",
+            "hidden_section": "Hidden in table",
+            "hide_all": "Hide All",
+            "show_all": "Show All"
+        },
+        "cells": {
+            "date_range_separator": "to",
+            "payment": "Payment"
+        },
+        "font_picker": {
+            "modal_title": "Google fonts",
+            "search_placeholder": "Search fonts",
+            "preview_text": "The quick brown fox jumped over the lazy dog"
+        },
+        "undo_redo": {
+            "undo": "Undo",
+            "redo": "Redo"
+        },
+        "errors": {
+            "something_went_wrong": "Something went wrong!"
+        }
+    }
+}

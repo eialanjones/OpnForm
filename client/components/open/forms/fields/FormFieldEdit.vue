@@ -31,7 +31,7 @@
               v-if="blocksTypes[field.type]"
               class="text-sm text-neutral-500"
             >
-              {{ blocksTypes[field.type].title }}
+              {{ $t(`form_blocks.types.${field.type}`, blocksTypes[field.type].title) }}
             </p>
             
             <UDropdownMenu
@@ -91,7 +91,7 @@
       v-else
       class="text-center p-10 text-sm text-neutral-500"
     >
-      Click on field to edit it.
+      {{ $t('form_fields.edit.empty_state') }}
     </div>
   </div>
 </template>
@@ -106,6 +106,7 @@ import blocksTypes from '~/data/blocks_types.json'
 import FormBlockLogicEditor from '../components/form-logic-components/FormBlockLogicEditor.vue'
 import CustomFieldValidation from '../components/CustomFieldValidation.vue'
 
+const { t } = useI18n()
 const workingFormStore = useWorkingFormStore()
 const { content: form, sidebarBounce } = storeToRefs(workingFormStore)
 
@@ -184,7 +185,7 @@ const useFieldTypeChange = () => {
       .map((type) => {
         const meta = blocksTypes[type] || {}
         return {
-          label: meta.title || type,
+          label: t(`form_blocks.types.${type}`, meta.title || type),
           value: type,
           icon: meta.icon || undefined,
           onClick: () => onChangeType(type)
@@ -212,15 +213,15 @@ function closeSidebar() {
 const dropdownItems = computed(() => {
   const baseItems = [
     [{
-      label: 'Copy field ID',
+      label: t('form_fields.edit.copy_field_id'),
       icon: 'i-heroicons-clipboard-20-solid',
       onClick: () => {
         navigator.clipboard.writeText(field.value.id)
-        useAlert().success('Field ID copied to clipboard')
+        useAlert().success(t('form_fields.edit.field_id_copied'))
       }
     }],
     [{
-      label: 'Duplicate',
+      label: t('common.actions.duplicate'),
       icon: 'i-heroicons-document-duplicate-20-solid',
       kbds: ['meta', 'd'],
       onClick: () => workingFormStore.duplicateField(field.value)
@@ -232,7 +233,7 @@ const dropdownItems = computed(() => {
     const changeTypeOptions = getChangeTypeOptions(field.value.type)
     if (changeTypeOptions.length > 0) {
       baseItems.push([{
-        label: 'Change type',
+        label: t('form_fields.edit.change_type'),
         icon: 'i-heroicons-arrows-right-left-20-solid',
         children: [changeTypeOptions]
       }])
@@ -241,7 +242,7 @@ const dropdownItems = computed(() => {
 
   // Add remove option
   baseItems.push([{
-    label: 'Remove',
+    label: t('common.actions.remove'),
     icon: 'i-heroicons-trash-20-solid',
     color: 'error',
     kbds: ['meta', 'backspace'],
@@ -256,8 +257,8 @@ const activeTab = ref('options')
 
 const tabItems = computed(() => {
   const commonTabs = [
-    { label: 'Options', value: 'options' },
-    { label: 'Logic', value: 'logic' },
+    { label: t('common.labels.options'), value: 'options' },
+    { label: t('form_fields.edit.tabs.logic'), value: 'logic' },
   ]
 
   if (isBlockField.value) {
@@ -265,7 +266,7 @@ const tabItems = computed(() => {
   } else {
     return [
       ...commonTabs,
-      { label: 'Validation', value: 'validation' },
+      { label: t('form_fields.edit.tabs.validation'), value: 'validation' },
     ]
   }
 })

@@ -77,6 +77,7 @@ const { compVal, inputStyle, inputWrapperProps, ui } = useFormInput(props, { emi
 const editableDiv = ref(null)
 const savedRange = ref(null)
 const { openSubscriptionModal } = useAppModals()
+const { t } = useI18n()
 
 // Create a reactive state object for the mention dropdown
 const mentionState = reactive({
@@ -130,7 +131,7 @@ const insertMention = (mention) => {
 
 const openMentionDropdown = () => {
   if (props.disableMention || props.disabled) {
-    openSubscriptionModal({ modal_title: 'Upgrade to Pro', modal_description: 'Upgrade to Pro to use mentions' })
+    openSubscriptionModal({ modal_title: t('widgets.mention_input.upgrade_title'), modal_description: t('widgets.mention_input.upgrade_description') })
     return
   }
 

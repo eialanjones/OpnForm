@@ -21,9 +21,9 @@
       <!-- Email -->
       <text-input
         name="email"
-        label="Email"
+        :label="$t('common.labels.email')"
         required
-        placeholder="Your email address"
+        :placeholder="$t('auth.fields.email_placeholder')"
         @blur="checkOidcOptions"
       />
 
@@ -33,9 +33,9 @@
         v-if="showPasswordField"
         ref="passwordInputRef"
         native-type="password"
-        placeholder="Your password"
+        :placeholder="$t('auth.fields.password_placeholder')"
         name="password"
-        label="Password"
+        :label="$t('common.labels.password')"
         required
         @input-filled="login"
       />
@@ -47,7 +47,7 @@
           class="w-full md:w-1/2"
           name="remember"
           size="small"
-          label="Remember me"
+          :label="$t('auth.login.remember_me')"
         />
 
         <div class="w-full md:w-1/2 text-right">
@@ -56,7 +56,7 @@
             class="text-xs hover:underline text-neutral-500 sm:text-sm hover:text-neutral-700"
             @click.prevent="showForgotModal = true"
           >
-            Forgot your password?
+            {{ $t('auth.login.forgot_password') }}
           </a>
         </div>
       </div>
@@ -68,7 +68,7 @@
         size="lg"
         :loading="form.busy"
         type="submit"
-        :label="oidcAvailable && !showPasswordField ? 'Continue' : 'Log in to continue'"
+        :label="oidcAvailable && !showPasswordField ? $t('common.actions.continue') : $t('auth.login.submit')"
       />
 
       <UButton
@@ -83,25 +83,25 @@
         :loading="false"
         @click.prevent="signInwithGoogle"
         icon="devicon:google"
-        label="Sign in with Google"
+        :label="$t('auth.social.sign_in_with_google')"
       />
       <p
         v-if="!useFeatureFlag('self_hosted')"
         class="text-neutral-500 text-sm text-center mt-4"
       >
-        Don't have an account?
+        {{ $t('auth.login.no_account') }}
         <a
           v-if="isQuick"
           href="#"
           class="font-semibold ml-1"
           @click.prevent="$emit('openRegister')"
-        >Sign Up</a>
+        >{{ $t('auth.login.sign_up') }}</a>
         <NuxtLink
           v-else
           :to="{ name: 'register' }"
           class="font-semibold ml-1"
         >
-          Sign Up
+          {{ $t('auth.login.sign_up') }}
         </NuxtLink>
       </p>
     </v-form>
@@ -132,6 +132,7 @@ const props = defineProps({
 defineEmits(['openRegister'])
 
 // Composables
+const { t } = useI18n()
 const oAuth = useOAuth()
 const router = useRouter()
 const { login: loginMutationFactory } = useAuth()
@@ -198,20 +199,20 @@ const checkOidcOptions = async () => {
             return
           } else if (redirectResponse.error) {
             // Handle error from redirect endpoint
-            useAlert().error(redirectResponse.error || 'Failed to initiate OIDC authentication')
+            useAlert().error(redirectResponse.error || t('auth.login.errors.oidc_failed'))
             showPasswordField.value = true
             return
           }
         } catch (error) {
           // Handle network or server errors
-          const errorMessage = error.response?._data?.error || error.response?._data?.message || 'Failed to initiate OIDC authentication'
+          const errorMessage = error.response?._data?.error || error.response?._data?.message || t('auth.login.errors.oidc_failed')
           useAlert().error(errorMessage)
           showPasswordField.value = true
           return
         }
       } else if (response.action === 'blocked') {
         // OIDC is forced but no connection found
-        useAlert().error('OIDC authentication is required. Please contact your administrator.')
+        useAlert().error(t('auth.login.errors.oidc_required'))
         return
       } else {
         // Fallback to password login
@@ -236,7 +237,7 @@ const login = () => {
 
   // Normal password login
   if (!form.password && showPasswordField.value) {
-    useAlert().error('Password is required')
+    useAlert().error(t('auth.login.errors.password_required'))
     return
   }
 
@@ -287,7 +288,7 @@ const showOAuthError = (error) => {
   if (error.response?.status === 422 && error.response?.data?.message) {
     useAlert().error(error.response.data.message)
   } else {
-    useAlert().error("Sign-in failed. Please try again.")
+    useAlert().error(t('auth.social.sign_in_failed'))
   }
 }
 

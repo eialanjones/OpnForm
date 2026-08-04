@@ -8,7 +8,7 @@
     <template #header>
       <div class="flex items-center w-full gap-4 px-2">
         <h2 class="font-semibold">
-          Create Workspace
+          {{ $t('workspace.create_modal.title') }}
         </h2>
       </div>
       <UButton
@@ -18,7 +18,7 @@
         size="sm"
         @click="crisp.openHelpdeskArticle('how-many-workspaces-can-i-create-r4dvt6')"
       >
-        Help
+        {{ $t('workspace.actions.help') }}
       </UButton>
     </template>
     
@@ -32,8 +32,8 @@
               :form="form"
               :required="true"
               :disabled="form.busy"
-              label="Workspace Name"
-              placeholder="My Workspace"
+              :label="$t('workspace.fields.workspace_name')"
+              :placeholder="$t('workspace.fields.workspace_name_placeholder')"
             />
             <text-input
               name="emoji"
@@ -41,17 +41,17 @@
               :form="form"
               :required="false"
               :disabled="form.busy"
-              label="Emoji (optional)"
+              :label="$t('workspace.fields.emoji')"
               placeholder="🚀"
-              help="Choose an emoji to represent your workspace"
+              :help="$t('workspace.fields.emoji_help')"
             />
           </form>
         </VForm>
     </template>
     <template #footer>
       <div class="flex gap-2 w-full">
-        <UButton color="neutral" variant="outline" @click="closeModal">Cancel</UButton>
-        <UButton block type="submit" :loading="form.busy" @click="handleSubmit">Create Workspace</UButton>
+        <UButton color="neutral" variant="outline" @click="closeModal">{{ $t('common.actions.cancel') }}</UButton>
+        <UButton block type="submit" :loading="form.busy" @click="handleSubmit">{{ $t('workspace.create_modal.title') }}</UButton>
       </div>
     </template>
   </UModal>
@@ -71,6 +71,7 @@ const { create } = useWorkspaces()
 const appStore = useAppStore()
 const crisp = useCrisp()
 const alert = useAlert()
+const { t } = useI18n()
 
 // Modal state
 const isOpen = computed({
@@ -93,8 +94,8 @@ const handleSubmit = () => {
     appStore.setCurrentId(newWorkspace.id)
 
     // Show success message
-    alert.success('You are now working in your new workspace.', 10000, {
-      title: 'Workspace created successfully!'
+    alert.success(t('workspace.create_modal.success_message'), 10000, {
+      title: t('workspace.create_modal.success_title')
     })
 
     // Emit created event and close modal
@@ -102,8 +103,8 @@ const handleSubmit = () => {
     closeModal()
   }).catch((error) => {
     console.error('Error creating workspace:', error)
-    alert.error(error.data?.message || 'Something went wrong. Please try again.', 10000, {
-      title: 'Error creating workspace'
+    alert.error(error.data?.message || t('workspace.create_modal.error_message'), 10000, {
+      title: t('workspace.create_modal.error_title')
     })
   })
 }

@@ -5,7 +5,7 @@
     :form="form"
   >
     <div class="my-5">
-      Coming Soon...
+      {{ $t('integrations.zapier.coming_soon') }}
     </div>
   </IntegrationWrapper>
 </template>

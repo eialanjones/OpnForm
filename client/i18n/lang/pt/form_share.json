@@ -1,0 +1,32 @@
+{
+    "form_share": {
+        "block_renderer": {
+            "upload_image_prompt": "Abra as configurações do bloco para enviar uma imagem.",
+            "add_video_url_prompt": "Abra as configurações do bloco para adicionar a URL do vídeo.",
+            "hidden_field_suffix": " (Campo oculto)"
+        },
+        "export": {
+            "queued_title": "Exportação na fila",
+            "queued_description": "Aguardando o início do processamento...",
+            "processing_title": "Processando respostas",
+            "processing_description": "Isso pode levar alguns instantes...",
+            "completed_title": "Exportação concluída!",
+            "completed_description": "Seu download deve começar automaticamente",
+            "failed_title": "Falha na exportação",
+            "starting_title": "Iniciando exportação",
+            "starting_description": "Aguarde...",
+            "status_check_error": "Não foi possível verificar o status da exportação"
+        },
+        "field_actions": {
+            "add_field": "Adicionar novo campo",
+            "edit_field_settings": "Editar configurações do campo",
+            "delete_field": "Excluir campo"
+        },
+        "renderer": {
+            "cover_image_alt": "Imagem de capa do formulário",
+            "logo_alt": "Logo do formulário",
+            "logo_alt_named": "Logo de {name}",
+            "form_controls_aria_label": "Controles do formulário"
+        }
+    }
+}

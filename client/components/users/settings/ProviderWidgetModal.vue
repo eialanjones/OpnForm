@@ -38,7 +38,7 @@
         variant="outline"
         @click="closeModal"
       >
-        Close
+        {{ $t('common.actions.close') }}
       </UButton>
     </template>
   </UModal>
@@ -55,6 +55,7 @@ const props = defineProps({
 const oAuth = useOAuth()
 const router = useRouter()
 const alert = useAlert()
+const { t } = useI18n()
 const { getProviderWidget } = useComponentRegistry()
 const emit = defineEmits(['close'])
 
@@ -83,7 +84,7 @@ const widgetCallbackMutation = oAuth.widgetCallback()
 
 const handleAuthData = (data) => {
   if (!data) {
-    alert.error('Authentication failed')
+    alert.error(t('user_settings.connections.widget_modal.auth_failed'))
     return
   }
 
@@ -94,12 +95,12 @@ const handleAuthData = (data) => {
     if (response.intention) {
       router.push(response.intention)
     } else {
-      alert.success('Successfully connected')
+      alert.success(t('user_settings.connections.widget_modal.connected_success'))
       emit('close')
       oAuth.fetchOAuthProviders()
     }
   }).catch((error) => {
-    alert.error(error?.data?.message || 'Failed to authenticate')
+    alert.error(error?.data?.message || t('user_settings.connections.widget_modal.auth_error'))
     oAuth.fetchOAuthProviders()
   })
 }

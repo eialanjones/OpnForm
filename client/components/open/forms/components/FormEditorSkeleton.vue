@@ -9,7 +9,7 @@
         class="w-10 h-10 text-blue-800"
       />
       <div class="p-5 text-blue-800 text-center">
-        Forms Mentorfy is not optimized for mobile devices. Please open this page on a device with a larger screen.
+        {{ $t('form_editor.mobile_warning.message') }}
       </div>
       <div>
         <UButton
@@ -19,7 +19,7 @@
           class="w-full"
           :to="{ name: 'home' }"
         >
-          Back to dashboard
+          {{ $t('form_editor.mobile_warning.back_to_dashboard') }}
         </UButton>
       </div>
     </div>

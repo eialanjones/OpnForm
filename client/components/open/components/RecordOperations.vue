@@ -75,6 +75,7 @@ const props = defineProps({
   },
 })
 
+const { t } = useI18n()
 const alert = useAlert()
 const route = useRoute()
 const showEditSubmissionModal = ref(false)
@@ -97,7 +98,7 @@ onMounted(() => {
 })
 
 const onDeleteClick = () => {
-  alert.confirm("Do you really want to delete this record?", deleteRecord)
+  alert.confirm(t("submissions.record_operations.delete_confirm"), deleteRecord)
 }
 
 const deleteRecord = () => {
@@ -108,10 +109,10 @@ const deleteRecord = () => {
     if (data.type === "success") {
       alert.success(data.message)
     } else {
-      alert.error("Something went wrong!")
+      alert.error(t("submissions.errors.something_went_wrong"))
     }
   }).catch((error) => {
-    alert.error(error.data?.message || "Something went wrong!")
+    alert.error(error.data?.message || t("submissions.errors.something_went_wrong"))
   })
 }
 </script>

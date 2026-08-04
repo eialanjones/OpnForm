@@ -13,35 +13,31 @@
         icon="i-heroicons-chat-bubble-bottom-center-text"
         @click="onOpenClick"
       >
-        Embed as popup
+        {{ $t('form_pages.embed_popup.trigger') }}
       </UButton>
     </TrackClick>
 
     <UModal
       v-model:open="isModalOpen"
       :ui="{ content: 'sm:max-w-2xl' }"
-      title="Add the popup to your website"
+      :title="$t('form_pages.embed_popup.modal_title')"
       :content="{
         onPointerDownOutside: (event) => { if (event.target?.closest('.nf-main')) {return event.preventDefault()}}
       }"
     >
       <template #body>
         <h3 class="text-xl font-semibold mb-2">
-          Demo
+          {{ $t('form_pages.embed_popup.demo_heading') }}
         </h3>
         <p class="pb-6">
-          A live preview of your form popup was just added to this page.
-          <span class="font-semibold text-blue-800">Click on the button on the bottom
-            {{ advancedOptions.position }} corner to try it</span>.
+          {{ $t('form_pages.embed_popup.demo_intro') }}
+          <span class="font-semibold text-blue-800">{{ $t('form_pages.embed_popup.demo_cta', { position: positionWord }) }}</span>.
         </p>
 
         <h3 class="border-t text-xl font-semibold mb-2 pt-6">
-          How does it work?
+          {{ $t('form_pages.shared.how_it_works') }}
         </h3>
-        <p>
-          Paste the following code snippet in the <b>&lt;head&gt;</b> section of
-          your website.
-        </p>
+        <p v-html="$t('form_pages.embed_popup.paste_snippet')" />
 
         <div class="border border-blue-300 bg-blue-50 dark:bg-notion-dark-light rounded-md p-4 mb-5 w-full mx-auto mt-4 select-all">
           <div class="flex items-center">
@@ -63,36 +59,36 @@
         <div class="border-t my-4" />
         <VForm size="sm">
           <h3 class="text-xl font-semibold mb-2">
-            Customization
+            {{ $t('form_pages.embed_popup.customization_heading') }}
           </h3>
-          
+
           <ColorInput
             v-model="advancedOptions.bgcolor"
             name="bgcolor"
-            label="Circle Background Color"
+            :label="$t('form_pages.embed_popup.bgcolor_label')"
           />
           <TextInput
             v-model="advancedOptions.emoji"
             name="emoji"
             class="mt-4 max-w-xs"
-            label="Emoji"
+            :label="$t('form_pages.embed_popup.emoji_label')"
             :max-char-limit="2"
           />
           <FlatSelectInput
             v-model="advancedOptions.position"
             name="position"
             class="mt-4 max-w-xs"
-            label="Position"
+            :label="$t('form_pages.embed_popup.position_label')"
             :options="[
-              { name: 'Bottom Right', value: 'right' },
-              { name: 'Bottom Left', value: 'left' },
+              { name: $t('form_pages.embed_popup.position_bottom_right'), value: 'right' },
+              { name: $t('form_pages.embed_popup.position_bottom_left'), value: 'left' },
             ]"
           />
           <TextInput
             v-model="advancedOptions.width"
             name="width"
             class="mt-4 max-w-xs"
-            label="Form pop max width (px)"
+            :label="$t('form_pages.embed_popup.width_label')"
             native-type="number"
           />
         </VForm>
@@ -107,6 +103,7 @@ import { appUrl } from "~/lib/utils.js"
 import TrackClick from "~/components/global/TrackClick.vue"
 
 const { copy } = useClipboard()
+const { t } = useI18n()
 const crisp = useCrisp()
 const props = defineProps({
   form: { type: Object, required: true },
@@ -132,6 +129,12 @@ const advancedOptions = ref({
   position: "right",
   bgcolor: "#FE7D22",
   width: "500",
+})
+
+const positionWord = computed(() => {
+  return advancedOptions.value.position === "left"
+    ? t('form_pages.embed_popup.position_word_left')
+    : t('form_pages.embed_popup.position_word_right')
 })
 
 const shareUrl = computed(() => {
@@ -168,7 +171,7 @@ const onClose = () => {
 const onOpenClick = () => {
   const style = props.form?.presentation_style || 'classic'
   if (style === 'focused') {
-    useAlert().warning('Popup mode is not currently supported for forms in Focused mode.')
+    useAlert().warning(t('form_pages.embed_popup.focused_not_supported'))
     return
   }
   showEmbedFormAsPopupModal.value = true
@@ -176,7 +179,7 @@ const onOpenClick = () => {
 const copyToClipboard = () => {
   if (import.meta.server) return
   copy(embedPopupCode.value)
-  useAlert().success("Copied!")
+  useAlert().success(t('common.states.copied'))
 }
 const removePreview = () => {
   if (import.meta.server) return

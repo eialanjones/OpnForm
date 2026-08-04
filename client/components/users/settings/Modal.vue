@@ -7,7 +7,7 @@
     <!-- Settings Pages - Auto-register themselves -->
     <SettingsModalPage
       id="account"
-      label="Account"
+      :label="$t('user_settings.modal.tabs.account')"
       icon="i-heroicons-user"
     >
       <LazyUsersSettingsAccount />
@@ -15,7 +15,7 @@
 
     <SettingsModalPage
       id="security"
-      label="Security"
+      :label="$t('user_settings.modal.tabs.security')"
       icon="i-heroicons-shield-check"
     >
       <LazyUsersSettingsSecurity />
@@ -24,7 +24,7 @@
     <SettingsModalPage
       v-if="workspace && !workspace.is_readonly"
       id="connections"
-      label="Connections"
+      :label="$t('user_settings.modal.tabs.connections')"
       icon="i-heroicons-link"
     >
       <LazyUsersSettingsConnections />
@@ -33,7 +33,7 @@
     <SettingsModalPage
       v-if="workspace && !workspace.is_readonly"
       id="access-tokens"
-      label="Access Tokens"
+      :label="$t('user_settings.modal.tabs.access_tokens')"
       icon="i-heroicons-key"
     >
       <LazyUsersSettingsAccessTokens />
@@ -42,7 +42,7 @@
     <SettingsModalPage
       v-if="user && (user.has_customer_id || user.active_license)"
       id="billing"
-      label="Billing"
+      :label="$t('user_settings.modal.tabs.billing')"
       icon="i-heroicons-credit-card"
     >
       <LazyUsersSettingsBilling />

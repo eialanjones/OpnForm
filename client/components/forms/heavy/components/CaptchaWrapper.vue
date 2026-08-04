@@ -28,6 +28,7 @@ const props = defineProps({
 
 const captchaInputRef = ref(null)
 const runtimeConfig = useRuntimeConfig().public
+const { t } = useI18n()
 
 // Get form and config from the formManager
 const form = computed(() => props.formManager.form)
@@ -71,7 +72,7 @@ watch(() => props.formManager.state.currentPage, () => {
 watch(() => props.formManager.state.isProcessing, (isProcessing, wasProcessing) => {
   // Case 1: Form is starting to process and captcha is required but missing
   if (isProcessing && isCaptchaRequired.value && !form.value[captchaFieldName.value]) {
-    form.value.errors.set(captchaFieldName.value, 'Please complete the captcha verification')
+    form.value.errors.set(captchaFieldName.value, t('widgets.captcha.complete_verification'))
   }
   
   // Case 2: Form submission just ended AND there are errors

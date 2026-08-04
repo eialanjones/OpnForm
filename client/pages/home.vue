@@ -9,7 +9,7 @@
 
         <UInput
           v-model="search"
-          placeholder="Search forms..."
+          :placeholder="$t('marketing.home_page.search_placeholder')"
           icon="i-heroicons-magnifying-glass-solid"
 
         />
@@ -19,14 +19,14 @@
           v-model="selectedTags"
           :items="tagOptions"
           multiple
-          placeholder="Tags"
+          :placeholder="$t('marketing.home_page.tags_placeholder')"
           class="hidden sm:block"
           :ui="{ content: 'min-w-fit' }"
         />
 
         <UButton
           v-if="isFilteringForms"
-          label="Clear"
+          :label="$t('common.actions.clear')"
           variant="ghost"
           color="neutral"
           @click="clearFilters"
@@ -39,7 +39,7 @@
         <UButton
           v-if="!workspace?.is_readonly"
           icon="i-heroicons-plus"
-          label="Create Form"
+          :label="$t('marketing.home_page.create_form')"
           :to="{ name: 'forms-create' }"
         />
       </TrackClick>
@@ -53,16 +53,16 @@
             <div v-if="isFetched && !isFormsLoading && (forms?.length === 0)" class="text-center py-16 px-4">
               <UIcon name="i-heroicons-document-plus" class="h-12 w-12 text-neutral-400 mx-auto" />
               <h3 class="mt-4 text-lg font-semibold text-neutral-900">
-                Create your first form
+                {{ $t('marketing.home_page.empty_title') }}
               </h3>
               <p class="mt-1 text-sm text-neutral-500">
-                Get started by creating a new form to collect responses.
+                {{ $t('marketing.home_page.empty_description') }}
               </p>
               <UButton
                 v-if="!workspace?.is_readonly"
                 class="mt-6"
                 icon="i-heroicons-plus"
-                label="Create Form"
+                :label="$t('marketing.home_page.create_form')"
                 :to="{ name: 'forms-create' }"
               />
             </div>
@@ -70,15 +70,15 @@
             <div v-if="isFetched && !isFormsLoading && (forms?.length > 0) && enrichedForms.length === 0" class="text-center py-16 px-4">
                 <UIcon name="i-heroicons-magnifying-glass" class="h-12 w-12 text-neutral-400 mx-auto" />
                 <h3 class="mt-4 text-lg font-semibold text-neutral-900">
-                  No forms found
+                  {{ $t('marketing.home_page.no_forms_found_title') }}
                 </h3>
                 <p class="mt-1 text-sm text-neutral-500">
-                  Your search and filter criteria did not match any forms.
+                  {{ $t('marketing.home_page.no_forms_found_description') }}
                 </p>
                 <UButton
                   v-if="isFilteringForms"
                   class="mt-6"
-                  label="Clear Filters"
+                  :label="$t('marketing.home_page.clear_filters')"
                   variant="soft"
                   @click="clearFilters"
                 />
@@ -101,7 +101,7 @@
               
               <div v-else-if="!isComplete && totalPages > 1" class="flex justify-center items-center py-4">
                 <div class="text-sm text-neutral-500">
-                  Loaded {{ currentPage }} of {{ totalPages }} pages
+                  {{ $t('marketing.home_page.loaded_pages', { current: currentPage, total: totalPages }) }}
                 </div>
               </div>
               
@@ -137,15 +137,16 @@ import FormCardSkeleton from '~/components/pages/home/FormCardSkeleton.vue'
 import TrackClick from '~/components/global/TrackClick.vue'
 import UpgradeBanner from "~/components/dashboard/UpgradeBanner.vue"
 
+const { t } = useI18n()
+
 definePageMeta({
   middleware: ["auth"],
   layout: "dashboard",
 })
 
 useOpnSeoMeta({
-  title: "Your Forms",
-  description:
-    "All of your forms are here. Create new forms, or update your existing forms.",
+  title: t('marketing.home_page.meta_title'),
+  description: t('marketing.home_page.meta_description'),
 })
 
 // Composables

@@ -70,10 +70,10 @@
                   class="mx-auto mb-4 h-12 w-12 text-neutral-400"
                 />
                 <h3 class="mb-2 text-lg font-medium text-neutral-900">
-                  Select a setting
+                  {{ $t('marketing.settings_modal.empty_title') }}
                 </h3>
                 <p class="text-neutral-500">
-                  Choose an option from the sidebar to configure your settings.
+                  {{ $t('marketing.settings_modal.empty_description') }}
                 </p>
               </div>
             </div>

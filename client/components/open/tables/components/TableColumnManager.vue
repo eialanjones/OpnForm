@@ -4,7 +4,7 @@
       <UButton
         size="sm"
         variant="ghost"
-        label="Columns"
+        :label="$t('submissions.column_manager.columns')"
         color="neutral"
         trailing-icon="i-lucide-chevron-down"
         class="ml-auto"
@@ -16,7 +16,7 @@
           <div class="flex items-center justify-between">
             <UInput
               variant="outline"
-              placeholder="Search columns..."
+              :placeholder="$t('submissions.column_manager.search_placeholder')"
               icon="i-heroicons-magnifying-glass"
               size="sm"
               v-model="searchQuery"
@@ -26,7 +26,7 @@
               size="sm"
               variant="ghost"
               color="neutral"
-              label="Reset"
+              :label="$t('common.actions.reset')"
               @click="tableState.resetPreferences()"
             />
           </div>
@@ -87,7 +87,7 @@
                         </UTooltip>
 
                         <!-- Removed Indicator -->
-                        <UTooltip v-if="column.isRemoved" text="Column was removed from form" :content="{ align: 'end' }">
+                        <UTooltip v-if="column.isRemoved" :text="$t('submissions.column_manager.column_removed')" :content="{ align: 'end' }">
                           <UIcon name="i-heroicons-trash" class="w-3 h-3 text-neutral-400" />
                         </UTooltip>
 
@@ -105,7 +105,7 @@
                           </UTooltip>
 
                           <!-- Wrap Toggle -->
-                          <UTooltip :text="columnPreferencesMap[column.id]?.wrapped ? 'Disable text wrapping' : 'Enable text wrapping'">
+                          <UTooltip :text="columnPreferencesMap[column.id]?.wrapped ? $t('submissions.column_manager.disable_text_wrapping') : $t('submissions.column_manager.enable_text_wrapping')">
                             <UButton
                               size="xs"
                               :variant="columnPreferencesMap[column.id]?.wrapped ? 'soft' : 'ghost'"
@@ -116,7 +116,7 @@
                           </UTooltip>
 
                           <!-- Visibility Toggle Button -->
-                          <UTooltip :text="columnVisibilityMap[column.id] ? 'Hide' : 'Show'">
+                          <UTooltip :text="columnVisibilityMap[column.id] ? $t('submissions.column_manager.hide') : $t('submissions.column_manager.show')">
                             <UButton
                               size="xs"
                               variant="ghost"
@@ -160,6 +160,8 @@ const props = defineProps({
 })
 
 
+
+const { t } = useI18n()
 
 const isPopoverOpen = ref(false)
 const searchQuery = ref('')
@@ -217,15 +219,15 @@ const columnSections = computed(() => {
   return [
     {
       type: 'visible',
-      title: 'Shown in table',
-      actionLabel: 'Hide All',
+      title: t('submissions.column_manager.shown_section'),
+      actionLabel: t('submissions.column_manager.hide_all'),
       targetVisibility: false,
       columns: visibleColumns.value
     },
     {
       type: 'hidden',
-      title: 'Hidden in table',
-      actionLabel: 'Show All',
+      title: t('submissions.column_manager.hidden_section'),
+      actionLabel: t('submissions.column_manager.show_all'),
       targetVisibility: true,
       columns: hiddenColumns.value
     }
@@ -262,7 +264,7 @@ const getPinIcon = (columnId) => {
 // Get pin tooltip - now using computed map
 const getPinTooltip = (columnId) => {
   const pref = columnPreferencesMap.value[columnId]
-  return pref?.pinned === 'left' ? 'Unpin column' : 'Pin column to left'
+  return pref?.pinned === 'left' ? t('submissions.column_manager.unpin') : t('submissions.column_manager.pin_to_left')
 }
 
 // Toggle all columns visibility - now using computed map

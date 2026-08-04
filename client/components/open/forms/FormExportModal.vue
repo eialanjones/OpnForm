@@ -5,7 +5,7 @@
       size="sm"
       color="neutral"
       variant="ghost"
-      label="Export"
+      :label="$t('common.actions.export')"
       :loading="isExporting"
       @click="startExport"
     />
@@ -25,8 +25,8 @@
                 </div>
               </div>
               <div class="space-y-2">
-                <p class="text-neutral-700 font-medium">Export queued</p>
-                <p class="text-sm text-neutral-500">Waiting for processing to begin...</p>
+                <p class="text-neutral-700 font-medium">{{ $t('form_share.export.queued_title') }}</p>
+                <p class="text-sm text-neutral-500">{{ $t('form_share.export.queued_description') }}</p>
               </div>
             </div>
 
@@ -49,8 +49,8 @@
                 </div>
               </div>
               <div class="space-y-2">
-                <p class="text-neutral-700 font-semibold">Processing submissions</p>
-                <p class="text-sm text-neutral-500">This may take a few moments...</p>
+                <p class="text-neutral-700 font-semibold">{{ $t('form_share.export.processing_title') }}</p>
+                <p class="text-sm text-neutral-500">{{ $t('form_share.export.processing_description') }}</p>
               </div>
             </div>
 
@@ -60,8 +60,8 @@
                 <UIcon name="i-heroicons-check" class="w-8 h-8 text-green-600" />
               </div>
               <div class="space-y-2">
-                <p class="text-green-600 font-semibold text-lg">Export completed!</p>
-                <p class="text-sm text-neutral-600">Your download should start automatically</p>
+                <p class="text-green-600 font-semibold text-lg">{{ $t('form_share.export.completed_title') }}</p>
+                <p class="text-sm text-neutral-600">{{ $t('form_share.export.completed_description') }}</p>
               </div>
             </div>
 
@@ -71,9 +71,9 @@
                 <UIcon name="i-heroicons-exclamation-triangle" class="w-8 h-8 text-red-600" />
               </div>
               <div class="space-y-3">
-                <p class="text-red-600 font-semibold text-lg">Export failed</p>
+                <p class="text-red-600 font-semibold text-lg">{{ $t('form_share.export.failed_title') }}</p>
                 <p class="text-sm text-neutral-600">{{ exportError }}</p>
-                <UButton color="red" @click="closeModal">Close</UButton>
+                <UButton color="red" @click="closeModal">{{ $t('common.actions.close') }}</UButton>
               </div>
             </div>
 
@@ -86,8 +86,8 @@
                 </div>
               </div>
               <div class="space-y-2">
-                <p class="text-neutral-700 font-medium">Starting export</p>
-                <p class="text-sm text-neutral-500">Please wait...</p>
+                <p class="text-neutral-700 font-medium">{{ $t('form_share.export.starting_title') }}</p>
+                <p class="text-sm text-neutral-500">{{ $t('form_share.export.starting_description') }}</p>
               </div>
             </div>
           </VTransition>
@@ -115,6 +115,8 @@ const props = defineProps({
     default: () => []
   }
 })
+
+const { t } = useI18n()
 
 // Internal state - no props needed
 const showModal = ref(false)
@@ -187,7 +189,7 @@ const startExport = () => {
     }
   }).catch((error) => {
     console.error(error)
-    exportError.value = error.response?.data?.message || 'Export failed'
+    exportError.value = error.response?.data?.message || t('form_share.export.failed_title')
     exportStatus.value = 'failed'
     showModal.value = true
     isExporting.value = false
@@ -280,7 +282,7 @@ const checkExportStatus = () => {
         stopPolling()
         stopProgressAnimation()
         isExporting.value = false
-        exportError.value = response.error_message || 'Export failed'
+        exportError.value = response.error_message || t('form_share.export.failed_title')
       }
     })
     .catch(error => {
@@ -288,7 +290,7 @@ const checkExportStatus = () => {
       stopPolling()
       stopProgressAnimation()
       isExporting.value = false
-      exportError.value = 'Failed to check export status'
+      exportError.value = t('form_share.export.status_check_error')
     })
 }
 

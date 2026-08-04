@@ -12,7 +12,7 @@
         class="text-neutral-500"
         @click="showCopyFormModal = true"
       >
-        Copy from
+        {{ $t('form_logic.block_logic.copy_from') }}
       </UButton>
       <UButton
         color="neutral"
@@ -22,7 +22,7 @@
         class="text-neutral-500"
         @click="showCopyToModal = true"
       >
-        Copy to
+        {{ $t('form_logic.block_logic.copy_to') }}
       </UButton>
       <UButton
         color="neutral"
@@ -32,7 +32,7 @@
         class="text-neutral-500"
         @click="clearAll"
       >
-        Clear
+        {{ $t('common.actions.clear') }}
       </UButton>
       <UButton
         color="neutral"
@@ -46,7 +46,7 @@
 
     <!-- Conditions Card -->
     <div class="mt-4">
-      <p class="text-xs font-medium text-gray-600 mb-2">When following condition(s) are true</p>
+      <p class="text-xs font-medium text-gray-600 mb-2">{{ $t('form_logic.block_logic.conditions_heading') }}</p>
       <div class="p-3 border border-gray-200 rounded-lg bg-gray-50/50 hover:bg-gray-50 transition-colors">
       <UPopover
         :content="{ 
@@ -66,7 +66,7 @@
           size="sm"
           class="w-full justify-start font-medium hover:bg-white transition-colors"
         >
-          {{ hasConditions ? `${conditionsCount} rule${conditionsCount > 1 ? 's' : ''}` : 'Add rule' }}
+          {{ hasConditions ? $t('form_logic.block_logic.rules_count', conditionsCount) : $t('form_logic.block_logic.add_rule') }}
         </UButton>
 
         <template #content>
@@ -97,19 +97,19 @@
     <!-- Divider Line -->
     <div class="flex items-center my-5">
       <div class="flex-1 border-b"></div>
-      <span class="px-4 py-1 text-xs font-medium text-gray-600 bg-white border rounded-full">then</span>
+      <span class="px-4 py-1 text-xs font-medium text-gray-600 bg-white border rounded-full">{{ $t('form_logic.block_logic.then') }}</span>
       <div class="flex-1 border-b"></div>
     </div>
 
     <div>
-      <p class="text-xs font-medium text-gray-600 mb-2">Apply the following action(s)</p>
+      <p class="text-xs font-medium text-gray-600 mb-2">{{ $t('form_logic.block_logic.actions_heading') }}</p>
       <div class="p-3 border border-gray-200 rounded-lg bg-gray-50/50 hover:bg-gray-50 transition-colors">
         <flat-select-input
           :key="resetKey"
           v-model="logic.actions"
           name="actions"
           :multiple="true"
-          placeholder="Select actions..."
+          :placeholder="$t('form_logic.block_logic.actions_placeholder')"
           :options="actionOptions"
           @update:model-value="onActionInput"
           clearable
@@ -118,20 +118,20 @@
     </div>
 
     <p class="text-neutral-400 text-xs mt-2">
-      Note that hidden fields can never be required.
+      {{ $t('form_logic.block_logic.hidden_fields_note') }}
     </p>
 
     <UModal
       v-model:open="showCopyFormModal"
-      title="Copy logic from another field"
-      :description="`Select another field/block to copy its logic and apply it to '${field.name}'.`"
+      :title="$t('form_logic.block_logic.copy_from_modal.title')"
+      :description="$t('form_logic.block_logic.copy_from_modal.description', { name: field.name })"
     >
       <template #body>
         <USelectMenu
           v-model="copyFrom"
           :items="copyFromOptions"
           value-key="value"
-          placeholder="Choose a field/block..."
+          :placeholder="$t('form_logic.block_logic.copy_from_modal.placeholder')"
           searchable
         />
       </template>
@@ -140,28 +140,28 @@
         <UButton
           color="neutral"
           variant="outline"
-          label="Close"
+          :label="$t('common.actions.close')"
           @click="showCopyFormModal = false"
         />
         <UButton
           color="primary"
           @click="copyLogic"
-          label="Confirm & Copy"
+          :label="$t('form_logic.block_logic.confirm_copy')"
         />
       </template>
     </UModal>
 
     <UModal
       v-model:open="showCopyToModal"
-      title="Copy logic to other fields"
-      :description="`Select other fields to copy the logic from '${field.name}' to.`"
+      :title="$t('form_logic.block_logic.copy_to_modal.title')"
+      :description="$t('form_logic.block_logic.copy_to_modal.description', { name: field.name })"
     >
       <template #body>
         <USelectMenu
           v-model="copyTo"
           :items="copyToOptions"
           value-key="value"
-          placeholder="Choose fields..."
+          :placeholder="$t('form_logic.block_logic.copy_to_modal.placeholder')"
           :multiple="true"
           searchable
         />
@@ -171,13 +171,13 @@
         <UButton
           color="neutral"
           variant="outline"
-          label="Close"
+          :label="$t('common.actions.close')"
           @click="showCopyToModal = false"
         />
         <UButton
           color="primary"
           @click="copyLogicToFields"
-          label="Confirm & Copy"
+          :label="$t('form_logic.block_logic.confirm_copy')"
         />
       </template>
     </UModal>
@@ -269,35 +269,35 @@ export default {
         ].includes(this.field.type)
       ) {
         if (this.field.hidden) {
-          return [{ name: "Show Block", value: "show-block" }]
+          return [{ name: this.$t("form_logic.block_logic.actions.show_block"), value: "show-block" }]
         } else {
-          return [{ name: "Hide Block", value: "hide-block" }]
+          return [{ name: this.$t("form_logic.block_logic.actions.hide_block"), value: "hide-block" }]
         }
       }
 
       if (this.field.hidden) {
         return [
-          { name: "Show Block", value: "show-block" },
-          { name: "Require answer", value: "require-answer" },
+          { name: this.$t("form_logic.block_logic.actions.show_block"), value: "show-block" },
+          { name: this.$t("form_logic.block_logic.actions.require_answer"), value: "require-answer" },
         ]
       } else if (this.field.disabled) {
         return [
-          { name: "Enable Block", value: "enable-block" },
+          { name: this.$t("form_logic.block_logic.actions.enable_block"), value: "enable-block" },
           this.field.required
-            ? { name: "Make it optional", value: "make-it-optional" }
+            ? { name: this.$t("form_logic.block_logic.actions.make_it_optional"), value: "make-it-optional" }
             : {
-                name: "Require answer",
+                name: this.$t("form_logic.block_logic.actions.require_answer"),
                 value: "require-answer",
               },
         ]
       } else {
         return [
-          { name: "Hide Block", value: "hide-block" },
-          { name: "Disable Block", value: "disable-block" },
+          { name: this.$t("form_logic.block_logic.actions.hide_block"), value: "hide-block" },
+          { name: this.$t("form_logic.block_logic.actions.disable_block"), value: "disable-block" },
           this.field.required
-            ? { name: "Make it optional", value: "make-it-optional" }
+            ? { name: this.$t("form_logic.block_logic.actions.make_it_optional"), value: "make-it-optional" }
             : {
-                name: "Require answer",
+                name: this.$t("form_logic.block_logic.actions.require_answer"),
                 value: "require-answer",
               },
         ]

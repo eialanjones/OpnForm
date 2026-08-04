@@ -2,20 +2,20 @@
   <div class="mx-auto mb-12 max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl text-center">
       <h2 class="text-lg font-semibold leading-8 tracking-tight text-blue-500">
-        Single or multi-page forms
+        {{ $t('marketing.welcome.templates_slider.eyebrow') }}
       </h2>
       <p
         class="mt-2 text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl"
       >
-        Discover our beautiful templates
+        {{ $t('marketing.welcome.templates_slider.title') }}
       </p>
       <p class="mt-3 px-8 text-center text-lg text-neutral-400">
-        If you need inspiration, checkout our templates.
+        {{ $t('marketing.welcome.templates_slider.description') }}
       </p>
     </div>
     <div class="my-3 flex justify-center">
       <NuxtLink :to="{ name: 'templates' }">
-        See all templates
+        {{ $t('marketing.welcome.templates_slider.see_all') }}
         <svg
           class="h-4 w-4 inline"
           xmlns="http://www.w3.org/2000/svg"

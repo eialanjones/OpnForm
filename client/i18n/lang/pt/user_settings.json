@@ -1,0 +1,149 @@
+{
+    "user_settings": {
+        "modal": {
+            "tabs": {
+                "account": "Conta",
+                "security": "Segurança",
+                "connections": "Conexões",
+                "access_tokens": "Tokens de acesso",
+                "billing": "Cobrança"
+            }
+        },
+        "account": {
+            "profile_heading": "Informações do perfil",
+            "profile_description": "Atualize as informações do perfil e o endereço de e-mail da sua conta.",
+            "name_label": "Nome completo",
+            "name_placeholder": "Digite seu nome completo",
+            "email_label": "Endereço de e-mail",
+            "email_placeholder": "Digite seu e-mail",
+            "save_button": "Salvar alterações",
+            "profile_updated": "Suas informações foram atualizadas!",
+            "profile_update_error": "Erro ao atualizar o perfil",
+            "delete_heading": "Excluir conta",
+            "delete_description": "Isso vai excluir permanentemente toda a sua conta. Esta ação não pode ser desfeita.",
+            "delete_button": "Excluir conta",
+            "delete_confirm": "Você realmente deseja excluir sua conta?",
+            "delete_success": "Sua conta foi excluída",
+            "delete_error": "Erro ao excluir a conta"
+        },
+        "security": {
+            "password_heading": "Alterar senha",
+            "password_description": "Atualize sua senha para manter sua conta segura.",
+            "current_password_label": "Senha atual",
+            "current_password_placeholder": "Digite a senha atual",
+            "new_password_label": "Nova senha",
+            "new_password_placeholder": "Digite a nova senha",
+            "confirm_password_label": "Confirmar senha",
+            "confirm_password_placeholder": "Confirme a nova senha",
+            "update_password_button": "Atualizar senha",
+            "password_updated": "Senha atualizada."
+        },
+        "two_factor": {
+            "heading": "Autenticação de dois fatores",
+            "description": "Adicione uma camada extra de segurança à sua conta usando um app autenticador.",
+            "enabled_alert": "A autenticação de dois fatores está ativada na sua conta.",
+            "regenerate_codes_button": "Gerar novos códigos de recuperação",
+            "disable_button": "Desativar 2FA",
+            "enter_code_prompt": "Digite o código de 6 dígitos do seu app autenticador:",
+            "use_recovery_code": "Usar código de recuperação",
+            "recovery_code_label": "Código de recuperação",
+            "recovery_code_placeholder": "Digite o código de recuperação",
+            "enable_error": "Não foi possível ativar a autenticação de dois fatores",
+            "enable_success": "A autenticação de dois fatores foi ativada com sucesso.",
+            "disable_success": "A autenticação de dois fatores foi desativada.",
+            "invalid_code": "Código inválido. Tente novamente.",
+            "regenerate_success": "Os códigos de recuperação foram gerados novamente. Guarde-os em um lugar seguro.",
+            "regenerate_error": "Não foi possível gerar novos códigos de recuperação",
+            "codes_copied": "Códigos de recuperação copiados para a área de transferência",
+            "enable_flow": {
+                "enable_button": "Ativar autenticação de dois fatores",
+                "scan_qr": "Escaneie este QR code com seu app autenticador:",
+                "manual_entry": "Ou digite este código manualmente:",
+                "copy_secret": "Copiar código secreto",
+                "confirm_code_prompt": "Digite o código de 6 dígitos do seu app autenticador para confirmar:",
+                "confirm_button": "Confirmar e ativar"
+            },
+            "disable_modal": {
+                "title": "Desativar autenticação de dois fatores",
+                "warning": "Desativar a autenticação de dois fatores vai reduzir a segurança da sua conta. Confirme com um código do seu app autenticador."
+            },
+            "regenerate_modal": {
+                "title": "Gerar novos códigos de recuperação",
+                "warning": "Gerar novos códigos de recuperação invalida todos os códigos existentes. Você vai precisar salvar os novos códigos imediatamente.",
+                "submit_button": "Gerar novos códigos"
+            },
+            "recovery_codes_modal": {
+                "title": "Códigos de recuperação",
+                "warning": "Estes códigos de recuperação serão exibidos apenas uma vez. Guarde-os em um lugar seguro. Você pode usá-los para acessar sua conta caso perca o acesso ao seu dispositivo autenticador.",
+                "used_at": "Usado em {date}",
+                "copy_all": "Copiar todos os códigos",
+                "saved_button": "Já salvei estes códigos"
+            }
+        },
+        "access_tokens": {
+            "heading": "Tokens de acesso da API",
+            "description": "Gerencie seus tokens de acesso à API para uso programático.",
+            "api_docs_button": "Documentação da API",
+            "create_button": "Criar novo token",
+            "empty_title": "Nenhum token de acesso ainda",
+            "empty_description": "Crie seu primeiro token de acesso para começar a usar nossa API programaticamente.",
+            "create_first_button": "Criar seu primeiro token",
+            "abilities": "Permissões",
+            "delete_confirm": "Você realmente deseja excluir este token?",
+            "delete_success": "Token excluído com sucesso",
+            "delete_error": "Ocorreu um erro ao excluir o token",
+            "api_info": {
+                "heading": "Informações da API",
+                "description": "Aprenda a usar seus tokens de acesso com a nossa API.",
+                "getting_started_title": "Primeiros passos",
+                "getting_started_description": "Use seus tokens de acesso no cabeçalho Authorization:",
+                "security_title": "Segurança",
+                "security_description": "Mantenha seus tokens seguros e nunca os compartilhe publicamente. Troque-os com frequência para mais segurança.",
+                "rate_limits_title": "Limites de requisições",
+                "rate_limits_description": "As requisições à API têm limite de taxa. {link} para conhecer os limites atuais e as boas práticas.",
+                "rate_limits_link": "Consulte nossa documentação"
+            },
+            "modal": {
+                "title": "Criar um token de acesso",
+                "help_button": "Ajuda",
+                "token_ready_title": "Copie seu token de acesso",
+                "token_ready_description": "Seu token será exibido apenas uma vez. Guarde-o em um lugar seguro.",
+                "copy_token": "Copiar token",
+                "create_button": "Criar token",
+                "create_error": "Ocorreu um erro ao criar o token"
+            }
+        },
+        "connections": {
+            "heading": "Conexões externas",
+            "description": "Gerencie suas conexões externas e integrações.",
+            "connect_button": "Conectar conta",
+            "empty_title": "Nenhuma conexão ainda",
+            "empty_description": "Conecte suas contas para habilitar integrações e agilizar seu fluxo de trabalho.",
+            "connect_first_button": "Conectar sua primeira conta",
+            "table_service": "Serviço",
+            "table_account": "Conta",
+            "disconnect_confirm": "Você realmente deseja desconectar esta conta?",
+            "disconnect_success": "Conta desconectada com sucesso",
+            "disconnect_error": "Ocorreu um erro ao desconectar a conta",
+            "modal": {
+                "title": "Conectar conta",
+                "connecting_title": "Conectando sua conta...",
+                "connecting_description": "Conclua a autenticação na nova aba que foi aberta.",
+                "connected_success": "Conta conectada com sucesso!",
+                "service_disabled": "Este serviço não está habilitado. Entre em contato com o suporte."
+            },
+            "widget_modal": {
+                "auth_failed": "Falha na autenticação",
+                "connected_success": "Conectado com sucesso",
+                "auth_error": "Não foi possível autenticar"
+            }
+        },
+        "billing": {
+            "heading": "Detalhes de cobrança",
+            "description": "Gerencie sua cobrança. Baixe faturas, mude seu plano ou cancele quando quiser.",
+            "users_count": "Atualmente você tem {users} nos seus diferentes workspaces.",
+            "users_count_value": "{count} usuário | {count} usuários",
+            "portal_button": "Cobrança e faturas"
+        }
+    }
+}

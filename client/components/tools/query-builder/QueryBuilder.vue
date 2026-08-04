@@ -27,7 +27,7 @@ const props = defineProps({
   },
   whereText: {
     type: String,
-    default: 'Where'
+    default: ''
   }
 })
 

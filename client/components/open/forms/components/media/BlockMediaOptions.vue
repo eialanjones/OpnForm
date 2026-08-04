@@ -1,9 +1,9 @@
 <template>
   <div v-if="isFocusedMode" class="px-4 mt-6">
-    <EditorSectionHeader icon="i-heroicons-photo" :icon-class="headerIconClass" title="Image" />
+    <EditorSectionHeader icon="i-heroicons-photo" :icon-class="headerIconClass" :title="$t('form_editor.media.section_title')" />
 
     <!-- Unified image input with settings popover (focus/brightness/alt) -->
-    <ImageWithSettings :form="model" name="image.url" label="Image" kind="block" />
+    <ImageWithSettings :form="model" name="image.url" :label="$t('form_editor.media.image_label')" kind="block" />
 
     <!-- Layout selection appears only when an image is present -->
     <template v-if="model?.image && model.image.url">
@@ -11,7 +11,7 @@
         v-model="model.image.layout"
         name="image.layout"
         :form="model"
-        label="Layout"
+        :label="$t('form_editor.media.layout_label')"
         :options="layoutOptions"
         :multiple="false"
         :columns="3"

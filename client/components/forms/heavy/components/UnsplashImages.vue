@@ -6,7 +6,7 @@
         v-model="searchTerm"
         variant="outline"
         class="w-full mb-1"
-        placeholder="Search image..."
+        :placeholder="$t('widgets.unsplash.search_placeholder')"
         icon="i-heroicons-magnifying-glass-solid"
         :disabled="!isFeatureEnabled"
         :ui="{ trailing: 'pe-1' }"
@@ -18,8 +18,8 @@
             variant="link"
             size="sm"
             icon="i-heroicons-x-mark-20-solid"
-            aria-label="Clear"
-            title="Clear"
+            :aria-label="$t('common.actions.clear')"
+            :title="$t('common.actions.clear')"
             @click="searchTerm = ''"
           />
         </template>
@@ -30,8 +30,8 @@
       <VTransition name="fade">
         <div v-if="!isFeatureEnabled" key="disabled" class="flex flex-col items-center justify-center h-64 p-4">
           <UIcon name="i-heroicons-exclamation-triangle-20-solid" class="w-12 h-12 text-amber-500 mb-3" />
-          <p class="text-neutral-600 text-sm font-medium mb-1">Unsplash integration is not available</p>
-          <p class="text-neutral-500 text-xs text-center">Please configure Unsplash API keys to use this feature.</p>
+          <p class="text-neutral-600 text-sm font-medium mb-1">{{ $t('widgets.unsplash.unavailable_title') }}</p>
+          <p class="text-neutral-500 text-xs text-center">{{ $t('widgets.unsplash.unavailable_description') }}</p>
         </div>
         <div v-else-if="loading" key="loading" class="grid grid-cols-3 gap-3 p-4">
           <div v-for="i in 9" :key="i" class="group cursor-pointer rounded-lg overflow-hidden shadow-sm transition-all duration-200">
@@ -42,7 +42,7 @@
         </div>
         <div v-else-if="images.length === 0" key="empty" class="flex flex-col items-center justify-center h-64">
           <UIcon name="i-heroicons-photo-20-solid" class="w-16 h-16 text-neutral-300 mb-3" />
-          <p class="text-neutral-500 text-sm">{{ searchTerm ? 'No image found' : 'No image available' }}</p>
+          <p class="text-neutral-500 text-sm">{{ searchTerm ? $t('widgets.unsplash.no_image_found') : $t('widgets.unsplash.no_image_available') }}</p>
         </div>
         <div v-else key="results" class="grid grid-cols-3 gap-3 p-4">
           <div v-for="image in images.slice(0, 9)" :key="image.id" class="group cursor-pointer rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 relative">
@@ -65,7 +65,7 @@
                   class="text-white/80 hover:text-white text-xs underline block"
                   @click.stop
                 >
-                  {{ image.photographer_name ? 'on Unsplash' : 'View on Unsplash' }}
+                  {{ image.photographer_name ? $t('widgets.unsplash.on_unsplash') : $t('widgets.unsplash.view_on_unsplash') }}
                 </a>
               </div>
             </div>

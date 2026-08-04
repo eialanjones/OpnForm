@@ -3,7 +3,7 @@
     icon="i-heroicons-eye-16-solid"
     :loading="loading"
     @click="impersonate"
-    label="Impersonate User"
+    :label="$t('admin.impersonate.label')"
   />
 </template>
 
@@ -15,6 +15,7 @@ const props = defineProps({
   user: { type: Object, required: true }
 })
 
+const { t } = useI18n()
 const authStore = useAuthStore()
 const queryClient = useQueryClient()
 const loading = ref(false)
@@ -32,11 +33,11 @@ const impersonate = () => {
     authStore.setToken(data.token, data.expires_in)
     await queryClient.invalidateQueries()
 
-    useAlert().success(`Impersonating ${userData.value.name}`)
+    useAlert().success(t('admin.impersonate.success', { name: userData.value.name }))
     useRouter().push({ name: 'home' })
   })
     .catch((error) => {
-      useAlert().error(error.data?.message || 'Failed to impersonate user')
+      useAlert().error(error.data?.message || t('admin.impersonate.error'))
       loading.value = false
     })
 }

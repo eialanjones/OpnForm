@@ -19,15 +19,15 @@
       v-model="activeTab"
       :content="false"
       :items="[
-        { label: 'Build', value: 'build' },
-        { label: 'Design', value: 'design'}
+        { label: $t('form_editor.navbar.tab_build'), value: 'build' },
+        { label: $t('form_editor.navbar.tab_design'), value: 'design'}
       ]"
     />
     <UButton
       color="neutral"
       variant="subtle"
       icon="i-heroicons-cog-6-tooth"
-      label="Settings"
+      :label="$t('common.actions.settings')"
       @click="settingsModal = true"
     />
     <FormSettingsModal
@@ -48,14 +48,14 @@
         color="warning"
         variant="soft"
         icon="i-heroicons-pencil-square"
-        label="Draft"
+        :label="$t('form_editor.navbar.draft')"
       />
       <UBadge
         v-else-if="form.visibility == 'closed'"
         color="neutral"
         variant="soft"
         icon="i-heroicons-lock-closed-20-solid"
-        label="Closed"
+        :label="$t('form_editor.navbar.closed')"
       />
     </div>
 
@@ -66,7 +66,7 @@
     >
       <TrackClick name="form_editor_help_button_clicked">
         <UTooltip
-          text="Help"
+          :text="$t('form_editor.navbar.help')"
           class="items-center relative"
           :content="{ side: 'bottom' }"
           arrow
@@ -101,7 +101,7 @@
             :class="saveButtonClass"
             icon="i-ic-outline-save"
             @click="emit('save-form')"
-            :label="form.visibility === 'public' ? 'Publish Form' : 'Save Changes'"
+            :label="form.visibility === 'public' ? $t('form_editor.navbar.publish_form') : $t('form_editor.navbar.save_changes')"
           />
         </TrackClick>
       </UTooltip>

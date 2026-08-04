@@ -1,7 +1,7 @@
 <template>
   <CopyContent
     :content="share_url"
-    label="Copy"
+    :label="$t('common.actions.copy')"
     class="w-auto"
   />
 </template>

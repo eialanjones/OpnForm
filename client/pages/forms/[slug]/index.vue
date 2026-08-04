@@ -220,7 +220,7 @@ useOpnSeoMeta({
     if (pageMeta.value.page_title) {
       return pageMeta.value.page_title
     }
-    return form.value ? form.value.title : 'Create beautiful forms'
+    return form.value ? form.value.title : t('form_pages.public.default_title')
   },
   description: () => {
     if (pageMeta.value.page_description) {

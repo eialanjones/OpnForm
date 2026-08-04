@@ -17,16 +17,15 @@
           <h1
             class="text-4xl sm:text-5xl lg:text-6xl font-semibold text-neutral-900 tracking-tight"
           >
-            Say goodbye to tedious form building with Forms Mentorfy's new
+            {{ $t('marketing.ai_form_builder.hero_title') }}
             <span
               class="bg-clip-text text-transparent bg-gradient-to-r lg:block from-blue-600 to-blue-400"
-            >AI-powered feature!</span>
+            >{{ $t('marketing.ai_form_builder.hero_title_highlight') }}</span>
           </h1>
           <p
             class="mt-4 sm:mt-5 text-base leading-7 sm:text-xl sm:leading-9 font-medium text-neutral-500"
           >
-            Easily generate a fully working form in seconds with just a simple
-            description.
+            {{ $t('marketing.ai_form_builder.hero_description') }}
           </p>
 
           <div class="mt-8 flex justify-center">
@@ -35,14 +34,14 @@
               class="mr-1"
               :to="{ name: 'forms-create-guest' }"
               trailing-icon="i-heroicons-arrow-right"
-              label="Get started for free"
+              :label="$t('marketing.ai_form_builder.get_started')"
             />
             <UButton
               v-else
               class="mr-1"
               :to="{ name: 'forms-create' }"
               trailing-icon="i-heroicons-arrow-right"
-              label="Get started for free"
+              :label="$t('marketing.ai_form_builder.get_started')"
             />
           </div>
         </div>
@@ -63,7 +62,7 @@
                 type="video/mp4"
               >
 
-              This browser does not display the video tag.
+              {{ $t('marketing.ai_form_builder.video_fallback') }}
             </video>
           </div>
         </div>
@@ -80,10 +79,10 @@
 
             <div>
               <p class="text-md font-semibold text-neutral-900">
-                Faster than Ever
+                {{ $t('marketing.ai_form_builder.perks.faster_title') }}
               </p>
               <p class="text-base font-medium text-neutral-500 mt-2">
-                Save time and effort by generating a form in seconds
+                {{ $t('marketing.ai_form_builder.perks.faster_description') }}
               </p>
             </div>
           </div>
@@ -97,10 +96,10 @@
 
             <div>
               <p class="text-md font-semibold text-neutral-900">
-                Customizations
+                {{ $t('marketing.ai_form_builder.perks.customization_title') }}
               </p>
               <p class="text-base font-medium text-neutral-500 mt-2">
-                Customize your form to your exact specifications
+                {{ $t('marketing.ai_form_builder.perks.customization_description') }}
               </p>
             </div>
           </div>
@@ -114,10 +113,10 @@
 
             <div>
               <p class="text-md font-semibold text-neutral-900">
-                No Coding Knowledge Required
+                {{ $t('marketing.ai_form_builder.perks.no_coding_title') }}
               </p>
               <p class="text-base font-medium text-neutral-500 mt-2">
-                No coding knowledge required and it's completely free to use
+                {{ $t('marketing.ai_form_builder.perks.no_coding_description') }}
               </p>
             </div>
           </div>
@@ -131,17 +130,17 @@
       <div class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div class="text-center max-w-3xl mx-auto">
           <h2 class="text-sm font-semibold text-blue-600">
-            How Does It Work?
+            {{ $t('marketing.ai_form_builder.how_it_works_eyebrow') }}
           </h2>
           <p
             class="text-3xl mt-4 sm:text-4xl lg:text-5xl font-semibold text-neutral-900 tracking-tight lg:leading-tight"
           >
-            Save hours in just a few clicks
+            {{ $t('marketing.ai_form_builder.how_it_works_title') }}
           </p>
           <p
             class="text-neutral-500 text-base leading-7 sm:text-lg sm:leading-8 font-medium mt-4"
           >
-            Building forms has never been easier
+            {{ $t('marketing.ai_form_builder.how_it_works_description') }}
           </p>
         </div>
 
@@ -173,16 +172,12 @@
               <h3
                 class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-neutral-900 lg:mt-8"
               >
-                Building forms made easy
+                {{ $t('marketing.ai_form_builder.steps.step_1_title') }}
               </h3>
               <p
                 class="text-base font-medium leading-7 sm:text-lg sm:leading-8 text-neutral-500 mt-4"
               >
-                Forms Mentorfy's easy-to-use online form creator lets you create a
-                beautiful web form in no time. Whether you need to create
-                contact forms and registration forms for a landing page or an
-                online order form for your business, you will no longer need to
-                spend hours working on forms.
+                {{ $t('marketing.ai_form_builder.steps.step_1_description') }}
               </p>
             </div>
           </div>
@@ -211,15 +206,12 @@
               <h3
                 class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-neutral-900 lg:mt-8"
               >
-                Customized forms work wonders
+                {{ $t('marketing.ai_form_builder.steps.step_2_title') }}
               </h3>
               <p
                 class="text-base font-medium leading-7 sm:text-lg sm:leading-8 text-neutral-500 mt-4"
               >
-                Did you know that good-looking forms are more likely to convert
-                more responses than ordinary ones? On Forms Mentorfy, you can customize
-                your form design to the tiniest detail and match your brand
-                image with your forms.
+                {{ $t('marketing.ai_form_builder.steps.step_2_description') }}
               </p>
             </div>
           </div>
@@ -248,15 +240,12 @@
               <h3
                 class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-neutral-900 lg:mt-8"
               >
-                Share your forms anywhere
+                {{ $t('marketing.ai_form_builder.steps.step_3_title') }}
               </h3>
               <p
                 class="text-base font-medium leading-7 sm:text-lg sm:leading-8 text-neutral-500 mt-4"
               >
-                You can share your forms anywhere using their unique weblink or
-                embed them on your landing pages seamlessly. Furthermore, you
-                can adjust your form’s privacy settings in order to reach the
-                targeted audience and prevent others from viewing your form.
+                {{ $t('marketing.ai_form_builder.steps.step_3_description') }}
               </p>
             </div>
           </div>
@@ -533,13 +522,13 @@
           <h2
             class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-neutral-900 tracking-tight lg:leading-tight"
           >
-            Create beautiful forms and share them anywhere
+            {{ $t('marketing.ai_form_builder.cta_title') }}
           </h2>
           <p
             class="mt-4 sm:mt-5 text-base leading-7 sm:text-xl sm:leading-9 font-medium text-neutral-500"
           >
-            It takes seconds, you don't need to know how to code and
-            <span class="text-blue-600">it's free</span>.
+            {{ $t('marketing.ai_form_builder.cta_description') }}
+            <span class="text-blue-600">{{ $t('marketing.ai_form_builder.cta_description_highlight') }}</span>.
           </p>
 
           <div class="mt-8 flex justify-center">
@@ -548,14 +537,14 @@
               class="mr-1"
               :to="{ name: 'forms-create-guest' }"
               trailing-icon="i-heroicons-arrow-right"
-              label="Get started for free"
+              :label="$t('marketing.ai_form_builder.get_started')"
             />
             <UButton
               v-else
               class="mr-1"
               :to="{ name: 'forms-create' }"
               trailing-icon="i-heroicons-arrow-right"
-              label="Get started for free"
+              :label="$t('marketing.ai_form_builder.get_started')"
             />
           </div>
 
@@ -576,7 +565,7 @@
                   clip-rule="evenodd"
                 />
               </svg>
-              No design skills required
+              {{ $t('marketing.ai_form_builder.cta_bullets.no_design_skills') }}
             </li>
 
             <li class="flex items-center gap-2">
@@ -593,7 +582,7 @@
                   clip-rule="evenodd"
                 />
               </svg>
-              Setup in minutes
+              {{ $t('marketing.ai_form_builder.cta_bullets.setup_in_minutes') }}
             </li>
 
             <li class="flex items-center gap-2">
@@ -610,7 +599,7 @@
                   clip-rule="evenodd"
                 />
               </svg>
-              Free plan available
+              {{ $t('marketing.ai_form_builder.cta_bullets.free_plan') }}
             </li>
           </ul>
         </div>
@@ -623,13 +612,14 @@
 </template>
 
 <script setup>
+const { t } = useI18n()
+
 definePageMeta({
   middleware: ['root-redirect','self-hosted']
 })
 useOpnSeoMeta({
-  title: "Free AI form builder",
-  description:
-    "Transform your ideas into fully functional forms with Forms Mentorfy AI Builder – quick, accurate, and tailored to fit any requirement.",
+  title: t('marketing.ai_form_builder.meta_title'),
+  description: t('marketing.ai_form_builder.meta_description'),
 })
 defineRouteRules({
   swr: 3600,

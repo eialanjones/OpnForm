@@ -1,26 +1,27 @@
 <template>
   <div class="w-full">
-    <h3 class="font-medium text-lg mb-4">Traffic Breakdown</h3>
-    
+    <h3 class="font-medium text-lg mb-4">{{ $t('form_editor.traffic.heading') }}</h3>
+
     <div v-if="!form.is_pro" class="border border-neutral-300 rounded-lg shadow-xs p-4 relative overflow-hidden">
       <div class="absolute inset-0 z-10">
         <div class="p-5 max-w-md mx-auto flex flex-col items-center justify-center h-full">
           <p class="text-center">
-            You need a <pro-tag
-              upgrade-modal-title="Upgrade today to access detailed analytics"
+            {{ $t('form_editor.traffic.pro_required') }}
+            <pro-tag
+              :upgrade-modal-title="$t('form_editor.traffic.upgrade_modal_title')"
               class="mx-1"
-            /> subscription to access detailed traffic breakdown.
+            />
           </p>
           <UButton
             class="mt-5 flex justify-center"
-            @click.prevent="openSubscriptionModal({modal_title: 'Upgrade to unlock detailed Analytics'})"
-            label="Subscribe"
+            @click.prevent="openSubscriptionModal({modal_title: $t('form_editor.traffic.subscribe_modal_title')})"
+            :label="$t('form_editor.traffic.subscribe')"
           />
         </div>
       </div>
       <img
         src="/img/pages/forms/blurred_graph.png"
-        alt="Sample Graph"
+        :alt="$t('form_editor.traffic.sample_graph_alt')"
         class="mx-auto w-full filter blur-md z-0 pointer-events-none"
       >
     </div>
@@ -46,7 +47,7 @@
           <h4 class="font-medium mb-3">{{ chart.title }}</h4>
           
           <div v-if="Object.keys(metaStats[chart.id] || {}).length === 0" class="text-sm text-gray-500 text-center py-2">
-            No data available
+            {{ $t('form_editor.traffic.no_data') }}
           </div>
           
           <div v-else class="space-y-4">
@@ -123,30 +124,31 @@ const props = defineProps({
 })
 
 const { openSubscriptionModal } = useAppModals()
+const { t } = useI18n()
 
 // Chart types configuration
-const chartTypes = [
+const chartTypes = computed(() => [
   {
     id: 'source',
-    title: 'Traffic Sources'
+    title: t('form_editor.traffic.sources')
   },
   {
     id: 'device',
-    title: 'Devices'
+    title: t('form_editor.traffic.devices')
   },
   {
     id: 'browser',
-    title: 'Browsers'
+    title: t('form_editor.traffic.browsers')
   },
   {
     id: 'os',
-    title: 'Operating Systems'
+    title: t('form_editor.traffic.operating_systems')
   },
   {
     id: 'country',
-    title: 'Countries'
+    title: t('form_editor.traffic.countries')
   }
-]
+])
 
 // Consistent colors for all chart types
 const CHART_COLORS = [
@@ -174,7 +176,7 @@ const metaStats = computed(() => {
 
 // Generate chart data for a specific chart type
 const getChartData = (chartId) => {
-  const chart = chartTypes.find(c => c.id === chartId)
+  const chart = chartTypes.value.find(c => c.id === chartId)
   if (!chart) return []
   
   const data = metaStats.value[chart.id]
@@ -224,7 +226,7 @@ const getDisplayChartData = (chartId) => {
     // Add Others to the result
     topItems.push({
       type: 'others',
-      displayName: 'Others',
+      displayName: t('form_editor.traffic.others'),
       count: othersCount,
       percentage: othersPercentage,
       color: CHART_COLORS[CHART_COLORS.length - 1] // Last color is for Others

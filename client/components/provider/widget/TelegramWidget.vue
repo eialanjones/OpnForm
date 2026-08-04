@@ -3,27 +3,35 @@
     id="widget_login"
     class="flex flex-col gap-4"
   >
-    <p class="text-sm text-neutral-500">
-      <a
-        href="https://telegram.org"
-        target="_blank"
-        class="text-primary-500 hover:underline"
-      >Telegram</a> is a secure messaging app that works across all devices and platforms. 
-      Connect your account to receive instant notifications whenever someone submits this form!
-    </p>
+    <i18n-t
+      keypath="app_shell.telegram_widget.description"
+      tag="p"
+      scope="global"
+      class="text-sm text-neutral-500"
+    >
+      <template #telegram>
+        <a
+          href="https://telegram.org"
+          target="_blank"
+          class="text-primary-500 hover:underline"
+        >Telegram</a>
+      </template>
+    </i18n-t>
     <div class="flex justify-center">
       <UButton
         :disabled="!botId"
         icon="i-mdi-telegram"
         @click.prevent="handleAuth"
       >
-        Log in with Telegram
+        {{ $t('app_shell.telegram_widget.login_button') }}
       </UButton>
     </div>
   </div>
 </template>
 
 <script setup>
+const { t } = useI18n()
+
 defineProps({
   service: {
     type: Object,
@@ -54,7 +62,7 @@ const handleAuth = () => {
       }
     )
   } else {
-    useAlert().error('Telegram login is not available')
+    useAlert().error(t('app_shell.telegram_widget.unavailable'))
   }
 }
 

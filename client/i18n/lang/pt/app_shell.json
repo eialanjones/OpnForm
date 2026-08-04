@@ -1,0 +1,100 @@
+{
+    "app_shell": {
+        "breadcrumb": {
+            "home": "Início"
+        },
+        "pro_tag": {
+            "default_tooltip": "Você precisa de um plano Pro para usar este recurso"
+        },
+        "steps": {
+            "step_of": "Etapa: {current} de {total}",
+            "complete": "Concluído!"
+        },
+        "upgrade_banner": {
+            "title": "Conheça nosso plano Pro",
+            "description": "Remova a marca Forms Mentorfy, personalize ainda mais seus formulários, use seu domínio próprio, integre com suas ferramentas favoritas, convide usuários e muito mais!",
+            "upgrade_now": "Fazer upgrade agora",
+            "modal_title": "Fazer upgrade para o plano Pro"
+        },
+        "seo": {
+            "default_title": "Criador de formulários com respostas ilimitadas",
+            "default_description": "Crie formulários bonitos e poderosos com o Forms Mentorfy. Respostas ilimitadas, recursos completos e integrações sem complicação."
+        },
+        "error_page": {
+            "seo_title": "404 - Página não encontrada",
+            "image_alt": "Uma plantinha, já que não temos mais nada para mostrar!",
+            "title": "Ops, algo deu errado ({code})",
+            "go_home": "Ir para o início"
+        },
+        "user_dropdown": {
+            "admin": "Admin",
+            "logout": "Sair",
+            "language": "Idioma"
+        },
+        "workspace_dropdown": {
+            "invite_members": "Convidar membros",
+            "create_workspace": "Criar workspace",
+            "pro_plan": "Plano Pro",
+            "free_plan": "Plano gratuito",
+            "member_count_one": "1 membro",
+            "member_count_other": "{count} membros",
+            "upgrade_workspaces_title": "Faça upgrade para criar mais workspaces",
+            "upgrade_workspaces_description": "Experimente o plano Pro gratuitamente hoje e desbloqueie todos os recursos, como colaboração, múltiplos workspaces, domínios próprios, análises de formulários, integrações e muito mais!",
+            "upgrade_invite_title": "Faça upgrade para convidar usuários ao seu workspace"
+        },
+        "navbar": {
+            "logo_alt": "Logo do Forms Mentorfy",
+            "my_forms": "Meus formulários",
+            "templates": "Templates",
+            "ai_form_builder": "Criador de formulários com IA",
+            "pricing": "Preços",
+            "help": "Ajuda",
+            "login": "Entrar",
+            "create_a_form": "Criar um formulário"
+        },
+        "resize_handle": {
+            "tooltip": "Arraste para redimensionar"
+        },
+        "yearly_modal": {
+            "special_offer": "Oferta especial",
+            "headline": "Faça upgrade para o plano {plan} e economize muito",
+            "headline_plan": "anual",
+            "subtitle": "Ganhe {offer} ao mudar para a cobrança anual",
+            "subtitle_offer": "2 meses grátis",
+            "monthly_plan": "Plano mensal",
+            "yearly_plan": "Plano anual",
+            "per_month": "/mês",
+            "best": "MELHOR",
+            "billed_annually": "$192 cobrados anualmente",
+            "cta": "Fazer upgrade para o plano anual",
+            "charge_notice": "Ao clicar, você será cobrado em {amount}.",
+            "charge_amount": "$192 por ano",
+            "no_thanks": "Não, obrigado",
+            "benefits": {
+                "save": "Economize 20% em relação à cobrança mensal",
+                "lock_pricing": "Garanta o preço atual por um ano inteiro",
+                "same_features": "Mantenha acesso aos mesmos recursos"
+            },
+            "upgrade_error": "Não foi possível fazer upgrade para o plano anual. Tente novamente mais tarde.",
+            "manage_billing": "Gerenciar cobrança"
+        },
+        "app_sidebar": {
+            "create_form": "Criar formulário",
+            "home": "Início",
+            "templates": "Templates",
+            "upgrade_to_pro": "Fazer upgrade para o Pro",
+            "upgrade_modal_title": "Fazer upgrade para o plano Pro"
+        },
+        "form_sidebar": {
+            "dashboard": "Dashboard",
+            "submissions": "Respostas",
+            "integrations": "Integrações",
+            "analytics": "Análises"
+        },
+        "telegram_widget": {
+            "description": "O {telegram} é um aplicativo de mensagens seguro que funciona em todos os dispositivos e plataformas. Conecte sua conta para receber notificações instantâneas sempre que alguém responder a este formulário!",
+            "login_button": "Entrar com o Telegram",
+            "unavailable": "O login com Telegram não está disponível"
+        }
+    }
+}

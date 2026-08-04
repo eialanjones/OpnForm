@@ -5,7 +5,7 @@
       :loading="enabling"
       @click="handleEnable"
     >
-      Enable Two-Factor Authentication
+      {{ $t('user_settings.two_factor.enable_flow.enable_button') }}
     </UButton>
 
     <!-- QR Code Display -->
@@ -13,7 +13,7 @@
       <div v-if="secret" class="space-y-4 p-4 border border-neutral-200 rounded-lg bg-neutral-50">
         <div>
           <p class="text-sm font-medium text-neutral-900 mb-2">
-            Scan this QR code with your authenticator app:
+            {{ $t('user_settings.two_factor.enable_flow.scan_qr') }}
           </p>
           <div class="flex justify-center p-4 bg-white rounded-lg max-w-xs mx-auto">
             <div v-html="qrCode" class="flex" />
@@ -22,17 +22,17 @@
 
         <div>
           <p class="text-sm font-medium text-neutral-900 mb-2">
-            Or enter this code manually:
+            {{ $t('user_settings.two_factor.enable_flow.manual_entry') }}
           </p>
           <CopyContent
             :content="secret"
-            label="Copy Secret"
+            :label="$t('user_settings.two_factor.enable_flow.copy_secret')"
           />
         </div>
 
         <div>
           <p class="text-sm font-medium text-neutral-900 mb-2">
-            Enter the 6-digit code from your authenticator app to confirm:
+            {{ $t('user_settings.two_factor.enable_flow.confirm_code_prompt') }}
           </p>
           <div class="flex justify-center mb-4">
             <UPinInput
@@ -50,7 +50,7 @@
             :disabled="code.length !== 6"
             @click="handleConfirm"
           >
-            Confirm and Enable
+            {{ $t('user_settings.two_factor.enable_flow.confirm_button') }}
           </UButton>
         </div>
       </div>

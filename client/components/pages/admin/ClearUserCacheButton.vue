@@ -3,7 +3,7 @@
     color="gray"
     variant="outline"
     :loading="loading"
-    label="Clear Cache"
+    :label="$t('admin.clear_cache.label')"
     icon="i-heroicons-arrow-path-20-solid"
     @click="clearUserCache"
   />
@@ -17,6 +17,7 @@ const props = defineProps({
 })
 const emit = defineEmits(['cache-cleared'])
 
+const { t } = useI18n()
 const alert = useAlert()
 const loading = ref(false)
 
@@ -25,10 +26,10 @@ async function clearUserCache() {
   loading.value = true
   try {
     const response = await adminApi.clearUserCache({ user_id: props.user.id })
-    alert.success(response.message || 'User cache cleared.')
+    alert.success(response.message || t('admin.clear_cache.success'))
     emit('cache-cleared')
   } catch (error) {
-    alert.error(error.data?.message || 'An error occurred.')
+    alert.error(error.data?.message || t('admin.errors.generic'))
   } finally {
     loading.value = false
   }

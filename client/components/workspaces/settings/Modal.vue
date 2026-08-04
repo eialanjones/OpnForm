@@ -8,7 +8,7 @@
     <!-- Settings Pages - Auto-register themselves -->
     <SettingsModalPage
       id="information"
-      label="Information"
+      :label="$t('workspace.settings_modal.information')"
       icon="i-heroicons-information-circle"
     >
       <LazyWorkspacesSettingsInformation />
@@ -16,7 +16,7 @@
 
     <SettingsModalPage
       id="members"
-      label="Members"
+      :label="$t('workspace.settings_modal.members')"
       icon="i-heroicons-user-group"
     >
       <LazyWorkspacesSettingsMembers />
@@ -25,7 +25,7 @@
     <SettingsModalPage
       v-if="workspace && workspace.is_admin"
       id="domains"
-      label="Domains"
+      :label="$t('workspace.settings_modal.domains')"
       icon="i-heroicons-globe-alt"
     >
       <LazyWorkspacesSettingsDomains />
@@ -34,7 +34,7 @@
     <SettingsModalPage
       v-if="workspace && workspace.is_admin"
       id="emails"
-      label="Emails"
+      :label="$t('workspace.settings_modal.emails')"
       icon="i-heroicons-envelope"
     >
       <LazyWorkspacesSettingsEmails />
@@ -43,7 +43,7 @@
     <SettingsModalPage
       v-if="workspace && workspace.is_admin"
       id="custom-code"
-      label="Custom Code"
+      :label="$t('workspace.custom_code.title')"
       icon="i-heroicons-code-bracket"
     >
       <LazyWorkspacesSettingsCustomCode />

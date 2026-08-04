@@ -12,7 +12,7 @@
         target="_blank"
         external
       >
-        Edit Workflow
+        {{ $t('integrations.actions.edit_workflow') }}
       </UButton>
     </div>
   </div>

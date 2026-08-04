@@ -5,15 +5,15 @@
     icon="i-heroicons-sparkles-solid"
     color="primary"
     variant="subtle"
-    title="Discover our Pro plan"
-    description="Remove Forms Mentorfy branding, customize forms further, use your custom domain, integrate with your favorite tools, invite users, and more!"
+    :title="$t('app_shell.upgrade_banner.title')"
+    :description="$t('app_shell.upgrade_banner.description')"
     :actions="[
       {
-        label: 'Upgrade now',
-        onClick: () => openSubscriptionModal({modal_title: 'Upgrade to Pro plan'})
+        label: $t('app_shell.upgrade_banner.upgrade_now'),
+        onClick: () => openSubscriptionModal({modal_title: $t('app_shell.upgrade_banner.modal_title')})
       },
       {
-        label: 'Close',
+        label: $t('common.actions.close'),
         color: 'neutral',
         variant: 'outline',
         onClick: dismissBanner

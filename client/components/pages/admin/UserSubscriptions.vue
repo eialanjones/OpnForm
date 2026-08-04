@@ -1,14 +1,14 @@
 <template>
   <AdminCard
     v-if="props.user.stripe_id"
-    title="Subscriptions"
+    :title="$t('admin.subscriptions.title')"
     icon="heroicons:credit-card-16-solid"
   >
     <UTable
       :loading="loading"
-      :loading-state="{ icon: 'i-heroicons-arrow-path-20-solid', label: 'Loading...' }"
+      :loading-state="{ icon: 'i-heroicons-arrow-path-20-solid', label: $t('common.states.loading') }"
       :progress="{ color: 'primary', animation: 'carousel' }"
-      :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No items.' }"
+      :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: $t('admin.table.no_items') }"
       :columns="columns"
       :data="rows"
       class="-mx-6"
@@ -59,22 +59,21 @@
     <UModal
       v-model:open="showCancelSubscriptionModal"
       :ui="{ content: 'sm:max-w-lg' }"
-      title="Cancel subscription"
+      :title="$t('admin.subscriptions.cancel_modal_title')"
     >
       <template #body>
         <form @submit.prevent="askCancel">
             <p class="text-xs text-neutral-500">
-              Ideally customers should cancel subscription themselves via the UI. If
-              you cancel the subscription for them, please provide a reason.
+              {{ $t('admin.subscriptions.cancel_notice') }}
             </p>
             <div class="mt-4">
               <TextInput
                 name="cancellation_reason"
                 :form="form"
-                label="Cancellation reason"
+                :label="$t('admin.subscriptions.cancellation_reason_label')"
                 native-type="reason"
                 :required="true"
-                help="Please provide a clear reason for cancelling this subscription. This will be logged for future reference."
+                :help="$t('admin.subscriptions.cancellation_reason_help')"
               />
 
               <UButton
@@ -83,7 +82,7 @@
                 type="submit"
                 block
                 icon="heroicons:exclamation-triangle-16-solid"
-                label="Cancel subscription now"
+                :label="$t('admin.subscriptions.cancel_now')"
               />
             </div>
           </form>
@@ -100,6 +99,7 @@ const props = defineProps({
   user: { type: Object, required: true }
 })
 
+const { t } = useI18n()
 const loading = ref(true)
 const subscriptions = ref([])
 const page = ref(1)
@@ -126,35 +126,35 @@ const getSubscriptions = () => {
 }
 
 
-const columns = [{
+const columns = computed(() => [{
     accessorKey: 'id',
-    header: 'ID'
+    header: t('admin.table.id')
 }, {
     accessorKey: 'stripe_id',
-    header: 'Stripe ID'
+    header: t('admin.subscriptions.columns.stripe_id')
 }, {
     accessorKey: 'name',
-    header: 'Name',
+    header: t('common.labels.name'),
     sortable: true
 }, {
     accessorKey: 'creation_date',
-    header: 'Creation date',
+    header: t('admin.table.creation_date'),
     sortable: true
 }, {
     accessorKey: 'plan',
-    header: 'Plan',
+    header: t('admin.table.plan'),
     sortable: true,
     direction: 'desc'
 }, {
     accessorKey: 'status',
-    header: 'Status'
+    header: t('common.labels.status')
 },{
     accessorKey: 'canceled_at',
-    header: 'Canceled at'
+    header: t('admin.subscriptions.columns.canceled_at')
 }, {
     accessorKey: 'actions',
     header: '',
-}]
+}])
 
 const showCancelSubscriptionModal = ref(false)
 const alert = useAlert()
@@ -177,7 +177,7 @@ const openCancelSubscriptionModal = (subscription) => {
 }
 
 const askCancel = () => {
-  alert.confirm('Are you sure? This will cancel the subscription for this user.', cancelSubscription)
+  alert.confirm(t('admin.subscriptions.cancel_confirm'), cancelSubscription)
 }
 
 const cancelSubscription = () => {

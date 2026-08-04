@@ -4,7 +4,7 @@
       name="form_qr_code_click"
       :properties="{form_id: form.id, form_slug: form.slug}"
     >
-      <UTooltip text="QR Code">
+      <UTooltip :text="$t('form_pages.qr_code.tooltip')">
         <UButton
           variant="outline"
           color="neutral"
@@ -17,16 +17,16 @@
       <div class="p-4 w-80">
 
         <h3 class="font-semibold text-medium">
-          QR Code
+          {{ $t('form_pages.qr_code.heading') }}
         </h3>
-        <p class="text-sm text-neutral-600">Scan the QR code to open the form.</p>
+        <p class="text-sm text-neutral-600">{{ $t('form_pages.qr_code.description') }}</p>
         <div class="flex justify-center">
           <img
             v-if="QrUrl"
             ref="qrImage"
             :src="QrUrl"
             class="max-w-full h-auto"
-            alt="QR Code for form"
+            :alt="$t('form_pages.qr_code.alt')"
           >
         </div>
         <div class="space-y-2">
@@ -41,7 +41,7 @@
               variant="outline"
               block
             >
-              {{ imageCopied ? 'Image Copied!' : 'Copy Image' }}
+              {{ imageCopied ? $t('form_pages.qr_code.image_copied') : $t('form_pages.qr_code.copy_image') }}
             </UButton>
           </TrackClick>
         </div>

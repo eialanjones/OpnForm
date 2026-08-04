@@ -1,0 +1,98 @@
+{
+    "widgets": {
+        "fullscreen": {
+            "open": "Open in fullscreen",
+            "exit": "Exit fullscreen"
+        },
+        "barcode_input": {
+            "open_camera_aria": "Click to open a camera"
+        },
+        "code_input": {
+            "default_title": "Code Editor"
+        },
+        "date_input": {
+            "select_date_aria": "Select date",
+            "selected_date_aria": "Selected date: {date}",
+            "clear_date_aria": "Clear date"
+        },
+        "file_input": {
+            "choose_files_aria": "Choose files or drag here",
+            "choose_file_aria": "Choose a file or drag here"
+        },
+        "image_input": {
+            "modal_title": "Upload an image",
+            "uploading": "Uploading your file...",
+            "upload_cta": "Upload your image,",
+            "upload_hint": "use drag and drop or paste it",
+            "file_types_hint": ".jpg, .jpeg, .png, .bmp, .gif, .svg up to 5mb",
+            "url_label": "Enter the URL of the image you want to use",
+            "insert": "Insert"
+        },
+        "logic_confirmation": {
+            "title": "Incomplete Form Logic",
+            "description": "Some logic rules are incomplete or invalid and will be cleaned up to ensure that the form works correctly.",
+            "field_label": "Field: {name}",
+            "save_anyway": "Save Anyway (Remove Invalid Logic)"
+        },
+        "matrix_input": {
+            "row_options_aria": "{row} options"
+        },
+        "mention_input": {
+            "upgrade_title": "Upgrade to Pro",
+            "upgrade_description": "Upgrade to Pro to use mentions"
+        },
+        "mention_dropdown": {
+            "title": "Insert Mention",
+            "fallback_placeholder": "Fallback value",
+            "select_field": "Select a field",
+            "insert": "Insert"
+        },
+        "payment_input": {
+            "connect_stripe": "Connect Stripe account to continue",
+            "save_form_to_preview": "Please save the form to activate the payment preview.",
+            "config_incomplete": "Payment component configuration incomplete.",
+            "account_connected": "Stripe account connected",
+            "account_not_connected": "Stripe account not connected",
+            "no_account_connected": "No Stripe account connected",
+            "missing_publishable_key": "Missing Stripe publishable key.",
+            "stripe_js_not_loaded": "Stripe.js not loaded.",
+            "published_form_notice": "The complete payment form will be visible to users when viewing the published form.",
+            "published_form_notice_short": "The payment form will be visible to users when viewing the published form.",
+            "load_config_failed": "Failed to load payment configuration",
+            "initializing": "Payment component initializing.",
+            "missing_publishable_key_config": "Missing Stripe publishable key in configuration.",
+            "missing_account_connection": "Missing Stripe account connection. ID: {id}",
+            "initializing_system": "Initializing payment system...",
+            "missing_configuration": "Missing Stripe configuration. Please check your settings.",
+            "init_failed": "Failed to initialize Stripe. Please refresh and try again.",
+            "load_component_failed": "Failed to load payment component",
+            "load_component_failed_detail": "Failed to load payment component. {message}",
+            "check_configuration": "{message}. Please check configuration or refresh."
+        },
+        "phone_input": {
+            "select_country": "Select a country"
+        },
+        "rating_input": {
+            "rating_aria": "Rating: {value} out of {total} stars",
+            "star_aria": "{count} star | {count} stars"
+        },
+        "rich_text": {
+            "default_title": "Rich Text Editor"
+        },
+        "captcha": {
+            "complete_verification": "Please complete the captcha verification"
+        },
+        "embed_media": {
+            "invalid_url": "Invalid or unsupported media URL."
+        },
+        "unsplash": {
+            "search_placeholder": "Search image...",
+            "unavailable_title": "Unsplash integration is not available",
+            "unavailable_description": "Please configure Unsplash API keys to use this feature.",
+            "no_image_found": "No image found",
+            "no_image_available": "No image available",
+            "on_unsplash": "on Unsplash",
+            "view_on_unsplash": "View on Unsplash"
+        }
+    }
+}

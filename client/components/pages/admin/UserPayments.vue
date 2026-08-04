@@ -1,14 +1,14 @@
 <template>
   <AdminCard
     v-if="props.user.stripe_id"
-    title="Payments"
+    :title="$t('admin.payments.title')"
     icon="heroicons:currency-dollar-16-solid"
   >
     <UTable
       :loading="loading"
-      :loading-state="{ icon: 'i-heroicons-arrow-path-20-solid', label: 'Loading...' }"
+      :loading-state="{ icon: 'i-heroicons-arrow-path-20-solid', label: $t('common.states.loading') }"
       :progress="{ color: 'primary', animation: 'carousel' }"
-      :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No items.' }"
+      :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: $t('admin.table.no_items') }"
       :columns="columns"
       :data="rows"
       class="-mx-6"
@@ -44,7 +44,7 @@
           variant="outline"
           size="sm"
           icon="heroicons:arrow-uturn-left-16-solid"
-          label="Refund"
+          :label="$t('admin.payments.refund')"
           @click="openRefundModal(row.original)"
         />
       </template>
@@ -63,22 +63,22 @@
     <UModal
       v-model:open="showRefundModal"
       :ui="{ content: 'sm:max-w-lg' }"
-      title="Refund payment"
+      :title="$t('admin.payments.refund_modal_title')"
     >
       <template #body>
         <form @submit.prevent="askRefund">
             <p class="text-xs text-neutral-500">
-              We will not update to user. Please inform them manually. <br/>
-              After refund it will take some time to update this page.
+              {{ $t('admin.payments.refund_notice_manual') }} <br/>
+              {{ $t('admin.payments.refund_notice_delay') }}
             </p>
             <div class="mt-4">
               <TextInput
                 name="refund_reason"
                 :form="form"
-                label="Refund reason"
+                :label="$t('admin.payments.refund_reason_label')"
                 native-type="reason"
                 :required="true"
-                help="Please provide a clear reason for refunding this payment. This will be logged for future reference."
+                :help="$t('admin.payments.refund_reason_help')"
               />
 
               <UButton
@@ -87,7 +87,7 @@
                 type="submit"
                 block
                 icon="heroicons:arrow-uturn-left-16-solid"
-                label="Refund payment now"
+                :label="$t('admin.payments.refund_now')"
               />
             </div>
           </form>
@@ -103,6 +103,7 @@ const props = defineProps({
   user: {type: Object, required: true}
 })
 
+const { t } = useI18n()
 const alert = useAlert()
 const loading = ref(true)
 const payments = ref([])
@@ -140,29 +141,29 @@ const isLastPayment = (payment) => {
 }
 
 
-const columns = [{
+const columns = computed(() => [{
   accessorKey: 'id',
-  header: 'ID'
+  header: t('admin.table.id')
 }, {
   accessorKey: 'amount_paid',
-  header: 'Amount paid',
+  header: t('admin.payments.columns.amount_paid'),
   sortable: true
 }, {
   accessorKey: 'name',
-  header: 'Name',
+  header: t('common.labels.name'),
   sortable: true
 }, {
   accessorKey: 'status',
-  header: 'Status',
+  header: t('common.labels.status'),
   sortable: true
 }, {
   accessorKey: 'creation_date',
-  header: 'Creation date',
+  header: t('admin.table.creation_date'),
   sortable: true
 }, {
   accessorKey: 'actions',
   header: '',
-}]
+}])
 
 const showRefundModal = ref(false)
 const form = useForm({
@@ -184,7 +185,7 @@ const openRefundModal = (payment) => {
 }
 
 const askRefund = () => {
-  alert.confirm('Are you sure? This will refund the payment for this user.', refundPayment)
+  alert.confirm(t('admin.payments.refund_confirm'), refundPayment)
 }
 
 const refundPayment = () => {

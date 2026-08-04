@@ -23,7 +23,7 @@
             clip-rule="evenodd"
           />
         </svg>
-        New
+        {{ $t('marketing.templates.new_badge') }}
       </span>
     </div>
 

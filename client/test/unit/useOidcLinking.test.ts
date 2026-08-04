@@ -30,6 +30,9 @@ describe('useOidcLinking', () => {
     globalThis.useRouter = () => router
     globalThis.useRoute = () => route
     globalThis.useAlert = () => alert
+    // The unit project runs in a bare node environment with no Nuxt auto-imports, so the
+    // i18n call inside the composable needs the same treatment as useRoute/useAlert.
+    globalThis.useI18n = () => ({ t: (key) => key })
   })
 
   afterEach(() => {
@@ -38,6 +41,7 @@ describe('useOidcLinking', () => {
     delete globalThis.useRouter
     delete globalThis.useRoute
     delete globalThis.useAlert
+    delete globalThis.useI18n
   })
 
   it('starts linking by pushing login with token', () => {

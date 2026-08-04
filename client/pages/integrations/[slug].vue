@@ -13,7 +13,7 @@
             class="mb-4"
             icon="i-heroicons-arrow-left"
           >
-            Other Integrations
+            {{ $t('integrations.detail_page.other_integrations') }}
           </UButton>
         </p>
         <h1 class="text-3xl mb-2">
@@ -30,7 +30,7 @@
             :to="{ name: 'integrations' }"
             class="text-blue-500 hover:text-blue-700 inline-block"
           >
-            Discover our other Integrations
+            {{ $t('integrations.detail_page.discover_other') }}
           </NuxtLink>
         </p>
       </div>
@@ -40,12 +40,12 @@
       class="w-full md:max-w-3xl md:mx-auto px-4 pt-8 md:pt-16 pb-10"
     >
       <h1 class="text-3xl">
-        Whoops - Page not found
+        {{ $t('integrations.detail_page.not_found') }}
       </h1>
       <UButton
         :to="{name: 'index'}"
         class="mt-4"
-        label="Go Home"
+        :label="$t('integrations.detail_page.go_home')"
       />
     </div>
     <OpenFormFooter class="border-t" />
@@ -56,6 +56,7 @@
 import CustomBlock from '~/components/pages/notion/CustomBlock.vue'
 import { useNotionCmsStore } from '~/stores/notion_cms.js'
 
+const { t } = useI18n()
 const blockOverrides = { code: CustomBlock }
 const slug = computed(() => useRoute().params.slug)
 const dbId = '1eda631bec208005bd8ed9988b380263'
@@ -90,6 +91,6 @@ definePageMeta({
 
 useOpnSeoMeta({
   title: () => page.value.Name,
-  description: () => page.value['Summary - SEO description'] ?? 'Create beautiful forms for free. Unlimited fields, unlimited submissions.'
+  description: () => page.value['Summary - SEO description'] ?? t('integrations.detail_page.meta_description')
 })
 </script>

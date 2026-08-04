@@ -1,0 +1,412 @@
+{
+    "marketing": {
+        "not_found_form": {
+            "image_alt": "404 error",
+            "title": "We're sorry! This form is no longer here",
+            "description": "It may have been deleted, deactivated, or the form URL might have been regenerated or updated by its owner. But don't worry—you've got plenty of other options!",
+            "what_can_you_do": "What can you do?",
+            "more_ways_title": "Still not sure what to do? Here are more ways to get started!",
+            "more_ways_description": "No worries! Here are some other options for you:",
+            "why_choose_label": "Do you want to know why users choose Forms Mentorfy?",
+            "why_choose_link": "Learn more here!",
+            "templates_label": "Browse templates",
+            "templates_link": "Get inspired with ready-to-use form templates!",
+            "help_center_label": "Check out our help center",
+            "help_center_link": "Find quick answers to common questions.",
+            "actions": {
+                "create_form": "Create form",
+                "find_your_forms": "Find your forms",
+                "documentation": "Documentation",
+                "explore": "Explore Forms Mentorfy",
+                "need_assistance": "Need assistance?"
+            }
+        },
+        "footer": {
+            "copyright": "© {year} {company}. All rights reserved",
+            "version": "Version {version}",
+            "logo_alt": "Forms Mentorfy logo",
+            "support": "Support",
+            "source_code": "Source code",
+            "integrations": "Integrations",
+            "report_abuse": "Report abuse",
+            "privacy_policy": "Privacy policy",
+            "terms_conditions": "Terms & conditions"
+        },
+        "form_card": {
+            "last_updated": "Last updated",
+            "updated_at": "Updated {time}",
+            "views_tooltip": "{count} views",
+            "form_views": "Form views",
+            "submissions_tooltip": "{count} submissions",
+            "form_submissions": "Form submissions"
+        },
+        "notion_block": {
+            "faq_title": "Frequently asked questions",
+            "cta_title": "Ready to upgrade your Forms Mentorfy forms?",
+            "cta_button": "Try Forms Mentorfy for free"
+        },
+        "billing_period": {
+            "monthly": "Monthly",
+            "yearly": "Yearly",
+            "save_20": "Save 20%"
+        },
+        "custom_plan": {
+            "title": "Enterprise plan",
+            "description": "Unlock ultimate scalability and enterprise-grade features with the Enterprise Plan. Tailored to meet the needs of organizations requiring dedicated infrastructure, advanced security, and priority support.",
+            "whats_included": "What's included",
+            "starting_from": "starting from per month",
+            "contact_us": "Contact us",
+            "tailored_note": "Let us design a tailored plan to meet your enterprise needs.",
+            "crisp_message": "Hi, I would like to discuss about an enterprise plan",
+            "features": {
+                "everything_in_pro": "Everything in Pro plan",
+                "dedicated_instance": "Self-hosted/dedicated instance",
+                "priority_support": "Priority support",
+                "invoice_payment": "Payment via invoice/PO",
+                "saml_sso": "SAML single sign-on (SSO)",
+                "security_audits": "Security audits",
+                "two_factor": "Two-factor authentication (2FA)",
+                "unlimited_users": "Unlimited users"
+            }
+        },
+        "pricing_table": {
+            "check_out_our": "Check out our",
+            "pro_features": "Pro features",
+            "pro_plan": "Pro plan",
+            "pro_description": "Forms Mentorfy Pro offers empowering features tailored to the advanced needs of teams and creators.",
+            "whats_included": "What's included",
+            "per_month": "per month",
+            "get_pro": "Get Pro",
+            "view_billing": "View billing",
+            "invoices_note": "Invoices and receipts available for easy company reimbursement.",
+            "features": {
+                "unlimited_workspaces": "Unlimited workspaces",
+                "confirmation_emails": "Form confirmation emails",
+                "slack_notifications": "Slack notifications",
+                "discord_notifications": "Discord notifications",
+                "editable_submissions": "Editable submissions",
+                "custom_domain": "1 custom domain",
+                "custom_code": "Custom code",
+                "larger_uploads": "Larger file uploads (50mb)",
+                "remove_branding": "Remove Forms Mentorfy branding",
+                "priority_support": "Priority support",
+                "form_analytics": "Form analytics",
+                "custom_sender_email": "Custom sender email (SMTP)"
+            }
+        },
+        "subscription_modal": {
+            "icon_alt": "Subscription icon",
+            "default_title": "Upgrade to Pro",
+            "default_description": "Unlock all features and get the most out of Forms Mentorfy.",
+            "plan_pro": "Pro",
+            "plan_team": "Team",
+            "plan_line": "Forms Mentorfy - {plan} plan",
+            "per_month_billed_yearly": "per month, billed yearly",
+            "per_month_billed_monthly": "per month, billed monthly",
+            "manage_plan": "Manage plan",
+            "see_full_comparison": "And much more. See full plans comparison",
+            "confirm_upgrade": "Confirm upgrade",
+            "confirm_subscription": "Confirm subscription",
+            "no_discount": "No discount",
+            "discount_applied": "Discount applied",
+            "yearly_upsell": "20% off with the yearly plan",
+            "company_name_label": "Company name",
+            "company_name_help": "Name that will appear on invoices",
+            "invoicing_email_label": "Invoicing email",
+            "invoicing_email_help": "Where invoices will be sent",
+            "subscribe": "Subscribe",
+            "success_team": "Awesome! Your subscription to Forms Mentorfy is now confirmed! You now have access to all Team features. No need to invite your teammates, just ask them to create a Forms Mentorfy account and to connect the same Notion workspace. Feel free to contact us if you have any question 🙌",
+            "success_pro": "Awesome! Your subscription to Forms Mentorfy is now confirmed! You now have access to all Pro features. Feel free to contact us if you have any question 🙌",
+            "confirm_error": "Unfortunately we could not confirm your subscription. Please try again and contact us if the issue persists.",
+            "features": {
+                "branding_title": "Remove Forms Mentorfy branding.",
+                "branding_description": "Remove our watermark, create forms that match your brand.",
+                "customization_title": "Full form customization.",
+                "customization_description": "Customize the colors, themes, images etc of your forms. Inject custom CSS and JS code.",
+                "uploads_title": "Larger file uploads.",
+                "uploads_description": "Larger files upload in your forms (up to 50 mb). This allows you to collect bigger attachments.",
+                "integrations_title": "All integrations & API access.",
+                "integrations_description": "Setup email, Slack, Discord notifications or GSheet, Zapier or webhooks integrations.",
+                "domain_title": "1 custom domain.",
+                "domain_description": "Host your form on your own domain for a professional look and improved branding.",
+                "editable_title": "Editable submissions.",
+                "editable_description": "Form respondents can go back and edit their form submissions, allowing for updates and corrections."
+            }
+        },
+        "settings_modal": {
+            "empty_title": "Select a setting",
+            "empty_description": "Choose an option from the sidebar to configure your settings."
+        },
+        "templates": {
+            "new_badge": "New",
+            "search_placeholder": "Search...",
+            "no_templates_found": "No templates found.",
+            "all_types_heading": "All types",
+            "all_industries_heading": "All industries",
+            "all_types_option": "All types",
+            "all_industries_option": "All industries",
+            "view_all_templates": "View all templates"
+        },
+        "welcome": {
+            "ai_feature": {
+                "badge": "Introducing Forms Mentorfy AI",
+                "title": "Say goodbye to tedious form building with Forms Mentorfy's new",
+                "title_highlight": "AI-powered feature!",
+                "description": "Easily generate a fully working form in seconds with just a simple description.",
+                "cta": "Try our AI form builder",
+                "illustration_alt": "App screenshot",
+                "bullets": {
+                    "fast": "Create form in minutes",
+                    "customizations": "Customizations",
+                    "no_coding": "No-coding required"
+                }
+            },
+            "features": {
+                "heading_line1": "The easiest way to create forms.",
+                "heading_line2": "Generous unlimited",
+                "heading_highlight": "free plan.",
+                "subheading": "Need a contact form? Doing a survey? Create a form in 2 minutes and start receiving submissions.",
+                "image_alt": "Product feature illustration",
+                "steps": {
+                    "create": {
+                        "title": "Create",
+                        "description": "Create a form in 2 minutes. More than 10 input types, images, logic and much more.",
+                        "bullet_1": "Build a simple form in minutes.",
+                        "bullet_2": "No coding needed."
+                    },
+                    "share": {
+                        "title": "Share",
+                        "description": "Your form has a unique link that you can share everywhere. Send the link, or even embed the form on your website.",
+                        "bullet_1": "Share the link to your form",
+                        "bullet_2": "Embed the form on your website"
+                    },
+                    "results": {
+                        "title": "Get results",
+                        "description": "Receive your form submissions. Receive notifications, send confirmations. Export submissions and check your form analytics.",
+                        "bullet_1": "Unlimited form submissions for free",
+                        "bullet_2": "Easily export submissions as CSV",
+                        "bullet_3": "Views & submissions analytics"
+                    }
+                },
+                "notifications": {
+                    "title": "Notifications",
+                    "description": "Receive notifications directly in Slack or in your mailbox whenever your form has a new submission (if you want to)."
+                },
+                "file_uploads": {
+                    "title": "File uploads",
+                    "description": "Easily add file upload inputs to your forms. Uploaded files are securely stored for you. Up to 5mb!"
+                },
+                "customize": {
+                    "title": "Customize everything",
+                    "description": "Change form themes, change texts, colors, add images, add custom thank you pages and much more."
+                }
+            },
+            "more_features": {
+                "title": "And many more features",
+                "description": "Forms Mentorfy makes form building easy and comes with powerful features.",
+                "items": {
+                    "form_logic": "Form logic",
+                    "url_prefill": "URL pre-fill",
+                    "unique_submission_id": "Unique submission ID",
+                    "hidden_fields": "Hidden fields",
+                    "form_password": "Form password",
+                    "webhooks": "Webhooks",
+                    "custom_code": "Custom code",
+                    "closing_date": "Closing date",
+                    "and_much_more": "And much more..."
+                }
+            },
+            "templates_slider": {
+                "eyebrow": "Single or multi-page forms",
+                "title": "Discover our beautiful templates",
+                "description": "If you need inspiration, check out our templates.",
+                "see_all": "See all templates"
+            },
+            "testimonials": {
+                "iframe_title": "Forms Mentorfy testimonial"
+            }
+        },
+        "not_found_page": {
+            "image_alt": "Nice plant as we have nothing else to show!",
+            "title": "Page not found (404)",
+            "go_home": "Go home",
+            "meta_title": "404 - Page not found"
+        },
+        "ai_form_builder": {
+            "hero_title": "Say goodbye to tedious form building with Forms Mentorfy's new",
+            "hero_title_highlight": "AI-powered feature!",
+            "hero_description": "Easily generate a fully working form in seconds with just a simple description.",
+            "get_started": "Get started for free",
+            "video_fallback": "This browser does not display the video tag.",
+            "how_it_works_eyebrow": "How does it work?",
+            "how_it_works_title": "Save hours in just a few clicks",
+            "how_it_works_description": "Building forms has never been easier",
+            "cta_title": "Create beautiful forms and share them anywhere",
+            "cta_description": "It takes seconds, you don't need to know how to code and",
+            "cta_description_highlight": "it's free",
+            "meta_title": "Free AI form builder",
+            "meta_description": "Transform your ideas into fully functional forms with Forms Mentorfy AI Builder – quick, accurate, and tailored to fit any requirement.",
+            "perks": {
+                "faster_title": "Faster than ever",
+                "faster_description": "Save time and effort by generating a form in seconds",
+                "customization_title": "Customizations",
+                "customization_description": "Customize your form to your exact specifications",
+                "no_coding_title": "No coding knowledge required",
+                "no_coding_description": "No coding knowledge required and it's completely free to use"
+            },
+            "steps": {
+                "step_1_title": "Building forms made easy",
+                "step_1_description": "Forms Mentorfy's easy-to-use online form creator lets you create a beautiful web form in no time. Whether you need to create contact forms and registration forms for a landing page or an online order form for your business, you will no longer need to spend hours working on forms.",
+                "step_2_title": "Customized forms work wonders",
+                "step_2_description": "Did you know that good-looking forms are more likely to convert more responses than ordinary ones? On Forms Mentorfy, you can customize your form design to the tiniest detail and match your brand image with your forms.",
+                "step_3_title": "Share your forms anywhere",
+                "step_3_description": "You can share your forms anywhere using their unique weblink or embed them on your landing pages seamlessly. Furthermore, you can adjust your form's privacy settings in order to reach the targeted audience and prevent others from viewing your form."
+            },
+            "cta_bullets": {
+                "no_design_skills": "No design skills required",
+                "setup_in_minutes": "Setup in minutes",
+                "free_plan": "Free plan available"
+            }
+        },
+        "home_page": {
+            "search_placeholder": "Search forms...",
+            "tags_placeholder": "Tags",
+            "create_form": "Create form",
+            "empty_title": "Create your first form",
+            "empty_description": "Get started by creating a new form to collect responses.",
+            "no_forms_found_title": "No forms found",
+            "no_forms_found_description": "Your search and filter criteria did not match any forms.",
+            "clear_filters": "Clear filters",
+            "loaded_pages": "Loaded {current} of {total} pages",
+            "meta_title": "Your forms",
+            "meta_description": "All of your forms are here. Create new forms, or update your existing forms."
+        },
+        "landing": {
+            "background_alt": "Page abstract background",
+            "hero_title_start": "Build",
+            "hero_title_highlight": "beautiful forms",
+            "hero_title_end": "in seconds",
+            "hero_description": "Create beautiful forms and share them anywhere. It's super fast, you don't need to know how to code. Get started",
+            "hero_description_highlight": "for free",
+            "product_screenshot_alt": "Product screenshot",
+            "create_form_cta": "Create a form for FREE",
+            "read_more_pricing": "Read more about our pricing",
+            "cta_title": "Take your forms to the next level",
+            "cta_description": "Generous, unlimited free plan.",
+            "bullets": {
+                "unlimited_forms": "Unlimited forms",
+                "unlimited_fields": "Unlimited fields",
+                "unlimited_responses": "Unlimited responses"
+            }
+        },
+        "pricing_page": {
+            "hero_title": "Simple, transparent pricing. No surprises.",
+            "hero_description": "Just like our codebase, our pricing is 100% transparent. One flat price for all features. No hidden fees.",
+            "extra_users": "Extra users for {price}/month",
+            "free_features_title": "of features are available to all users for free and without limits.",
+            "discount_title": "Nonprofit & student discount — 50%",
+            "discount_description": "Whether your nonprofit is large or small, Forms Mentorfy's online form builder helps your organization help others. It takes just a few minutes to create and publish your forms online. As an exclusive benefit, we offer nonprofits & students a 50-percent discount!",
+            "faq_title": "Got any question?",
+            "faq_description": "We've compiled a list of the most common questions we get asked.",
+            "not_found_answer": "Didn't find the answer?",
+            "contact_us": "Contact us",
+            "meta_title": "Pricing",
+            "meta_description": "All of our core features are free, and there is no quantity limit. You can also create more advanced and customized forms with Forms Mentorfy Pro.",
+            "free_features": {
+                "unlimited_forms": "Unlimited forms",
+                "unlimited_submissions": "Unlimited submissions",
+                "unlimited_fields": "Unlimited fields",
+                "multiple_input_types": "Multiple input types",
+                "form_password": "Form password",
+                "webhooks": "Webhooks",
+                "api_tokens": "API access tokens",
+                "closing_date": "Closing date",
+                "and_much_more": "And much more..."
+            },
+            "faq": {
+                "free_version": {
+                    "question": "Is there a free version of Forms Mentorfy available?",
+                    "answer": "Yes, Forms Mentorfy offers a free version with access to 99% of features, including unlimited forms, submissions, fields, webhooks, API access tokens, and more. Our goal is to provide robust functionality for all users without limitations."
+                },
+                "pro_plan": {
+                    "question": "What does the Pro plan include?",
+                    "answer": "The Forms Mentorfy Pro Plan is designed to meet the advanced needs of teams and creators. It includes features like form confirmation emails, Slack and Discord notifications, editable submissions, custom domain, custom code integration, larger file uploads, removal of Forms Mentorfy branding, priority support, and more."
+                },
+                "annual_discount": {
+                    "question": "Is there a discount for annual plans?",
+                    "answer": "Yes, we offer a 20% discount for annual Pro Plan subscriptions. By choosing the yearly billing option, you can enjoy the same great features at a reduced cost."
+                },
+                "nonprofit_discount": {
+                    "question": "How does the nonprofit and student discount work?",
+                    "answer": "Forms Mentorfy is committed to supporting nonprofits and students. We provide an exclusive 50% discount on the Pro Plan for nonprofit organizations and students. This discount helps you make the most of our form builder while staying within your budget."
+                },
+                "cancel_plan": {
+                    "question": "Can I cancel or change my plan at any time?",
+                    "answer": "Yes, you have the flexibility to upgrade, downgrade, or cancel your Forms Mentorfy Pro Plan at any time. Changes will take effect immediately, and you'll only be billed based on the plan you're currently on."
+                }
+            }
+        },
+        "legal": {
+            "privacy_policy_title": "Privacy policy",
+            "terms_title": "Terms & conditions"
+        },
+        "report_abuse": {
+            "meta_title": "Report abuse"
+        },
+        "redirects": {
+            "billing_portal_loading": "Redirecting to billing portal...",
+            "billing_portal_error": "Unable to access billing portal. Please try again or contact support.",
+            "checkout_loading": "Preparing your checkout...",
+            "checkout_error": "Unable to start checkout process. Please try again or contact support.",
+            "missing_plan": "Missing plan information",
+            "customer_details_error": "Failed to update customer details, but proceeding with checkout"
+        },
+        "subscription_success": {
+            "title": "Thank you!",
+            "description": "We're checking the status of your subscription, please wait a moment...",
+            "meta_title": "Subscription success"
+        },
+        "templates_index": {
+            "title": "Form templates",
+            "description": "Our collection of beautiful templates to create your own forms!"
+        },
+        "my_templates": {
+            "title": "My form templates",
+            "how_to_create": "How to create",
+            "empty_title": "No templates yet",
+            "empty_description": "You haven't created any templates yet. Create forms and share them as templates!",
+            "meta_title": "My templates"
+        },
+        "template_page": {
+            "edit_template": "Edit template",
+            "copy_template_url": "Copy template URL",
+            "use_template": "Use this template",
+            "not_found": "We could not find this template.",
+            "cover_alt": "Template cover image",
+            "preview_label": "Template preview",
+            "faq_title": "Frequently asked questions",
+            "faq_description": "Everything you need to know about this template.",
+            "related_title": "Related templates",
+            "view_all": "View all",
+            "how_it_works_title": "How Forms Mentorfy works",
+            "step_1_title": "Copy the template and change it the way you like",
+            "step_1_link": "Click here to copy this template",
+            "step_1_description": "and start customizing it. Change the questions, add new ones, choose colors and more.",
+            "step_2_title": "Embed the form or share it via a link",
+            "step_2_description": "You can directly share your form link, or embed the form on your website. It's magic! 🪄",
+            "breadcrumb_templates": "Templates",
+            "url_copied": "URL copied to clipboard!",
+            "perks": {
+                "free_core": "✓ Core features 100% free",
+                "no_credit_card": "✓ No credit card required",
+                "no_limit": "✓ No submissions limit on Free plan"
+            }
+        },
+        "template_industry": {
+            "not_found": "We could not find this industry."
+        },
+        "template_type": {
+            "not_found": "We could not find this type."
+        }
+    }
+}

@@ -2,7 +2,7 @@
   <UModal
     v-model:open="isOpen"
     :ui="{ content: 'sm:max-w-4xl' }"
-    title="Past Events"
+    :title="$t('integrations.events_modal.title')"
   >
     <template #body>
       <UTable
@@ -35,7 +35,7 @@
         color="neutral"
         variant="outline"
         @click="close"
-        label="Close"
+        :label="$t('common.actions.close')"
       />
     </template>
   </UModal>
@@ -54,6 +54,8 @@ const props = defineProps({
 
 const emit = defineEmits(["close"])
 
+const { t } = useI18n()
+
 // Modal state
 const isOpen = computed({
   get() {
@@ -65,11 +67,11 @@ const isOpen = computed({
     }
   }
 })
-const columns = [
-  { accessorKey: "date", header: "Date" },
-  { accessorKey: "status", header: "Status" },
-  { accessorKey: "data", header: "Info" },
-]
+const columns = computed(() => [
+  { accessorKey: "date", header: t('common.labels.date') },
+  { accessorKey: "status", header: t('common.labels.status') },
+  { accessorKey: "data", header: t('integrations.events_modal.info_column') },
+])
 const integrationEvents = ref([])
 const integrationEventsLoading = ref(false)
 

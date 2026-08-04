@@ -1,0 +1,182 @@
+{
+    "form_editor": {
+        "ai_loading": {
+            "starting_magic": "Starting AI magic",
+            "analyzing_requirements": "Analyzing requirements",
+            "designing_layout": "Designing layout",
+            "adding_fields": "Adding form fields",
+            "fine_tuning_validation": "Fine-tuning validation",
+            "optimizing_ux": "Optimizing UX",
+            "adding_smart_features": "Adding smart features",
+            "polishing_design": "Polishing design",
+            "running_final_checks": "Running final checks",
+            "almost_ready": "Almost ready"
+        },
+        "advanced_url_settings": {
+            "title": "Show advanced sharing options",
+            "auto_submit_label": "Auto Submit Form",
+            "auto_submit_help": "Form will auto submit immediate after open URL"
+        },
+        "copy_content": {
+            "copy_link": "Copy Link",
+            "copy_url": "Copy URL"
+        },
+        "custom_validation": {
+            "copy_from": "Copy from",
+            "copy_to": "Copy to",
+            "when_valid_title": "When should this field be valid?",
+            "when_valid_description": "Set <span class=\"font-semibold\">rules that make this field valid</span>. If rules aren't met, the field shows an error.",
+            "rules_count": "{count} rule | {count} rules",
+            "add_rule": "Add rule",
+            "error_message_title": "What message to show if validation fails?",
+            "error_message_description": "This message appears when <span class=\"font-semibold\">validation rules aren't met</span>.",
+            "error_message_label": "Error message",
+            "save_notice": "Save your form to apply changes.",
+            "copy_from_title": "Copy validation from another field",
+            "copy_from_description": "Select another field to copy its validation rules and apply them to '{field}'.",
+            "choose_field_placeholder": "Choose a field...",
+            "copy_to_title": "Copy validation to other fields",
+            "copy_to_description": "Select other fields to copy the validation rules from '{field}' to.",
+            "choose_fields_placeholder": "Choose fields...",
+            "confirm_copy": "Confirm & Copy"
+        },
+        "first_submission": {
+            "title": "🎉 Your first submission!",
+            "congrats": "Congratulations! Your form is now live and ready for action. Share it with others or check your submissions below.",
+            "share_url_label": "Share form URL:",
+            "check_submissions_label": "Check submissions:",
+            "view_submissions": "View Submissions",
+            "connect_apps_title": "🔗 Connect your form to other apps",
+            "view_all_integrations": "View all integrations",
+            "integrations_description": "Get notified instantly when someone submits your form, or sync data to your favorite tools.",
+            "email_integration_title": "Email Notification",
+            "recommended": "Recommended",
+            "email_integration_description": "Get an email every time someone submits your form. Perfect for staying on top of responses.",
+            "other_integrations": "Other popular integrations:"
+        },
+        "mobile_warning": {
+            "message": "Forms Mentorfy is not optimized for mobile devices. Please open this page on a device with a larger screen.",
+            "back_to_dashboard": "Back to dashboard"
+        },
+        "editor": {
+            "save_error": "An error occurred while saving the form, please try again."
+        },
+        "error_handler": {
+            "title": "Oops! Something went wrong.",
+            "description": "It looks like your last action caused an issue on our side. We apologize for the inconvenience.",
+            "go_back_one_step": "Go back one step",
+            "report_error": "Report this error",
+            "report_intro": "Hi there, I have a technical issue with the form editor.",
+            "report_form": " The form I am editing is: `{slug}`.",
+            "report_details": " And here are technical details about the error: ```{details}```",
+            "report_reply": "Hi there, we're very sorry to hear you experienced an issue with Forms Mentorfy. We'll be in touch about it very soon! In the meantime, I recommend that you try going back one step, and save your changes."
+        },
+        "navbar": {
+            "tab_build": "Build",
+            "tab_design": "Design",
+            "draft": "Draft",
+            "closed": "Closed",
+            "help": "Help",
+            "publish_form": "Publish Form",
+            "save_changes": "Save Changes"
+        },
+        "fields_editor": {
+            "shortcut": "Shortcut",
+            "add_block": "Add Block",
+            "show_block": "Show Block",
+            "hide_block": "Hide Block",
+            "make_optional": "Make it optional",
+            "make_required": "Make it required",
+            "open_settings": "Open settings"
+        },
+        "stats": {
+            "heading": "Views & Submission History",
+            "upgrade_modal_title": "Upgrade today to access form analytics",
+            "pro_required": "You need a Pro subscription to access your form analytics.",
+            "subscribe_modal_title": "Upgrade to unlock form Analytics",
+            "subscribe": "Subscribe",
+            "sample_graph_alt": "Sample Graph",
+            "chart_views": "Form Views",
+            "chart_submissions": "Form Submissions",
+            "chart_partial_submissions": "Partial Submissions"
+        },
+        "status_badges": {
+            "draft": "Draft",
+            "draft_tooltip": "Not publicly accessible",
+            "closed": "Closed",
+            "closed_tooltip": "Won't accept new submissions",
+            "time_limited": "Time limited",
+            "will_close_on": "Will close on {date}",
+            "closed_on": "Closed on {date}",
+            "submission_limited": "Submission limited",
+            "limited_to": "Limited to {count} submissions",
+            "limit_reached": "Limit reached",
+            "max_reached": "Maximum {count} submissions reached"
+        },
+        "traffic": {
+            "heading": "Traffic Breakdown",
+            "upgrade_modal_title": "Upgrade today to access detailed analytics",
+            "pro_required": "You need a Pro subscription to access detailed traffic breakdown.",
+            "subscribe_modal_title": "Upgrade to unlock detailed Analytics",
+            "subscribe": "Subscribe",
+            "sample_graph_alt": "Sample Graph",
+            "no_data": "No data available",
+            "sources": "Traffic Sources",
+            "devices": "Devices",
+            "browsers": "Browsers",
+            "operating_systems": "Operating Systems",
+            "countries": "Countries",
+            "others": "Others"
+        },
+        "workspace_modal": {
+            "title": "Change form's workspace",
+            "help": "Help",
+            "current_workspace": "Current workspace:",
+            "select_label": "Select destination workspace",
+            "change_workspace": "Change workspace",
+            "select_error": "Please select a workspace!",
+            "success": "Form workspace updated successfully.",
+            "generic_error": "Something went wrong, please try again!"
+        },
+        "seo_preview": {
+            "heading": "Social Media Preview",
+            "image_alt": "Preview",
+            "no_image": "No preview image"
+        },
+        "media": {
+            "section_title": "Image",
+            "image_label": "Image",
+            "layout_label": "Layout",
+            "focal_point": "Focal point",
+            "brightness": "Brightness",
+            "alt_text_label": "Alt text",
+            "alt_text_placeholder": "Describe the image for accessibility (max 125 characters)",
+            "image_settings": "Image settings",
+            "cover_image_settings": "Cover image settings"
+        },
+        "template_modal": {
+            "edit_title": "Edit Template",
+            "create_title": "Create Template",
+            "help": "Help",
+            "create_from_form": "New template will be created from your form:",
+            "publicly_listed": "Publicly Listed?",
+            "slug": "Slug",
+            "short_description": "Short Description",
+            "image": "Image",
+            "types": "Types",
+            "industries": "Industries",
+            "related_templates": "Related Templates",
+            "faq": "Frequently asked questions",
+            "delete_confirm": "Do you really want to delete this template?",
+            "delete_template": "Delete template",
+            "created": "Template created successfully",
+            "updated": "Template updated successfully",
+            "deleted": "Template deleted successfully"
+        },
+        "questions_editor": {
+            "question_placeholder": "Question title",
+            "answer_placeholder": "Question response",
+            "add_new": "Add New"
+        }
+    }
+}

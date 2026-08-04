@@ -5,6 +5,7 @@ import { WindowMessageTypes, useWindowMessage } from '~/composables/useWindowMes
 export function useOAuth() {
   const queryClient = useQueryClient()
   const alert = useAlert()
+  const { t } = useI18n()
 
   // Constants
   const googleDrivePermissionFileScope = 'https://www.googleapis.com/auth/drive.file'
@@ -45,7 +46,7 @@ export function useOAuth() {
   // Enhanced error handling for OAuth operations
   const handleOAuthError = (error) => {
     const message = error.response?.data?.message || error.data?.message
-    alert.error(message ?? "An error occurred while connecting an account")
+    alert.error(message ?? t('runtime.oauth.connect_error'))
   }
 
   // Popup utilities
@@ -55,10 +56,10 @@ export function useOAuth() {
     if (!shouldOpenInNewTab) return null
     const popupWindow = window.open('', 'oauth_popup_' + service, popupFeatures)
     if (!popupWindow) {
-      alert.error('Popup was blocked. Please allow popups and try again.')
+      alert.error(t('runtime.oauth.popup_blocked'))
       return null
     }
-    try { popupWindow.document.title = 'Connecting…' } catch { /* ignore */ }
+    try { popupWindow.document.title = t('runtime.oauth.connecting') } catch { /* ignore */ }
     return popupWindow
   }
 
@@ -69,7 +70,7 @@ export function useOAuth() {
     }
     const fallbackPopup = window.open(targetUrl, 'oauth_popup_' + service, popupFeatures)
     if (!fallbackPopup) {
-      alert.error('Popup was blocked. Please allow popups and try again.')
+      alert.error(t('runtime.oauth.popup_blocked'))
       return false
     }
     return true

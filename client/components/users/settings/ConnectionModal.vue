@@ -6,7 +6,7 @@
     <template #header>
       <div class="flex items-center w-full gap-4 px-2">
         <h2 class="font-semibold">
-          Connect account
+          {{ $t('user_settings.connections.modal.title') }}
         </h2>
       </div>
     </template>
@@ -15,15 +15,15 @@
       <div v-if="loading" class="text-center py-8">
         <Loader class="h-8 w-8 mx-auto mb-4" />
         <h3 class="text-lg font-medium text-neutral-900 mb-2">
-          Connecting your account...
+          {{ $t('user_settings.connections.modal.connecting_title') }}
         </h3>
         <p class="text-sm text-neutral-500">
-          Complete the authentication in the new tab that opened.
+          {{ $t('user_settings.connections.modal.connecting_description') }}
         </p>
       <UButton
         color="neutral"
         variant="soft"
-        label="Cancel"
+        :label="$t('common.actions.cancel')"
         class="mt-4"
         @click="loading = false"
       />
@@ -90,6 +90,7 @@ const loading = ref(false)
 const showWidgetModal = ref(false)
 const selectedService = ref(null)
 const alert = useAlert()
+const { t } = useI18n()
 const windowMessage = useWindowMessage(WindowMessageTypes.OAUTH_PROVIDER_CONNECTED)
 
 
@@ -99,7 +100,7 @@ onMounted(() => {
     // OAuth connection completed, close modal and refresh
     loading.value = false
     closeModal()
-    alert.success('Account connected successfully!')
+    alert.success(t('user_settings.connections.modal.connected_success'))
   }, {
     useMessageChannel: false,
     acknowledge: false
@@ -119,7 +120,7 @@ const closeModal = () => {
 
 function connect(service) {
   if (!service.enabled) {
-    useAlert().error('This service is not enabled. Please contact support.')
+    useAlert().error(t('user_settings.connections.modal.service_disabled'))
     return
   }
 

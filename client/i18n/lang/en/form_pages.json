@@ -1,0 +1,193 @@
+{
+    "form_pages": {
+        "shared": {
+            "help": "Help",
+            "how_it_works": "How does it work?",
+            "draft_warning": "This form is currently in Draft mode and is not publicly accessible, You can change the form status on the edit form page.",
+            "leave_confirm": "Changes you made may not be saved. Are you sure want to leave?"
+        },
+        "create_modal": {
+            "style_heading": "Choose a form style",
+            "style_description": "Choose how your form appears to respondents.",
+            "style_change_later": "You can change this later.",
+            "style_classic_title": "Classic",
+            "style_classic_description": "Multiple inputs per page; supports layout blocks and multi-page flows.",
+            "style_focused_title": "Focused",
+            "style_focused_description": "Typeform-style: one question per step for a streamlined flow.",
+            "base_heading": "Choose a base for your form",
+            "back_to_styles": "Back to styles",
+            "base_contact_form": "Simple contact form",
+            "base_ai_generator": "AI Form Generator",
+            "base_browse_templates": "Browse templates",
+            "ai_heading": "AI-powered form generator",
+            "ai_prompt_label": "Form Description",
+            "ai_prompt_help": "Give us a description of the form you want to build (the more details the better)",
+            "ai_prompt_placeholder": "A simple contact form, with a name, email and message field",
+            "ai_generate_button": "Generate a form",
+            "ai_generate_eta": "~30 sec",
+            "back_to_form_types": "Back to form types",
+            "ai_generation_failed": "Something went wrong, please try again."
+        },
+        "advanced_url_settings": {
+            "heading": "Advanced Settings",
+            "description": "Configure advanced sharing options for your form.",
+            "auto_submit_label": "Auto Submit Form",
+            "auto_submit_help": "Submits immediately after opening URL"
+        },
+        "embed_code": {
+            "copy_button": "Copy Code"
+        },
+        "embed_popup": {
+            "trigger": "Embed as popup",
+            "modal_title": "Add the popup to your website",
+            "demo_heading": "Demo",
+            "demo_intro": "A live preview of your form popup was just added to this page.",
+            "demo_cta": "Click on the button on the bottom {position} corner to try it",
+            "position_word_right": "right",
+            "position_word_left": "left",
+            "paste_snippet": "Paste the following code snippet in the <b>&lt;head&gt;</b> section of your website.",
+            "customization_heading": "Customization",
+            "bgcolor_label": "Circle Background Color",
+            "emoji_label": "Emoji",
+            "position_label": "Position",
+            "position_bottom_right": "Bottom Right",
+            "position_bottom_left": "Bottom Left",
+            "width_label": "Form pop max width (px)",
+            "focused_not_supported": "Popup mode is not currently supported for forms in Focused mode."
+        },
+        "extra_menu": {
+            "delete_modal_title": "Delete form",
+            "delete_modal_body": "If you want to permanently delete this form and all of its data, you can do so below.",
+            "delete_confirm": "Yes, delete it",
+            "open_form": "Open form",
+            "copy_link_to_share": "Copy link to share",
+            "duplicate_form": "Duplicate form",
+            "create_template": "Create Template",
+            "change_workspace": "Change workspace",
+            "delete_form": "Delete form",
+            "duplicate_failed": "Failed to duplicate form",
+            "delete_failed": "Failed to delete form"
+        },
+        "cleanings": {
+            "title": "Upgrade to unlock all features",
+            "owner_note": "Only you are seeing this notification, as owner of the form.",
+            "description": "The following features are disabled on the published form:",
+            "upgrade_plan_button": "Upgrade plan - Unlock all features",
+            "unlock_button": "Unlock all features",
+            "dismiss": "Dismiss",
+            "field_name": "\"{field}\" field",
+            "modal_title": "Upgrade to unlock all features for your form",
+            "modal_description": "Some features are disabled on the published form. Upgrade your plan to unlock these features and much more. Gain full access to all advanced features."
+        },
+        "qr_code": {
+            "tooltip": "QR Code",
+            "heading": "QR Code",
+            "description": "Scan the QR code to open the form.",
+            "alt": "QR Code for form",
+            "image_copied": "Image Copied!",
+            "copy_image": "Copy Image"
+        },
+        "powered_by": {
+            "label": "Made with Forms Mentorfy"
+        },
+        "regenerate_link": {
+            "trigger": "Regenerate link",
+            "modal_title": "Generate new form link",
+            "intro": "You can choose between two different URL formats for your form.",
+            "warning": "Be careful, changing your form URL is not a reversible operation",
+            "reminder": "Make sure to update your form URL everywhere where it's used.",
+            "readable_heading": "Human Readable URL",
+            "readable_description": "If your users are going to see this url, you might want to make nice and readable. Example:",
+            "readable_button": "Generate a Human Readable URL",
+            "random_heading": "Random ID URL",
+            "random_description": "If your user are not going to see your form url (if it's embedded), and if you prefer to have a random non-guessable URL. Example:",
+            "random_button": "Generate a Random ID URL"
+        },
+        "share_link": {
+            "heading": "Share Link",
+            "description": "Share your form with anyone by copying this link. You can use it on social media, in messages, or send it via email to reach your audience.",
+            "copy_button": "Copy Link"
+        },
+        "social_share": {
+            "via_email": "Share via Email",
+            "on_twitter": "Share on Twitter",
+            "on_linkedin": "Share on LinkedIn",
+            "share_text": "Check out this form: {title}",
+            "email_body": "I'd like to share this form with you: {url}"
+        },
+        "url_prefill": {
+            "trigger": "URL Pre-fill",
+            "modal_title": "Url Form Prefill",
+            "description": "Create dynamic links when sharing your form (whether it's embedded or not), that allows you to prefill your form fields. You can use this to personalize the form when sending it to multiple contacts for instance.",
+            "instructions": "Complete your form below and fill only the fields you want to prefill. You can even leave the required fields empty.",
+            "generate_button": "Generate Pre-filled URL",
+            "result_heading": "Your Prefill url"
+        },
+        "edit": {
+            "error_title": "Error",
+            "back_to_dashboard": "Back to dashboard",
+            "error_unauthorized": "You are not authorized to access this form.",
+            "error_not_found": "Form not found.",
+            "error_loading": "Error loading form",
+            "page_title": "Edit {title}",
+            "default_form_name": "Your Form"
+        },
+        "public": {
+            "default_title": "Create beautiful forms"
+        },
+        "show": {
+            "page_title": "Home",
+            "open_form": "Open form",
+            "edit_form": "Edit form",
+            "views_tooltip": "{count} views",
+            "submissions_tooltip": "{count} submissions",
+            "edited_at": "Edited {time}",
+            "not_found_title": "Form not found",
+            "not_found_description": "The form you're looking for doesn't exist or has been deleted.",
+            "go_to_dashboard": "Go to Dashboard"
+        },
+        "integrations": {
+            "empty_title": "No integrations yet",
+            "empty_description": "Get started by connecting your form to a third-party app below.",
+            "add_heading": "Add a new integration",
+            "page_title": "Form Integrations",
+            "page_title_with_form": "Form Integrations - {title}",
+            "not_found_error": "Integration not found",
+            "coming_soon_error": "This integration is not available yet",
+            "sections": {
+                "Notifications": "Notifications",
+                "Automation": "Automation",
+                "Databases": "Databases"
+            }
+        },
+        "share": {
+            "draft_title": "Draft Form",
+            "draft_description": "Only you can visit the form link while logged in. Visitors won't be able to access this form.",
+            "closed_title": "Closed Form",
+            "closed_description": "People can access the form but it won't accept new submissions.",
+            "heading": "Share Your Form",
+            "embed_heading": "Embed Form",
+            "embed_description": "Embed your form on your website by copying the HTML code below.",
+            "page_title": "Share Form",
+            "page_title_with_form": "Share Form - {title}"
+        },
+        "stats": {
+            "views": "Views",
+            "submissions": "Submissions",
+            "completion": "Completion",
+            "avg_duration": "Avg. Duration",
+            "duration_placeholder": "10 seconds",
+            "page_title": "Form Analytics",
+            "page_title_with_form": "Form Analytics - {title}"
+        },
+        "submissions": {
+            "page_title": "Form Submissions",
+            "page_title_with_form": "Form Submissions - {title}"
+        },
+        "create": {
+            "page_title": "Create a new Form",
+            "guest_page_title": "Create a new Form for free",
+            "guest_workspace_name": "Guest Workspace"
+        }
+    }
+}

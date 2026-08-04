@@ -6,7 +6,7 @@
   >
     <div class="mb-4">
       <p class="text-neutral-500 mb-4">
-        Receive Telegram messages on each form submission.
+        {{ $t('integrations.telegram.description') }}
       </p>
       <template v-if="providers.length">
         <FlatSelectInput
@@ -17,7 +17,7 @@
           option-key="id"
           emit-key="id"
           :required="true"
-          label="Select Telegram Account"
+          :label="$t('integrations.telegram.select_account_label')"
         >
           <template #help>
             <InputHelp>
@@ -26,16 +26,15 @@
                 class="text-blue-500 cursor-pointer"
                 @click="openConnectionsModal"
               >
-                Click here
+                {{ $t('integrations.telegram.connect_another_account') }}
               </a>
-                to connect another account.
               </span>
             </InputHelp>
           </template>
         </FlatSelectInput>
 
         <h4 class="font-bold mt-4">
-          Telegram message actions
+          {{ $t('integrations.telegram.message_actions_title') }}
         </h4>
         <notifications-message-actions
           v-model="integrationData.data"
@@ -49,7 +48,7 @@
         variant="outline"
         :loading="isLoading"
         @click.prevent="openConnectionsModal"
-        label="Connect Telegram account"
+        :label="$t('integrations.telegram.connect_account')"
       />
     </div>
   </IntegrationWrapper>

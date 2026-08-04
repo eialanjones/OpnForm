@@ -2,7 +2,7 @@
   <UButton
     :to="targetLink"
     color="form"
-    :label="props.label"
+    :label="props.label || $t('form_pages.powered_by.label')"
     trailing-icon="i-heroicons-arrow-up-right-20-solid"
     class="hover:no-underline hover:shadow-lg hover:scale-105 transition-all powered-by-button"
     :class="textColorClass"
@@ -19,7 +19,7 @@ const props = defineProps({
   },
   label: {
     type: String,
-    default: 'Made with Forms Mentorfy'
+    default: null
   },
   color: {
     type: String,

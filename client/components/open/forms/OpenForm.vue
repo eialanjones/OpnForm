@@ -8,7 +8,7 @@
     <div v-if="showBrandingMedia" class="mb-2">
       <div v-if="form.cover_picture">
         <div id="cover-picture" class="h-56 w-full overflow-hidden pointer-events-none">
-          <BlockMediaLayout :image="coverMedia" img-class="w-full h-full object-cover" alt="Form cover image" />
+          <BlockMediaLayout :image="coverMedia" img-class="w-full h-full object-cover" :alt="$t('form_share.renderer.cover_image_alt')" />
         </div>
       </div>
       <div
@@ -23,7 +23,7 @@
       >
         <img
           :src="form.logo_picture"
-          :alt="form.seo_meta?.site_name ? `${form.seo_meta.site_name} logo` : 'Form logo'"
+          :alt="form.seo_meta?.site_name ? $t('form_share.renderer.logo_alt_named', { name: form.seo_meta.site_name }) : $t('form_share.renderer.logo_alt')"
           :class="{ 'top-5': !form.cover_picture, '-top-10': form.cover_picture }"
           class="w-20 h-20 object-contain absolute transition-all"
         >

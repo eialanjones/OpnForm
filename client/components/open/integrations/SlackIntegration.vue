@@ -7,27 +7,26 @@
     <text-input
       :form="integrationData"
       name="data.slack_webhook_url"
-      label="Slack webhook url"
+      :label="$t('integrations.slack.webhook_url_label')"
       help="help"
       required
     >
       <template #help>
         <InputHelp>
           <span>
-            Receive slack message on each form submission.
+            {{ $t('integrations.slack.webhook_url_help') }}
             <a
               href="https://api.slack.com/messaging/webhooks"
               target="_blank"
             >
-              Click here
+              {{ $t('integrations.slack.webhook_url_help_link') }}
             </a>
-            to learn how to get a slack webhook url
           </span>
         </InputHelp>
       </template>
     </text-input>
     <h4 class="font-bold mt-4">
-      Slack message actions
+      {{ $t('integrations.slack.message_actions_title') }}
     </h4>
     <notifications-message-actions
       v-model="integrationData.data"

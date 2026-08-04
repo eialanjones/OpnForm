@@ -6,14 +6,14 @@
     <div
       class="uppercase tracking-wide text-xs font-bold dark:text-neutral-400 text-neutral-500 mb-1 leading-tight"
     >
-      Step: {{ Math.min(current + 1, steps.length) }} of {{ steps.length }}
+      {{ $t('app_shell.steps.step_of', { current: Math.min(current + 1, steps.length), total: steps.length }) }}
     </div>
     <div class="flex flex-col md:flex-row md:items-center md:justify-between">
       <div class="flex-1">
         <div
           class="text-lg font-bold dark:text-neutral-300 text-neutral-700 leading-tight"
         >
-          {{ steps[current] ? steps[current] : "Complete!" }}
+          {{ steps[current] ? steps[current] : $t('app_shell.steps.complete') }}
         </div>
       </div>
 

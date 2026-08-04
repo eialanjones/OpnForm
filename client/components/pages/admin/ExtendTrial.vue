@@ -1,7 +1,7 @@
 <template>
   <AdminCard
     v-if="props.user.stripe_id"
-    title="Extend trial"
+    :title="$t('admin.extend_trial.title')"
     icon="heroicons:calendar-16-solid"
   >
     <form
@@ -9,25 +9,23 @@
       @submit.prevent="extendTrial"
     >
       <p class="text-xs text-neutral-500">
-        You can extend the trial of subscribers that are still in the trial
-        period. Usually, you should not offer more than 7 days of trial, but
-        you can add up to 14 days if needed.
+        {{ $t('admin.extend_trial.description') }}
       </p>
       <div>
         <TextInput
           name="number_of_day"
           :form="form"
-          label="Number of days"
+          :label="$t('admin.extend_trial.days_label')"
           native-type="day"
           :required="true"
-          help="Number Of Days"
+          :help="$t('admin.extend_trial.days_help')"
           placeholder="7"
         />
         <UButton
           :loading="form.busy"
           type="submit"
           block
-          label="Apply Extend Trial"
+          :label="$t('admin.extend_trial.apply_button')"
         />
       </div>
     </form>

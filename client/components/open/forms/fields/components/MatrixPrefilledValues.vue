@@ -1,6 +1,6 @@
 <template>
   <p class="font-semibold">
-    Prefilled values
+    {{ $t('form_fields.matrix.prefilled_values') }}
   </p>
   <select-input
     v-for="row in matrixData"

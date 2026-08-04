@@ -3,18 +3,19 @@
     <div class="flex flex-col flex-wrap items-start justify-between gap-4 sm:flex-row sm:items-center">
       <div class="flex-1">
         <h3 class="text-lg font-medium text-neutral-900">
-          Custom Code <ProTag
+          {{ $t('workspace.custom_code.title') }} <ProTag
             class="mb-2 block"
-            upgrade-modal-title="Upgrade to Unlock Custom Code Capabilities"
-            upgrade-modal-description="On the Free plan, you can explore custom code features within the workspace settings. Upgrade your plan to implement custom scripts, styles, and advanced tracking in all your workspace forms. Elevate your forms' functionality and design with unlimited customization options."
+            :upgrade-modal-title="$t('workspace.custom_code.upgrade_modal_title')"
+            :upgrade-modal-description="$t('workspace.custom_code.upgrade_modal_description')"
           />
         </h3>
-        <p class="mt-1 text-sm text-neutral-500">
-          The code will be injected in the <b>head</b> section of all forms in this workspace. Workspace code is applied first, then form-specific code (if any).
-        </p>
+        <p
+          class="mt-1 text-sm text-neutral-500"
+          v-html="$t('workspace.custom_code.description')"
+        />
       </div>
       <UButton
-        label="Help"
+        :label="$t('workspace.actions.help')"
         icon="i-heroicons-question-mark-circle"
         variant="outline"
         color="neutral"
@@ -28,10 +29,10 @@
       class="mb-4"
       color="warning"
       variant="subtle"
-      title="Pro plan required"
-      description="Please upgrade your account to use workspace-level custom code."
+      :title="$t('workspace.pro.required_title')"
+      :description="$t('workspace.custom_code.pro_required_description')"
       :actions="[{
-        label: 'Try Pro plan',
+        label: $t('workspace.pro.try_pro'),
         color: 'warning',
         variant: 'solid',
         onClick: () => openSubscriptionModal()
@@ -51,7 +52,7 @@
               :form="customCodeForm"
               :disabled="!canUseCustomCode"
               :help="customCodeHelp"
-              label="Custom Code"
+              :label="$t('workspace.custom_code.title')"
               placeholder="<script>console.log('Hello World!')</script>"
             />
           </div>
@@ -60,18 +61,19 @@
             <div class="flex flex-col flex-wrap items-start justify-between gap-4 sm:flex-row sm:items-center">
               <div>
                 <h3 class="text-lg font-medium text-neutral-900">
-                  Custom CSS <ProTag
+                  {{ $t('workspace.custom_code.css_title') }} <ProTag
                     class="mb-2 block"
-                    upgrade-modal-title="Upgrade to Unlock Custom CSS"
-                    upgrade-modal-description="On the Free plan, you can explore custom CSS within the workspace settings. Upgrade to apply custom styles to all your workspace forms."
+                    :upgrade-modal-title="$t('workspace.custom_code.css_upgrade_modal_title')"
+                    :upgrade-modal-description="$t('workspace.custom_code.css_upgrade_modal_description')"
                   />
                 </h3>
-                <p class="mt-1 text-sm text-neutral-500">
-                  The CSS will be injected in the <b>head</b> of all forms in this workspace.
-                </p>
+                <p
+                  class="mt-1 text-sm text-neutral-500"
+                  v-html="$t('workspace.custom_code.css_description')"
+                />
               </div>
               <UButton
-                label="Help"
+                :label="$t('workspace.actions.help')"
                 icon="i-heroicons-question-mark-circle"
                 variant="outline"
                 color="neutral"
@@ -85,8 +87,8 @@
               class="mt-4"
               :form="customCodeForm"
               :disabled="!workspace.is_pro"
-              help="CSS only. Example: body { background: #f8fafc }"
-              label="Custom CSS"
+              :help="$t('workspace.custom_code.css_help')"
+              :label="$t('workspace.custom_code.css_title')"
               placeholder="body { background: #f8fafc }"
             />
           </div>
@@ -99,7 +101,7 @@
             :disabled="!workspace.is_pro"
             color="primary"
           >
-            Save Changes
+            {{ $t('workspace.actions.save_changes') }}
           </UButton>
         </div>
       </form>
@@ -115,9 +117,10 @@ const crisp = useCrisp()
 const { current: workspace } = useCurrentWorkspace()
 const { openSubscriptionModal: openModal } = useAppModals()
 const { invalidateAll } = useWorkspaces()
+const { t } = useI18n()
 
 const openSubscriptionModal = () => {
-  openModal({ modal_title: 'Upgrade to use workspace level custom code' })
+  openModal({ modal_title: t('workspace.custom_code.subscription_modal_title') })
 }
 
 const customCodeForm = useForm({
@@ -139,12 +142,12 @@ const canUseCustomCode = computed(() => {
 
 const customCodeHelp = computed(() => {
   if (canUseCustomCode.value) {
-    return 'Saves changes and visit any form page to test. Workspace code is applied to all forms in this workspace.'
+    return t('workspace.custom_code.help_enabled')
   }
   if (selfHosted.value && !allowSelfHosted.value && !hasCustomDomain.value) {
-    return 'Custom code is disabled for safety on self-hosted. Enable via CUSTOM_CODE_ENABLE_SELF_HOSTED=true. See technical docs: https://docs.opnform.com/introduction'
+    return t('workspace.custom_code.help_self_hosted_disabled')
   }
-  return 'Custom code requires a Pro plan and a custom domain configured for this workspace.'
+  return t('workspace.custom_code.help_requires_pro')
 })
 
 const saveChanges = () => {
@@ -158,12 +161,12 @@ const saveChanges = () => {
       },
     })
     .then((_data) => {
-      alert.success("Custom code settings saved.")
+      alert.success(t('workspace.custom_code.saved'))
       // Invalidate workspace cache to refresh data
       invalidateAll()
     })
     .catch((error) => {
-      alert.error("Failed to update custom code settings: " + (error.response?.data?.message || error.message))
+      alert.error(t('workspace.custom_code.save_error', { message: error.response?.data?.message || error.message }))
     })
 }
 

@@ -128,7 +128,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => env('APP_LOCALE', 'pt'),
 
     'locales' => [
         'ar' => 'AR',

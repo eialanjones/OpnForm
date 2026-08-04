@@ -40,8 +40,8 @@
               <text-input
                 :form="form"
                 :name="altName"
-                label="Alt text"
-                placeholder="Describe the image for accessibility (max 125 characters)"
+                :label="$t('form_editor.media.alt_text_label')"
+                :placeholder="$t('form_editor.media.alt_text_placeholder')"
                 :max-char-limit="125"
                 :show-char-limit="true"
               />
@@ -68,9 +68,11 @@ const props = defineProps({
   kind: { type: String, default: 'block' } // 'block' | 'cover'
 })
 
-const settingsAriaLabel = computed(() => props.kind === 'cover' ? 'Cover image settings' : 'Image settings')
-const focalLabel = computed(() => 'Focal point')
-const brightnessLabel = computed(() => 'Brightness')
+const { t } = useI18n()
+
+const settingsAriaLabel = computed(() => props.kind === 'cover' ? t('form_editor.media.cover_image_settings') : t('form_editor.media.image_settings'))
+const focalLabel = computed(() => t('form_editor.media.focal_point'))
+const brightnessLabel = computed(() => t('form_editor.media.brightness'))
 
 // Derived paths based on kind
 const showAlt = computed(() => props.kind === 'block')

@@ -1,7 +1,7 @@
 <template>
   <AdminCard
     v-if="props.user.two_factor_enabled"
-    title="Disable Two-Factor Authentication"
+    :title="$t('admin.two_factor_disable.title')"
     icon="i-heroicons-shield-exclamation-20-solid"
   >
     <div class="space-y-6 flex flex-col justify-between">
@@ -12,20 +12,18 @@
       >
         <template #description>
           <div>
-            Disabling two-factor authentication is a critical security action. 
-            Make sure you have a solid reason and strong proof of account ownership (such as verified identity or written consent) before proceeding. 
-            The user will be required to re-enable 2FA on their next login.
+            {{ $t('admin.two_factor_disable.warning') }}
           </div>
         </template>
       </UAlert>
 
       <VForm @submit.prevent="submit">
         <TextAreaInput
-          label="Reason"
+          :label="$t('admin.two_factor_disable.reason_label')"
           name="reason"
           :form="form"
           :required="true"
-          help="Reason will be sent to slack for internal use only."
+          :help="$t('admin.two_factor_disable.reason_help')"
         />
         <div class="flex space-x-2 mt-4">
           <UButton
@@ -33,7 +31,7 @@
             :loading="form.busy"
             type="submit"
             class="grow"
-            :label="'Disable Two-Factor Authentication'"
+            :label="$t('admin.two_factor_disable.title')"
           />
         </div>
       </VForm>
@@ -47,6 +45,7 @@ const props = defineProps({
 })
 const emit = defineEmits(['user-updated'])
 
+const { t } = useI18n()
 const alert = useAlert()
 
 const form = useForm({
@@ -62,7 +61,7 @@ async function submit() {
     emit('user-updated', response.user)
     form.reset()
   } catch (error) {
-    alert.error(error.data?.message || 'An error occurred.')
+    alert.error(error.data?.message || t('admin.errors.generic'))
   }
 }
 </script> 

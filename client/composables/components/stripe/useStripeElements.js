@@ -87,7 +87,7 @@ export const createStripeElements = (initialAccountId = null) => {
   const prepareStripeState = async (formSlug, providerId, isEditorPreview = false) => {
     if (!formSlug || !providerId) {
       resetStripeState()
-      return { success: false, message: 'Missing form slug or OAuth provider ID' }
+      return { success: false, message: t('runtime.payment.missing_form_or_provider') }
     }
     
     // Always ensure provider ID is a string

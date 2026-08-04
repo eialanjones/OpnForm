@@ -24,7 +24,7 @@
         <div class="bg-yellow-500 rounded-full w-2.5 h-2.5" />
         <div class="bg-green-500 rounded-full w-2.5 h-2.5" />
         <p class="text-sm text-neutral-500/70 text-sm ml-4 select-none">
-          Form Preview
+          {{ $t('form_blocks.preview.title') }}
         </p>
         <div class="flex-grow" />
         <UButton
@@ -35,13 +35,13 @@
           size="xs"
           @click="restartForm"
         >
-          Re-start
+          {{ $t('form_blocks.preview.restart') }}
         </UButton>
         <TrackClick
             name="form_editor_toggle_expand"
             :properties="{toggle: !isExpanded}"
           >
-        <UTooltip arrow :text="isExpanded ? 'Collapse' : 'Expand'">
+        <UTooltip arrow :text="isExpanded ? $t('form_blocks.preview.collapse') : $t('form_blocks.preview.expand')">
          
             <UButton
               :icon="isExpanded ? 'i-heroicons-arrows-pointing-in' : 'i-heroicons-arrows-pointing-out'"
@@ -73,7 +73,7 @@
             class="absolute top-2 right-2 z-20 flex items-center gap-2"
           >
             <UTooltip
-              text="Add block"
+              :text="$t('form_blocks.preview.add_block')"
               :kbds="['meta', 'B']"
               arrow
             >
@@ -86,12 +86,12 @@
               />
             </UTooltip>
             <UButtonGroup size="sm">
-              <UTooltip text="Edit question">
+              <UTooltip :text="$t('form_blocks.preview.edit_question')">
                 <UButton
                   icon="i-heroicons-cog-6-tooth"
                   color="neutral"
                   variant="outline"
-                  label="Edit"
+                  :label="$t('common.actions.edit')"
                   @click.stop="handleEditCurrent"
                 />
               </UTooltip>
@@ -121,6 +121,7 @@ import { FormMode } from "~/lib/forms/FormModeStrategy.js"
 import { useCrisp } from '~/composables/useCrisp.js'
 import TrackClick from '~/components/global/TrackClick.vue'
 
+const { t } = useI18n()
 const { hideChat, showChat } = useCrisp()
 
 const workingFormStore = useWorkingFormStore()
@@ -302,14 +303,14 @@ function handleEditCurrent() {
 const moreMenuItems = computed(() => ([
   [
     {
-      label: 'Duplicate',
+      label: t('common.actions.duplicate'),
       icon: 'i-heroicons-document-duplicate-20-solid',
       onClick: handleDuplicateCurrent
     }
   ],
   [
     {
-      label: 'Delete',
+      label: t('common.actions.delete'),
       icon: 'i-heroicons-trash-20-solid',
       color: 'error',
       onClick: handleDeleteCurrent

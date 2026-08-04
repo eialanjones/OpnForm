@@ -1,0 +1,104 @@
+{
+    "form_logic": {
+        "operators": {
+            "after": "After",
+            "at_least_x_days_ago": "At Least X Days Ago",
+            "at_least_x_days_from_now": "At Least X Days From Now",
+            "before": "Before",
+            "contains": "Contains",
+            "content_length_does_not_equal": "Content Length Does Not Equal",
+            "content_length_equals": "Content Length Equals",
+            "content_length_greater_than": "Content Length Greater Than",
+            "content_length_greater_than_or_equal_to": "Content Length Greater Than Or Equal To",
+            "content_length_less_than": "Content Length Less Than",
+            "content_length_less_than_or_equal_to": "Content Length Less Than Or Equal To",
+            "does_not_contain": "Does Not Contain",
+            "does_not_equal": "Does Not Equal",
+            "does_not_exist_in_submissions": "Does Not Exist In Submissions",
+            "does_not_match_regex": "Does Not Match Regex",
+            "ends_with": "Ends With",
+            "equals": "Equals",
+            "exists_in_submissions": "Exists In Submissions",
+            "greater_than": "Greater Than",
+            "greater_than_or_equal_to": "Greater Than Or Equal To",
+            "is_checked": "Is Checked",
+            "is_empty": "Is Empty",
+            "is_not_checked": "Is Not Checked",
+            "is_not_empty": "Is Not Empty",
+            "less_than": "Less Than",
+            "less_than_or_equal_to": "Less Than Or Equal To",
+            "matches_regex": "Matches Regex",
+            "next_month": "Next Month",
+            "next_week": "Next Week",
+            "next_year": "Next Year",
+            "not_paid": "Not Paid",
+            "on_or_after": "On Or After",
+            "on_or_before": "On Or Before",
+            "paid": "Paid",
+            "past_month": "Past Month",
+            "past_week": "Past Week",
+            "past_year": "Past Year",
+            "starts_with": "Starts With",
+            "within_next_x_days": "Within Next X Days",
+            "within_past_x_days": "Within Past X Days"
+        },
+        "column_condition": {
+            "operator_placeholder": "Operator",
+            "value_placeholder": "Value"
+        },
+        "condition_editor": {
+            "where_text": "When",
+            "operator_and": "And",
+            "operator_or": "Or"
+        },
+        "block_logic": {
+            "copy_from": "Copy from",
+            "copy_to": "Copy to",
+            "conditions_heading": "When following condition(s) are true",
+            "rules_count": "{count} rule | {count} rules",
+            "add_rule": "Add rule",
+            "then": "then",
+            "actions_heading": "Apply the following action(s)",
+            "actions_placeholder": "Select actions...",
+            "hidden_fields_note": "Note that hidden fields can never be required.",
+            "confirm_copy": "Confirm & Copy",
+            "copy_from_modal": {
+                "title": "Copy logic from another field",
+                "description": "Select another field/block to copy its logic and apply it to '{name}'.",
+                "placeholder": "Choose a field/block..."
+            },
+            "copy_to_modal": {
+                "title": "Copy logic to other fields",
+                "description": "Select other fields to copy the logic from '{name}' to.",
+                "placeholder": "Choose fields..."
+            },
+            "actions": {
+                "show_block": "Show Block",
+                "hide_block": "Hide Block",
+                "enable_block": "Enable Block",
+                "disable_block": "Disable Block",
+                "require_answer": "Require answer",
+                "make_it_optional": "Make it optional"
+            }
+        },
+        "group_control": {
+            "rule_placeholder": "Add condition on input field",
+            "add_condition": "Add Condition",
+            "add_group": "Add Group",
+            "select_field_error": "Please select a field to add condition on."
+        },
+        "query_builder": {
+            "where": "Where",
+            "and": "And",
+            "add_rule_button": "Add rule",
+            "add_rule": "Add Rule",
+            "add_rule_group": "Add Rule Group",
+            "turn_into_group": "Turn into group",
+            "turn_into_rule": "Turn into rule",
+            "select_field_placeholder": "Select field..."
+        },
+        "impersonation": {
+            "stop": "Stop Impersonation"
+        }
+    }
+}

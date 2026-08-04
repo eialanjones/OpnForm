@@ -11,18 +11,18 @@
       <div class="p-2 max-h-[300px] flex flex-col">
         <div class="flex items-center border-b -mx-2 px-2">
           <div class="font-semibold w-1/2 mb-2 flex-grow">
-            Insert Mention
+            {{ $t('widgets.mention_dropdown.title') }}
           </div>
           <input
             v-model="fallbackValue"
             class="p-1 mb-2 text-sm w-1/2 border rounded-md hover:bg-neutral-50"
-            placeholder="Fallback value"
+            :placeholder="$t('widgets.mention_dropdown.fallback_placeholder')"
           >
         </div>
         <div class="overflow-scroll pt-2">
           <div class="w-full max-w-xs mb-2">
             <div class="text-sm text-neutral-500 mb-1">
-              Select a field
+              {{ $t('widgets.mention_dropdown.select_field') }}
             </div>
             <div class="space-y-1">
               <div
@@ -53,7 +53,7 @@
             :disabled="!selectedField"
             @click="insertMention" 
           >
-            Insert
+            {{ $t('widgets.mention_dropdown.insert') }}
           </UButton>
           <UButton
             size="sm"
@@ -61,7 +61,7 @@
             variant="outline"
             @click="cancel"
           >
-            Cancel
+            {{ $t('common.actions.cancel') }}
           </UButton>
         </div>
       </div>

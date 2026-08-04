@@ -11,7 +11,7 @@
     >
       <template #label>
         <div class="flex items-center gap-0.5">
-          <span class="text-neutral-700 font-semibold text-xs">Form Style</span>
+          <span class="text-neutral-700 font-semibold text-xs">{{ $t('form_blocks.style_switch.label') }}</span>
           <UButton
             color="neutral"
             variant="ghost"
@@ -27,7 +27,7 @@
     <UModal
       v-model:open="showConfirmModal"
       :dismissible="false"
-      :title="`Switch to ${pendingStyleLabel} style?`"
+      :title="$t('form_blocks.style_switch.confirm_title', { style: pendingStyleLabel })"
       :description="modalDescription"
     >
       <template #body>
@@ -44,12 +44,12 @@
             </div>
           </div>
         </div>
-        <div v-else class="text-sm text-neutral-600">No blocks will be removed.</div>
+        <div v-else class="text-sm text-neutral-600">{{ $t('form_blocks.style_switch.no_blocks_removed') }}</div>
       </template>
       <template #footer>
         <div class="flex justify-between w-full">
-          <UButton color="neutral" variant="outline" label="Cancel" @click="cancelSwitch" />
-          <UButton color="primary" :label="`Switch to ${pendingStyleLabel}`" @click="confirmSwitch" />
+          <UButton color="neutral" variant="outline" :label="$t('common.actions.cancel')" @click="cancelSwitch" />
+          <UButton color="primary" :label="$t('form_blocks.style_switch.confirm_button', { style: pendingStyleLabel })" @click="confirmSwitch" />
         </div>
       </template>
     </UModal>
@@ -63,6 +63,7 @@ import BlockTypeIcon from '../BlockTypeIcon.vue'
 import seedFocusedFirstBlockImage from '~/lib/forms/seed-focused-image'
 import { ensureSettingsObject } from '@/composables/forms/initForm'
 
+const { t } = useI18n()
 const workingFormStore = useWorkingFormStore()
 const formRef = storeToRefs(workingFormStore).content
 const crisp = useCrisp()
@@ -70,22 +71,22 @@ const crisp = useCrisp()
 const form = computed(() => formRef.value || {})
 const currentStyle = computed(() => form.value.presentation_style || 'classic')
 
-const styleOptions = [
+const styleOptions = computed(() => [
   {
     name: 'classic',
-    label: 'Classic',
+    label: t('form_blocks.style_switch.styles.classic'),
     icon: 'opnform:form-style-classic',
     iconClass: 'w-[91px] h-[65px] rounded shadow *:transition-colors duration-150 ease-out [--icon-fg:#737373] [--icon-muted:#D4D4D4] group-hover:[--icon-fg:#ae4900] group-hover:[--icon-muted:#fe9a4f] group-aria-selected:[--icon-fg:#ae4900] group-aria-selected:[--icon-muted:#fe9a4f] group-[aria-selected=true]:[--icon-fg:#ae4900] group-[aria-selected=true]:[--icon-muted:#fe9a4f]',
-    tooltip: 'Classic form: multiple inputs per page, multi-line layout, supports multiple pages and layout blocks.'
+    tooltip: t('form_blocks.style_switch.tooltips.classic')
   },
   {
     name: 'focused',
-    label: 'Focused',
+    label: t('form_blocks.style_switch.styles.focused'),
     icon: 'opnform:form-style-focused',
     iconClass: 'w-[91px] h-[65px] rounded shadow *:transition-colors duration-150 ease-out [--icon-fg:#737373] [--icon-muted:#D4D4D4] group-hover:[--icon-fg:#ae4900] group-hover:[--icon-muted:#fe9a4f] group-aria-selected:[--icon-fg:#ae4900] group-aria-selected:[--icon-muted:#fe9a4f] group-[aria-selected=true]:[--icon-fg:#ae4900] group-[aria-selected=true]:[--icon-muted:#fe9a4f]',
-    tooltip: 'Typeform-like, one question per step.'
+    tooltip: t('form_blocks.style_switch.tooltips.focused')
   }
-]
+])
 
 const showConfirmModal = ref(false)
 const removalList = ref([])
@@ -94,13 +95,15 @@ const selectorKey = ref(0)
 
 // No local selection state. Display follows the actual form style (currentStyle).
 
-const pendingStyleLabel = computed(() => pendingStyle.value === 'focused' ? 'Focused' : 'Classic')
+const pendingStyleLabel = computed(() => pendingStyle.value === 'focused'
+  ? t('form_blocks.style_switch.styles.focused')
+  : t('form_blocks.style_switch.styles.classic'))
 
 const modalDescription = computed(() => {
   const count = removalList.value.length
   return count > 0
-    ? `Switching to Focused will remove ${count} block${count>1?'s':''} not supported in this mode.`
-    : 'Switch to Focused style.'
+    ? t('form_blocks.style_switch.removal_description', { count }, count)
+    : t('form_blocks.style_switch.switch_description')
 })
 
 // Use shared helper to seed first block image for focused mode
@@ -121,7 +124,7 @@ function onSelectStyle(newVal) {
   const props = Array.isArray(form.value.properties) ? form.value.properties : []
   removalList.value = props
     .filter(p => p && disallowedNames.has(p.type))
-    .map(p => ({ type: p.type, title: blocksTypes[p.type]?.title || p.type, name: p.name }))
+    .map(p => ({ type: p.type, title: t(`form_blocks.types.${p.type}`, blocksTypes[p.type]?.title || p.type), name: p.name }))
 
   pendingStyle.value = newVal
 

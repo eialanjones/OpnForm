@@ -7,7 +7,7 @@
     <div 
       class="rectangle-outer grid grid-cols-5 gap-2"
       role="radiogroup"
-      :aria-label="`Scale from ${minScale} to ${maxScale}`"
+      :aria-label="$t('inputs.scale.aria_group', { min: minScale, max: maxScale })"
     >
       <div
         v-for="(i, index) in scaleList"
@@ -23,7 +23,7 @@
         role="radio"
         :tabindex="getScaleTabIndex(i)"
         :aria-checked="compVal === i"
-        :aria-label="`Scale value ${formatNumber(i)}`"
+        :aria-label="$t('inputs.scale.aria_value', { value: formatNumber(i) })"
         @click="setScale(i)"
         @keydown="handleKeydown($event, index)"
       >

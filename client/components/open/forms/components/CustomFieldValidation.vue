@@ -9,7 +9,7 @@
         class="text-neutral-500"
         @click="showCopyFormModal = true"
       >
-        Copy from
+        {{ $t('form_editor.custom_validation.copy_from') }}
       </UButton>
       <UButton
         color="neutral"
@@ -19,7 +19,7 @@
         class="text-neutral-500"
         @click="showCopyToModal = true"
       >
-        Copy to
+        {{ $t('form_editor.custom_validation.copy_to') }}
       </UButton>
       <UButton
         color="neutral"
@@ -29,7 +29,7 @@
         class="text-neutral-500"
         @click="clearAll"
       >
-        Clear
+        {{ $t('common.actions.clear') }}
       </UButton>
       <UButton
         color="neutral"
@@ -43,10 +43,11 @@
 
     <!-- Validation Rules Card -->
     <div class="mt-4">
-      <p class="text-xs font-medium text-gray-600 mb-2">When should this field be valid?</p>
-      <p class="text-neutral-500 text-xs mb-3">
-        Set <span class="font-semibold">rules that make this field valid</span>. If rules aren't met, the field shows an error.
-      </p>
+      <p class="text-xs font-medium text-gray-600 mb-2">{{ $t('form_editor.custom_validation.when_valid_title') }}</p>
+      <p
+        class="text-neutral-500 text-xs mb-3"
+        v-html="$t('form_editor.custom_validation.when_valid_description')"
+      />
       <div class="p-3 border border-gray-200 rounded-lg bg-gray-50/50 hover:bg-gray-50 transition-colors">
         <UPopover
           :content="{ 
@@ -66,7 +67,7 @@
             size="sm"
             class="w-full justify-start font-medium hover:bg-white transition-colors"
           >
-          {{ hasConditions ? `${conditionsCount} rule${conditionsCount > 1 ? 's' : ''}` : 'Add rule' }}
+          {{ hasConditions ? $t('form_editor.custom_validation.rules_count', conditionsCount) : $t('form_editor.custom_validation.add_rule') }}
           </UButton>
 
           <template #content>
@@ -102,15 +103,16 @@
 
     <!-- Error Message Card -->
     <div>
-      <p class="text-xs font-medium text-gray-600 mb-2">What message to show if validation fails?</p>
-      <p class="text-neutral-500 text-xs mb-3">
-        This message appears when <span class="font-semibold">validation rules aren't met</span>.
-      </p>
+      <p class="text-xs font-medium text-gray-600 mb-2">{{ $t('form_editor.custom_validation.error_message_title') }}</p>
+      <p
+        class="text-neutral-500 text-xs mb-3"
+        v-html="$t('form_editor.custom_validation.error_message_description')"
+      />
       <div class="p-3 border border-gray-200 rounded-lg bg-gray-50/50 hover:bg-gray-50 transition-colors">
         <text-input
           name="error_message"
           :form="field.validation"
-          label="Error message"
+          :label="$t('form_editor.custom_validation.error_message_label')"
         />
       </div>
     </div>
@@ -121,20 +123,20 @@
       variant="subtle"
       size="sm"
       class="mt-4"
-      description="Save your form to apply changes."
+      :description="$t('form_editor.custom_validation.save_notice')"
     />
 
     <UModal
       v-model:open="showCopyFormModal"
-      title="Copy validation from another field"
-      :description="`Select another field to copy its validation rules and apply them to '${field.name}'.`"
+      :title="$t('form_editor.custom_validation.copy_from_title')"
+      :description="$t('form_editor.custom_validation.copy_from_description', { field: field.name })"
     >
       <template #body>
         <USelectMenu
           v-model="copyFrom"
           :items="copyFromOptions"
           value-key="value"
-          placeholder="Choose a field..."
+          :placeholder="$t('form_editor.custom_validation.choose_field_placeholder')"
           searchable
         />
       </template>
@@ -143,28 +145,28 @@
         <UButton
           color="neutral"
           variant="outline"
-          label="Close"
+          :label="$t('common.actions.close')"
           @click="showCopyFormModal = false"
         />
         <UButton
           color="primary"
           @click="copyValidation"
-          label="Confirm & Copy"
+          :label="$t('form_editor.custom_validation.confirm_copy')"
         />
       </template>
     </UModal>
 
     <UModal
       v-model:open="showCopyToModal"
-      title="Copy validation to other fields"
-      :description="`Select other fields to copy the validation rules from '${field.name}' to.`"
+      :title="$t('form_editor.custom_validation.copy_to_title')"
+      :description="$t('form_editor.custom_validation.copy_to_description', { field: field.name })"
     >
       <template #body>
         <USelectMenu
           v-model="copyTo"
           :items="copyToOptions"
           value-key="value"
-          placeholder="Choose fields..."
+          :placeholder="$t('form_editor.custom_validation.choose_fields_placeholder')"
           :multiple="true"
           searchable
         />
@@ -174,13 +176,13 @@
         <UButton
           color="neutral"
           variant="outline"
-          label="Close"
+          :label="$t('common.actions.close')"
           @click="showCopyToModal = false"
         />
         <UButton
           color="primary"
           @click="copyValidationToFields"
-          label="Confirm & Copy"
+          :label="$t('form_editor.custom_validation.confirm_copy')"
         />
       </template>
     </UModal>

@@ -20,7 +20,7 @@
               d="M4 6h16M4 12h16M4 18h16"
             />
           </svg>
-          Show advanced sharing options
+          {{ $t('form_editor.advanced_url_settings.title') }}
         </h3>
       </div>
     </template>
@@ -28,8 +28,8 @@
       :model-value="modelValue.auto_submit"
       name="auto_submit"
       class="mt-4"
-      label="Auto Submit Form"
-      help="Form will auto submit immediate after open URL"
+      :label="$t('form_editor.advanced_url_settings.auto_submit_label')"
+      :help="$t('form_editor.advanced_url_settings.auto_submit_help')"
       @update:model-value="onChangeAutoSubmit"
     />
   </collapse>

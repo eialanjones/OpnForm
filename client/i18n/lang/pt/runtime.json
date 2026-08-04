@@ -1,0 +1,59 @@
+{
+    "runtime": {
+        "navigation": {
+            "help": "Ajuda",
+            "help_center": "Central de ajuda",
+            "api_docs": "Documentação da API",
+            "contact_support": "Falar com o suporte"
+        },
+        "auth": {
+            "impersonation_expired": "O token do usuário expirou. Você saiu da conta de administrador."
+        },
+        "oidc": {
+            "linked": "Sua conta SSO foi vinculada.",
+            "link_failed": "Não foi possível vincular sua conta SSO."
+        },
+        "oauth": {
+            "connect_error": "Ocorreu um erro ao conectar a conta",
+            "popup_blocked": "O pop-up foi bloqueado. Permita pop-ups e tente novamente.",
+            "connecting": "Conectando…"
+        },
+        "tokens": {
+            "created": "Token criado com sucesso",
+            "deleted": "Token excluído com sucesso",
+            "abilities": {
+                "manage_integrations": "Gerenciar integrações",
+                "forms_read": "Formulários – Leitura",
+                "forms_write": "Formulários – Escrita",
+                "workspaces_read": "Workspaces – Leitura",
+                "workspaces_write": "Workspaces – Escrita",
+                "workspace_users_read": "Usuários do workspace – Leitura",
+                "workspace_users_write": "Usuários do workspace – Escrita"
+            }
+        },
+        "form_logic": {
+            "invalid_condition_group": "O grupo de condições precisa ter uma lista de condições filhas",
+            "invalid_field_reference": "O campo referenciado {field} não existe mais",
+            "no_conditions": "Nenhuma condição definida",
+            "no_actions": "Nenhuma ação definida",
+            "invalid_action": "Configuração de ação inválida",
+            "invalid_condition": "Configuração de condição inválida"
+        },
+        "working_form": {
+            "custom_code_disabled_title": "Código personalizado desativado",
+            "custom_code_self_hosted": "Código personalizado fica desativado por segurança na instalação self-hosted. Consulte a documentação técnica para saber mais.",
+            "custom_code_needs_domain": "Seu formulário precisa usar um domínio personalizado para adicionar um bloco de código.",
+            "view_docs": "Ver documentação",
+            "help": "Ajuda",
+            "block_not_self_hosted": "{block} não é permitido na versão self-hosted. Use nossa versão hospedada.",
+            "block_max_count": "Apenas {count} bloco(s) '{block}' são permitidos por formulário.",
+            "login_to_add_block": "Faça login para adicionar este bloco.",
+            "field_removed": "Campo removido",
+            "undo_hint": "Ctrl + Z para desfazer",
+            "undo": "Desfazer"
+        },
+        "payment": {
+            "missing_form_or_provider": "Slug do formulário ou ID do provedor OAuth ausente"
+        }
+    }
+}

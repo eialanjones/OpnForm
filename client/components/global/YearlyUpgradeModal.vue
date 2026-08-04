@@ -17,7 +17,7 @@
             class="inline-flex items-center gap-1.5 bg-gradient-to-r from-green-100 to-emerald-100 text-green-700 px-4 py-1.5 rounded-full text-xs font-semibold mb-6 shadow-sm border border-green-200/50 animate-pulse-subtle"
           >
             <Icon name="mdi:gift" class="w-4 h-4 animate-bounce-subtle" />
-            <span>Special Offer</span>
+            <span>{{ $t('app_shell.yearly_modal.special_offer') }}</span>
           </div>
         </Transition>
 
@@ -27,11 +27,16 @@
           enter-from-class="opacity-0 translate-y-4"
           enter-to-class="opacity-100 translate-y-0"
         >
-          <h2
+          <i18n-t
+            keypath="app_shell.yearly_modal.headline"
+            tag="h2"
+            scope="global"
             class="text-3xl font-bold text-neutral-900 mb-3"
           >
-            Upgrade to <span class="text-primary bg-gradient-to-r bg-clip-text">Yearly</span> and Save Big
-          </h2>
+            <template #plan>
+              <span class="text-primary bg-gradient-to-r bg-clip-text">{{ $t('app_shell.yearly_modal.headline_plan') }}</span>
+            </template>
+          </i18n-t>
         </Transition>
 
         <Transition
@@ -40,11 +45,16 @@
           enter-from-class="opacity-0 translate-y-4"
           enter-to-class="opacity-100 translate-y-0"
         >
-          <p
+          <i18n-t
+            keypath="app_shell.yearly_modal.subtitle"
+            tag="p"
+            scope="global"
             class="text-sm text-neutral-600 mb-8"
           >
-            Get <span class="text-primary font-bold">2 months for free</span> when you switch to annual billing
-          </p>
+            <template #offer>
+              <span class="text-primary font-bold">{{ $t('app_shell.yearly_modal.subtitle_offer') }}</span>
+            </template>
+          </i18n-t>
         </Transition>
 
         <Transition
@@ -57,19 +67,19 @@
             class="flex items-center justify-center gap-8 mb-8 pb-8 border-b border-neutral-200"
           >
             <div class="text-center transform transition-all duration-300 hover:scale-105">
-              <p class="text-neutral-500 mb-2 text-sm">Monthly plan</p>
-              <p class="text-3xl font-semibold text-neutral-900">$19<span class="text-lg">/month</span></p>
+              <p class="text-neutral-500 mb-2 text-sm">{{ $t('app_shell.yearly_modal.monthly_plan') }}</p>
+              <p class="text-3xl font-semibold text-neutral-900">$19<span class="text-lg">{{ $t('app_shell.yearly_modal.per_month') }}</span></p>
             </div>
 
             <div class="h-16 w-px bg-gradient-to-b from-transparent via-neutral-200 to-transparent"></div>
             
             <div class="text-center transform transition-all duration-300 hover:scale-105 relative">
               <div class="absolute -top-4 -right-2 bg-green-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full animate-bounce-subtle">
-                BEST
+                {{ $t('app_shell.yearly_modal.best') }}
               </div>
-              <p class="text-primary mb-2 text-sm font-medium">Yearly plan</p>
-              <p class="text-4xl font-bold text-primary bg-gradient-to-r bg-clip-text">$16<span class="text-lg">/month</span></p>
-              <p class="text-xs text-neutral-500 mt-1">$192 billed annually</p>
+              <p class="text-primary mb-2 text-sm font-medium">{{ $t('app_shell.yearly_modal.yearly_plan') }}</p>
+              <p class="text-4xl font-bold text-primary bg-gradient-to-r bg-clip-text">$16<span class="text-lg">{{ $t('app_shell.yearly_modal.per_month') }}</span></p>
+              <p class="text-xs text-neutral-500 mt-1">{{ $t('app_shell.yearly_modal.billed_annually') }}</p>
             </div>
           </div>
         </Transition>
@@ -116,7 +126,7 @@
                 :loading="loading"
                 @click="handleUpgrade"
               >
-                Upgrade to Yearly Now
+                {{ $t('app_shell.yearly_modal.cta') }}
               </UButton>
             </div>
           </Transition>
@@ -127,11 +137,16 @@
             enter-from-class="opacity-0"
             enter-to-class="opacity-100"
           >
-            <p
+            <i18n-t
+              keypath="app_shell.yearly_modal.charge_notice"
+              tag="p"
+              scope="global"
               class="text-xs text-neutral-500 mb-2"
             >
-              By clicking, you'll be charged <span class="font-bold">$192 annually</span>.
-            </p>
+              <template #amount>
+                <span class="font-bold">{{ $t('app_shell.yearly_modal.charge_amount') }}</span>
+              </template>
+            </i18n-t>
           </Transition>
         </div>
       </div>
@@ -151,7 +166,7 @@
             :loading="loading"
             @click="closeModal"
           >
-            No thanks
+            {{ $t('app_shell.yearly_modal.no_thanks') }}
           </UButton>
         </div>
       </Transition>
@@ -162,6 +177,7 @@
 <script setup>
 import { useStorage } from '@vueuse/core'
 
+const { t } = useI18n()
 const amplitude = useAmplitude()
 const auth = useAuth()
 const { data: user } = auth.user()
@@ -220,11 +236,11 @@ watch(isEligibleForModal, (isEligible) => {
   }
 }, { immediate: true })
 
-const benefits = [
-  'Save 20% compared to monthly billing',
-  'Lock in current pricing for a full year',
-  'Keep access to the same features'
-]
+const benefits = computed(() => [
+  t('app_shell.yearly_modal.benefits.save'),
+  t('app_shell.yearly_modal.benefits.lock_pricing'),
+  t('app_shell.yearly_modal.benefits.same_features')
+])
 
 const closeModal = () => {
   isModalOpen.value = false
@@ -247,9 +263,9 @@ const handleUpgrade = async () => {
     closeModal()
   }).catch((error) => {
     loading.value = false
-    let message = error.data?.message || 'Failed to upgrade to yearly plan. Please try again later.'
+    let message = error.data?.message || t('app_shell.yearly_modal.upgrade_error')
     let actions = [{
-      label: 'Manage Billing',
+      label: t('app_shell.yearly_modal.manage_billing'),
       icon: 'i-heroicons-arrow-top-right-on-square',
       onclick: () => { window.open('/home?user-settings=billing', '_blank') }
     }]

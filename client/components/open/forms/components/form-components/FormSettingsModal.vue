@@ -6,7 +6,7 @@
   >
     <SettingsModalPage
       id="general"
-      label="General"
+      :label="$t('common.labels.general')"
       icon="i-heroicons-information-circle"
     >
       <FormInformation />
@@ -14,7 +14,7 @@
 
     <SettingsModalPage
       id="submission"
-      label="Submission Settings"
+      :label="$t('form_blocks.sections.submission_settings')"
       icon="i-heroicons-paper-airplane"
     >
       <FormSubmissionSettings />
@@ -22,7 +22,7 @@
 
     <SettingsModalPage
       id="security"
-      label="Security & Access"
+      :label="$t('form_blocks.sections.security_access')"
       icon="i-heroicons-shield-check"
     >
       <FormSecurityAccess />
@@ -30,7 +30,7 @@
 
     <SettingsModalPage
       id="seo"
-      label="SEO & Social Sharing"
+      :label="$t('form_blocks.sections.seo_social_sharing')"
       icon="i-heroicons-link"
     >
       <FormCustomSeo />
@@ -38,7 +38,7 @@
 
     <SettingsModalPage
       id="custom-code"
-      label="Custom Code"
+      :label="$t('form_blocks.sections.custom_code')"
       icon="i-heroicons-code-bracket"
     >
       <FormCustomCode />

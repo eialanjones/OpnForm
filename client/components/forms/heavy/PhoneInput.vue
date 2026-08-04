@@ -30,7 +30,7 @@
         :border-radius="resolvedBorderRadius"
         :popover-width="width"
         :ui="{ container: ui.countrySelectWidth() }"
-        :placeholder="'Select a country'"
+        :placeholder="$t('widgets.phone_input.select_country')"
         :uppercase-labels="true"
         @update:model-value="onChangeCountryCode"
       >

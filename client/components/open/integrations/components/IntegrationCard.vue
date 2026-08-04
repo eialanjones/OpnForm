@@ -28,7 +28,7 @@
           :color="integration.status  ? 'success' : 'neutral'"
           :icon="integration.status ? 'i-heroicons-play-solid' : 'i-heroicons-pause-solid'"
         >
-          {{ integration.status ? "Active" : "Paused" }}
+          {{ integration.status ? $t('common.states.active') : $t('integrations.card.paused') }}
         </UBadge>
     </div>
 
@@ -106,6 +106,7 @@ const props = defineProps({
   },
 })
 
+const { t } = useI18n()
 const alert = useAlert()
 const { availableIntegrations, deleteIntegration } = useFormIntegrations()
 const { getActionComponent } = useComponentRegistry()
@@ -134,7 +135,7 @@ const dropdownItems = computed(() => {
   // Edit option for non-external integrations or editable external ones
   if (!isExternal && isEditable) {
     items.push({
-      label: 'Edit',
+      label: t('common.actions.edit'),
       icon: 'i-heroicons-pencil',
       onClick: () => {
         showIntegrationModal.value = true
@@ -142,7 +143,7 @@ const dropdownItems = computed(() => {
     })
   } else if (integrationTypeInfo.value?.url && isExternal) {
     items.push({
-      label: `Edit on ${integrationTypeInfo.value.name}`,
+      label: t('integrations.card.edit_on', { name: integrationTypeInfo.value.name }),
       icon: 'i-heroicons-pencil',
       to: integrationTypeInfo.value.url
     })
@@ -150,7 +151,7 @@ const dropdownItems = computed(() => {
 
   // Past Events option
   items.push({
-    label: 'Past Events',
+    label: t('integrations.card.past_events'),
     icon: 'i-heroicons-clock',
     onClick: () => {
       showIntegrationEventsModal.value = true
@@ -159,7 +160,7 @@ const dropdownItems = computed(() => {
 
   // Delete option
   items.push({
-    label: 'Delete Integration',
+    label: t('integrations.card.delete_integration'),
     icon: 'i-heroicons-trash',
     onClick: () => {
       deleteFormIntegration(props.integration.id)
@@ -174,10 +175,9 @@ const deleteIntegrationMutation = deleteIntegration()
 
 const deleteFormIntegration = (integrationid) => {
   const isExternal = integrationTypeInfo.value?.is_external === true
-  let msg = 'Do you really want to delete this form integration?'
-  if (isExternal) {
-    msg += ' This might be affect on your '+ integrationTypeInfo.value.name +' workflow.'
-  }
+  const msg = isExternal
+    ? t('integrations.card.delete_confirm_external', { name: integrationTypeInfo.value.name })
+    : t('integrations.card.delete_confirm')
 
   alert.confirm(msg, () => {
     loadingDelete.value = true
@@ -185,10 +185,10 @@ const deleteFormIntegration = (integrationid) => {
       formId: props.form.id,
       integrationId: integrationid
     }).then(() => {
-      alert.success("Integration deleted successfully!")
+      alert.success(t('integrations.card.deleted_success'))
       loadingDelete.value = false
     }).catch((error) => {
-      alert.error(error.data?.message || "Something went wrong!")
+      alert.error(error.data?.message || t('common.errors.something_went_wrong'))
       loadingDelete.value = false
     })
   })

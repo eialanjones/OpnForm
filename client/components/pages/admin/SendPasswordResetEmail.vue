@@ -4,7 +4,7 @@
     icon="i-heroicons-key-16-solid"
     :loading="form.busy"
     @click="resetPassword"
-    label="Reset Password"
+    :label="$t('admin.password_reset.label')"
   />
 </template>
 
@@ -13,13 +13,15 @@ const props = defineProps({
     user: { type: Object, required: true }
 })
 
+const { t } = useI18n()
+
 const form = useForm({
   user_id: props.user.id
 })
 
 const resetPassword = () => {
     return useAlert().confirm(
-        "Are you sure you want to send a password reset email?",
+        t("admin.password_reset.confirm"),
         () => {
             form
                 .patch('/moderator/send-password-reset-email')
@@ -27,7 +29,7 @@ const resetPassword = () => {
                     useAlert().success(data.message)
                 })
                 .catch((error) => {
-                    useAlert().error(error.data?.message || 'Failed to send password reset email')
+                    useAlert().error(error.data?.message || t('admin.password_reset.error'))
                 })
         })
 }

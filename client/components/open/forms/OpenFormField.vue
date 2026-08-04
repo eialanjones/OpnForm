@@ -31,7 +31,7 @@
           >
             <UTooltip
               arrow
-              text="Add new field"
+              :text="$t('form_share.field_actions.add_field')"
               :content="{ side: 'left' }"
               :ui="{ container: 'z-50' }"
             >
@@ -48,7 +48,7 @@
           >
             <UTooltip
               arrow
-              text="Edit field settings"
+              :text="$t('form_share.field_actions.edit_field_settings')"
               :content="{ side: 'left' }"
               :ui="{ container: 'z-50' }"
             >
@@ -65,7 +65,7 @@
           >
             <UTooltip
               arrow
-              text="Delete field"
+              :text="$t('form_share.field_actions.delete_field')"
               :content="{ side: 'left' }"
               :ui="{ container: 'z-50' }"
             >

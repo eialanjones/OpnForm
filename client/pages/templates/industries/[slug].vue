@@ -6,7 +6,7 @@
       v-if="industry === null || !industry"
       class="text-center my-4"
     >
-      We could not find this industry.
+      {{ $t('marketing.template_industry.not_found') }}
     </p>
     <template v-else>
       <section class="py-12 sm:py-16 bg-neutral-50 border-b border-neutral-200">
@@ -58,6 +58,7 @@ defineRouteRules({
   swr: 3600,
 })
 
+const { t } = useI18n()
 const route = useRoute()
 const { list } = useTemplates()
 const { industries: industriesMap } = useTemplateMeta()
@@ -77,17 +78,17 @@ const templates = computed(() => {
 })
 const breadcrumbs = computed(() => {
   if (!industry.value) {
-    return [{ route: { name: "templates" }, label: "Templates" }]
+    return [{ route: { name: "templates" }, label: t("marketing.template_page.breadcrumb_templates") }]
   }
   return [
-    { route: { name: "templates" }, label: "Templates" },
+    { route: { name: "templates" }, label: t("marketing.template_page.breadcrumb_templates") },
     { label: industry.value.name },
   ]
 })
 
 useOpnSeoMeta({
   title: () => {
-    if (!industry.value) return "Form Templates"
+    if (!industry.value) return t('marketing.templates_index.title')
     if (industry.value.meta_title.length > 60) {
       return industry.value.meta_title
     }
@@ -96,7 +97,7 @@ useOpnSeoMeta({
   description: () =>
     industry.value
       ? industry.value.meta_description
-      : "Our collection of beautiful templates to create your own forms!",
+      : t('marketing.templates_index.description'),
 })
 useHead({
   titleTemplate: (titleChunk) => {
@@ -108,9 +109,9 @@ useHead({
     ) {
       return titleChunk
         ? `${titleChunk} - Forms Mentorfy`
-        : "Form Templates - Forms Mentorfy"
+        : `${t('marketing.templates_index.title')} - Forms Mentorfy`
     }
-    return titleChunk ? titleChunk : "Form Templates - Forms Mentorfy"
+    return titleChunk ? titleChunk : `${t('marketing.templates_index.title')} - Forms Mentorfy`
   },
 })
 </script>

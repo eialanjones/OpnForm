@@ -1,0 +1,172 @@
+{
+    "form_fields": {
+        "edit": {
+            "empty_state": "Click on field to edit it.",
+            "copy_field_id": "Copy field ID",
+            "field_id_copied": "Field ID copied to clipboard",
+            "change_type": "Change type",
+            "tabs": {
+                "logic": "Logic",
+                "validation": "Validation"
+            }
+        },
+        "state": {
+            "hidden": "Hidden"
+        },
+        "width": {
+            "label": "Block Width",
+            "full": "Full"
+        },
+        "block_options": {
+            "name_label": "Block Name",
+            "content_label": "Content",
+            "code_content_help": "You can add any html code, including iframes",
+            "next_button_label": "Next button label",
+            "previous_button_label": "Previous button label",
+            "previous_button_help": "Displayed on the next page",
+            "upload_image_label": "Upload Image",
+            "video_url_label": "Video URL",
+            "video_url_help": "You can add a video URL here. It will be displayed as a video block.",
+            "alignment": {
+                "label": "Text Alignment",
+                "left": "Align left",
+                "center": "Align center",
+                "right": "Align right",
+                "justify": "Justify text"
+            }
+        },
+        "matrix": {
+            "title": "Matrix",
+            "add_row": "Add row",
+            "add_column": "Add column",
+            "default_row_prefix": "Row",
+            "prefilled_values": "Prefilled values"
+        },
+        "payment": {
+            "title": "Payment",
+            "currency_label": "Currency",
+            "amount_label": "Amount",
+            "name_on_card_label": "Name on Card",
+            "billing_email_label": "Billing Email",
+            "stripe_account_label": "Stripe Account",
+            "or": "OR",
+            "connect_stripe": "Connect Stripe Account",
+            "learn_more": "Learn how to accept payments",
+            "accounts_updated": "Stripe accounts updated."
+        },
+        "options": {
+            "field_name": "Field Name",
+            "checkbox": {
+                "title": "Checkbox",
+                "use_toggle_switch": "Use toggle switch",
+                "use_toggle_switch_help": "If enabled, checkbox will be replaced with a toggle switch",
+                "style_label": "Checkbox style",
+                "style_help": "Choose how the checkbox appears in focused mode",
+                "style_focused_toggle": "Yes/No selector (Y/N shortcuts)",
+                "style_toggle_switch": "Toggle switch",
+                "style_classic": "Classic checkbox"
+            },
+            "files": {
+                "title": "File uploads",
+                "allow_multiple": "Allow multiple files",
+                "allow_camera": "Allow Camera uploads",
+                "allowed_types_label": "Allowed file types",
+                "allowed_types_help": "Comma separated values, leave blank to allow all file types",
+                "max_size_label": "Maximum file size (in MB)",
+                "max_size_help": "Set the maximum file size that can be uploaded"
+            },
+            "barcode": {
+                "title": "Barcode Reader",
+                "decoders_label": "Decoders",
+                "decoders_help": "Select the decoders you want to use",
+                "decoder_qr": "QR Code",
+                "decoder_ean_13": "EAN-13 (European Article Number)",
+                "decoder_ean_8": "EAN-8 (European Article Number)",
+                "decoder_upc_a": "UPC-A (Universal Product Code)",
+                "decoder_upc_e": "UPC-E (Universal Product Code)",
+                "decoder_code_128": "Code 128",
+                "decoder_code_39": "Code 39"
+            },
+            "rating": {
+                "title": "Rating",
+                "max_value": "Max rating value"
+            },
+            "scale": {
+                "title": "Scale",
+                "min_value": "Min scale value",
+                "max_value": "Max scale value",
+                "step_value": "Scale steps value"
+            },
+            "slider": {
+                "title": "Slider",
+                "min_value": "Min slider value",
+                "max_value": "Max slider value",
+                "step_value": "Slider steps value"
+            },
+            "text": {
+                "title": "Text Options",
+                "multi_lines": "Multi-lines input",
+                "secret_input": "Secret input",
+                "secret_input_help": "Hide input content with * for privacy",
+                "secret_input_upgrade": "Upgrade today to enable secret input"
+            },
+            "date": {
+                "title": "Date Options",
+                "include_end_date": "Include end date",
+                "prefill_today": "Prefill with 'today'",
+                "disable_past_dates": "Disable past dates",
+                "disable_future_dates": "Disable future dates",
+                "include_time": "Include time",
+                "timezone_label": "Timezone",
+                "timezone_help": "Make sure to select the same timezone you're using in Notion. Leave blank otherwise.",
+                "time_format_label": "Time format",
+                "date_format_label": "Date format"
+            },
+            "select": {
+                "title": "Select Options",
+                "options_label": "Set selection options",
+                "options_help": "Add one option per line",
+                "use_dropdown_instead": "Use dropdown instead",
+                "use_dropdown_instead_help": "Use classic dropdown instead of focused selector with keyboard shortcuts",
+                "allow_creation": "Allow respondent to create new options",
+                "without_dropdown": "Use radio buttons",
+                "shuffle_options": "Randomize options order",
+                "min_selection_label": "Min. required",
+                "max_selection_label": "Max. allowed",
+                "clear_min_max": "Clear both values",
+                "min_max_help": "Set min/max options allowed, or leave empty for unlimited. Save form to test changes."
+            },
+            "customization": {
+                "title": "Customization",
+                "hide_field_name": "Hide field name",
+                "use_simple_text_input": "Use simple text input",
+                "disabled_countries_label": "Disabled countries",
+                "disabled_countries_placeholder": "Select a country",
+                "disabled_countries_help": "Remove countries from the phone input",
+                "countries_selected": "{count} selected",
+                "select_all_countries": "Select All",
+                "unselect_all_countries": "Un-select All",
+                "prefill_label": "Pre-filled value",
+                "prefill_file_label": "Pre-filled file",
+                "prefill_today_placeholder": "Pre-filled with current date",
+                "prefill_problem": "A problem?",
+                "prefill_clear_link": "Click here to clear your pre-fill",
+                "placeholder_label": "Empty Input Text - Placeholder",
+                "help_label": "Help Text",
+                "help_hint": "Displayed below/above the field, like this text",
+                "help_position_label": "Help Text Position",
+                "help_position_below": "Below input",
+                "help_position_above": "Above input",
+                "max_char_limit": "Max character limit",
+                "show_char_limit": "Always show character limit"
+            },
+            "advanced": {
+                "title": "Advanced Options",
+                "generates_uuid": "Generates a unique id",
+                "generates_uuid_help": "If you enable this, we will hide this field and fill it with a unique id (UUID format) on each new form submission",
+                "generates_auto_increment_id": "Generates an auto-incremented id",
+                "generates_auto_increment_id_help": "If you enable this, we will hide this field and fill it a unique incrementing number on each new form submission"
+            }
+        }
+    }
+}

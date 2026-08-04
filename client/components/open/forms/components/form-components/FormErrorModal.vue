@@ -2,7 +2,7 @@
   <UModal
     v-model:open="isOpen"
     :ui="{ content: 'sm:max-w-lg' }"
-    title="We couldn't save your form"
+    :title="$t('form_blocks.error_modal.title')"
   >
     <template #body>
       <div
@@ -32,7 +32,7 @@
           variant="outline"
           @click="closeModal"
         >
-          Close
+          {{ $t('common.actions.close') }}
         </UButton>
       </div>
     </template>

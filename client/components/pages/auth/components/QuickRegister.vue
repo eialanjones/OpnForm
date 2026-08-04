@@ -3,7 +3,7 @@
     <!--  Login modal  -->
     <UModal
       v-model:open="isLoginModalOpen"
-      title="Login to Forms Mentorfy"
+      :title="$t('auth.login.title')"
       :dismissible="!appStore.isUnauthorizedError"
       @pointer-down-outside="handlePointerDownOutside"
     >
@@ -11,7 +11,7 @@
         <template v-if="appStore.isUnauthorizedError">
           <div class="mb-4 p-3 bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-700 rounded-md">
             <p class="text-amber-800 dark:text-amber-200 text-sm font-medium">
-              Your session has expired. Please log in again to continue.
+              {{ $t('auth.quick.session_expired') }}
             </p>
           </div>
         </template>
@@ -25,7 +25,7 @@
           <div class="flex items-center my-6">
             <div class="h-[1px] bg-neutral-300 dark:bg-neutral-600 flex-1" />
             <div class="px-4 text-neutral-500 text-sm">
-              or
+              {{ $t('auth.quick.or') }}
             </div>
             <div class="h-[1px] bg-neutral-300 dark:bg-neutral-600 flex-1" />
           </div>
@@ -34,13 +34,13 @@
             type="button"
             color="neutral"
             variant="outline"
-            label="Logout"
+            :label="$t('auth.quick.logout')"
             :block="true"
             size="lg"
             @click="logout"
           />
           <p class="text-neutral-500 text-sm text-center mt-2">
-            Progress will be lost.
+            {{ $t('auth.quick.progress_lost') }}
           </p>
         </template>
       </template>
@@ -50,7 +50,7 @@
     <UModal
       v-model:open="isRegisterModalOpen"
       :ui="{ content: 'sm:max-w-lg' }"
-      title="Create an account"
+      :title="$t('auth.register.title')"
       :dismissible="!appStore.isUnauthorizedError"
       @pointer-down-outside="handlePointerDownOutside"
     >
@@ -74,6 +74,7 @@ const LEGACY_AUTH_COOKIE_NAME = "token"
 const ADMIN_AUTH_COOKIE_NAME = "opnform_admin_token"
 const LEGACY_ADMIN_AUTH_COOKIE_NAME = "admin_token"
 
+const { t } = useI18n()
 const appStore = useAppStore()
 
 // Define emits for component interactions
@@ -148,7 +149,7 @@ const afterQuickLogin = () => {
   appStore.quickRegisterModal = false
   
   // Show success alert
-  useAlert().success("Successfully logged in!")
+  useAlert().success(t('auth.quick.login_success'))
   
   // Use the window message for after-login instead of emitting the event
   afterLoginMessage.send(window, { useMessageChannel: false })

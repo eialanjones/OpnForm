@@ -1,0 +1,179 @@
+{
+    "integrations": {
+        "actions": {
+            "edit_workflow": "Editar fluxo"
+        },
+        "card": {
+            "paused": "Pausado",
+            "edit_on": "Editar no {name}",
+            "past_events": "Eventos anteriores",
+            "delete_integration": "Excluir integração",
+            "delete_confirm": "Você quer mesmo excluir esta integração do formulário?",
+            "delete_confirm_external": "Você quer mesmo excluir esta integração do formulário? Isso pode afetar o seu fluxo no {name}.",
+            "deleted_success": "Integração excluída com sucesso!"
+        },
+        "events_modal": {
+            "title": "Eventos anteriores",
+            "info_column": "Informações"
+        },
+        "list_option": {
+            "soon": "(em breve)",
+            "coming_soon_tooltip": "Esta integração chega em breve",
+            "subscription_tooltip": "Você precisa de uma assinatura para usar esta integração.",
+            "upgrade_modal_title": "Faça upgrade hoje para usar esta integração",
+            "upgrade_modal_description": "Faça upgrade da sua conta para usar a integração com {name} e desbloquear todos os recursos Pro."
+        },
+        "modal": {
+            "help": "Ajuda",
+            "save_error": "Ocorreu um erro ao salvar a integração"
+        },
+        "wrapper": {
+            "logic_configured": "Lógica configurada",
+            "add_logic": "Adicionar lógica",
+            "logic_configured_hint": "As condições controlam quando a integração é executada",
+            "add_logic_hint": "Defina condições para quando executar",
+            "logic_question": "Quando esta integração deve ser executada?",
+            "logic_description": "Defina <span class=\"font-semibold\">condições que controlam quando esta integração é executada</span>. Deixe em branco para executar sempre."
+        },
+        "discord": {
+            "webhook_url_label": "URL do webhook do Discord",
+            "webhook_url_help": "Receba uma mensagem no Discord a cada resposta do formulário.",
+            "webhook_url_help_link": "Clique aqui para saber como obter uma URL de webhook do Discord.",
+            "message_options_title": "Opções da mensagem do Discord"
+        },
+        "slack": {
+            "webhook_url_label": "URL do webhook do Slack",
+            "webhook_url_help": "Receba uma mensagem no Slack a cada resposta do formulário.",
+            "webhook_url_help_link": "Clique aqui para saber como obter uma URL de webhook do Slack.",
+            "message_actions_title": "Ações da mensagem do Slack"
+        },
+        "telegram": {
+            "description": "Receba mensagens no Telegram a cada resposta do formulário.",
+            "select_account_label": "Selecione a conta do Telegram",
+            "connect_another_account": "Clique aqui para conectar outra conta.",
+            "message_actions_title": "Ações da mensagem do Telegram",
+            "connect_account": "Conectar conta do Telegram"
+        },
+        "google_sheets": {
+            "description": "Adiciona uma nova linha na planilha a cada resposta do formulário.",
+            "reconnect_tooltip": "Reconecte a conta para corrigir as permissões",
+            "select_account_label": "Selecione a conta Google",
+            "connect_another_account": "Clique aqui para conectar outra conta.",
+            "connect_account": "Conectar conta Google"
+        },
+        "zapier": {
+            "coming_soon": "Em breve..."
+        },
+        "webhook": {
+            "url_label": "URL do webhook",
+            "url_help": "Vamos enviar as respostas do formulário para este endpoint",
+            "advanced_hint": "Configure a chave de assinatura e cabeçalhos personalizados",
+            "secret_label": "Chave secreta do webhook",
+            "secret_help": "Mínimo de 12 caracteres. Usada para assinar as requisições do webhook com HMAC-SHA256",
+            "custom_headers_label": "Cabeçalhos personalizados",
+            "custom_headers_help": "Adicione cabeçalhos HTTP personalizados para enviar em cada webhook (máximo de 10 cabeçalhos)",
+            "remove_header": "Remover cabeçalho",
+            "header_name_placeholder": "Nome do cabeçalho",
+            "header_value_placeholder": "Valor do cabeçalho",
+            "add_header": "Adicionar cabeçalho",
+            "max_headers_reached": "Limite de 10 cabeçalhos atingido"
+        },
+        "email": {
+            "smtp_notice": "Envie e-mails a partir do seu próprio domínio.",
+            "smtp_link": "Use o nosso recurso de SMTP personalizado.",
+            "send_to_label": "Enviar para",
+            "send_to_help_pro": "Adicione um e-mail por linha",
+            "send_to_help_free": "Você só pode enviar notificações por e-mail para o seu próprio endereço.",
+            "send_to_help_free_link": "Faça upgrade para o plano Pro e envie para outros endereços de e-mail.",
+            "sender_name_label": "Nome do remetente",
+            "sender_email_label": "E-mail do remetente",
+            "sender_email_help": "Se o provedor de e-mail permitir - caso contrário, usamos o padrão",
+            "subject_label": "Assunto",
+            "content_label": "Conteúdo do e-mail",
+            "appearance_title": "Aparência do e-mail",
+            "appearance_upgrade_modal_title": "Faça upgrade para personalizar a aparência do e-mail",
+            "appearance_description": "Logo, fontes e cores das suas notificações por e-mail",
+            "appearance_locked": "A personalização da aparência do e-mail faz parte do plano Pro.",
+            "appearance_locked_link": "Faça upgrade para o Pro e adicione seu logo, fontes e cores personalizadas.",
+            "logo_label": "Logo",
+            "logo_help": "Exiba seu logo no cabeçalho do e-mail (substitui o nome do app)",
+            "font_family_label": "Fonte",
+            "font_color_label": "Cor do texto",
+            "font_color_help": "Cor do texto no e-mail",
+            "outer_background_label": "Cor de fundo externa",
+            "outer_background_help": "Fundo ao redor da área de conteúdo do e-mail",
+            "inner_background_label": "Cor de fundo interna",
+            "inner_background_help": "Fundo da área de conteúdo do e-mail",
+            "include_submission_data_label": "Incluir dados da resposta",
+            "include_submission_data_help": "Se ativado, o e-mail conterá as respostas do formulário",
+            "include_hidden_fields_label": "Incluir campos ocultos",
+            "include_hidden_fields_help": "Se ativado, o e-mail conterá os campos ocultos",
+            "edit_submission_link_label": "Link para editar a resposta",
+            "reply_to_label": "Responder para",
+            "reply_to_help": "Se ficar vazio, as respostas vão para o seu próprio e-mail.",
+            "upgrade_modal_title": "Faça upgrade para desbloquear a integração de e-mail completa",
+            "upgrade_modal_description": "Faça upgrade para o Pro para personalizar os destinatários das notificações por e-mail, enviar e-mail de confirmação para quem responde o formulário e muito mais: personalização do formulário, domínio próprio, colaboração etc.",
+            "default_subject": "Salvamos as suas respostas",
+            "default_content": "Olá 👋 <br>Esta é a confirmação de que a sua resposta foi salva com sucesso."
+        },
+        "notifications": {
+            "message_label": "Mensagem da notificação",
+            "message_help": "Personalize o texto da mensagem de notificação. Clique em {'@'} para incluir valores dos campos do formulário.",
+            "include_submission_data_label": "Incluir dados da resposta",
+            "include_submission_data_help": "Com as respostas do formulário",
+            "include_hidden_fields_label": "Incluir campos ocultos",
+            "include_hidden_fields_help": "Se ativado, os campos ocultos serão incluídos na mensagem de notificação",
+            "open_form_link_label": "Link 'Abrir formulário'",
+            "open_form_link_help": "Link para a página pública do formulário",
+            "edit_form_link_label": "Link 'Editar formulário'",
+            "edit_form_link_help": "Link para a página de administração do formulário",
+            "analytics_label": "Métricas do formulário",
+            "analytics_help": "Contagem de visualizações e respostas do formulário",
+            "edit_submission_link_label": "Link para editar a resposta",
+            "default_message": "Nova resposta de formulário"
+        },
+        "page": {
+            "meta_title": "Integrações",
+            "meta_description": "Crie formulários bonitos de graça. Campos ilimitados, respostas ilimitadas.",
+            "heading": "Integrações disponíveis",
+            "subheading": "Conheça as nossas integrações",
+            "most_popular": "Mais popular",
+            "setup_guide": "Guia de configuração",
+            "guides_heading": "Guias gerais de configuração de integrações",
+            "guides_subheading": "Este pode ser outro texto",
+            "need_help_heading": "Precisa de ajuda?",
+            "need_help_description": "Acesse a nossa Central de Ajuda para ver a documentação completa!",
+            "help_center": "Central de Ajuda",
+            "guides": {
+                "email": {
+                    "title": "Configuração da integração de e-mail",
+                    "step_1": "Acesse <b>Forms Mentorfy</b> > <b>Integrações</b>.",
+                    "step_2": "Selecione <b>E-mail</b> e configure o SMTP.",
+                    "step_3": "Defina as regras de envio das notificações.",
+                    "step_4": "Salve e ative os alertas por e-mail."
+                },
+                "slack": {
+                    "title": "Configuração da integração com o Slack",
+                    "step_1": "Acesse <b>Forms Mentorfy</b> > <b>Integrações</b>.",
+                    "step_2": "Selecione <b>Slack</b> e autorize o seu workspace.",
+                    "step_3": "Escolha um canal e personalize as mensagens.",
+                    "step_4": "Salve e ative os alertas do Slack."
+                },
+                "webhook": {
+                    "title": "Configuração da integração por webhook",
+                    "step_1": "Acesse <b>Forms Mentorfy</b> > <b>Integrações</b>.",
+                    "step_2": "Selecione <b>WebHook</b> e informe a URL do seu endpoint.",
+                    "step_3": "Mapeie os campos e configure os gatilhos.",
+                    "step_4": "Salve e ative os alertas do webhook."
+                }
+            }
+        },
+        "detail_page": {
+            "other_integrations": "Outras integrações",
+            "discover_other": "Conheça as nossas outras integrações",
+            "not_found": "Opa - página não encontrada",
+            "go_home": "Ir para o início",
+            "meta_description": "Crie formulários bonitos de graça. Campos ilimitados, respostas ilimitadas."
+        }
+    }
+}

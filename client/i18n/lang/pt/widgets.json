@@ -1,0 +1,98 @@
+{
+    "widgets": {
+        "fullscreen": {
+            "open": "Abrir em tela cheia",
+            "exit": "Sair da tela cheia"
+        },
+        "barcode_input": {
+            "open_camera_aria": "Clique para abrir a câmera"
+        },
+        "code_input": {
+            "default_title": "Editor de código"
+        },
+        "date_input": {
+            "select_date_aria": "Selecionar data",
+            "selected_date_aria": "Data selecionada: {date}",
+            "clear_date_aria": "Limpar data"
+        },
+        "file_input": {
+            "choose_files_aria": "Escolha arquivos ou arraste aqui",
+            "choose_file_aria": "Escolha um arquivo ou arraste aqui"
+        },
+        "image_input": {
+            "modal_title": "Enviar uma imagem",
+            "uploading": "Enviando seu arquivo...",
+            "upload_cta": "Envie sua imagem,",
+            "upload_hint": "arraste e solte ou cole aqui",
+            "file_types_hint": ".jpg, .jpeg, .png, .bmp, .gif, .svg até 5mb",
+            "url_label": "Informe a URL da imagem que você quer usar",
+            "insert": "Inserir"
+        },
+        "logic_confirmation": {
+            "title": "Lógica do formulário incompleta",
+            "description": "Algumas regras de lógica estão incompletas ou inválidas e serão removidas para garantir que o formulário funcione corretamente.",
+            "field_label": "Campo: {name}",
+            "save_anyway": "Salvar mesmo assim (remover lógica inválida)"
+        },
+        "matrix_input": {
+            "row_options_aria": "Opções de {row}"
+        },
+        "mention_input": {
+            "upgrade_title": "Faça upgrade para o Pro",
+            "upgrade_description": "Faça upgrade para o Pro para usar menções"
+        },
+        "mention_dropdown": {
+            "title": "Inserir menção",
+            "fallback_placeholder": "Valor padrão",
+            "select_field": "Selecione um campo",
+            "insert": "Inserir"
+        },
+        "payment_input": {
+            "connect_stripe": "Conecte uma conta Stripe para continuar",
+            "save_form_to_preview": "Salve o formulário para ativar a prévia do pagamento.",
+            "config_incomplete": "Configuração do componente de pagamento incompleta.",
+            "account_connected": "Conta Stripe conectada",
+            "account_not_connected": "Conta Stripe não conectada",
+            "no_account_connected": "Nenhuma conta Stripe conectada",
+            "missing_publishable_key": "Chave publicável do Stripe ausente.",
+            "stripe_js_not_loaded": "Stripe.js não carregado.",
+            "published_form_notice": "O formulário de pagamento completo ficará visível para quem acessar o formulário publicado.",
+            "published_form_notice_short": "O formulário de pagamento ficará visível para quem acessar o formulário publicado.",
+            "load_config_failed": "Não foi possível carregar a configuração de pagamento",
+            "initializing": "Inicializando o componente de pagamento.",
+            "missing_publishable_key_config": "Chave publicável do Stripe ausente na configuração.",
+            "missing_account_connection": "Conexão com a conta Stripe ausente. ID: {id}",
+            "initializing_system": "Inicializando o sistema de pagamento...",
+            "missing_configuration": "Configuração do Stripe ausente. Verifique suas configurações.",
+            "init_failed": "Não foi possível inicializar o Stripe. Atualize a página e tente novamente.",
+            "load_component_failed": "Não foi possível carregar o componente de pagamento",
+            "load_component_failed_detail": "Não foi possível carregar o componente de pagamento. {message}",
+            "check_configuration": "{message}. Verifique a configuração ou atualize a página."
+        },
+        "phone_input": {
+            "select_country": "Selecione um país"
+        },
+        "rating_input": {
+            "rating_aria": "Avaliação: {value} de {total} estrelas",
+            "star_aria": "{count} estrela | {count} estrelas"
+        },
+        "rich_text": {
+            "default_title": "Editor de texto formatado"
+        },
+        "captcha": {
+            "complete_verification": "Complete a verificação do captcha"
+        },
+        "embed_media": {
+            "invalid_url": "URL de mídia inválida ou não suportada."
+        },
+        "unsplash": {
+            "search_placeholder": "Buscar imagem...",
+            "unavailable_title": "A integração com o Unsplash não está disponível",
+            "unavailable_description": "Configure as chaves da API do Unsplash para usar este recurso.",
+            "no_image_found": "Nenhuma imagem encontrada",
+            "no_image_available": "Nenhuma imagem disponível",
+            "on_unsplash": "no Unsplash",
+            "view_on_unsplash": "Ver no Unsplash"
+        }
+    }
+}

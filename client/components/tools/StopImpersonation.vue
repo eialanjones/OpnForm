@@ -1,7 +1,7 @@
 <template>
   <UTooltip
     v-if="isImpersonating"
-    text="Stop Impersonation"
+    :text="$t('form_logic.impersonation.stop')"
   >
     <UButton
       color="neutral"

@@ -2,7 +2,7 @@
   <div>
     <div class="flex flex-wrap items-end mt-5 gap-2">
       <h3 class="flex-grow font-medium text-lg">
-        Views & Submission History
+        {{ $t('form_editor.stats.heading') }}
       </h3>
       <VForm size="sm">
       <DateInput
@@ -34,22 +34,22 @@
         <div class="absolute inset-0 z-10">
           <div class="p-5 max-w-md mx-auto flex flex-col items-center justify-center h-full">
             <p class="text-center">
-              You need a <pro-tag
-                upgrade-modal-title="Upgrade today to access form analytics"
+              {{ $t('form_editor.stats.pro_required') }}
+              <pro-tag
+                :upgrade-modal-title="$t('form_editor.stats.upgrade_modal_title')"
                 class="mx-1"
-              /> subscription to access your form
-              analytics.
+              />
             </p>
             <UButton
               class="mt-5 flex justify-center"
-              @click.prevent="openSubscriptionModal({modal_title: 'Upgrade to unlock form Analytics'})"
-              label="Subscribe"
+              @click.prevent="openSubscriptionModal({modal_title: $t('form_editor.stats.subscribe_modal_title')})"
+              :label="$t('form_editor.stats.subscribe')"
             />
           </div>
         </div>
         <img
           src="/img/pages/forms/blurred_graph.png"
-          alt="Sample Graph"
+          :alt="$t('form_editor.stats.sample_graph_alt')"
           class="mx-auto w-full filter blur-md z-0 pointer-events-none"
         >
       </div>
@@ -105,6 +105,7 @@ const props = defineProps({
 })
 
 const { openSubscriptionModal } = useAppModals()
+const { t } = useI18n()
 
 const toDate = new Date()
 const fromDate = new Date(toDate)
@@ -171,13 +172,13 @@ const chartOptions = {
 const chartData = computed(() => {
   const baseDatasets = [
     {
-      label: "Form Views",
+      label: t("form_editor.stats.chart_views"),
       backgroundColor: "rgba(59, 130, 246, 1)",
       borderColor: "rgba(59, 130, 246, 1)",
       data: statsData.value?.views || [],
     },
     {
-      label: "Form Submissions",
+      label: t("form_editor.stats.chart_submissions"),
       backgroundColor: "rgba(16, 185, 129, 1)",
       borderColor: "rgba(16, 185, 129, 1)",
       data: statsData.value?.submissions || [],
@@ -187,7 +188,7 @@ const chartData = computed(() => {
   // Add partial submissions dataset if enabled
   if (props.form.enable_partial_submissions) {
     baseDatasets.push({
-      label: "Partial Submissions",
+      label: t("form_editor.stats.chart_partial_submissions"),
       backgroundColor: "rgba(255, 193, 7, 1)",
       borderColor: "rgba(255, 193, 7, 1)",
       data: statsData.value?.partial_submissions || [],

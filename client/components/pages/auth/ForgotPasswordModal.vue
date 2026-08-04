@@ -3,20 +3,20 @@
   <UModal
     v-model:open="isOpen"
     :ui="{ content: 'sm:max-w-lg' }"
-    :title="isMailSent ? 'Check your email' : 'Forgot password?'"
-    :description="isMailSent ? '' : 'No worries, we\'ll send you reset instructions.'"
+    :title="isMailSent ? $t('auth.forgot_password.sent_title') : $t('auth.forgot_password.title')"
+    :description="isMailSent ? '' : $t('auth.forgot_password.description')"
   >
     <template #body>
       <template v-if="isMailSent">
         <div class="text-center">
-          We sent a password reset link to <br><span class="font-bold">{{ form.email }}</span>
+          {{ $t('auth.forgot_password.sent_to') }} <br><span class="font-bold">{{ form.email }}</span>
         </div>
         <div class="w-full mt-4 text-center">
           <UButton
             icon="heroicons:arrow-path"
             variant="outline"
             color="neutral"
-            label="Resend email"
+            :label="$t('auth.forgot_password.resend_email')"
             @click="send"
           />
         </div>
@@ -28,8 +28,8 @@
           <text-input
             name="email"
             :form="form"
-            label="Email"
-            placeholder="Your email address"
+            :label="$t('common.labels.email')"
+            :placeholder="$t('auth.fields.email_placeholder')"
             :required="true"
           />
 
@@ -38,7 +38,7 @@
               type="submit"
               block
               :loading="form.busy"
-              label="Reset password"
+              :label="$t('auth.forgot_password.submit')"
             />
           </div>
         </form>
@@ -52,7 +52,7 @@
         variant="link"
         color="neutral"
         @click="close"
-        label="Back to log in"
+        :label="$t('auth.forgot_password.back_to_login')"
       />
     </template>
   </UModal>

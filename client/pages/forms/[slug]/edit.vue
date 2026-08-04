@@ -14,7 +14,7 @@
       color="error"
       variant="soft"
       class="max-w-xl mx-auto mt-4"
-      title="Error"
+      :title="$t('form_pages.edit.error_title')"
       :description="errorMessage"
     >
       <template #actions>
@@ -24,7 +24,7 @@
           :to="{ name: 'home' }"
           icon="i-heroicons-arrow-left"
         >
-          Back to dashboard
+          {{ $t('form_pages.edit.back_to_dashboard') }}
         </UButton>
       </template>
     </UAlert>
@@ -39,6 +39,7 @@ import { hash } from "~/lib/utils.js"
 
 // Composables
 const route = useRoute()
+const { t } = useI18n()
 const workingFormStore = useWorkingFormStore()
 const { detail: formDetail } = useForms()
 
@@ -52,14 +53,14 @@ const { data: form, isLoading: formsLoading, error } = formDetail(slug, {
 
 const errorMessage = computed(() => {
   if (error.value?.response?.status === 401) {
-    return "You are not authorized to access this form."
+    return t('form_pages.edit.error_unauthorized')
   } else if (error.value?.response?.status === 404) {
-    return "Form not found."
+    return t('form_pages.edit.error_not_found')
   }
   if (error.value?.response?.data?.message) {
     return error.value.response.data.message
   }
-  return "Error loading form"
+  return t('form_pages.edit.error_loading')
 })
 
 const updatedForm = storeToRefs(workingFormStore).content
@@ -105,7 +106,7 @@ watch(
 
 onBeforeRouteLeave((to, from, next) => {
   if (isDirty()) {
-    if (window.confirm('Changes you made may not be saved. Are you sure want to leave?')) {
+    if (window.confirm(t('form_pages.shared.leave_confirm'))) {
       window.onbeforeunload = null
       next()
     } else {
@@ -126,7 +127,9 @@ onBeforeMount(() => {
 })
 
 useOpnSeoMeta({
-  title: "Edit " + (form.value ? form.value.title : "Your Form"),
+  title: t('form_pages.edit.page_title', {
+    title: form.value ? form.value.title : t('form_pages.edit.default_form_name'),
+  }),
 })
 definePageMeta({
   middleware: ["auth", "readonly-block"],

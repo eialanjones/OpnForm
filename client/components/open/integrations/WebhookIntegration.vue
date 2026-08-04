@@ -8,8 +8,8 @@
       :form="integrationData"
       name="data.webhook_url"
       class="mt-4"
-      label="Webhook URL"
-      help="We will post form submissions to this endpoint"
+      :label="$t('integrations.webhook.url_label')"
+      :help="$t('integrations.webhook.url_help')"
       required
     />
 
@@ -35,10 +35,10 @@
             </div>
             <div class="flex-grow">
               <h3 class="font-semibold">
-                Advanced
+                {{ $t('common.labels.advanced') }}
               </h3>
               <p class="text-neutral-500 text-xs">
-                Configure signing secret and custom headers
+                {{ $t('integrations.webhook.advanced_hint') }}
               </p>
             </div>
           </div>
@@ -49,18 +49,18 @@
           :form="integrationData"
           name="data.webhook_secret"
           class="mt-4"
-          label="Webhook Secret"
-          help="Minimum 12 characters. Used to sign webhook requests with HMAC-SHA256"
+          :label="$t('integrations.webhook.secret_label')"
+          :help="$t('integrations.webhook.secret_help')"
           placeholder="whsec_..."
         />
 
         <!-- Webhook Headers -->
         <div class="mt-4">
           <label class="block text-sm font-medium text-neutral-700 mb-2">
-            Custom Headers
+            {{ $t('integrations.webhook.custom_headers_label') }}
           </label>
           <p class="text-xs text-neutral-500 mb-3">
-            Add custom HTTP headers to be sent with each webhook (max 10 headers)
+            {{ $t('integrations.webhook.custom_headers_help') }}
           </p>
 
           <!-- Headers List -->
@@ -78,7 +78,7 @@
                   {{ key }}<span class="text-neutral-400">:</span> <span class="text-neutral-600">{{ value }}</span>
                 </code>
               </div>
-              <UTooltip text="Remove header" arrow>
+              <UTooltip :text="$t('integrations.webhook.remove_header')" arrow>
                 <UButton
                   icon="i-material-symbols:delete-outline"
                   color="error"
@@ -96,14 +96,14 @@
               <TextInput
                 v-model="newHeaderKey"
                 name="webhook-header-key"
-                placeholder="Header name"
+                :placeholder="$t('integrations.webhook.header_name_placeholder')"
                 size="sm"
                 :disabled="Object.keys(webhookHeaders).length >= 10"
               />
               <TextInput
                 v-model="newHeaderValue"
                 name="webhook-header-value"
-                placeholder="Header value"
+                :placeholder="$t('integrations.webhook.header_value_placeholder')"
                 size="sm"
                 :disabled="Object.keys(webhookHeaders).length >= 10"
               />
@@ -114,13 +114,13 @@
               :disabled="!newHeaderKey || !newHeaderValue || Object.keys(webhookHeaders).length >= 10"
               @click="addHeader"
             >
-              Add Header
+              {{ $t('integrations.webhook.add_header') }}
             </UButton>
             <p
               v-if="Object.keys(webhookHeaders).length >= 10"
               class="text-xs text-red-600"
             >
-              Maximum 10 headers reached
+              {{ $t('integrations.webhook.max_headers_reached') }}
             </p>
           </div>
         </div>

@@ -58,13 +58,13 @@
     >
       <small class="text-xs text-neutral-500 dark:text-neutral-400 mt-1 block">
         <span v-if="minSelection && maxSelection">
-          {{ selectedCount }} of {{ minSelection }}-{{ maxSelection }}
+          {{ $t('inputs.selection.of_range', { count: selectedCount, min: minSelection, max: maxSelection }) }}
         </span>
         <span v-else-if="minSelection">
-          {{ selectedCount }} selected (min {{ minSelection }})
+          {{ $t('inputs.selection.selected_min', { count: selectedCount, min: minSelection }) }}
         </span>
         <span v-else-if="maxSelection">
-          {{ selectedCount }}/{{ maxSelection }} selected
+          {{ $t('inputs.selection.selected_max', { count: selectedCount, max: maxSelection }) }}
         </span>
       </small>
     </template>

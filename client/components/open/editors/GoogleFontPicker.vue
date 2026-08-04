@@ -2,13 +2,13 @@
   <UModal
     v-model:open="isOpen"
     :ui="{ content: 'sm:max-w-2xl' }"
-    title="Google fonts"
+    :title="$t('submissions.font_picker.modal_title')"
   >
     <template #body>
       <text-input
         v-model="search"
         name="search"
-        placeholder="Search fonts"
+        :placeholder="$t('submissions.font_picker.search_placeholder')"
       />
 
       <div
@@ -49,14 +49,14 @@
         variant="outline"
         @click="$emit('apply', null)"
       >
-        Reset
+        {{ $t('common.actions.reset') }}
       </UButton>
       <UButton
         size="md"
         :disabled="!selectedFont"
         @click="$emit('apply', selectedFont)"
       >
-        Apply
+        {{ $t('common.actions.apply') }}
       </UButton>
     </template>
   </UModal>

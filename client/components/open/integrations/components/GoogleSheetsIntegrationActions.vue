@@ -25,7 +25,7 @@
         variant="outline"
         icon="mdi:google-spreadsheet"
         trailing-icon="heroicons:arrow-top-right-on-square-20-solid"
-        label="Open"
+        :label="$t('common.actions.open')"
       />
     </div>
   </div>

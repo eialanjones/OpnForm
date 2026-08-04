@@ -1,6 +1,8 @@
 import FormPropertyLogicRule from '~/lib/forms/FormPropertyLogicRule.js'
 
 export const useFormLogic = () => {
+  const { t } = useNuxtApp().$i18n
+
   const validateCondition = (condition, properties, fieldId, errors, parentIndex = null) => {
     if (condition.operatorIdentifier) {
       // This is a group condition (and/or)
@@ -8,7 +10,7 @@ export const useFormLogic = () => {
         errors.push({
           fieldId,
           error: 'INVALID_CONDITION_GROUP',
-          message: 'Condition group must have children array'
+          message: t('runtime.form_logic.invalid_condition_group')
         })
         return
       }
@@ -25,7 +27,7 @@ export const useFormLogic = () => {
           ruleIndex: parentIndex,
           error: 'INVALID_FIELD_REFERENCE',
           referencedFieldId: condition.value?.property_meta?.id,
-          message: `Referenced field ${condition.value?.property_meta?.id} no longer exists`
+          message: t('runtime.form_logic.invalid_field_reference', { field: condition.value?.property_meta?.id })
         })
       }
     }
@@ -47,7 +49,7 @@ export const useFormLogic = () => {
           fieldId: field.id,
           fieldName: field.name,
           error: 'MISSING_CONDITIONS',
-          message: 'No conditions specified'
+          message: t('runtime.form_logic.no_conditions')
         })
       }
 
@@ -56,7 +58,7 @@ export const useFormLogic = () => {
           fieldId: field.id,
           fieldName: field.name,
           error: 'MISSING_ACTIONS',
-          message: 'No actions specified'
+          message: t('runtime.form_logic.no_actions')
         })
       }
 
@@ -72,9 +74,9 @@ export const useFormLogic = () => {
           fieldId: field.id,
           fieldName: field.name,
           error: 'INVALID_LOGIC_RULE',
-          message: logicRule.isConditionCorrect ? 
-            'Invalid action configuration' : 
-            'Invalid condition configuration'
+          message: logicRule.isConditionCorrect ?
+            t('runtime.form_logic.invalid_action') :
+            t('runtime.form_logic.invalid_condition')
         })
       }
     })

@@ -30,10 +30,10 @@
             class="mx-auto h-12 w-12 text-neutral-400"
           />
           <h3 class="mt-2 text-lg font-semibold text-neutral-900 dark:text-white">
-            No integrations yet
+            {{ $t('form_pages.integrations.empty_title') }}
           </h3>
           <p class="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
-            Get started by connecting your form to a third-party app below.
+            {{ $t('form_pages.integrations.empty_description') }}
           </p>
         </div>
       </VTransition>
@@ -42,7 +42,7 @@
         id="add-integration-title"
         class="font-semibold mt-8 text-xl"
       >
-        Add a new integration
+        {{ $t('form_pages.integrations.add_heading') }}
       </h1>
       <div
         v-for="(section, sectionName) in sectionsList"
@@ -50,7 +50,7 @@
         class="mb-8"
       >
         <h3 class="text-neutral-500">
-          {{ sectionName }}
+          {{ $t(`form_pages.integrations.sections.${sectionName}`) }}
         </h3>
         <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mt-2">
           <IntegrationListOption
@@ -88,10 +88,12 @@ definePageMeta({
   middleware: ["auth", "readonly-block"],
 })
 
+const { t } = useI18n()
+
 useOpnSeoMeta({
-  title: computed(() => props.form 
-    ? `Form Integrations - ${props.form.title}`
-    : "Form Integrations"
+  title: computed(() => props.form
+    ? t('form_pages.integrations.page_title_with_form', { title: props.form.title })
+    : t('form_pages.integrations.page_title')
   ),
 })
 
@@ -126,13 +128,13 @@ const selectedIntegration = ref(null)
 // Define openIntegration first (before the watch that uses it)
 const openIntegration = (itemKey) => {
   if (!itemKey || !integrations.value.has(itemKey)) {
-    return alert.error("Integration not found")
+    return alert.error(t('form_pages.integrations.not_found_error'))
   }
 
   const integration = integrations.value.get(itemKey)
 
   if (integration.coming_soon) {
-    return alert.warning("This integration is not available yet")
+    return alert.warning(t('form_pages.integrations.coming_soon_error'))
   }
 
   if (integration.is_external && integration.url) {

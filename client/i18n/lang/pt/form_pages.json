@@ -1,0 +1,193 @@
+{
+    "form_pages": {
+        "shared": {
+            "help": "Ajuda",
+            "how_it_works": "Como funciona?",
+            "draft_warning": "Este formulário está em modo rascunho e não está acessível publicamente. Você pode alterar o status do formulário na página de edição.",
+            "leave_confirm": "As alterações que você fez podem não ser salvas. Tem certeza de que deseja sair?"
+        },
+        "create_modal": {
+            "style_heading": "Escolha um estilo de formulário",
+            "style_description": "Escolha como seu formulário aparece para quem responde.",
+            "style_change_later": "Você pode mudar isso depois.",
+            "style_classic_title": "Clássico",
+            "style_classic_description": "Vários campos por página; suporta blocos de layout e fluxos com várias páginas.",
+            "style_focused_title": "Focado",
+            "style_focused_description": "Estilo Typeform: uma pergunta por etapa, para um fluxo mais direto.",
+            "base_heading": "Escolha um ponto de partida para seu formulário",
+            "back_to_styles": "Voltar aos estilos",
+            "base_contact_form": "Formulário de contato simples",
+            "base_ai_generator": "Gerador de formulário com IA",
+            "base_browse_templates": "Explorar templates",
+            "ai_heading": "Gerador de formulários com IA",
+            "ai_prompt_label": "Descrição do formulário",
+            "ai_prompt_help": "Descreva o formulário que você quer criar (quanto mais detalhes, melhor)",
+            "ai_prompt_placeholder": "Um formulário de contato simples, com campos de nome, e-mail e mensagem",
+            "ai_generate_button": "Gerar um formulário",
+            "ai_generate_eta": "~30 seg",
+            "back_to_form_types": "Voltar aos tipos de formulário",
+            "ai_generation_failed": "Algo deu errado, tente novamente."
+        },
+        "advanced_url_settings": {
+            "heading": "Configurações avançadas",
+            "description": "Configure opções avançadas de compartilhamento do seu formulário.",
+            "auto_submit_label": "Enviar formulário automaticamente",
+            "auto_submit_help": "Envia imediatamente ao abrir a URL"
+        },
+        "embed_code": {
+            "copy_button": "Copiar código"
+        },
+        "embed_popup": {
+            "trigger": "Incorporar como popup",
+            "modal_title": "Adicione o popup ao seu site",
+            "demo_heading": "Demonstração",
+            "demo_intro": "Uma prévia do popup do seu formulário acabou de ser adicionada a esta página.",
+            "demo_cta": "Clique no botão no canto inferior {position} para testar",
+            "position_word_right": "direito",
+            "position_word_left": "esquerdo",
+            "paste_snippet": "Cole o trecho de código abaixo na seção <b>&lt;head&gt;</b> do seu site.",
+            "customization_heading": "Personalização",
+            "bgcolor_label": "Cor de fundo do círculo",
+            "emoji_label": "Emoji",
+            "position_label": "Posição",
+            "position_bottom_right": "Inferior direito",
+            "position_bottom_left": "Inferior esquerdo",
+            "width_label": "Largura máxima do popup (px)",
+            "focused_not_supported": "O modo popup ainda não é compatível com formulários no modo Focado."
+        },
+        "extra_menu": {
+            "delete_modal_title": "Excluir formulário",
+            "delete_modal_body": "Se você quiser excluir permanentemente este formulário e todos os seus dados, pode fazer isso abaixo.",
+            "delete_confirm": "Sim, excluir",
+            "open_form": "Abrir formulário",
+            "copy_link_to_share": "Copiar link para compartilhar",
+            "duplicate_form": "Duplicar formulário",
+            "create_template": "Criar template",
+            "change_workspace": "Mudar de workspace",
+            "delete_form": "Excluir formulário",
+            "duplicate_failed": "Não foi possível duplicar o formulário",
+            "delete_failed": "Não foi possível excluir o formulário"
+        },
+        "cleanings": {
+            "title": "Faça upgrade para desbloquear todos os recursos",
+            "owner_note": "Só você está vendo este aviso, por ser o dono do formulário.",
+            "description": "Os seguintes recursos estão desativados no formulário publicado:",
+            "upgrade_plan_button": "Fazer upgrade do plano - Desbloquear todos os recursos",
+            "unlock_button": "Desbloquear todos os recursos",
+            "dismiss": "Dispensar",
+            "field_name": "campo \"{field}\"",
+            "modal_title": "Faça upgrade para desbloquear todos os recursos do seu formulário",
+            "modal_description": "Alguns recursos estão desativados no formulário publicado. Faça upgrade do seu plano para desbloquear esses recursos e muito mais. Tenha acesso completo a todos os recursos avançados."
+        },
+        "qr_code": {
+            "tooltip": "QR Code",
+            "heading": "QR Code",
+            "description": "Escaneie o QR code para abrir o formulário.",
+            "alt": "QR Code do formulário",
+            "image_copied": "Imagem copiada!",
+            "copy_image": "Copiar imagem"
+        },
+        "powered_by": {
+            "label": "Feito com Forms Mentorfy"
+        },
+        "regenerate_link": {
+            "trigger": "Gerar novo link",
+            "modal_title": "Gerar novo link do formulário",
+            "intro": "Você pode escolher entre dois formatos de URL para o seu formulário.",
+            "warning": "Atenção: alterar a URL do formulário não é uma operação reversível",
+            "reminder": "Lembre-se de atualizar a URL do formulário em todos os lugares onde ela é usada.",
+            "readable_heading": "URL legível",
+            "readable_description": "Se seus usuários vão ver esta URL, talvez você queira deixá-la bonita e legível. Exemplo:",
+            "readable_button": "Gerar uma URL legível",
+            "random_heading": "URL com ID aleatório",
+            "random_description": "Se seus usuários não vão ver a URL do formulário (por exemplo, se ele está incorporado) e você prefere uma URL aleatória e difícil de adivinhar. Exemplo:",
+            "random_button": "Gerar uma URL com ID aleatório"
+        },
+        "share_link": {
+            "heading": "Link de compartilhamento",
+            "description": "Compartilhe seu formulário com qualquer pessoa copiando este link. Você pode usá-lo nas redes sociais, em mensagens ou enviá-lo por e-mail para alcançar seu público.",
+            "copy_button": "Copiar link"
+        },
+        "social_share": {
+            "via_email": "Compartilhar por e-mail",
+            "on_twitter": "Compartilhar no Twitter",
+            "on_linkedin": "Compartilhar no LinkedIn",
+            "share_text": "Dê uma olhada neste formulário: {title}",
+            "email_body": "Gostaria de compartilhar este formulário com você: {url}"
+        },
+        "url_prefill": {
+            "trigger": "Pré-preenchimento por URL",
+            "modal_title": "Pré-preenchimento do formulário por URL",
+            "description": "Crie links dinâmicos ao compartilhar seu formulário (incorporado ou não) que permitem pré-preencher os campos. Use isso para personalizar o formulário ao enviá-lo para vários contatos, por exemplo.",
+            "instructions": "Preencha o formulário abaixo apenas com os campos que você quer pré-preencher. Você pode até deixar os campos obrigatórios vazios.",
+            "generate_button": "Gerar URL pré-preenchida",
+            "result_heading": "Sua URL de pré-preenchimento"
+        },
+        "edit": {
+            "error_title": "Erro",
+            "back_to_dashboard": "Voltar ao painel",
+            "error_unauthorized": "Você não tem autorização para acessar este formulário.",
+            "error_not_found": "Formulário não encontrado.",
+            "error_loading": "Erro ao carregar o formulário",
+            "page_title": "Editar {title}",
+            "default_form_name": "Seu formulário"
+        },
+        "public": {
+            "default_title": "Crie formulários bonitos"
+        },
+        "show": {
+            "page_title": "Início",
+            "open_form": "Abrir formulário",
+            "edit_form": "Editar formulário",
+            "views_tooltip": "{count} visualizações",
+            "submissions_tooltip": "{count} respostas",
+            "edited_at": "Editado {time}",
+            "not_found_title": "Formulário não encontrado",
+            "not_found_description": "O formulário que você procura não existe ou foi excluído.",
+            "go_to_dashboard": "Ir para o painel"
+        },
+        "integrations": {
+            "empty_title": "Nenhuma integração ainda",
+            "empty_description": "Comece conectando seu formulário a um app de terceiros abaixo.",
+            "add_heading": "Adicionar nova integração",
+            "page_title": "Integrações do formulário",
+            "page_title_with_form": "Integrações do formulário - {title}",
+            "not_found_error": "Integração não encontrada",
+            "coming_soon_error": "Esta integração ainda não está disponível",
+            "sections": {
+                "Notifications": "Notificações",
+                "Automation": "Automação",
+                "Databases": "Bancos de dados"
+            }
+        },
+        "share": {
+            "draft_title": "Formulário em rascunho",
+            "draft_description": "Somente você pode acessar o link do formulário enquanto estiver logado. Visitantes não conseguirão acessá-lo.",
+            "closed_title": "Formulário fechado",
+            "closed_description": "As pessoas podem acessar o formulário, mas ele não aceitará novas respostas.",
+            "heading": "Compartilhe seu formulário",
+            "embed_heading": "Incorporar formulário",
+            "embed_description": "Incorpore seu formulário no seu site copiando o código HTML abaixo.",
+            "page_title": "Compartilhar formulário",
+            "page_title_with_form": "Compartilhar formulário - {title}"
+        },
+        "stats": {
+            "views": "Visualizações",
+            "submissions": "Respostas",
+            "completion": "Conclusão",
+            "avg_duration": "Duração média",
+            "duration_placeholder": "10 segundos",
+            "page_title": "Análises do formulário",
+            "page_title_with_form": "Análises do formulário - {title}"
+        },
+        "submissions": {
+            "page_title": "Respostas do formulário",
+            "page_title_with_form": "Respostas do formulário - {title}"
+        },
+        "create": {
+            "page_title": "Criar um novo formulário",
+            "guest_page_title": "Criar um novo formulário grátis",
+            "guest_workspace_name": "Workspace de visitante"
+        }
+    }
+}

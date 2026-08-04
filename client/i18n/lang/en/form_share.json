@@ -1,0 +1,32 @@
+{
+    "form_share": {
+        "block_renderer": {
+            "upload_image_prompt": "Open block settings to upload image.",
+            "add_video_url_prompt": "Open block settings to add video URL.",
+            "hidden_field_suffix": " (Hidden Field)"
+        },
+        "export": {
+            "queued_title": "Export queued",
+            "queued_description": "Waiting for processing to begin...",
+            "processing_title": "Processing submissions",
+            "processing_description": "This may take a few moments...",
+            "completed_title": "Export completed!",
+            "completed_description": "Your download should start automatically",
+            "failed_title": "Export failed",
+            "starting_title": "Starting export",
+            "starting_description": "Please wait...",
+            "status_check_error": "Failed to check export status"
+        },
+        "field_actions": {
+            "add_field": "Add new field",
+            "edit_field_settings": "Edit field settings",
+            "delete_field": "Delete field"
+        },
+        "renderer": {
+            "cover_image_alt": "Form cover image",
+            "logo_alt": "Form logo",
+            "logo_alt_named": "{name} logo",
+            "form_controls_aria_label": "Form controls"
+        }
+    }
+}

@@ -2,6 +2,30 @@
 import runtimeConfig from "./runtimeConfig"
 import sitemap from "./sitemap"
 
+// Admin/builder translation namespaces. Each one is a separate file per locale so the
+// bundles stay readable and reviewable instead of a single multi-thousand-line blob.
+// Shipped for pt + en only; every other locale falls back to en for these keys.
+const UI_NAMESPACES = [
+  'common',
+  'app_shell',
+  'auth',
+  'form_editor',
+  'form_blocks',
+  'form_logic',
+  'form_fields',
+  'form_share',
+  'form_pages',
+  'submissions',
+  'integrations',
+  'workspace',
+  'user_settings',
+  'admin',
+  'marketing',
+  'inputs',
+  'widgets',
+  'runtime',
+]
+
 export default defineNuxtConfig({
   loglevel: process.env.NUXT_LOG_LEVEL || 'info',
   devtools: {enabled: true},
@@ -39,7 +63,7 @@ export default defineNuxtConfig({
         { code: 'ca', name: 'Valencian/Catalan', iso: 'ca-ES', file: 'ca.json' },
         { code: 'cs', name: 'Czech', iso: 'cs-CZ', file: 'cs.json' },
         { code: 'de', name: 'German', iso: 'de-DE', file: 'de.json' },
-        { code: 'en', name: 'English', iso: 'en-US', file: 'en.json' },
+        { code: 'en', name: 'English', iso: 'en-US', files: ['en.json', ...UI_NAMESPACES.map(ns => `en/${ns}.json`)] },
         { code: 'es', name: 'Spanish', iso: 'es-ES', file: 'es.json' },
         { code: 'eu', name: 'Basque', iso: 'eu-ES', file: 'eu.json' },
         { code: 'fr', name: 'French', iso: 'fr-FR', file: 'fr.json' },
@@ -54,7 +78,7 @@ export default defineNuxtConfig({
         { code: 'nl', name: 'Dutch', iso: 'nl-NL', file: 'nl.json' },
         { code: 'pa', name: 'Punjabi', iso: 'pa-IN', file: 'pa.json' },
         { code: 'pl', name: 'Polish', iso: 'pl-PL', file: 'pl.json' },
-        { code: 'pt', name: 'Portuguese', iso: 'pt-BR', file: 'pt.json' },
+        { code: 'pt', name: 'Portuguese', iso: 'pt-BR', files: ['pt.json', ...UI_NAMESPACES.map(ns => `pt/${ns}.json`)] },
         { code: 'ru', name: 'Russian', iso: 'ru-RU', file: 'ru.json' },
         { code: 'sk', name: 'Slovak', iso: 'sk-SK', file: 'sk.json' },
         { code: 'sr', name: 'Serbian', iso: 'sr-RS', file: 'sr.json' },
@@ -67,13 +91,22 @@ export default defineNuxtConfig({
         { code: 'vi', name: 'Vietnamese', iso: 'vi-VN', file: 'vi.json' },
         { code: 'zh', name: 'Chinese', iso: 'zh-CN', file: 'zh.json' },
       ],
-      defaultLocale: 'en',
+      defaultLocale: 'pt',
       lazy: true,
       langDir: 'lang/',
       strategy: 'no_prefix',
-      detectBrowserLanguage: {
-          cookieSecure: true
-      }
+      // A handful of help texts carry inline emphasis (<b>, <span class="font-semibold">)
+      // that the English markup already had. Every one of them renders through v-html, so
+      // the messages keep their tags instead of being split into fragments that no
+      // translator could reassemble. Messages come from these JSON files only — never
+      // from user input — so there is no injection surface here.
+      compilation: {
+          strictMessage: false,
+      },
+      // Portuguese is the product default. The locale is never inferred from
+      // Accept-Language — it stays pt until the user picks another one in the UI,
+      // which `plugins/locale.client.js` then restores from a cookie on every visit.
+      detectBrowserLanguage: false
   },
 
   experimental: {

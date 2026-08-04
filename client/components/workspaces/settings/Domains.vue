@@ -2,15 +2,15 @@
   <div class="space-y-4">
     <div class="flex flex-col flex-wrap items-start justify-between gap-4 sm:flex-row sm:items-center">
       <div>
-        <h3 class="text-lg font-medium text-neutral-900">Custom Domains Settings</h3>
+        <h3 class="text-lg font-medium text-neutral-900">{{ $t('workspace.domains.title') }}</h3>
         <p class="mt-1 text-sm text-neutral-500">
-          Manage your custom domains.
+          {{ $t('workspace.domains.description') }}
         </p>
       </div>
 
       <div class="flex shrink-0 items-center gap-2">
         <UButton
-          label="Help"
+          :label="$t('workspace.actions.help')"
           icon="i-heroicons-question-mark-circle"
           variant="outline"
           color="neutral"
@@ -25,15 +25,15 @@
       class="mb-4"
       color="warning"
       variant="subtle"
-      title="Pro plan required"
-      description="Please upgrade your account to setup a custom domain."
+      :title="$t('workspace.pro.required_title')"
+      :description="$t('workspace.domains.pro_required_description')"
       :actions="[{
-        label: 'Upgrade to Pro',
+        label: $t('workspace.pro.upgrade_to_pro'),
         color: 'warning',
         variant: 'solid',
         onClick: () => openSubscriptionModal({
-          modal_title: 'Upgrade to use your own domain',
-          modal_description: 'Upgrade to our Pro plan to unlock custom domains and other premium features such as advanced customization, forms analytics, integrations, and more!'
+          modal_title: $t('workspace.domains.upgrade_modal_title'),
+          modal_description: $t('workspace.domains.upgrade_modal_description')
         })
       }]"
     />
@@ -44,7 +44,7 @@
           v-model="newDomain"
           :disabled="!workspace.is_pro"
           :variant="workspace.is_pro ? 'outline' : 'subtle'"
-          placeholder="yourdomain.com"
+          :placeholder="$t('workspace.domains.placeholder')"
           class="flex-1"
           @keydown.enter.prevent="addDomain"
         />
@@ -53,7 +53,7 @@
           icon="i-heroicons-plus"
           @click="addDomain"
         >
-          Add
+          {{ $t('common.actions.add') }}
         </UButton>
       </div>
 
@@ -76,7 +76,7 @@
       </div>
       <div v-else class="max-w-sm rounded-md border border-dashed border-neutral-300 p-4 text-center">
         <p class="text-sm text-neutral-500">
-          No custom domains added yet.
+          {{ $t('workspace.domains.empty') }}
         </p>
       </div>
     </div>
@@ -87,7 +87,7 @@
       :disabled="!workspace.is_pro || !isChanged"
       @click="saveChanges"
     >
-      Save Domain(s)
+      {{ $t('workspace.domains.save_button') }}
     </UButton>
   
   </div>
@@ -98,6 +98,7 @@ const { updateCustomDomains } = useWorkspaces()
 const alert = useAlert()
 const crisp = useCrisp()
 const { current: workspace } = useCurrentWorkspace()
+const { t } = useI18n()
 
 const { openSubscriptionModal } = useAppModals()
 
@@ -130,11 +131,11 @@ const addDomain = () => {
     // Supports: example.com, test.co.uk, subdomain.example.co.uk, etc.
     const domainRegex = /^[a-z0-9]+([-.][a-z0-9]+)*\.[a-z]{2,20}$/i
     if (!domainRegex.test(cleanedDomain)) {
-      return alert.error('Invalid domain format. Please use a format like "domain.com" or "subdomain.example.co.uk".')
+      return alert.error(t('workspace.domains.invalid_format'))
     }
 
     if (domains.value.includes(cleanedDomain)) {
-      return alert.info('Domain already in the list.')
+      return alert.info(t('workspace.domains.already_added'))
     }
 
     domains.value.push(cleanedDomain)
@@ -157,11 +158,11 @@ const saveChanges = () => {
   updateMutation.mutateAsync({
     custom_domains: domains.value,
   }).then(() => {
-      alert.success('Custom domains saved.')
+      alert.success(t('workspace.domains.saved'))
       isChanged.value = false
       isLoading.value = false
   }).catch((error) => {
-      alert.error(error.response?._data?.message ?? 'Failed to update custom domains')
+      alert.error(error.response?._data?.message ?? t('workspace.domains.save_error'))
       isLoading.value = false
     })
 }

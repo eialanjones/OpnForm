@@ -1,0 +1,182 @@
+{
+    "form_editor": {
+        "ai_loading": {
+            "starting_magic": "Começando a mágica da IA",
+            "analyzing_requirements": "Analisando os requisitos",
+            "designing_layout": "Desenhando o layout",
+            "adding_fields": "Adicionando os campos do formulário",
+            "fine_tuning_validation": "Ajustando a validação",
+            "optimizing_ux": "Otimizando a experiência",
+            "adding_smart_features": "Adicionando recursos inteligentes",
+            "polishing_design": "Refinando o design",
+            "running_final_checks": "Fazendo as verificações finais",
+            "almost_ready": "Quase pronto"
+        },
+        "advanced_url_settings": {
+            "title": "Mostrar opções avançadas de compartilhamento",
+            "auto_submit_label": "Enviar formulário automaticamente",
+            "auto_submit_help": "O formulário será enviado automaticamente assim que a URL for aberta"
+        },
+        "copy_content": {
+            "copy_link": "Copiar link",
+            "copy_url": "Copiar URL"
+        },
+        "custom_validation": {
+            "copy_from": "Copiar de",
+            "copy_to": "Copiar para",
+            "when_valid_title": "Quando este campo deve ser válido?",
+            "when_valid_description": "Defina <span class=\"font-semibold\">regras que tornam este campo válido</span>. Se as regras não forem atendidas, o campo mostra um erro.",
+            "rules_count": "{count} regra | {count} regras",
+            "add_rule": "Adicionar regra",
+            "error_message_title": "Qual mensagem mostrar se a validação falhar?",
+            "error_message_description": "Esta mensagem aparece quando <span class=\"font-semibold\">as regras de validação não são atendidas</span>.",
+            "error_message_label": "Mensagem de erro",
+            "save_notice": "Salve seu formulário para aplicar as alterações.",
+            "copy_from_title": "Copiar validação de outro campo",
+            "copy_from_description": "Selecione outro campo para copiar as regras de validação dele e aplicá-las em '{field}'.",
+            "choose_field_placeholder": "Escolha um campo...",
+            "copy_to_title": "Copiar validação para outros campos",
+            "copy_to_description": "Selecione os campos que vão receber as regras de validação de '{field}'.",
+            "choose_fields_placeholder": "Escolha os campos...",
+            "confirm_copy": "Confirmar e copiar"
+        },
+        "first_submission": {
+            "title": "🎉 Sua primeira resposta!",
+            "congrats": "Parabéns! Seu formulário está no ar e pronto para uso. Compartilhe com outras pessoas ou confira as respostas abaixo.",
+            "share_url_label": "Compartilhar URL do formulário:",
+            "check_submissions_label": "Ver respostas:",
+            "view_submissions": "Ver respostas",
+            "connect_apps_title": "🔗 Conecte seu formulário a outros apps",
+            "view_all_integrations": "Ver todas as integrações",
+            "integrations_description": "Receba um aviso na hora em que alguém responder seu formulário, ou sincronize os dados com suas ferramentas favoritas.",
+            "email_integration_title": "Notificação por e-mail",
+            "recommended": "Recomendado",
+            "email_integration_description": "Receba um e-mail sempre que alguém responder seu formulário. Perfeito para acompanhar tudo de perto.",
+            "other_integrations": "Outras integrações populares:"
+        },
+        "mobile_warning": {
+            "message": "O Forms Mentorfy não é otimizado para dispositivos móveis. Abra esta página em um dispositivo com tela maior.",
+            "back_to_dashboard": "Voltar ao painel"
+        },
+        "editor": {
+            "save_error": "Ocorreu um erro ao salvar o formulário, tente novamente."
+        },
+        "error_handler": {
+            "title": "Ops! Algo deu errado.",
+            "description": "Parece que sua última ação causou um problema do nosso lado. Pedimos desculpas pelo transtorno.",
+            "go_back_one_step": "Voltar um passo",
+            "report_error": "Reportar este erro",
+            "report_intro": "Olá, estou com um problema técnico no editor de formulários.",
+            "report_form": " O formulário que estou editando é: `{slug}`.",
+            "report_details": " E aqui estão os detalhes técnicos do erro: ```{details}```",
+            "report_reply": "Olá, sentimos muito que você tenha tido um problema com o Forms Mentorfy. Entraremos em contato em breve! Enquanto isso, recomendo que você tente voltar um passo e salvar suas alterações."
+        },
+        "navbar": {
+            "tab_build": "Construir",
+            "tab_design": "Design",
+            "draft": "Rascunho",
+            "closed": "Fechado",
+            "help": "Ajuda",
+            "publish_form": "Publicar formulário",
+            "save_changes": "Salvar alterações"
+        },
+        "fields_editor": {
+            "shortcut": "Atalho",
+            "add_block": "Adicionar bloco",
+            "show_block": "Mostrar bloco",
+            "hide_block": "Ocultar bloco",
+            "make_optional": "Tornar opcional",
+            "make_required": "Tornar obrigatório",
+            "open_settings": "Abrir configurações"
+        },
+        "stats": {
+            "heading": "Histórico de visualizações e respostas",
+            "upgrade_modal_title": "Faça upgrade hoje para acessar as análises do formulário",
+            "pro_required": "Você precisa de uma assinatura Pro para acessar as análises do seu formulário.",
+            "subscribe_modal_title": "Faça upgrade para desbloquear as análises do formulário",
+            "subscribe": "Assinar",
+            "sample_graph_alt": "Gráfico de exemplo",
+            "chart_views": "Visualizações do formulário",
+            "chart_submissions": "Respostas do formulário",
+            "chart_partial_submissions": "Respostas parciais"
+        },
+        "status_badges": {
+            "draft": "Rascunho",
+            "draft_tooltip": "Não acessível publicamente",
+            "closed": "Fechado",
+            "closed_tooltip": "Não aceitará novas respostas",
+            "time_limited": "Prazo limitado",
+            "will_close_on": "Fecha em {date}",
+            "closed_on": "Fechado em {date}",
+            "submission_limited": "Respostas limitadas",
+            "limited_to": "Limitado a {count} respostas",
+            "limit_reached": "Limite atingido",
+            "max_reached": "Máximo de {count} respostas atingido"
+        },
+        "traffic": {
+            "heading": "Detalhamento do tráfego",
+            "upgrade_modal_title": "Faça upgrade hoje para acessar análises detalhadas",
+            "pro_required": "Você precisa de uma assinatura Pro para acessar o detalhamento do tráfego.",
+            "subscribe_modal_title": "Faça upgrade para desbloquear as análises detalhadas",
+            "subscribe": "Assinar",
+            "sample_graph_alt": "Gráfico de exemplo",
+            "no_data": "Nenhum dado disponível",
+            "sources": "Origens do tráfego",
+            "devices": "Dispositivos",
+            "browsers": "Navegadores",
+            "operating_systems": "Sistemas operacionais",
+            "countries": "Países",
+            "others": "Outros"
+        },
+        "workspace_modal": {
+            "title": "Mudar o workspace do formulário",
+            "help": "Ajuda",
+            "current_workspace": "Workspace atual:",
+            "select_label": "Selecione o workspace de destino",
+            "change_workspace": "Mudar workspace",
+            "select_error": "Selecione um workspace!",
+            "success": "Workspace do formulário atualizado com sucesso.",
+            "generic_error": "Algo deu errado, tente novamente!"
+        },
+        "seo_preview": {
+            "heading": "Pré-visualização em redes sociais",
+            "image_alt": "Pré-visualização",
+            "no_image": "Sem imagem de pré-visualização"
+        },
+        "media": {
+            "section_title": "Imagem",
+            "image_label": "Imagem",
+            "layout_label": "Layout",
+            "focal_point": "Ponto focal",
+            "brightness": "Brilho",
+            "alt_text_label": "Texto alternativo",
+            "alt_text_placeholder": "Descreva a imagem para acessibilidade (máx. 125 caracteres)",
+            "image_settings": "Configurações da imagem",
+            "cover_image_settings": "Configurações da imagem de capa"
+        },
+        "template_modal": {
+            "edit_title": "Editar template",
+            "create_title": "Criar template",
+            "help": "Ajuda",
+            "create_from_form": "O novo template será criado a partir do seu formulário:",
+            "publicly_listed": "Listado publicamente?",
+            "slug": "Slug",
+            "short_description": "Descrição curta",
+            "image": "Imagem",
+            "types": "Tipos",
+            "industries": "Segmentos",
+            "related_templates": "Templates relacionados",
+            "faq": "Perguntas frequentes",
+            "delete_confirm": "Você realmente quer excluir este template?",
+            "delete_template": "Excluir template",
+            "created": "Template criado com sucesso",
+            "updated": "Template atualizado com sucesso",
+            "deleted": "Template excluído com sucesso"
+        },
+        "questions_editor": {
+            "question_placeholder": "Título da pergunta",
+            "answer_placeholder": "Resposta da pergunta",
+            "add_new": "Adicionar novo"
+        }
+    }
+}

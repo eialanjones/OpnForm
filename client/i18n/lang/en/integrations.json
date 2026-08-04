@@ -1,0 +1,179 @@
+{
+    "integrations": {
+        "actions": {
+            "edit_workflow": "Edit Workflow"
+        },
+        "card": {
+            "paused": "Paused",
+            "edit_on": "Edit on {name}",
+            "past_events": "Past Events",
+            "delete_integration": "Delete Integration",
+            "delete_confirm": "Do you really want to delete this form integration?",
+            "delete_confirm_external": "Do you really want to delete this form integration? This might affect your {name} workflow.",
+            "deleted_success": "Integration deleted successfully!"
+        },
+        "events_modal": {
+            "title": "Past Events",
+            "info_column": "Info"
+        },
+        "list_option": {
+            "soon": "(soon)",
+            "coming_soon_tooltip": "This integration is coming soon",
+            "subscription_tooltip": "You need a subscription to use this integration.",
+            "upgrade_modal_title": "Upgrade today to use this integration",
+            "upgrade_modal_description": "Upgrade your account to use our {name} and unlock all of our Pro features."
+        },
+        "modal": {
+            "help": "Help",
+            "save_error": "An error occurred while saving the integration"
+        },
+        "wrapper": {
+            "logic_configured": "Logic configured",
+            "add_logic": "Add logic",
+            "logic_configured_hint": "Conditions control when integration runs",
+            "add_logic_hint": "Set conditions for when to run",
+            "logic_question": "When should this integration run?",
+            "logic_description": "Set <span class=\"font-semibold\">conditions that control when this integration executes</span>. Leave empty to always run."
+        },
+        "discord": {
+            "webhook_url_label": "Discord webhook url",
+            "webhook_url_help": "Receive a discord message on each form submission.",
+            "webhook_url_help_link": "Click here to learn how to get a discord webhook url.",
+            "message_options_title": "Discord message options"
+        },
+        "slack": {
+            "webhook_url_label": "Slack webhook url",
+            "webhook_url_help": "Receive slack message on each form submission.",
+            "webhook_url_help_link": "Click here to learn how to get a slack webhook url.",
+            "message_actions_title": "Slack message actions"
+        },
+        "telegram": {
+            "description": "Receive Telegram messages on each form submission.",
+            "select_account_label": "Select Telegram Account",
+            "connect_another_account": "Click here to connect another account.",
+            "message_actions_title": "Telegram message actions",
+            "connect_account": "Connect Telegram account"
+        },
+        "google_sheets": {
+            "description": "Adds new entry to spreadsheets on each form submission.",
+            "reconnect_tooltip": "Re-connect account to fix permissions",
+            "select_account_label": "Select Google Account",
+            "connect_another_account": "Click here to connect another account.",
+            "connect_account": "Connect Google account"
+        },
+        "zapier": {
+            "coming_soon": "Coming Soon..."
+        },
+        "webhook": {
+            "url_label": "Webhook URL",
+            "url_help": "We will post form submissions to this endpoint",
+            "advanced_hint": "Configure signing secret and custom headers",
+            "secret_label": "Webhook Secret",
+            "secret_help": "Minimum 12 characters. Used to sign webhook requests with HMAC-SHA256",
+            "custom_headers_label": "Custom Headers",
+            "custom_headers_help": "Add custom HTTP headers to be sent with each webhook (max 10 headers)",
+            "remove_header": "Remove header",
+            "header_name_placeholder": "Header name",
+            "header_value_placeholder": "Header value",
+            "add_header": "Add Header",
+            "max_headers_reached": "Maximum 10 headers reached"
+        },
+        "email": {
+            "smtp_notice": "Send emails from your own domain.",
+            "smtp_link": "Use our custom SMTP feature.",
+            "send_to_label": "Send To",
+            "send_to_help_pro": "Add one email per line",
+            "send_to_help_free": "You can only send email notification to your own email address.",
+            "send_to_help_free_link": "Upgrade to the Pro plan to send to other email addresses.",
+            "sender_name_label": "Sender Name",
+            "sender_email_label": "Sender Email",
+            "sender_email_help": "If supported by email provider - default otherwise",
+            "subject_label": "Subject",
+            "content_label": "Email Content",
+            "appearance_title": "Email appearance",
+            "appearance_upgrade_modal_title": "Upgrade to customise email appearance",
+            "appearance_description": "Logo, fonts and colors for your email notifications",
+            "appearance_locked": "Email appearance customisation is part of the Pro plan.",
+            "appearance_locked_link": "Upgrade to Pro to add your logo, custom fonts and colors.",
+            "logo_label": "Logo",
+            "logo_help": "Display your logo in the email header (replaces app name)",
+            "font_family_label": "Font family",
+            "font_color_label": "Font color",
+            "font_color_help": "Color of the text in the email",
+            "outer_background_label": "Outer background color",
+            "outer_background_help": "Background around the email content area",
+            "inner_background_label": "Inner background color",
+            "inner_background_help": "Background of the email content area",
+            "include_submission_data_label": "Include submission data",
+            "include_submission_data_help": "If enabled the email will contain form submission answers",
+            "include_hidden_fields_label": "Include hidden fields",
+            "include_hidden_fields_help": "If enabled the email will contain hidden fields",
+            "edit_submission_link_label": "Edit Submission Link",
+            "reply_to_label": "Reply To",
+            "reply_to_help": "If empty, Reply-to will be your own email.",
+            "upgrade_modal_title": "Upgrade to unlock powerful email integration",
+            "upgrade_modal_description": "Upgrade to Pro to customize email notification recipients, send confirmation email to form respondents, and more: form customization, custom domain, collaboration, etc.",
+            "default_subject": "We saved your answers",
+            "default_content": "Hello there 👋 <br>This is a confirmation that your submission was successfully saved."
+        },
+        "notifications": {
+            "message_label": "Notification Message",
+            "message_help": "Customize the text of the notification message. Click {'@'} to include form field values.",
+            "include_submission_data_label": "Include submission data",
+            "include_submission_data_help": "With form submission answers",
+            "include_hidden_fields_label": "Include hidden fields",
+            "include_hidden_fields_help": "If enabled then hidden fields will be included in the notification message",
+            "open_form_link_label": "'Open Form' Link",
+            "open_form_link_help": "Link to the form public page",
+            "edit_form_link_label": "'Edit Form' Link",
+            "edit_form_link_help": "Link to the form admin page",
+            "analytics_label": "Form Analytics",
+            "analytics_help": "Form views and submissions count",
+            "edit_submission_link_label": "Edit Submission Link",
+            "default_message": "New form submission"
+        },
+        "page": {
+            "meta_title": "Integrations",
+            "meta_description": "Create beautiful forms for free. Unlimited fields, unlimited submissions.",
+            "heading": "Available Integrations",
+            "subheading": "Explore our powerful Integrations",
+            "most_popular": "Most Popular",
+            "setup_guide": "Setup Guide",
+            "guides_heading": "Integration General Setup Guides",
+            "guides_subheading": "This can be another text",
+            "need_help_heading": "Need help?",
+            "need_help_description": "Visit our Help Center for detailed documentation!",
+            "help_center": "Help Center",
+            "guides": {
+                "email": {
+                    "title": "Email Integration Setup",
+                    "step_1": "Navigate to <b>Forms Mentorfy</b> > <b>Integrations</b>.",
+                    "step_2": "Select <b>Email</b> and configure SMTP settings.",
+                    "step_3": "Set up email rules for notifications.",
+                    "step_4": "Save & activate email alerts."
+                },
+                "slack": {
+                    "title": "Slack Integration Setup",
+                    "step_1": "Navigate to <b>Forms Mentorfy</b> > <b>Integrations</b>.",
+                    "step_2": "Select <b>Slack</b> and authorize your workspace.",
+                    "step_3": "Choose a channel & customize messages.",
+                    "step_4": "Save & activate Slack alerts."
+                },
+                "webhook": {
+                    "title": "WebHook Integration Setup",
+                    "step_1": "Navigate to <b>Forms Mentorfy</b> > <b>Integrations</b>.",
+                    "step_2": "Select <b>WebHook</b> and enter your endpoint URL.",
+                    "step_3": "Map fields & configure triggers.",
+                    "step_4": "Save & activate WebHook alerts."
+                }
+            }
+        },
+        "detail_page": {
+            "other_integrations": "Other Integrations",
+            "discover_other": "Discover our other Integrations",
+            "not_found": "Whoops - Page not found",
+            "go_home": "Go Home",
+            "meta_description": "Create beautiful forms for free. Unlimited fields, unlimited submissions."
+        }
+    }
+}

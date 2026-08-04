@@ -3,10 +3,10 @@
     <div class="w-full max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-2">
       <div
         v-for="(stat, index) in [
-          { label: 'Views', value: totalViews, placeholder: '123' },
-          { label: 'Submissions', value: totalSubmissions, placeholder: '123' },
-          { label: 'Completion', value: completionRate + '%', placeholder: '100%' },
-          { label: 'Avg. Duration', value: averageDuration, placeholder: '10 seconds' }
+          { label: $t('form_pages.stats.views'), value: totalViews, placeholder: '123' },
+          { label: $t('form_pages.stats.submissions'), value: totalSubmissions, placeholder: '123' },
+          { label: $t('form_pages.stats.completion'), value: completionRate + '%', placeholder: '100%' },
+          { label: $t('form_pages.stats.avg_duration'), value: averageDuration, placeholder: $t('form_pages.stats.duration_placeholder') }
         ]"
         :key="index"
         class="border border-neutral-300 rounded-lg shadow-xs p-4"
@@ -61,8 +61,12 @@ const props = defineProps({
 definePageMeta({
   middleware: "auth",
 })
+const { t } = useI18n()
+
 useOpnSeoMeta({
-  title: props.form ? "Form Analytics - " + props.form.title : "Form Analytics",
+  title: props.form
+    ? t('form_pages.stats.page_title_with_form', { title: props.form.title })
+    : t('form_pages.stats.page_title'),
 })
 
 // Use query composables instead of manual API calls

@@ -16,26 +16,31 @@
         alt="AppSumo"
       >
     </div>
-    <p class="mt-6">
-      Your AppSumo
-      <span class="font-semibold">lifetime deal tier {{ licenseTier }}</span>
-      license is active. Here's a reminder of your plan details:
-    </p>
+    <i18n-t
+      keypath="admin.appsumo.billing.license_active"
+      scope="global"
+      tag="p"
+      class="mt-6"
+    >
+      <template #tier>
+        <span class="font-semibold">{{ licenseTier }}</span>
+      </template>
+    </i18n-t>
     <ul class="list-disc pl-5 mt-4">
       <li>
-        Number of Forms:
+        {{ $t('admin.appsumo.billing.forms_count') }}
         <span class="font-semibold">{{ tierFeatures.form_quantity }}</span>
       </li>
       <li>
-        Custom domains:
+        {{ $t('admin.appsumo.billing.custom_domains') }}
         <span class="font-semibold">{{ tierFeatures.domain_names }}</span>
       </li>
       <li>
-        File Size Uploads:
+        {{ $t('admin.appsumo.billing.file_upload_size') }}
         <span class="font-semibold">{{ tierFeatures.file_upload_size }}</span>
       </li>
       <li>
-        Users limit:
+        {{ $t('admin.appsumo.billing.users_limit') }}
         <span class="font-semibold">{{ tierFeatures.users }}</span>
       </li>
     </ul>
@@ -46,7 +51,7 @@
         class="mt-4 block"
         href="https://appsumo.com/account/products/"
         target="_blank"
-        label="Manage in AppSumo"
+        :label="$t('admin.appsumo.billing.manage_button')"
       />
     </div>
   </div>
@@ -76,21 +81,21 @@ export default {
       if (!this.licenseTier) return {}
       return {
         1: {
-          form_quantity: "Unlimited",
+          form_quantity: this.$t("admin.appsumo.billing.unlimited"),
           file_upload_size: "25mb",
           domain_names: "5",
           users: 1
         },
         2: {
-          form_quantity: "Unlimited",
+          form_quantity: this.$t("admin.appsumo.billing.unlimited"),
           file_upload_size: "50mb",
           domain_names: "25",
           users: 5
         },
         3: {
-          form_quantity: "Unlimited",
+          form_quantity: this.$t("admin.appsumo.billing.unlimited"),
           file_upload_size: "75mb",
-          domain_names: "Unlimited",
+          domain_names: this.$t("admin.appsumo.billing.unlimited"),
           users: 20
         },
       }[this.licenseTier]

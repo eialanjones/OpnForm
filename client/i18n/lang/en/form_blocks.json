@@ -1,0 +1,273 @@
+{
+    "form_blocks": {
+        "actions": {
+            "help": "Help"
+        },
+        "sections": {
+            "submission_settings": "Submission Settings",
+            "security_access": "Security & Access",
+            "seo_social_sharing": "SEO & Social Sharing",
+            "custom_code": "Custom Code"
+        },
+        "closed_form": {
+            "text_label": "Closed form text",
+            "text_help": "This message will be shown when the form will be closed"
+        },
+        "types": {
+            "text": "Text",
+            "rich_text": "Rich Text",
+            "date": "Date",
+            "url": "URL",
+            "phone_number": "Phone",
+            "email": "Email",
+            "checkbox": "Checkbox",
+            "select": "Select",
+            "radio": "Radio Button",
+            "multi_select": "Multi-select",
+            "matrix": "Matrix",
+            "number": "Number",
+            "rating": "Rating",
+            "scale": "Scale",
+            "slider": "Slider",
+            "files": "File",
+            "signature": "Signature",
+            "barcode": "Barcode Reader",
+            "qrcode": "QR Code Reader",
+            "password": "Password",
+            "toggle_switch": "Toggle Switch",
+            "payment": "Payment",
+            "nf-text": "Text",
+            "nf-page-break": "Page-break",
+            "nf-divider": "Divider",
+            "nf-image": "Image",
+            "nf-video": "Video",
+            "nf-code": "Code"
+        },
+        "add_block": {
+            "title": "Add Block",
+            "search_placeholder": "Search for a block...",
+            "input_blocks": "Input Blocks",
+            "layout_blocks": "Layout Blocks",
+            "no_input_match": "No input blocks match your search.",
+            "no_layout_match": "No layout blocks match your search."
+        },
+        "ai": {
+            "tooltip": "Add question with AI",
+            "heading": "Add new field(s) with AI",
+            "description": "This will generate new fields based on your description.",
+            "prompt_placeholder": "Describe the question you want to add with AI...",
+            "generate": "Generate",
+            "prompt_required": "Please describe the fields you want to add with AI.",
+            "failed": "Failed to add new field(s).",
+            "success": "New field(s) added successfully.",
+            "generation_failed": "Something went wrong, please try again."
+        },
+        "custom_code": {
+            "pro_title": "Upgrade to Unlock Custom Code Capabilities",
+            "pro_description": "On the Free plan, you can explore custom code features within the form editor. Upgrade your plan to implement custom scripts, styles, and advanced tracking in live forms. Elevate your form's functionality and design with unlimited customization options.",
+            "code_injection_help_html": "The code will be injected in the <b>head</b> section of your form page.",
+            "code_label": "Custom Code",
+            "css_heading": "Custom CSS",
+            "css_pro_title": "Upgrade to Unlock Custom CSS",
+            "css_pro_description": "On the Free plan, you can explore custom CSS within the editor. Upgrade to apply custom styles to your live forms.",
+            "css_injection_help_html": "The CSS will be injected in the <b>head</b> of your form page.",
+            "css_input_help": "CSS only. Example: body {'{'} background: #f8fafc {'}'}",
+            "css_label": "Custom CSS",
+            "help_enabled": "Saves changes and visit the actual form page to test.",
+            "help_self_hosted_disabled": "Custom code is disabled for safety on self-hosted. Enable via CUSTOM_CODE_ENABLE_SELF_HOSTED=true. See technical docs: https://docs.opnform.com/introduction",
+            "help_requires_custom_domain": "Custom code requires to be using a custom domain."
+        },
+        "seo": {
+            "heading": "SEO & Social Sharing - Meta",
+            "pro_title": "Upgrade to Enhance Your Form's SEO",
+            "pro_description": "Explore advanced SEO features in the editor on our Free plan. Upgrade to fully implement custom meta tags, Open Graph data, and improved search visibility. Boost your form's online presence and attract more respondents with our premium SEO toolkit.",
+            "description": "Customize the image and text that appear when you share your form on other sites (Open Graph).",
+            "form_domain_label": "Form Domain",
+            "form_domain_placeholder": "yourdomain.com",
+            "page_title_label": "Page Title",
+            "page_title_help": "Max 60 characters recommended",
+            "page_description_label": "Page Description",
+            "page_description_help": "Between 150 and 160 characters",
+            "thumbnail_label": "Thumbnail Image",
+            "thumbnail_help": "og:image - 1200px X 630px",
+            "favicon_label": "Favicon Image",
+            "favicon_help": "Public form page favicon",
+            "link_privacy_heading": "Link Privacy",
+            "link_privacy_description": "Disable to prevent Google from listing your form in search results.",
+            "indexable_label": "Indexable by Google",
+            "custom_url_heading": "Custom Form URL",
+            "custom_url_description": "Create a custom URL for your form. This will be the unique identifier in your form's URL.",
+            "custom_url_label": "Custom Form URL",
+            "custom_url_help": "Use only lowercase letters, numbers, and hyphens. Example: my-custom-form"
+        },
+        "customization": {
+            "basic_appearance": "Basic Appearance",
+            "form_theme_label": "Form Theme",
+            "themes": {
+                "notion": "Notion",
+                "simple": "Simple (no shadows)",
+                "minimal": "Minimal",
+                "transparent": "Transparent"
+            },
+            "accent_color_label": "Accent Color",
+            "color_mode_label": "Color Mode",
+            "color_modes": {
+                "system": "System",
+                "light": "Light",
+                "dark": "Dark"
+            },
+            "text_and_language": "Text & Language",
+            "font_family_label": "Font Family",
+            "language_label": "Language",
+            "rtl_label": "Right-to-Left Layout",
+            "uppercase_labels_label": "Uppercase Input Labels",
+            "layout_and_sizing": "Layout & Sizing",
+            "input_size_label": "Input Size",
+            "sizes": {
+                "small": "S",
+                "medium": "M",
+                "large": "L"
+            },
+            "input_roundness_label": "Input Roundness",
+            "form_width_label": "Form Width",
+            "widths": {
+                "centered": "Centered",
+                "full": "Full Width"
+            },
+            "branding": "Branding",
+            "logo_label": "Logo",
+            "background_label": "Background",
+            "cover_label": "Cover (~1500px)",
+            "hide_branding_label": "Hide Forms Mentorfy Branding",
+            "hide_branding_pro_title": "Upgrade today to remove Forms Mentorfy branding",
+            "advanced_options": "Advanced Options",
+            "navigation_arrows_label": "Show navigation arrows",
+            "progress_bar_label": "Show progress bar",
+            "progress_bar_help": "The bar is at the top of the page (above navigation in this editor) or below the title when embedded",
+            "transparent_background_label": "Transparent Background",
+            "transparent_background_help": "When form is embedded",
+            "confetti_label": "Confetti on successful submission",
+            "auto_focus_label": "Auto focus first input on page"
+        },
+        "preview": {
+            "title": "Form Preview",
+            "restart": "Re-start",
+            "collapse": "Collapse",
+            "expand": "Expand",
+            "add_block": "Add block",
+            "edit_question": "Edit question"
+        },
+        "error_modal": {
+            "title": "We couldn't save your form"
+        },
+        "information": {
+            "description": "Basic information about your form.",
+            "form_name_label": "Form Name",
+            "form_name_placeholder": "My form",
+            "tags_label": "Tags",
+            "tags_help": "To organize your forms",
+            "tags_placeholder": "Select Tag(s)",
+            "visibility_label": "Form Visibility",
+            "visibility_placeholder": "Select Visibility",
+            "visibility": {
+                "published": "Published",
+                "draft": "Draft - not publicly accessible",
+                "closed": "Closed - won't accept new submissions"
+            },
+            "copy_settings_button": "Copy another form's settings",
+            "import_settings_title": "Import Settings from another form",
+            "copy_from_label": "Copy Settings From",
+            "copy_from_placeholder": "Choose a form",
+            "confirm_and_copy": "Confirm & Copy",
+            "select_form_error": "Please select a form to copy settings from",
+            "settings_copied": "Form settings copied."
+        },
+        "security": {
+            "description": "Manage who can access your form and when.",
+            "password_label": "Form Password",
+            "password_help": "Leave empty to disable password protection",
+            "closing_date_label": "Closing date",
+            "closing_date_help": "Leave empty to keep the form open indefinitely",
+            "max_submissions_label": "Limit number of submissions",
+            "max_submissions_placeholder": "Max submissions",
+            "max_submissions_help": "Leave empty for unlimited submissions",
+            "max_submissions_reached_label": "Max Submissions reached text",
+            "max_submissions_reached_help": "This message will be shown when the form will have the maximum number of submissions",
+            "section_heading": "Security",
+            "section_description": "Protect your form, and your sensitive files.",
+            "bot_protection_label": "Bot Protection",
+            "bot_protection_help": "Protects your form from spam and abuse with a captcha",
+            "captcha_provider_label": "Select a captcha provider"
+        },
+        "structure": {
+            "title": "Form Structure"
+        },
+        "submission": {
+            "description": "Configure how form submissions are handled.",
+            "submit_button_label": "Submit button text",
+            "next_button_label": "Next button text",
+            "auto_save_label": "Auto save form response",
+            "auto_save_help": "Saves form progress, allowing respondents to resume later.",
+            "payment_auto_save_notice": "Must be enabled with a payment block.",
+            "database_action_label": "Database Submission Action",
+            "database_actions": {
+                "create": "Create new record",
+                "update": "Update existing record"
+            },
+            "update_record_help": "When matching values are found in the selected column(s), the (first) existing record will be updated instead of creating a new record. If there's no match, a new record will be created.",
+            "learn_more_link": "Learn more.",
+            "properties_to_check_label": "Properties to check on update",
+            "clear_empty_fields_label": "Clear empty fields on update",
+            "clear_empty_fields_help": "When enabled, fields left empty in submission will clear existing values in Submission. When disabled, only filled fields are updated.",
+            "advanced_heading": "Advanced Submission Options",
+            "advanced_description": "Configure advanced options for form submissions and data collection.",
+            "partial_submissions_label": "Collect partial submissions",
+            "partial_submissions_help": "Capture incomplete form submissions to analyze user drop-off points and collect partial data even when users don't complete the entire form.",
+            "partial_submissions_pro_title": "Upgrade to collect partial submissions",
+            "partial_submissions_pro_description": "Capture valuable data from incomplete form submissions. Analyze where users drop off and collect partial information even when they don't complete the entire form.",
+            "ip_tracking_label": "Collect IP addresses",
+            "ip_tracking_help": "Collect and store submitter IP addresses for analytics, fraud prevention, and geographic insights. Helps identify submission patterns and improve security.",
+            "ip_tracking_pro_title": "Upgrade to collect IP addresses",
+            "ip_tracking_pro_description": "Automatically capture submitter IP addresses to gain valuable insights into your form traffic. Analyze geographic patterns, detect suspicious activity, and enhance your form security with detailed submission analytics.",
+            "gdpr_title": "GDPR and Privacy Compliance",
+            "gdpr_description": "Ensure your privacy policy discloses IP address collection and obtain proper user consent where required.",
+            "after_submission_heading": "After Submission",
+            "after_submission_pro_title": "Upgrade to customize post-submission behavior",
+            "after_submission_pro_description": "Customize post-submission behavior: redirect users, show custom messages, or trigger actions. Upgrade to unlock advanced options for a seamless user experience. We have plenty of other pro features to enhance your form functionality and user engagement.",
+            "after_submission_description": "Customize the user experience after form submission.",
+            "action_after_label": "Action after form submission",
+            "actions": {
+                "success_page": "Show Success page",
+                "redirect": "Redirect"
+            },
+            "redirect_url_label": "Redirect URL",
+            "success_text_label": "Success page text",
+            "re_fillable_label": "Re-fillable form",
+            "re_fillable_help": "Allows user to fill the form multiple times",
+            "restart_button_label": "Text of re-start button",
+            "editable_heading": "Editable Submissions",
+            "editable_pro_title": "Upgrade to use Editable Submissions",
+            "editable_pro_description": "On the Free plan, you can try out all paid features only within the form editor. Upgrade your plan to allow users to update their submissions via a unique URL, and much more. Gain full access to all advanced features.",
+            "editable_description": "Allow respondents to edit and update their submissions via a unique link.",
+            "editable_label": "Enable editable submissions",
+            "editable_help": "Allows users to edit submissions via unique URL",
+            "edit_button_label": "Edit submission button text"
+        },
+        "style_switch": {
+            "label": "Form Style",
+            "styles": {
+                "classic": "Classic",
+                "focused": "Focused"
+            },
+            "tooltips": {
+                "classic": "Classic form: multiple inputs per page, multi-line layout, supports multiple pages and layout blocks.",
+                "focused": "Typeform-like, one question per step."
+            },
+            "confirm_title": "Switch to {style} style?",
+            "confirm_button": "Switch to {style}",
+            "removal_description": "Switching to Focused will remove {count} block not supported in this mode. | Switching to Focused will remove {count} blocks not supported in this mode.",
+            "switch_description": "Switch to Focused style.",
+            "no_blocks_removed": "No blocks will be removed."
+        }
+    }
+}

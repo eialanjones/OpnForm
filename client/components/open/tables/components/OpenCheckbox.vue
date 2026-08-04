@@ -6,7 +6,7 @@
     class="mx-auto"
     size="sm"
   >
-    Yes
+    {{ $t('common.labels.yes') }}
   </UBadge>
   <UBadge
     v-else-if="value === false"
@@ -15,7 +15,7 @@
     class="mx-auto"
     size="sm"
   >
-    No
+    {{ $t('common.labels.no') }}
   </UBadge>
 </template>
 

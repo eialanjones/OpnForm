@@ -6,7 +6,7 @@
     <QueryBuilder
       v-model="query"
       :config="config"
-      where-text="When"
+      :where-text="$t('form_logic.condition_editor.where_text')"
       v-bind="$attrs"
       @update:model-value="onChange"
     >
@@ -90,11 +90,11 @@ export default {
       return {
         operators: [
           {
-            name: "And",
+            name: this.$t("form_logic.condition_editor.operator_and"),
             identifier: "and",
           },
           {
-            name: "Or",
+            name: this.$t("form_logic.condition_editor.operator_or"),
             identifier: "or",
           },
         ],

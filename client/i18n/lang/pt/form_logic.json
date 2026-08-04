@@ -1,0 +1,104 @@
+{
+    "form_logic": {
+        "operators": {
+            "after": "Depois de",
+            "at_least_x_days_ago": "Pelo menos X dias atrás",
+            "at_least_x_days_from_now": "Pelo menos X dias a partir de hoje",
+            "before": "Antes de",
+            "contains": "Contém",
+            "content_length_does_not_equal": "Tamanho do conteúdo é diferente de",
+            "content_length_equals": "Tamanho do conteúdo é igual a",
+            "content_length_greater_than": "Tamanho do conteúdo é maior que",
+            "content_length_greater_than_or_equal_to": "Tamanho do conteúdo é maior ou igual a",
+            "content_length_less_than": "Tamanho do conteúdo é menor que",
+            "content_length_less_than_or_equal_to": "Tamanho do conteúdo é menor ou igual a",
+            "does_not_contain": "Não contém",
+            "does_not_equal": "É diferente de",
+            "does_not_exist_in_submissions": "Não existe nas respostas",
+            "does_not_match_regex": "Não corresponde ao regex",
+            "ends_with": "Termina com",
+            "equals": "É igual a",
+            "exists_in_submissions": "Existe nas respostas",
+            "greater_than": "É maior que",
+            "greater_than_or_equal_to": "É maior ou igual a",
+            "is_checked": "Está marcado",
+            "is_empty": "Está vazio",
+            "is_not_checked": "Não está marcado",
+            "is_not_empty": "Não está vazio",
+            "less_than": "É menor que",
+            "less_than_or_equal_to": "É menor ou igual a",
+            "matches_regex": "Corresponde ao regex",
+            "next_month": "Próximo mês",
+            "next_week": "Próxima semana",
+            "next_year": "Próximo ano",
+            "not_paid": "Não pago",
+            "on_or_after": "Em ou depois de",
+            "on_or_before": "Em ou antes de",
+            "paid": "Pago",
+            "past_month": "Último mês",
+            "past_week": "Última semana",
+            "past_year": "Último ano",
+            "starts_with": "Começa com",
+            "within_next_x_days": "Nos próximos X dias",
+            "within_past_x_days": "Nos últimos X dias"
+        },
+        "column_condition": {
+            "operator_placeholder": "Operador",
+            "value_placeholder": "Valor"
+        },
+        "condition_editor": {
+            "where_text": "Quando",
+            "operator_and": "E",
+            "operator_or": "Ou"
+        },
+        "block_logic": {
+            "copy_from": "Copiar de",
+            "copy_to": "Copiar para",
+            "conditions_heading": "Quando as seguintes condições forem verdadeiras",
+            "rules_count": "{count} regra | {count} regras",
+            "add_rule": "Adicionar regra",
+            "then": "então",
+            "actions_heading": "Aplicar as seguintes ações",
+            "actions_placeholder": "Selecione as ações...",
+            "hidden_fields_note": "Lembre-se de que campos ocultos nunca podem ser obrigatórios.",
+            "confirm_copy": "Confirmar e copiar",
+            "copy_from_modal": {
+                "title": "Copiar lógica de outro campo",
+                "description": "Selecione outro campo/bloco para copiar a lógica dele e aplicar em '{name}'.",
+                "placeholder": "Escolha um campo/bloco..."
+            },
+            "copy_to_modal": {
+                "title": "Copiar lógica para outros campos",
+                "description": "Selecione os outros campos que vão receber a lógica de '{name}'.",
+                "placeholder": "Escolha os campos..."
+            },
+            "actions": {
+                "show_block": "Mostrar bloco",
+                "hide_block": "Ocultar bloco",
+                "enable_block": "Habilitar bloco",
+                "disable_block": "Desabilitar bloco",
+                "require_answer": "Exigir resposta",
+                "make_it_optional": "Tornar opcional"
+            }
+        },
+        "group_control": {
+            "rule_placeholder": "Adicionar condição em um campo",
+            "add_condition": "Adicionar condição",
+            "add_group": "Adicionar grupo",
+            "select_field_error": "Selecione um campo para adicionar a condição."
+        },
+        "query_builder": {
+            "where": "Onde",
+            "and": "E",
+            "add_rule_button": "Adicionar regra",
+            "add_rule": "Adicionar regra",
+            "add_rule_group": "Adicionar grupo de regras",
+            "turn_into_group": "Transformar em grupo",
+            "turn_into_rule": "Transformar em regra",
+            "select_field_placeholder": "Selecione o campo..."
+        },
+        "impersonation": {
+            "stop": "Encerrar personificação"
+        }
+    }
+}

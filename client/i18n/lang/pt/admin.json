@@ -1,0 +1,179 @@
+{
+    "admin": {
+        "errors": {
+            "generic": "Ocorreu um erro."
+        },
+        "table": {
+            "no_items": "Nenhum item.",
+            "id": "ID",
+            "plan": "Plano",
+            "creation_date": "Data de criação"
+        },
+        "roles": {
+            "user": "Usuário",
+            "admin": "Administrador",
+            "readonly": "Somente leitura"
+        },
+        "page": {
+            "meta_title": "Admin",
+            "heading": "Configurações de admin",
+            "identifier_label": "Identificador",
+            "identifier_help": "ID do usuário, e-mail do usuário, slug do formulário ou slug da visualização",
+            "identifier_required": "O identificador é obrigatório.",
+            "fetch_user": "Buscar usuário",
+            "user_fetched": "Usuário encontrado: {name}",
+            "template_description_label": "Descrição do template",
+            "template_description_help": "Descreva o template que você quer criar",
+            "create_template": "Criar template",
+            "template_prompt_required": "A descrição do template é obrigatória.",
+            "template_created": "Template criado."
+        },
+        "add_user_to_workspace": {
+            "email_placeholder": "Adicionar um novo usuário por e-mail",
+            "role_label": "Função",
+            "role_placeholder": "Selecione a função do usuário",
+            "invite_user": "Convidar usuário",
+            "add_error": "Erro ao adicionar usuário: {message}"
+        },
+        "edit_workspace_user": {
+            "title": "Editar função do usuário",
+            "new_role_for": "Nova função para {name}",
+            "updated": "Função do usuário atualizada.",
+            "update_error": "Erro ao atualizar a função do usuário"
+        },
+        "billing_customer": {
+            "title": "Dados de cobrança",
+            "description": "Você pode atualizar os dados de cobrança do assinante no Stripe.",
+            "billing_name": "Nome de cobrança",
+            "billing_email": "E-mail de cobrança",
+            "update_button": "Atualizar dados de cobrança"
+        },
+        "block_user": {
+            "block_title": "Bloquear usuário",
+            "unblock_title": "Desbloquear usuário",
+            "reason_label": "Motivo",
+            "reason_help": "O motivo será enviado ao usuário por e-mail.",
+            "view_history": "Ver histórico",
+            "history_title": "Histórico de bloqueios",
+            "block_warning": "Isso vai bloquear o acesso do usuário à conta e mudar todos os formulários dele para rascunho.",
+            "unblock_warning": "Isso vai desbloquear o usuário e permitir que ele faça login novamente. Os formulários dele continuarão como rascunho.",
+            "auto_blocked_by_ai": "Bloqueado automaticamente pela nossa IA",
+            "blocked_on": "Bloqueado em:",
+            "blocked_by": "Bloqueado por:",
+            "reason": "Motivo:",
+            "columns": {
+                "blocked_at": "Bloqueado em",
+                "blocked_by": "Bloqueado por",
+                "reason": "Motivo",
+                "unblocked_at": "Desbloqueado em",
+                "unblocked_by": "Desbloqueado por",
+                "unblock_reason": "Motivo do desbloqueio"
+            }
+        },
+        "clarity_link": {
+            "label": "Abrir no Clarity"
+        },
+        "clear_cache": {
+            "label": "Limpar cache",
+            "success": "Cache do usuário limpo."
+        },
+        "deleted_forms": {
+            "title": "Formulários excluídos",
+            "restore": "Restaurar",
+            "restore_confirm": "Tem certeza de que quer restaurar este formulário?",
+            "columns": {
+                "slug": "Slug",
+                "created_by": "Criado por",
+                "deleted_at": "Excluído em"
+            }
+        },
+        "discount": {
+            "title": "Aplicar desconto",
+            "description": "Isso é apenas para estudantes, acadêmicos e ONGs. Confirme a situação deles antes de aplicar o desconto (e-mail de estudante/universidade, site da ONG, comprovante de organização sem fins lucrativos etc). Eles precisam criar a assinatura antes de você aplicar o desconto de 40%.",
+            "apply_button": "Aplicar desconto"
+        },
+        "extend_trial": {
+            "title": "Estender período de teste",
+            "description": "Você pode estender o teste de assinantes que ainda estão no período de avaliação. Normalmente você não deve oferecer mais de 7 dias de teste, mas pode adicionar até 14 dias se for necessário.",
+            "days_label": "Número de dias",
+            "days_help": "Número de dias",
+            "apply_button": "Estender teste"
+        },
+        "impersonate": {
+            "label": "Personificar usuário",
+            "success": "Personificando {name}",
+            "error": "Não foi possível personificar o usuário"
+        },
+        "password_reset": {
+            "label": "Redefinir senha",
+            "confirm": "Tem certeza de que quer enviar o e-mail de redefinição de senha?",
+            "error": "Não foi possível enviar o e-mail de redefinição de senha"
+        },
+        "two_factor_disable": {
+            "title": "Desativar autenticação de dois fatores",
+            "warning": "Desativar a autenticação de dois fatores é uma ação crítica de segurança. Tenha um motivo sólido e uma prova forte de que a conta pertence ao usuário (como identidade verificada ou consentimento por escrito) antes de continuar. O usuário terá que reativar o 2FA no próximo login.",
+            "reason_label": "Motivo",
+            "reason_help": "O motivo será enviado ao Slack apenas para uso interno."
+        },
+        "payments": {
+            "title": "Pagamentos",
+            "refund": "Reembolsar",
+            "refund_modal_title": "Reembolsar pagamento",
+            "refund_notice_manual": "Não avisamos o usuário automaticamente. Avise-o manualmente.",
+            "refund_notice_delay": "Depois do reembolso, esta página leva um tempo para ser atualizada.",
+            "refund_reason_label": "Motivo do reembolso",
+            "refund_reason_help": "Descreva com clareza o motivo do reembolso deste pagamento. Isso será registrado para consulta futura.",
+            "refund_now": "Reembolsar pagamento agora",
+            "refund_confirm": "Tem certeza? Isso vai reembolsar o pagamento deste usuário.",
+            "columns": {
+                "amount_paid": "Valor pago"
+            }
+        },
+        "subscriptions": {
+            "title": "Assinaturas",
+            "cancel_modal_title": "Cancelar assinatura",
+            "cancel_notice": "O ideal é que os clientes cancelem a assinatura por conta própria pela interface. Se você cancelar por eles, informe um motivo.",
+            "cancellation_reason_label": "Motivo do cancelamento",
+            "cancellation_reason_help": "Descreva com clareza o motivo do cancelamento desta assinatura. Isso será registrado para consulta futura.",
+            "cancel_now": "Cancelar assinatura agora",
+            "cancel_confirm": "Tem certeza? Isso vai cancelar a assinatura deste usuário.",
+            "columns": {
+                "stripe_id": "ID do Stripe",
+                "canceled_at": "Cancelada em"
+            }
+        },
+        "workspaces": {
+            "title": "Workspaces",
+            "columns": {
+                "forms_count": "Nº de formulários"
+            }
+        },
+        "featurebase": {
+            "feedback": "Feedback"
+        },
+        "google_one_tap": {
+            "registered_welcome": "Agora você está cadastrado com sua conta Google! Boas-vindas ao Forms Mentorfy.",
+            "create_first_form": "Hora de criar seu primeiro formulário!",
+            "signed_in": "Login com o Google realizado com sucesso!",
+            "auth_failed": "Falha na autenticação",
+            "one_tap_failed": "Falha na autenticação com o Google One Tap"
+        },
+        "appsumo": {
+            "billing": {
+                "license_active": "Sua licença AppSumo lifetime deal tier {tier} está ativa. Relembrando os detalhes do seu plano:",
+                "forms_count": "Número de formulários:",
+                "custom_domains": "Domínios personalizados:",
+                "file_upload_size": "Tamanho de upload de arquivos:",
+                "users_limit": "Limite de usuários:",
+                "unlimited": "Ilimitado",
+                "manage_button": "Gerenciar na AppSumo"
+            },
+            "register": {
+                "found_license": "Encontramos sua licença AppSumo Lifetime deal!",
+                "complete_registration": "Basta completar o formulário de cadastro para finalizar a ativação da sua licença.",
+                "invalid_license": "Licença AppSumo inválida.",
+                "invalid_license_details": "A licença provavelmente já foi vinculada a uma conta Forms Mentorfy. Entre em contato com o suporte."
+            }
+        }
+    }
+}

@@ -10,7 +10,7 @@
 
     <div :class="ui.container({ class: props.ui?.slots?.container })">
       <!-- Fullscreen button -->
-      <UTooltip text="Open in fullscreen" :content="{ side: 'left' }" arrow>
+      <UTooltip :text="$t('widgets.fullscreen.open')" :content="{ side: 'left' }" arrow>
         <UButton
           v-if="allowFullscreen"
           @click="openFullscreen"
@@ -46,7 +46,7 @@
           <div class="flex items-center justify-between p-4 border-b">
             <div>
               <h3 class="text-lg font-medium text-neutral-900 dark:text-white">
-                {{ label || 'Code Editor' }}
+                {{ label || $t('widgets.code_input.default_title') }}
               </h3>
             </div>
             <UButton
@@ -56,7 +56,7 @@
               size="sm"
               icon="i-heroicons-x-mark"
               :ui="{ rounded: 'rounded-md' }"
-              label="Exit fullscreen"
+              :label="$t('widgets.fullscreen.exit')"
             />
           </div>
 

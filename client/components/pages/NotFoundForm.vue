@@ -4,18 +4,18 @@
       <div class="text-center mx-auto">
         <img
           src="/img/icons/404.png"
-          alt="404 Error"
+          :alt="$t('marketing.not_found_form.image_alt')"
           class="w-full max-w-[250px] mb-5 mx-auto"
         >
         <h1 class="text-dark text-2xl md:text-4xl leading-none font-medium text-center pt-4 md:pt-0 mx-auto md:max-w-full">
-          We're sorry! This Form Is No Longer Here
+          {{ $t('marketing.not_found_form.title') }}
         </h1>
         <p class="text-neutral-500 mt-3 max-w-xl mx-auto">
-          It may have been deleted, deactivated, or the form URL might have been regenerated or updated by its owner. But don't worry—you've got plenty of other options!
+          {{ $t('marketing.not_found_form.description') }}
         </p>
-        
+
         <h3 class="my-8 text-dark text-xl font-semibold text-center md:pt-0 mx-auto md:max-w-full">
-          What can you do?
+          {{ $t('marketing.not_found_form.what_can_you_do') }}
         </h3>
         <div class="mt-8 grid grid-cols-2 md:grid-cols-5 gap-4">
           <NuxtLink
@@ -38,37 +38,37 @@
         
         <div class="mt-10 text-neutral-700">
           <h3 class="mt-8 text-dark text-xl font-semibold text-center md:pt-0 mx-auto md:max-w-full">
-            Still not sure what to do? Here are more ways to get started!
+            {{ $t('marketing.not_found_form.more_ways_title') }}
           </h3>
           <p class="mt-4 text-neutral-500">
-            No worries! Here are some other options for you:
+            {{ $t('marketing.not_found_form.more_ways_description') }}
           </p>
           <ul class="mt-4 space-y-2 text-sm">
             <li>
-              Do you want to know why users choose Forms Mentorfy? 
+              {{ $t('marketing.not_found_form.why_choose_label') }}
               <NuxtLink
                 class="text-blue-500 hover:text-blue-600"
                 :to="{ name: 'ai-form-builder' }"
               >
-                Learn more here!
+                {{ $t('marketing.not_found_form.why_choose_link') }}
               </NuxtLink>
             </li>
             <li>
-              Browse Templates
+              {{ $t('marketing.not_found_form.templates_label') }}
               <NuxtLink
                 class="text-blue-500 hover:text-blue-600"
                 :to="{ name: 'templates' }"
               >
-                Get inspired with ready-to-use form templates!
+                {{ $t('marketing.not_found_form.templates_link') }}
               </NuxtLink>
             </li>
             <li>
-              Check Out Our Help Center
+              {{ $t('marketing.not_found_form.help_center_label') }}
               <NuxtLink
                 class="text-blue-500 hover:text-blue-600"
                 to="https://help.opnform.com/en/"
               >
-                Find quick answers to common questions.
+                {{ $t('marketing.not_found_form.help_center_link') }}
               </NuxtLink>
             </li>
           </ul>
@@ -84,33 +84,34 @@
 
 <script setup>
 const crisp = useCrisp()
+const { t } = useI18n()
 
 const actions = [
   {
     to: { name: 'forms-create-guest' },
     icon: 'i-heroicons-rocket-launch',
-    text: 'Create Form'
+    text: t('marketing.not_found_form.actions.create_form')
   },
   {
     to: { name: 'login' },
     icon: 'i-heroicons-list-bullet',
-    text: 'Find Your Forms'
+    text: t('marketing.not_found_form.actions.find_your_forms')
   },
   {
     href: '#',
     icon: 'i-heroicons-book-open',
-    text: 'Documentation',
+    text: t('marketing.not_found_form.actions.documentation'),
     onClick: () => crisp.openHelpdesk()
   },
   {
     to: { name: 'index' },
     icon: 'i-heroicons-document-magnifying-glass',
-    text: 'Explore Forms Mentorfy'
+    text: t('marketing.not_found_form.actions.explore')
   },
   {
     href: '#',
     icon: 'i-heroicons-chat-bubble-left-right',
-    text: 'Need Assistance?',
+    text: t('marketing.not_found_form.actions.need_assistance'),
     onClick: () => crisp.openChat()
   }
 ]

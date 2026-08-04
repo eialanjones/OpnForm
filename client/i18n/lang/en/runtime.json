@@ -1,0 +1,59 @@
+{
+    "runtime": {
+        "navigation": {
+            "help": "Help",
+            "help_center": "Help Center",
+            "api_docs": "API Docs",
+            "contact_support": "Contact Support"
+        },
+        "auth": {
+            "impersonation_expired": "User token expired. You have been logged out of the admin account."
+        },
+        "oidc": {
+            "linked": "Your SSO account has been linked.",
+            "link_failed": "Failed to link your SSO account."
+        },
+        "oauth": {
+            "connect_error": "An error occurred while connecting an account",
+            "popup_blocked": "Popup was blocked. Please allow popups and try again.",
+            "connecting": "Connecting…"
+        },
+        "tokens": {
+            "created": "Token created successfully",
+            "deleted": "Token deleted successfully",
+            "abilities": {
+                "manage_integrations": "Manage integrations",
+                "forms_read": "Forms – Read",
+                "forms_write": "Forms – Write",
+                "workspaces_read": "Workspaces – Read",
+                "workspaces_write": "Workspaces – Write",
+                "workspace_users_read": "Workspace Users – Read",
+                "workspace_users_write": "Workspace Users – Write"
+            }
+        },
+        "form_logic": {
+            "invalid_condition_group": "Condition group must have children array",
+            "invalid_field_reference": "Referenced field {field} no longer exists",
+            "no_conditions": "No conditions specified",
+            "no_actions": "No actions specified",
+            "invalid_action": "Invalid action configuration",
+            "invalid_condition": "Invalid condition configuration"
+        },
+        "working_form": {
+            "custom_code_disabled_title": "Custom code disabled",
+            "custom_code_self_hosted": "Custom code is disabled for safety on self-hosted. See technical docs to learn more.",
+            "custom_code_needs_domain": "Your form needs to be using a custom domain to add a code block.",
+            "view_docs": "View docs",
+            "help": "Help",
+            "block_not_self_hosted": "{block} is not allowed on self hosted. Please use our hosted version.",
+            "block_max_count": "Only {count} '{block}' block(s) allowed per form.",
+            "login_to_add_block": "Please login to add this block.",
+            "field_removed": "Field removed",
+            "undo_hint": "Ctrl + Z to undo",
+            "undo": "Undo"
+        },
+        "payment": {
+            "missing_form_or_provider": "Missing form slug or OAuth provider ID"
+        }
+    }
+}

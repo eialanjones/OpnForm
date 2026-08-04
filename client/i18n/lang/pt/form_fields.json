@@ -1,0 +1,172 @@
+{
+    "form_fields": {
+        "edit": {
+            "empty_state": "Clique em um campo para editá-lo.",
+            "copy_field_id": "Copiar ID do campo",
+            "field_id_copied": "ID do campo copiado para a área de transferência",
+            "change_type": "Alterar tipo",
+            "tabs": {
+                "logic": "Lógica",
+                "validation": "Validação"
+            }
+        },
+        "state": {
+            "hidden": "Oculto"
+        },
+        "width": {
+            "label": "Largura do bloco",
+            "full": "Total"
+        },
+        "block_options": {
+            "name_label": "Nome do bloco",
+            "content_label": "Conteúdo",
+            "code_content_help": "Você pode adicionar qualquer código html, incluindo iframes",
+            "next_button_label": "Rótulo do botão de avançar",
+            "previous_button_label": "Rótulo do botão de voltar",
+            "previous_button_help": "Exibido na próxima página",
+            "upload_image_label": "Enviar imagem",
+            "video_url_label": "URL do vídeo",
+            "video_url_help": "Você pode adicionar a URL de um vídeo aqui. Ele será exibido como um bloco de vídeo.",
+            "alignment": {
+                "label": "Alinhamento do texto",
+                "left": "Alinhar à esquerda",
+                "center": "Alinhar ao centro",
+                "right": "Alinhar à direita",
+                "justify": "Justificar texto"
+            }
+        },
+        "matrix": {
+            "title": "Matriz",
+            "add_row": "Adicionar linha",
+            "add_column": "Adicionar coluna",
+            "default_row_prefix": "Linha",
+            "prefilled_values": "Valores pré-preenchidos"
+        },
+        "payment": {
+            "title": "Pagamento",
+            "currency_label": "Moeda",
+            "amount_label": "Valor",
+            "name_on_card_label": "Nome no cartão",
+            "billing_email_label": "E-mail de cobrança",
+            "stripe_account_label": "Conta Stripe",
+            "or": "OU",
+            "connect_stripe": "Conectar conta Stripe",
+            "learn_more": "Saiba como receber pagamentos",
+            "accounts_updated": "Contas Stripe atualizadas."
+        },
+        "options": {
+            "field_name": "Nome do campo",
+            "checkbox": {
+                "title": "Caixa de seleção",
+                "use_toggle_switch": "Usar interruptor",
+                "use_toggle_switch_help": "Se ativado, a caixa de seleção será substituída por um interruptor",
+                "style_label": "Estilo da caixa de seleção",
+                "style_help": "Escolha como a caixa de seleção aparece no modo focado",
+                "style_focused_toggle": "Seletor Sim/Não (atalhos Y/N)",
+                "style_toggle_switch": "Interruptor",
+                "style_classic": "Caixa de seleção clássica"
+            },
+            "files": {
+                "title": "Upload de arquivos",
+                "allow_multiple": "Permitir múltiplos arquivos",
+                "allow_camera": "Permitir upload pela câmera",
+                "allowed_types_label": "Tipos de arquivo permitidos",
+                "allowed_types_help": "Valores separados por vírgula, deixe em branco para permitir todos os tipos de arquivo",
+                "max_size_label": "Tamanho máximo do arquivo (em MB)",
+                "max_size_help": "Defina o tamanho máximo de arquivo que pode ser enviado"
+            },
+            "barcode": {
+                "title": "Leitor de código de barras",
+                "decoders_label": "Decodificadores",
+                "decoders_help": "Selecione os decodificadores que você quer usar",
+                "decoder_qr": "QR Code",
+                "decoder_ean_13": "EAN-13 (Número Europeu de Artigo)",
+                "decoder_ean_8": "EAN-8 (Número Europeu de Artigo)",
+                "decoder_upc_a": "UPC-A (Código Universal de Produto)",
+                "decoder_upc_e": "UPC-E (Código Universal de Produto)",
+                "decoder_code_128": "Code 128",
+                "decoder_code_39": "Code 39"
+            },
+            "rating": {
+                "title": "Avaliação",
+                "max_value": "Valor máximo da avaliação"
+            },
+            "scale": {
+                "title": "Escala",
+                "min_value": "Valor mínimo da escala",
+                "max_value": "Valor máximo da escala",
+                "step_value": "Valor do passo da escala"
+            },
+            "slider": {
+                "title": "Controle deslizante",
+                "min_value": "Valor mínimo do controle",
+                "max_value": "Valor máximo do controle",
+                "step_value": "Valor do passo do controle"
+            },
+            "text": {
+                "title": "Opções de texto",
+                "multi_lines": "Campo de múltiplas linhas",
+                "secret_input": "Campo secreto",
+                "secret_input_help": "Oculta o conteúdo digitado com * por privacidade",
+                "secret_input_upgrade": "Faça upgrade hoje para ativar o campo secreto"
+            },
+            "date": {
+                "title": "Opções de data",
+                "include_end_date": "Incluir data final",
+                "prefill_today": "Pré-preencher com 'hoje'",
+                "disable_past_dates": "Desativar datas passadas",
+                "disable_future_dates": "Desativar datas futuras",
+                "include_time": "Incluir horário",
+                "timezone_label": "Fuso horário",
+                "timezone_help": "Selecione o mesmo fuso horário que você usa no Notion. Caso contrário, deixe em branco.",
+                "time_format_label": "Formato de hora",
+                "date_format_label": "Formato de data"
+            },
+            "select": {
+                "title": "Opções de seleção",
+                "options_label": "Defina as opções de seleção",
+                "options_help": "Adicione uma opção por linha",
+                "use_dropdown_instead": "Usar lista suspensa",
+                "use_dropdown_instead_help": "Usa a lista suspensa clássica em vez do seletor focado com atalhos de teclado",
+                "allow_creation": "Permitir que o respondente crie novas opções",
+                "without_dropdown": "Usar botões de opção",
+                "shuffle_options": "Embaralhar a ordem das opções",
+                "min_selection_label": "Mín. obrigatório",
+                "max_selection_label": "Máx. permitido",
+                "clear_min_max": "Limpar os dois valores",
+                "min_max_help": "Defina o mínimo/máximo de opções permitidas ou deixe vazio para ilimitado. Salve o formulário para testar as alterações."
+            },
+            "customization": {
+                "title": "Personalização",
+                "hide_field_name": "Ocultar nome do campo",
+                "use_simple_text_input": "Usar campo de texto simples",
+                "disabled_countries_label": "Países desativados",
+                "disabled_countries_placeholder": "Selecione um país",
+                "disabled_countries_help": "Remove países do campo de telefone",
+                "countries_selected": "{count} selecionados",
+                "select_all_countries": "Selecionar todos",
+                "unselect_all_countries": "Desmarcar todos",
+                "prefill_label": "Valor pré-preenchido",
+                "prefill_file_label": "Arquivo pré-preenchido",
+                "prefill_today_placeholder": "Pré-preenchido com a data atual",
+                "prefill_problem": "Algum problema?",
+                "prefill_clear_link": "Clique aqui para limpar o pré-preenchimento",
+                "placeholder_label": "Texto do campo vazio - placeholder",
+                "help_label": "Texto de ajuda",
+                "help_hint": "Exibido abaixo/acima do campo, como este texto",
+                "help_position_label": "Posição do texto de ajuda",
+                "help_position_below": "Abaixo do campo",
+                "help_position_above": "Acima do campo",
+                "max_char_limit": "Limite máximo de caracteres",
+                "show_char_limit": "Sempre mostrar o limite de caracteres"
+            },
+            "advanced": {
+                "title": "Opções avançadas",
+                "generates_uuid": "Gerar um id único",
+                "generates_uuid_help": "Se você ativar isso, vamos ocultar este campo e preenchê-lo com um id único (formato UUID) a cada nova resposta do formulário",
+                "generates_auto_increment_id": "Gerar um id autoincremental",
+                "generates_auto_increment_id_help": "Se você ativar isso, vamos ocultar este campo e preenchê-lo com um número incremental único a cada nova resposta do formulário"
+            }
+        }
+    }
+}

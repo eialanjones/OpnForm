@@ -8,10 +8,10 @@
           <app-sumo-register class="mb-10 p-6 lg:hidden" />
           <div class="border rounded-md p-6 shadow-md sticky top-4">
             <h2 class="font-semibold text-2xl">
-              Create an account
+              {{ $t('auth.register.title') }}
             </h2>
             <p class="text-neutral-500 text-sm">
-              Sign up in less than 2 minutes.
+              {{ $t('auth.register.subtitle') }}
             </p>
             <template v-if="!useFeatureFlag('self_hosted') || isInvited">
               <register-form />
@@ -20,17 +20,17 @@
               v-else
               class="my-6 p-3 rounded-lg border border-yellow-600 bg-yellow-200 text-yellow-600"
             >
-              Registration is not allowed in self host mode.
+              {{ $t('auth.register.self_hosted_disabled') }}
             </div>
           </div>
         </div>
         <div class="w-full hidden lg:block lg:w-1/2 md:p-6 mt-8 md:mt-0">
           <app-sumo-register class="mb-10" />
           <h1 class="font-bold">
-            Create beautiful forms and share them anywhere
+            {{ $t('auth.marketing.headline') }}
           </h1>
           <p class="text-neutral-900 my-4 text-lg">
-            It takes seconds, you don't need to know how to code and it's free.
+            {{ $t('auth.marketing.subheadline') }}
           </p>
           <div class="flex flex-wrap justify-center">
             <p class="px-3 pb-3 text-sm text-neutral-500">
@@ -48,7 +48,7 @@
                   d="M5 13l4 4L19 7"
                 />
               </svg>
-              Unlimited forms
+              {{ $t('auth.marketing.unlimited_forms') }}
             </p>
             <p class="px-3 pb-3 text-sm text-neutral-500">
               <svg
@@ -65,7 +65,7 @@
                   d="M5 13l4 4L19 7"
                 />
               </svg>
-              Unlimited fields
+              {{ $t('auth.marketing.unlimited_fields') }}
             </p>
             <p class="px-3 pb-3 text-sm text-neutral-500">
               <svg
@@ -82,7 +82,7 @@
                   d="M5 13l4 4L19 7"
                 />
               </svg>
-              Unlimited submissions
+              {{ $t('auth.marketing.unlimited_submissions') }}
             </p>
           </div>
         </div>
@@ -103,8 +103,10 @@ export default {
   },
 
   setup() {
+    const { t } = useI18n()
+
     useOpnSeoMeta({
-      title: "Register",
+      title: t("auth.register.page_title"),
     })
 
     definePageMeta({

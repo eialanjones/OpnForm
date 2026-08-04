@@ -13,7 +13,7 @@
         size="sm"
         variant="ghost"
         class="max-w-sm min-w-[12ch]" 
-        placeholder="Search..." 
+        :placeholder="$t('submissions.table.search_placeholder')"
         icon="i-heroicons-magnifying-glass-solid"
         v-model="searchInput"
       />
@@ -38,7 +38,7 @@
         size="sm"
         color="error"
         variant="outline"
-        :label="`Delete (${selectedIds.length})`"
+        :label="$t('submissions.table.delete_count', { count: selectedIds.length })"
         :loading="deleteMultiSubmissionsMutation.isPending.value"
         @click="onDeleteMultiClick"
       />
@@ -49,7 +49,7 @@
         :selected-ids="selectedIds"
       />
 
-      <UTooltip text="Refresh" arrow>
+      <UTooltip :text="$t('common.actions.refresh')" arrow>
         <UButton
           size="sm"
           color="neutral"
@@ -60,7 +60,7 @@
         />
       </UTooltip>
 
-      <UTooltip arrow :text="isExpanded ? 'Exit fullscreen' : 'Fullscreen'">
+      <UTooltip arrow :text="isExpanded ? $t('submissions.table.exit_fullscreen') : $t('submissions.table.fullscreen')">
         <UButton  
           size="sm"
           color="neutral"
@@ -88,7 +88,7 @@
         @update:page="$emit('page-change', $event)"
       >
         <template #item="{ page, pageCount }">
-          <span class="text-sm font-medium px-2">{{ page }} of {{ pageCount }}</span>
+          <span class="text-sm font-medium px-2">{{ $t('submissions.pagination.page_of', { page, total: pageCount }) }}</span>
         </template>
       </UPagination>
     </div>
@@ -265,6 +265,7 @@ const maxHeight = ref('800px') // fallback default
 const searchInput = ref("")
 const debouncedSearch = refDebounced(searchInput, 300)
 const statusFilter = ref('all')
+const { t } = useI18n()
 const alert = useAlert()
 
 // Use form submissions composable for multi-delete
@@ -289,7 +290,7 @@ const clearSelection = () => {
   rowSelection.value = {}
 }
 const onDeleteMultiClick = () => {
-  alert.confirm(`Do you really want to delete selected ${selectedIds.value.length} record${selectedIds.value.length > 1 ? 's' : ''}?`, deleteMultiRecord)
+  alert.confirm(t('submissions.table.delete_selected_confirm', { count: selectedIds.value.length }, selectedIds.value.length), deleteMultiRecord)
 }
 const deleteMultiRecord = () => {
   deleteMultiSubmissionsMutation.mutateAsync({ 
@@ -300,20 +301,20 @@ const deleteMultiRecord = () => {
     if (data.type === "success") {
       alert.success(data.message)
     } else {
-      alert.error("Something went wrong!")
+      alert.error(t('submissions.errors.something_went_wrong'))
     }
   }).catch((error) => {
     clearSelection()
-    alert.error(error.data?.message || "Something went wrong!")
+    alert.error(error.data?.message || t('submissions.errors.something_went_wrong'))
   })
 }
 
 
-const statusList = [
-  { label: 'All', value: 'all' },
-  { label: 'Submitted', value: 'completed' },
-  { label: 'In Progress', value: 'partial' }
-]
+const statusList = computed(() => [
+  { label: t('submissions.status.all'), value: 'all' },
+  { label: t('submissions.status.submitted'), value: 'completed' },
+  { label: t('submissions.status.in_progress'), value: 'partial' }
+])
 
 // Default sort by created_at desc
 const sortedData = computed(() => {

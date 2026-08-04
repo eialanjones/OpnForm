@@ -7,35 +7,35 @@
     <!-- Name -->
     <text-input
       name="name"
-      label="Name"
-      placeholder="Your name"
+      :label="$t('common.labels.name')"
+      :placeholder="$t('auth.fields.name_placeholder')"
       required
     />
 
     <!-- Email -->
     <text-input
       name="email"
-      label="Email"
+      :label="$t('common.labels.email')"
       required
       :disabled="disableEmail"
-      placeholder="Your email address"
+      :placeholder="$t('auth.fields.email_placeholder')"
     />
 
     <select-input
       v-if="!disableEmail && !isSetup"
       name="hear_about_us"
       :options="hearAboutUsOptions"
-      placeholder="Select option"
-      label="How did you hear about us?"
+      :placeholder="$t('auth.register.hear_about_us_placeholder')"
+      :label="$t('auth.register.hear_about_us_label')"
       required
     />
 
     <!-- Password -->
     <text-input
       native-type="password"
-      placeholder="Enter password"
+      :placeholder="$t('auth.fields.password_enter_placeholder')"
       name="password"
-      label="Password"
+      :label="$t('common.labels.password')"
       required
       @focus="isPasswordFocused = true"
       @blur="isPasswordFocused = false"
@@ -49,9 +49,9 @@
     <text-input
       native-type="password"
       required
-      placeholder="Enter confirm password"
+      :placeholder="$t('auth.fields.password_confirm_placeholder')"
       name="password_confirmation"
-      label="Confirm Password"
+      :label="$t('auth.fields.confirm_password_label')"
     />
 
     <!-- Captcha -->
@@ -75,23 +75,30 @@
     >
       <template #label>
         <label for="agree_terms">
-          I agree with the
-          <NuxtLink
-            :to="{ name: 'terms-conditions' }"
-            target="_blank"
-            class="underline"
+          <i18n-t
+            keypath="auth.register.agree_terms"
+            scope="global"
+            tag="span"
           >
-            Terms and conditions
-          </NuxtLink>
-          and
-          <NuxtLink
-            :to="{ name: 'privacy-policy' }"
-            target="_blank"
-            class="underline"
-          >
-            Privacy policy
-          </NuxtLink>
-          of the website and I accept them.
+            <template #terms>
+              <NuxtLink
+                :to="{ name: 'terms-conditions' }"
+                target="_blank"
+                class="underline"
+              >
+                {{ $t('auth.register.terms_and_conditions') }}
+              </NuxtLink>
+            </template>
+            <template #privacy>
+              <NuxtLink
+                :to="{ name: 'privacy-policy' }"
+                target="_blank"
+                class="underline"
+              >
+                {{ $t('auth.register.privacy_policy') }}
+              </NuxtLink>
+            </template>
+          </i18n-t>
         </label>
       </template>
     </checkbox-input>
@@ -103,12 +110,12 @@
       size="lg"
       :loading="form.busy"
       type="submit"
-      label="Create account"
+      :label="$t('auth.register.submit')"
     />
 
     <template v-if="useFeatureFlag('services.google.auth') && !useFeatureFlag('self_hosted') && !isSetup">
       <p class="text-neutral-500 text-sm text-center my-2">
-        OR
+        {{ $t('auth.register.or') }}
       </p>
       <UButton
         color="neutral"
@@ -119,24 +126,24 @@
         :loading="false"
         @click.prevent="signInwithGoogle"
         icon="devicon:google"
-        label="Sign in with Google"
+        :label="$t('auth.social.sign_in_with_google')"
       />
     </template>
 
     <p v-if="!isSetup" class="text-neutral-500 mt-2 text-sm text-center">
-      Already have an account?
+      {{ $t('auth.register.have_account') }}
       <a
         v-if="isQuick"
         href="#"
         class="font-medium ml-1"
         @click.prevent="$emit('openLogin')"
-      >Log In</a>
+      >{{ $t('auth.register.log_in') }}</a>
       <NuxtLink
         v-else
         :to="{ name: 'login' }"
         class="font-semibold ml-1"
       >
-        Log In
+        {{ $t('auth.register.log_in') }}
       </NuxtLink>
     </p>
   </VForm>
@@ -169,6 +176,7 @@ const props = defineProps({
 const emit = defineEmits(['openLogin', 'registered'])
 
 // Composables
+const { t } = useI18n()
 const { $utm } = useNuxtApp()
 const oAuth = useOAuth()
 const runtimeConfig = useRuntimeConfig()
@@ -204,21 +212,21 @@ const reCaptchaSiteKey = computed(() => {
 
 const hearAboutUsOptions = computed(() => {
   const options = [
-    {name: "Facebook", value: "facebook"},
-    {name: "Twitter", value: "twitter"},
-    {name: "Reddit", value: "reddit"},
-    {name: "Github", value: "github"},
+    {name: t("auth.register.hear_about_us_options.facebook"), value: "facebook"},
+    {name: t("auth.register.hear_about_us_options.twitter"), value: "twitter"},
+    {name: t("auth.register.hear_about_us_options.reddit"), value: "reddit"},
+    {name: t("auth.register.hear_about_us_options.github"), value: "github"},
     {
-      name: "Search Engine (Google, DuckDuckGo...)",
+      name: t("auth.register.hear_about_us_options.search_engine"),
       value: "search_engine",
     },
-    {name: "Friend or Colleague", value: "friend_colleague"},
-    {name: "Blog/Article", value: "blog_article"},
+    {name: t("auth.register.hear_about_us_options.friend_colleague"), value: "friend_colleague"},
+    {name: t("auth.register.hear_about_us_options.blog_article"), value: "blog_article"},
   ]
     .map((value) => ({value, sort: Math.random()}))
     .sort((a, b) => a.sort - b.sort)
     .map(({value}) => value)
-  options.push({name: "Other", value: "other"})
+  options.push({name: t("common.labels.other"), value: "other"})
   return options
 })
 
@@ -271,14 +279,14 @@ const register = () => {
       emit('registered')
     } else {
     useAlert().success({
-      title: "Welcome to Forms Mentorfy 👋",
-      ...!props.isQuick ? {description: "Time to create your first form!"} : {}
+      title: t("auth.register.welcome_title"),
+      ...!props.isQuick ? {description: t("auth.register.welcome_description")} : {}
     })
     redirect()
     }
   }).catch((err) => {
     console.error(err)
-    useAlert().error(err.response?._data?.message ?? "Something went wrong. Please try again.")
+    useAlert().error(err.response?._data?.message ?? t("auth.register.errors.generic"))
   }).finally(() => {
     // Reset captcha after submission
     if (import.meta.client && reCaptchaSiteKey.value) {
@@ -295,7 +303,7 @@ const redirect = () => {
   } else {
     // If is invite just redirect to home
     if (form.invite_token) {
-      useAlert().success("You have successfully accepted the invite and joined this workspace.")
+      useAlert().success(t("auth.register.invite_accepted"))
       router.push({name: "home"})
     } else {
       router.push({name: "forms-create"})
@@ -307,7 +315,7 @@ const showOAuthError = (error) => {
   if (error.response?.status === 422 && error.response?.data?.message) {
     useAlert().error(error.response.data.message)
   } else {
-    useAlert().error("Sign-in failed. Please try again.")
+    useAlert().error(t("auth.social.sign_in_failed"))
   }
 }
 

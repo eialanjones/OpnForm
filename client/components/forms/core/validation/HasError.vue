@@ -32,6 +32,10 @@ export default {
       default: 'has-error text-xs text-red-500 break-words whitespace-break-spaces',
     },
   },
+  setup() {
+    const { t } = useI18n()
+    return { t }
+  },
   computed: {
     errorMessage() {
       if (!this.form || !this.form.errors || !this.form.errors.any())
@@ -43,7 +47,7 @@ export default {
       )
       let baseError
         = this.form.errors.get(this.fieldId)
-        ?? (subErrorsKeys.length ? 'This field has some errors:' : null)
+        ?? (subErrorsKeys.length ? this.t('inputs.validation.field_has_errors') : null)
       // If no error and no sub errors, return
       if (!baseError)
         return null

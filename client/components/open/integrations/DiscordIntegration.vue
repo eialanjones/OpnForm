@@ -7,27 +7,26 @@
     <text-input
       :form="integrationData"
       name="data.discord_webhook_url"
-      label="Discord webhook url"
+      :label="$t('integrations.discord.webhook_url_label')"
       help="help"
       required
     >
       <template #help>
         <InputHelp>
           <span>
-            Receive a discord message on each form submission.
+            {{ $t('integrations.discord.webhook_url_help') }}
             <a
               href="https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks"
               target="_blank"
             >
-              Click here
+              {{ $t('integrations.discord.webhook_url_help_link') }}
             </a>
-            to learn how to get a discord webhook url.
           </span>
         </InputHelp>
       </template>
     </text-input>
     <h4 class="font-bold mt-4">
-      Discord message options
+      {{ $t('integrations.discord.message_options_title') }}
     </h4>
     <notifications-message-actions
       v-model="integrationData.data"

@@ -3,9 +3,9 @@
     <div class="space-y-4">
       <div class="flex flex-col flex-wrap items-start justify-between gap-4 sm:flex-row sm:items-center">
         <div>
-          <h3 class="text-lg font-medium text-neutral-900">General</h3>
+          <h3 class="text-lg font-medium text-neutral-900">{{ $t('common.labels.general') }}</h3>
           <p class="mt-1 text-sm text-neutral-500">
-            Basic information about your form.
+            {{ $t('form_blocks.information.description') }}
           </p>
         </div>
       </div>
@@ -14,16 +14,16 @@
         :form="form"
         name="title"
         class="mt-4 max-w-xs"
-        label="Form Name"
-        placeholder="My form"
+        :label="$t('form_blocks.information.form_name_label')"
+        :placeholder="$t('form_blocks.information.form_name_placeholder')"
       />
       <select-input
         name="tags"
-        label="Tags"
+        :label="$t('form_blocks.information.tags_label')"
         clearable
         :form="form"
-        help="To organize your forms"
-        placeholder="Select Tag(s)"
+        :help="$t('form_blocks.information.tags_help')"
+        :placeholder="$t('form_blocks.information.tags_placeholder')"
         class="max-w-xs"
         :multiple="true"
         :allow-creation="true"
@@ -31,10 +31,10 @@
       />
       <flat-select-input
         name="visibility"
-        label="Form Visibility"
+        :label="$t('form_blocks.information.visibility_label')"
         class="max-w-xs"
         :form="form"
-        placeholder="Select Visibility"
+        :placeholder="$t('form_blocks.information.visibility_placeholder')"
         :options="visibilityOptions"
       />
       <div
@@ -45,8 +45,8 @@
           name="closed_text"
           :allow-fullscreen="true"
           :form="form"
-          label="Closed form text"
-          help="This message will be shown when the form will be closed"
+          :label="$t('form_blocks.closed_form.text_label')"
+          :help="$t('form_blocks.closed_form.text_help')"
           :required="false"
           wrapper-class="mb-0"
         />
@@ -60,7 +60,7 @@
         icon="i-heroicons-document-duplicate"
         @click.prevent="showCopyFormSettingsModal = true"
       >
-        Copy another form's settings
+        {{ $t('form_blocks.information.copy_settings_button') }}
       </UButton>
     </div>
   </VForm>
@@ -72,7 +72,7 @@
     <template #header>
       <div class="flex items-center w-full gap-4 px-2">
         <h2 class="text-lg font-semibold">
-          Import Settings from another form
+          {{ $t('form_blocks.information.import_settings_title') }}
         </h2>
       </div>
     </template>
@@ -81,8 +81,8 @@
         <select-input
           v-model="copyFormId"
           name="copy_form_id"
-          label="Copy Settings From"
-          placeholder="Choose a form"
+          :label="$t('form_blocks.information.copy_from_label')"
+          :placeholder="$t('form_blocks.information.copy_from_placeholder')"
           :searchable="copyFormOptions.length > 5"
           :options="copyFormOptions"
         />
@@ -90,14 +90,14 @@
           <UButton
             @click="copySettings"
           >
-            Confirm & Copy
+            {{ $t('form_blocks.information.confirm_and_copy') }}
           </UButton>
           <UButton
             color="neutral"
             variant="outline"
             @click="showCopyFormSettingsModal = false"
           >
-            Cancel
+            {{ $t('common.actions.cancel') }}
           </UButton>
         </div>
       </VForm>
@@ -109,6 +109,7 @@
 import clonedeep from 'clone-deep'
 import { default as _has } from 'lodash/has'
 
+const { t } = useI18n()
 const alert = useAlert()
 const workingFormStore = useWorkingFormStore()
 const { content: form } = storeToRefs(workingFormStore)
@@ -124,20 +125,20 @@ const showCopyFormSettingsModal = ref(false)
 const copyFormId = ref(null)
 
 // Computed properties
-const visibilityOptions = [
+const visibilityOptions = computed(() => [
   {
-    name: 'Published',
+    name: t('form_blocks.information.visibility.published'),
     value: 'public',
   },
   {
-    name: 'Draft - not publicly accessible',
+    name: t('form_blocks.information.visibility.draft'),
     value: 'draft',
   },
   {
-    name: 'Closed - won\'t accept new submissions',
+    name: t('form_blocks.information.visibility.closed'),
     value: 'closed',
   },
-]
+])
 
 const copyFormOptions = computed(() => {
   if (!forms.value) return []
@@ -184,7 +185,7 @@ const isFormClosingOrClosed = computed(() => {
 // Methods
 const copySettings = () => {
   if (copyFormId.value == null) {
-    alert.error('Please select a form to copy settings from')
+    alert.error(t('form_blocks.information.select_form_error'))
     return
   }
 
@@ -224,6 +225,6 @@ const copySettings = () => {
     form.value[property] = copyForm[property]
   })
   showCopyFormSettingsModal.value = false
-  alert.success('Form settings copied.')
+  alert.success(t('form_blocks.information.settings_copied'))
 }
 </script>

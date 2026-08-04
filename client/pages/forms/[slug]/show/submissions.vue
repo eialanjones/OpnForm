@@ -12,10 +12,12 @@ const props = defineProps({
 definePageMeta({
   middleware: "auth",
 })
+const { t } = useI18n()
+
 useOpnSeoMeta({
   title: props.form
-    ? "Form Submissions - " + props.form.title
-    : "Form Submissions",
+    ? t('form_pages.submissions.page_title_with_form', { title: props.form.title })
+    : t('form_pages.submissions.page_title'),
 })
 
 

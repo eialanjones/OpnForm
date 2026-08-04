@@ -14,7 +14,7 @@
         class="m-10"
       >
         <h3 class="my-6 text-center">
-          {{ showTwoFactorModal ? 'Verifying your code...' : 'Please wait...' }}
+          {{ showTwoFactorModal ? $t('auth.oauth.verifying_code') : $t('auth.oauth.please_wait') }}
         </h3>
         <Loader class="h-6 w-6 mx-auto m-10" />
       </div>
@@ -23,11 +23,11 @@
         class="m-6 flex flex-col items-center space-y-4"
       >
         <p class="text-center">
-          Unable to sign in at the moment.
+          {{ $t('auth.oauth.unable_to_sign_in') }}
         </p>
         <UButton
           :to="{ name: 'login' }"
-          label="Back to login"
+          :label="$t('auth.oauth.back_to_login')"
         />
       </div>
     </div>
@@ -38,6 +38,7 @@
 import { WindowMessageTypes } from "~/composables/useWindowMessage"
 import { authApi } from "~/api"
 
+const { t } = useI18n()
 const router = useRouter()
 const route = useRoute()
 const loading = ref(true)
@@ -121,7 +122,7 @@ const handleCallback = async () => {
       } else {
         // Handle new user registration
         router.push({ name: "forms-create" })
-        useAlert().success("Success! You're now registered with your Google account! Welcome to Forms Mentorfy.")
+        useAlert().success(t("auth.oauth.registered_with_google"))
       }
     } else if (response.provider) {
       // Integration flow - user was already logged in, provider was connected
@@ -135,12 +136,12 @@ const handleCallback = async () => {
           if (response.autoClose) {
             window.close()
           } else {
-            useAlert().success(`${response.provider.name} account connected successfully!`)
+            useAlert().success(t("auth.oauth.provider_connected", { provider: response.provider.name }))
             loading.value = false
           }
         } catch {
           if (!response.autoClose) {
-            useAlert().success(`${response.provider.name} account connected successfully!`)
+            useAlert().success(t("auth.oauth.provider_connected", { provider: response.provider.name }))
             loading.value = false
           }
         }
@@ -150,7 +151,7 @@ const handleCallback = async () => {
         if (response.autoClose) {
           window.close()
         } else {
-          useAlert().success(`${response.provider.name} account connected successfully!`)
+          useAlert().success(t("auth.oauth.provider_connected", { provider: response.provider.name }))
           router.push({ name: "home" })
         }
       }
@@ -159,7 +160,7 @@ const handleCallback = async () => {
     }
   } catch (error) {
     console.error("[OAuth Callback] Social login error:", error)
-    useAlert().error(error.response?._data?.message || "Authentication failed")
+    useAlert().error(error.response?._data?.message || t("auth.oauth.errors.authentication_failed"))
     loading.value = false
   }
 }
@@ -175,7 +176,7 @@ const handleTwoFactorVerifiedAndRedirect = async (tokenData) => {
   // Handle redirect based on user status
   if (tokenData.new_user) {
     router.push({ name: "forms-create" })
-    useAlert().success("Success! You're now registered with your Google account! Welcome to Forms Mentorfy.")
+    useAlert().success(t("auth.oauth.registered_with_google"))
   } else {
     if (window.opener) {
       try {

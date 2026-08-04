@@ -3,9 +3,9 @@
     <!-- Header -->
     <div class="flex flex-col flex-wrap items-start justify-between gap-4 sm:flex-row sm:items-center">
       <div>
-        <h3 class="text-lg font-medium text-neutral-900">External Connections</h3>
+        <h3 class="text-lg font-medium text-neutral-900">{{ $t('user_settings.connections.heading') }}</h3>
         <p class="mt-1 text-sm text-neutral-500">
-          Manage your external connections and integrations.
+          {{ $t('user_settings.connections.description') }}
         </p>
       </div>
       <div class="flex items-center gap-2">
@@ -19,7 +19,7 @@
           @click="refreshProviders"
         />
         <UButton
-          label="Connect Account"
+          :label="$t('user_settings.connections.connect_button')"
           icon="i-heroicons-plus"
           :loading="isFetching"
           @click="providerModal = true"
@@ -35,13 +35,13 @@
           class="w-12 h-12 text-neutral-400 mx-auto mb-4" 
         />
         <h4 class="text-lg font-medium text-neutral-900 mb-2">
-          No connections yet
+          {{ $t('user_settings.connections.empty_title') }}
         </h4>
         <p class="text-neutral-500 mb-4">
-          Connect your accounts to enable integrations and streamline your workflow.
+          {{ $t('user_settings.connections.empty_description') }}
         </p>
         <UButton
-          label="Connect Your First Account"
+          :label="$t('user_settings.connections.connect_first_button')"
           icon="i-heroicons-plus"
           @click="providerModal = true"
         />
@@ -103,6 +103,7 @@
 const providerModal = ref(false)
 const oAuth = useOAuth()
 const alert = useAlert()
+const { t } = useI18n()
 
 const { data: providersData, refetch, isFetching } = oAuth.providers()
 const providers = computed(() => providersData.value || [])
@@ -118,13 +119,13 @@ const tableColumns = [
   {
     id: 'provider',
     accessorKey: 'provider',
-    header: 'Service',
+    header: t('user_settings.connections.table_service'),
     enableSorting: true
   },
   {
     id: 'email',
     accessorKey: 'email',
-    header: 'Account',
+    header: t('user_settings.connections.table_account'),
     enableSorting: true
   },
   {
@@ -145,15 +146,15 @@ const removeMutation = oAuth.remove()
 
 // Disconnect provider
 const disconnectProvider = (provider) => {
-  alert.confirm("Do you really want to disconnect this account?", () => {
+  alert.confirm(t('user_settings.connections.disconnect_confirm'), () => {
     removeMutation.mutateAsync(provider.id).then(() => {
-      alert.success('Account disconnected successfully')
+      alert.success(t('user_settings.connections.disconnect_success'))
       refetch()
     }).catch((error) => {
       try {
         alert.error(error.data.message)
       } catch {
-        alert.error("An error occurred while disconnecting the account")
+        alert.error(t('user_settings.connections.disconnect_error'))
       }
     })
   })

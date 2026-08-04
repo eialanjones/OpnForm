@@ -3,10 +3,10 @@
     <div class="md:max-w-5xl md:mx-auto w-full">
       <div class="my-5 text-center">
         <h3 class="font-semibold text-3xl">
-          And many more features
+          {{ $t('marketing.welcome.more_features.title') }}
         </h3>
         <p class="w-full mt-2 mb-8">
-          Forms Mentorfy makes form building easy and comes with powerful features.
+          {{ $t('marketing.welcome.more_features.description') }}
         </p>
         <div
           class="grid grid-cols-2 md:grid-cols-3 mt-10 mb-5 ml-5 md:ml-0 px-4"
@@ -26,7 +26,7 @@
                 stroke-linejoin="round"
               />
             </svg>
-            Form logic
+            {{ $t('marketing.welcome.more_features.items.form_logic') }}
           </div>
           <div class="flex font-semibold my-3">
             <svg
@@ -43,7 +43,7 @@
                 stroke-linejoin="round"
               />
             </svg>
-            URL pre-fill
+            {{ $t('marketing.welcome.more_features.items.url_prefill') }}
           </div>
           <div class="flex font-semibold my-3">
             <svg
@@ -60,7 +60,7 @@
                 stroke-linejoin="round"
               />
             </svg>
-            Unique submission ID
+            {{ $t('marketing.welcome.more_features.items.unique_submission_id') }}
           </div>
           <div class="flex font-semibold my-3">
             <svg
@@ -77,7 +77,7 @@
                 stroke-linejoin="round"
               />
             </svg>
-            Hidden fields
+            {{ $t('marketing.welcome.more_features.items.hidden_fields') }}
           </div>
           <div class="flex font-semibold my-3">
             <svg
@@ -94,7 +94,7 @@
                 stroke-linejoin="round"
               />
             </svg>
-            Form password
+            {{ $t('marketing.welcome.more_features.items.form_password') }}
           </div>
           <div class="flex font-semibold my-3">
             <svg
@@ -111,7 +111,7 @@
                 stroke-linejoin="round"
               />
             </svg>
-            Webhooks
+            {{ $t('marketing.welcome.more_features.items.webhooks') }}
           </div>
           <div class="flex font-semibold my-3">
             <svg
@@ -128,7 +128,7 @@
                 stroke-linejoin="round"
               />
             </svg>
-            Custom code
+            {{ $t('marketing.welcome.more_features.items.custom_code') }}
           </div>
           <div class="flex font-semibold my-3">
             <svg
@@ -145,7 +145,7 @@
                 stroke-linejoin="round"
               />
             </svg>
-            Closing date
+            {{ $t('marketing.welcome.more_features.items.closing_date') }}
           </div>
           <div class="flex font-semibold my-3">
             <svg
@@ -218,7 +218,7 @@
                 stroke-linejoin="round"
               />
             </svg>
-            And much more...
+            {{ $t('marketing.welcome.more_features.items.and_much_more') }}
           </div>
         </div>
       </div>

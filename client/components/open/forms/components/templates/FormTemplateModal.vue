@@ -6,7 +6,7 @@
     <template #header>
       <div class="flex items-center w-full gap-4 px-2">
         <h2 class="font-semibold">
-          {{ template ? 'Edit Template' : 'Create Template' }}
+          {{ template ? $t('form_editor.template_modal.edit_title') : $t('form_editor.template_modal.create_title') }}
         </h2>
       </div>
       <UButton
@@ -16,13 +16,13 @@
         size="sm"
         @click="crisp.openHelpdeskArticle('how-to-create-an-opnform-template-1fn84i4')"
       >
-        Help
+        {{ $t('form_editor.template_modal.help') }}
       </UButton>
     </template>
 
     <template #body>
       <p v-if="!template" class="mb-4">
-        New template will be create from your form:
+        {{ $t('form_editor.template_modal.create_from_form') }}
         <span class="font-semibold">{{ form.title }}</span>.
       </p>
 
@@ -37,43 +37,43 @@
             v-if="user && (user.admin || user.template_editor)"
             name="publicly_listed"
             :form="templateForm"
-            label="Publicly Listed?"
+            :label="$t('form_editor.template_modal.publicly_listed')"
           />
           <text-input
             name="name"
             :form="templateForm"
-            label="Title"
+            :label="$t('common.labels.title')"
             :required="true"
           />
           <text-input
             name="slug"
             :form="templateForm"
-            label="Slug"
+            :label="$t('form_editor.template_modal.slug')"
             :required="true"
           />
           <text-area-input
             name="short_description"
             :form="templateForm"
-            label="Short Description"
+            :label="$t('form_editor.template_modal.short_description')"
             :required="true"
           />
           <rich-text-area-input
             name="description"
             :allow-fullscreen="true"
             :form="templateForm"
-            label="Description"
+            :label="$t('common.labels.description')"
             :required="true"
           />
           <text-input
             name="image_url"
             :form="templateForm"
-            label="Image"
+            :label="$t('form_editor.template_modal.image')"
             :required="true"
           />
           <select-input
             name="types"
             :form="templateForm"
-            label="Types"
+            :label="$t('form_editor.template_modal.types')"
             :options="typesOptions"
             :multiple="true"
             :searchable="true"
@@ -81,7 +81,7 @@
           <select-input
             name="industries"
             :form="templateForm"
-            label="Industries"
+            :label="$t('form_editor.template_modal.industries')"
             :options="industriesOptions"
             :multiple="true"
             :searchable="true"
@@ -89,7 +89,7 @@
           <select-input
             name="related_templates"
             :form="templateForm"
-            label="Related Templates"
+            :label="$t('form_editor.template_modal.related_templates')"
             :options="templatesOptions"
             :multiple="true"
             :searchable="true"
@@ -97,7 +97,7 @@
           <questions-editor
             name="questions"
             :questions="templateForm.questions"
-            label="Frequently asked questions"
+            :label="$t('form_editor.template_modal.faq')"
           />
         </div>
       </v-form>
@@ -109,7 +109,7 @@
           color="neutral"
           variant="outline"
           @click="close"
-          label="Close"
+          :label="$t('common.actions.close')"
         />
         <UButton
           v-if="template"
@@ -117,18 +117,18 @@
           variant="outline"
           @click="
             useAlert().confirm(
-              'Do you really want to delete this template?',
+              $t('form_editor.template_modal.delete_confirm'),
               deleteFormTemplate,
             )
           "
-          label="Delete template"
+          :label="$t('form_editor.template_modal.delete_template')"
         />
         <div class="grow"/>
         <UButton
           class="px-8"
           :loading="createMutation.isPending.value || updateMutation.isPending.value"
           @click="onSubmit"
-          :label="template ? 'Update' : 'Create'"
+          :label="template ? $t('common.actions.update') : $t('common.actions.create')"
         />
       </div>
     </template>
@@ -148,6 +148,7 @@ const props = defineProps({
 
 const crisp = useCrisp()
 const router = useRouter()
+const { t } = useI18n()
 const { data: user } = useAuth().user()
 
 const { list, create, update, remove } = useTemplates()
@@ -243,7 +244,7 @@ const onSubmit = () => {
 const createFormTemplate = () => {
   templateForm.value.form = props.form
   createMutation.mutateAsync(templateForm.value).then(() => {
-    useAlert().success("Template created successfully")
+    useAlert().success(t("form_editor.template_modal.created"))
     emit("close")
   }).catch((error) => {
     useAlert().error(error.message)
@@ -252,7 +253,7 @@ const createFormTemplate = () => {
 const updateFormTemplate = () => {
   templateForm.value.form = props.form
   updateMutation.mutateAsync({ id: props.template.id, data: templateForm.value }).then(() => {
-    useAlert().success("Template updated successfully")
+    useAlert().success(t("form_editor.template_modal.updated"))
     emit("close")
   }).catch((error) => {
     useAlert().error(error.message)
@@ -261,7 +262,7 @@ const updateFormTemplate = () => {
 const deleteFormTemplate = () => {
   if (!props.template) return
   deleteMutation.mutateAsync(props.template.id).then(() => {
-    useAlert().success("Template deleted successfully")
+    useAlert().success(t("form_editor.template_modal.deleted"))
     router.push({ name: "templates" })
     emit("close")
   }).catch((error) => {

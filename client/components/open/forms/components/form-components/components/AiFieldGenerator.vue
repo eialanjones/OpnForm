@@ -1,7 +1,7 @@
 <template>
   <div>
     <UPopover v-model:open="isPopoverOpen" arrow :content="popoverContent">
-      <UTooltip text="Add question with AI" arrow>
+      <UTooltip :text="$t('form_blocks.ai.tooltip')" arrow>
         <UButton
           size="sm"
           color="neutral"
@@ -15,24 +15,24 @@
         <div class="p-4 w-72">
           <div class="space-y-2">
             <div class="flex items-center justify-between">
-              <p class="text-sm font-medium">Add new field(s) with AI</p>
+              <p class="text-sm font-medium">{{ $t('form_blocks.ai.heading') }}</p>
             </div>
 
             <p class="text-xs text-neutral-500">
-              This will generate new fields based on your description.
+              {{ $t('form_blocks.ai.description') }}
             </p>
 
             <TextAreaInput
               name="fields_prompt" 
               :disabled="loading" 
               :form="aiFields"
-              placeholder="Describe the question you want to add with AI..."
+              :placeholder="$t('form_blocks.ai.prompt_placeholder')"
             />
 
             <UButton
               class="mt-2"
               icon="i-heroicons-sparkles"
-              label="Generate"
+              :label="$t('form_blocks.ai.generate')"
               block
               :loading="loading"
               @click="handleGenerate"
@@ -57,6 +57,7 @@ defineProps({
   },
 })
 
+const { t } = useI18n()
 const workingFormStore = useWorkingFormStore()
 const { content: form } = storeToRefs(workingFormStore)
 
@@ -84,7 +85,7 @@ const handleGenerate = () => {
   if (loading.value) return
 
   if (!aiFields.fields_prompt) {
-    useAlert().warning('Please describe the fields you want to add with AI.')
+    useAlert().warning(t('form_blocks.ai.prompt_required'))
     return
   }
     
@@ -99,7 +100,7 @@ const handleGenerate = () => {
     fetchGeneratedForm(data.ai_form_completion_id)
   }).catch(error => {
     console.error('Failed to add new field(s):', error)
-    useAlert().error(error.response?.data?.message ?? 'Failed to add new field(s).')
+    useAlert().error(error.response?.data?.message ?? t('form_blocks.ai.failed'))
     loading.value = false
   })
 }
@@ -126,10 +127,10 @@ const fetchGeneratedForm = (generationId) => {
         }
         loading.value = false
         isPopoverOpen.value = false
-        useAlert().success('New field(s) added successfully.')
+        useAlert().success(t('form_blocks.ai.success'))
         aiFields.fields_prompt = ''
       } else if (data.ai_form_completion.status === 'failed') {
-        useAlert().error('Something went wrong, please try again.')
+        useAlert().error(t('form_blocks.ai.generation_failed'))
         loading.value = false
       } else {
         // Call itself again after 4 seconds if form is not yet ready

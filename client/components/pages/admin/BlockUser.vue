@@ -1,6 +1,6 @@
 <template>
   <AdminCard
-    :title="isBlocked ? 'Unblock User' : 'Block User'"
+    :title="isBlocked ? $t('admin.block_user.unblock_title') : $t('admin.block_user.block_title')"
     :icon="isBlocked ? 'heroicons:lock-open-20-solid' : 'heroicons:no-symbol-20-solid'"
   >
     <div class="space-y-6 flex flex-col justify-between">
@@ -16,11 +16,11 @@
 
       <VForm @submit.prevent="submit">
         <TextAreaInput
-          label="Reason"
+          :label="$t('admin.block_user.reason_label')"
           name="reason"
           :form="form"
           :required="true"
-          help="Reason will be sent to the user via email."
+          :help="$t('admin.block_user.reason_help')"
         />
         <div class="flex space-x-2 mt-4">
           <UButton
@@ -28,14 +28,14 @@
             :loading="form.busy"
             type="submit"
             class="grow"
-            :label="isBlocked ? 'Unblock User' : 'Block User'"
+            :label="isBlocked ? $t('admin.block_user.unblock_title') : $t('admin.block_user.block_title')"
           />
           <UButton
             v-if="blockingHistory && blockingHistory.length"
             variant="outline"
             icon="i-heroicons-clock"
             @click="isModalOpen = true"
-            label="View History"
+            :label="$t('admin.block_user.view_history')"
           />
         </div>
       </VForm>
@@ -43,7 +43,7 @@
     <UModal 
       v-model:open="isModalOpen"
       :ui="{ content: 'sm:max-w-4xl' }"
-      title="Blocking History"
+      :title="$t('admin.block_user.history_title')"
     >
       <template #body>
         <UTable 
@@ -65,6 +65,7 @@ const props = defineProps({
 })
 const emit = defineEmits(['user-updated'])
 
+const { t } = useI18n()
 const alert = useAlert()
 const isModalOpen = ref(false)
 
@@ -73,41 +74,41 @@ const form = useForm({
   reason: ''
 })
 
-const historyColumns = [
+const historyColumns = computed(() => [
   {
     accessorKey: 'blocked_at',
-    header: 'Blocked At',
+    header: t('admin.block_user.columns.blocked_at'),
     cell: ({ row }) => {
       return row.original.blocked_at ? new Date(row.original.blocked_at).toLocaleString() : ''
     }
   },
   {
     accessorKey: 'blocked_by',
-    header: 'Blocked By',
+    header: t('admin.block_user.columns.blocked_by'),
     cell: ({ row }) => {
       return row.original.blocked_by ? row.original.blocked_by : 'AI'
     }
   },
   {
     accessorKey: 'reason',
-    header: 'Reason'
+    header: t('admin.block_user.columns.reason')
   },
   {
     accessorKey: 'unblocked_at',
-    header: 'Unblocked At',
+    header: t('admin.block_user.columns.unblocked_at'),
     cell: ({ row }) => {
       return row.original.unblocked_at ? new Date(row.original.unblocked_at).toLocaleString() : ''
     }
   },
   {
     accessorKey: 'unblocked_by',
-    header: 'Unblocked By'
+    header: t('admin.block_user.columns.unblocked_by')
   },
   {
     accessorKey: 'unblock_reason',
-    header: 'Unblock Reason'
+    header: t('admin.block_user.columns.unblock_reason')
   }
-]
+])
 
 const isBlocked = computed(() => props.user.is_blocked)
 const blockingHistory = computed(() => props.user.meta?.blocking_history || [])
@@ -120,7 +121,7 @@ const lastBlock = computed(() => {
 
 const alertContent = computed(() => {
   if (isBlocked.value) {
-    const blockedBy = escapeHtml(lastBlock.value?.blocked_by || 'Automatically blocked by our AI')
+    const blockedBy = escapeHtml(lastBlock.value?.blocked_by || t('admin.block_user.auto_blocked_by_ai'))
     const blockedOn = escapeHtml(new Date(props.user.blocked_at).toLocaleString())
     const reason = escapeHtml(lastBlock.value?.reason || '')
     return {
@@ -128,13 +129,13 @@ const alertContent = computed(() => {
       color: 'error',
       variant: 'subtle',
       content: `
-        This will unblock the user and allow them to log in again. Their forms will remain in draft status.
+        ${t('admin.block_user.unblock_warning')}
         <div class="mt-2">
-          <b>Blocked on:</b> ${blockedOn}
+          <b>${t('admin.block_user.blocked_on')}</b> ${blockedOn}
           <br>
-          <b>Blocked by:</b> ${blockedBy}
+          <b>${t('admin.block_user.blocked_by')}</b> ${blockedBy}
           <br>
-          <b>Reason:</b> ${reason}
+          <b>${t('admin.block_user.reason')}</b> ${reason}
         </div>
       `
     }
@@ -143,7 +144,7 @@ const alertContent = computed(() => {
       icon: 'i-heroicons-exclamation-triangle',
       color: 'warning',
       variant: 'subtle',
-      content: 'This will block the user from accessing their account and set all their forms to draft.'
+      content: t('admin.block_user.block_warning')
     }
   }
 })
@@ -161,7 +162,7 @@ async function submit() {
     emit('user-updated', response.user)
     form.reset()
   } catch (error) {
-    alert.error(error.data?.message || 'An error occurred.')
+    alert.error(error.data?.message || t('admin.errors.generic'))
   }
 }
 </script> 

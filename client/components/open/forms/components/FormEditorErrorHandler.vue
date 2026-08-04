@@ -3,27 +3,24 @@
     <template #error="{ error, clearError }">
       <div class="flex-grow w-full flex items-center justify-center flex-col gap-4">
         <h1 class="text-blue-800 text-2xl font-medium">
-          Oops! Something went wrong.
+          {{ $t('form_editor.error_handler.title') }}
         </h1>
         <p class="text-neutral-500 max-w-lg text-center">
-          It looks like your last action caused an issue on our side. We
-          apologize for
-          the
-          inconvenience.
+          {{ $t('form_editor.error_handler.description') }}
         </p>
         <div class="flex gap-2 mt-4">
           <UButton
             icon="i-material-symbols-undo"
             @click="clearEditorError(error, clearError)"
           >
-            Go back one step
+            {{ $t('form_editor.error_handler.go_back_one_step') }}
           </UButton>
           <UButton
             variant="outline"
             icon="i-heroicons-chat-bubble-left-right-16-solid"
             @click="onErrorContact(error)"
           >
-            Report this error
+            {{ $t('form_editor.error_handler.report_error') }}
           </UButton>
         </div>
       </div>
@@ -39,6 +36,7 @@ import ErrorBoundary from '~/components/app/ErrorBoundary.vue'
 const crisp = useCrisp()
 const workingFormStore = useWorkingFormStore()
 const form = storeToRefs(workingFormStore).content
+const { t } = useI18n()
 
 // Clear error and go back 1 step in history
 const clearEditorError = (error, clearError) => {
@@ -62,15 +60,14 @@ const onFormEditorError = (error) => {
 }
 const onErrorContact = (error) => {
   crisp.pauseChatBot()
-  let errorReport = 'Hi there, I have a technical issue with the form editor.'
+  let errorReport = t('form_editor.error_handler.report_intro')
   if (form.value.slug) {
-    errorReport += ` The form I am editing is: \`${form.value.slug}\`.`
+    errorReport += t('form_editor.error_handler.report_form', { slug: form.value.slug })
   }
-  errorReport += ` And here are technical details about the error: \`\`\`${error.stack}\`\`\``
+  errorReport += t('form_editor.error_handler.report_details', { details: error.stack })
   try {
     crisp.openAndShowChat(errorReport)
-    crisp.showMessage(`Hi there, we're very sorry to hear you experienced an issue with Forms Mentorfy.
-        We'll be in touch about it very soon! In the meantime, I recommend that you try going back one step, and save your changes.`, 2000)
+    crisp.showMessage(t('form_editor.error_handler.report_reply'), 2000)
   } catch (e) {
     console.error('Crisp error', e)
   }

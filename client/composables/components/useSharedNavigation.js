@@ -2,6 +2,7 @@ import opnformConfig from "~/opnform.config.js"
 
 export const useSharedNavigation = () => {
   const crisp = useCrisp()
+  const { t } = useI18n()
 
   const isSelfHosted = computed(() => useFeatureFlag('self_hosted'))
 
@@ -57,22 +58,22 @@ export const useSharedNavigation = () => {
   const sharedNavigationSections = computed(() => [
     // Help section
     {
-      name: 'Help',
+      name: t('runtime.navigation.help'),
       items: [
         createNavItem({
-          label: 'Help Center',
+          label: t('runtime.navigation.help_center'),
           icon: 'i-heroicons-question-mark-circle',
           to: opnformConfig.links.help_url,
           target: '_blank'
         }),
         createNavItem({
-          label: 'API Docs',
+          label: t('runtime.navigation.api_docs'),
           icon: 'i-heroicons-code-bracket',
           to: opnformConfig.links.api_docs,
           target: '_blank'
         }),
         ...(isSelfHosted.value || !crisp ? [] : [createNavItem({
-          label: 'Contact Support',
+          label: t('runtime.navigation.contact_support'),
           icon: 'i-heroicons-chat-bubble-left-right',
           onClick: () => crisp.openChat()
         })])

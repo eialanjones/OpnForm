@@ -19,7 +19,7 @@
               v-if="homePage"
               class="text-3xl font-semibold tracking-tight text-neutral-950"
             >
-              Check out our
+              {{ $t('marketing.pricing_table.check_out_our') }}
               <span class="ml-2 text-blue-500">
                 <svg
                   class="inline w-10 h-10"
@@ -49,25 +49,24 @@
                     stroke-linejoin="round"
                   />
                 </svg>
-                Pro Features
+                {{ $t('marketing.pricing_table.pro_features') }}
               </span>
             </h3>
             <h3
               v-else
               class="text-3xl font-semibold tracking-tight text-neutral-950"
             >
-              Pro Plan
+              {{ $t('marketing.pricing_table.pro_plan') }}
             </h3>
             <p class="mt-2 text-base font-medium leading-7 text-neutral-600">
-              Forms Mentorfy Pro offers empowering features tailored to the advanced
-              needs of teams and creators.
+              {{ $t('marketing.pricing_table.pro_description') }}
             </p>
 
             <div class="flex items-center mt-6 gap-x-4">
               <h4
                 class="flex-none text-sm font-semibold leading-6 tracking-widest text-neutral-400 uppercase"
               >
-                What's included
+                {{ $t('marketing.pricing_table.whats_included') }}
               </h4>
               <div class="flex-auto h-px bg-neutral-200" />
             </div>
@@ -124,7 +123,7 @@
                     <template v-else>$19</template>
                   </span>
                   <span class="text-sm font-medium leading-6 text-neutral-600">
-                    per month
+                    {{ $t('marketing.pricing_table.per_month') }}
                   </span>
                 </p>
 
@@ -134,7 +133,7 @@
                     class="mr-1"
                     :to="{ name: 'register' }"
                     trailing-icon="i-heroicons-arrow-right"
-                    label="Get Pro"
+                    :label="$t('marketing.pricing_table.get_pro')"
                   />
                   <UButton
                     v-else-if="authenticated && user && user.is_subscribed"
@@ -142,22 +141,21 @@
                     trailing-icon="i-heroicons-arrow-right"
                     :to="{ name: 'redirect-billing-portal' }"
                     target="_blank"
-                    label="View Billing"
+                    :label="$t('marketing.pricing_table.view_billing')"
                   />
                   <UButton
                     v-else
                     class="mr-1"
                     trailing-icon="i-heroicons-arrow-right"
                     @click.prevent="openSubscriptionModal({ plan: 'default', yearly: isYearly })"
-                    label="Get Pro"
+                    :label="$t('marketing.pricing_table.get_pro')"
                   />
                 </div>
                 <p
                   v-if="!homePage"
                   class="text-xs font-medium leading-5 text-neutral-600"
                 >
-                  Invoices and receipts available for easy company
-                  reimbursement.
+                  {{ $t('marketing.pricing_table.invoices_note') }}
                 </p>
               </div>
             </div>
@@ -204,23 +202,26 @@ export default {
   },
   data: () => ({
     isYearly: true,
-    pricingInfo: [
-      "Unlimited workspaces",
-      "Form confirmation emails",
-      "Slack notifications",
-      "Discord notifications",
-      "Editable submissions",
-      "1 Custom domain",
-      "Custom code",
-      "Larger file uploads (50mb)",
-      "Remove Forms Mentorfy branding",
-      "Priority support",
-      "Form Analytics",
-      "Custom sender email (SMTP)"
-    ],
   }),
 
-  computed: {},
+  computed: {
+    pricingInfo() {
+      return [
+        this.$t("marketing.pricing_table.features.unlimited_workspaces"),
+        this.$t("marketing.pricing_table.features.confirmation_emails"),
+        this.$t("marketing.pricing_table.features.slack_notifications"),
+        this.$t("marketing.pricing_table.features.discord_notifications"),
+        this.$t("marketing.pricing_table.features.editable_submissions"),
+        this.$t("marketing.pricing_table.features.custom_domain"),
+        this.$t("marketing.pricing_table.features.custom_code"),
+        this.$t("marketing.pricing_table.features.larger_uploads"),
+        this.$t("marketing.pricing_table.features.remove_branding"),
+        this.$t("marketing.pricing_table.features.priority_support"),
+        this.$t("marketing.pricing_table.features.form_analytics"),
+        this.$t("marketing.pricing_table.features.custom_sender_email"),
+      ]
+    },
+  },
 
   methods: {},
 }

@@ -9,7 +9,7 @@
         color="neutral"
         icon="i-heroicons-arrow-path"
         @click="showGenerateFormLinkModal = true"
-        label="Regenerate link"
+        :label="$t('form_pages.regenerate_link.trigger')"
       />
     </TrackClick>
 
@@ -21,7 +21,7 @@
       <template #header>
         <div class="flex items-center w-full gap-4 px-2">
           <h2 class="font-semibold">
-            Generate new form link
+            {{ $t('form_pages.regenerate_link.modal_title') }}
           </h2>
         </div>
         <UButton
@@ -31,23 +31,21 @@
           size="sm"
           @click="crisp.openHelpdeskArticle('how-to-change-my-form-url-171rjw7')"
         >
-          Help
+          {{ $t('form_pages.shared.help') }}
         </UButton>
     </template>
 
       <template #body>
         <p>
-          You can choose between two different URL formats for your form.
-          <span class="font-semibold">Be careful, changing your form URL is not a reversible
-            operation</span>. Make sure to update your form URL everywhere where it's used.
+          {{ $t('form_pages.regenerate_link.intro') }}
+          <span class="font-semibold">{{ $t('form_pages.regenerate_link.warning') }}</span>. {{ $t('form_pages.regenerate_link.reminder') }}
         </p>
         <div class="border-t py-4 mt-4">
           <h3 class="text-xl text-neutral-700 font-semibold">
-            Human Readable URL
+            {{ $t('form_pages.regenerate_link.readable_heading') }}
           </h3>
           <p>
-            If your users are going to see this url, you might want to make nice
-            and readable. Example:
+            {{ $t('form_pages.regenerate_link.readable_description') }}
           </p>
           <p class="text-neutral-600 border p-4 bg-neutral-50 rounded-md mt-4">
             https://opnform.com/forms/contact-form-e68des
@@ -63,18 +61,17 @@
                 color="primary"
                 @click="regenerateLink('slug')"
               >
-                Generate a Human Readable URL
+                {{ $t('form_pages.regenerate_link.readable_button') }}
               </UButton>
             </TrackClick>
           </div>
         </div>
         <div class="border-t pt-4 mt-4">
           <h3 class="text-xl text-neutral-700 font-semibold">
-            Random ID URL
+            {{ $t('form_pages.regenerate_link.random_heading') }}
           </h3>
           <p>
-            If your user are not going to see your form url (if it's embedded),
-            and if you prefer to have a random non-guessable URL. Example:
+            {{ $t('form_pages.regenerate_link.random_description') }}
           </p>
           <p class="text-neutral-600 p-4 border bg-neutral-50 rounded-md mt-4">
             https://opnform.com/forms/b4417f9c-34ae-4421-8006-832ee47786e7
@@ -90,7 +87,7 @@
                 color="primary"
                 @click="regenerateLink('uuid')"
               >
-                Generate a Random ID URL
+                {{ $t('form_pages.regenerate_link.random_button') }}
               </UButton>
             </TrackClick>
           </div>
@@ -108,6 +105,7 @@ const props = defineProps({
 })
 
 const crisp = useCrisp()
+const { t } = useI18n()
 const router = useRouter()
 const showGenerateFormLinkModal = ref(false)
 
@@ -136,7 +134,7 @@ const regenerateLink = (option) => {
     useAlert().success(data.message)
     showGenerateFormLinkModal.value = false
   }).catch((error) => {
-    useAlert().error(error?.data?.message || "Something went wrong")
+    useAlert().error(error?.data?.message || t('common.errors.something_went_wrong'))
   })
 }
 </script>

@@ -75,7 +75,8 @@
                     icon="i-heroicons-eye"
                     @click="showDraftFormWarningNotification"
                   >
-                    <span class="hidden sm:inline">Open <span class="hidden md:inline">form</span></span>
+                    <span class="hidden sm:inline md:hidden">{{ $t('common.actions.open') }}</span>
+                    <span class="hidden md:inline">{{ $t('form_pages.show.open_form') }}</span>
                   </UButton>
                   <TrackClick
                     v-else
@@ -90,7 +91,8 @@
                       class="hover:no-underline"
                       icon="i-heroicons-arrow-top-right-on-square"
                     >
-                      <span class="hidden sm:inline">Open <span class="hidden md:inline">form</span></span>
+                      <span class="hidden sm:inline md:hidden">{{ $t('common.actions.open') }}</span>
+                      <span class="hidden md:inline">{{ $t('form_pages.show.open_form') }}</span>
                     </UButton>
                   </TrackClick>
                   <TrackClick
@@ -104,7 +106,8 @@
                       class="hover:no-underline"
                       :to="{ name: 'forms-slug-edit', params: { slug: form.slug } }"
                     >
-                      Edit <span class="hidden md:inline">form</span>
+                      <span class="md:hidden">{{ $t('common.actions.edit') }}</span>
+                      <span class="hidden md:inline">{{ $t('form_pages.show.edit_form') }}</span>
                     </UButton>
                   </TrackClick>
                   <extra-menu
@@ -116,21 +119,21 @@
               </div>
 
               <div class="flex flex-wrap items-center gap-2 text-neutral-500 text-xs mt-2 sm:mt-0">
-                <UTooltip :text="`${formatNumberWithCommas(form.views_count)} views`">
+                <UTooltip :text="$t('form_pages.show.views_tooltip', { count: formatNumberWithCommas(form.views_count) })">
                   <div class="flex items-center gap-1">
                     <UIcon name="i-heroicons-eye" />
                     <span>{{ formatNumber(form.views_count) }}</span>
                   </div>
                 </UTooltip>
 
-                <UTooltip :text="`${formatNumberWithCommas(form.submissions_count)} submissions`">
+                <UTooltip :text="$t('form_pages.show.submissions_tooltip', { count: formatNumberWithCommas(form.submissions_count) })">
                   <div class="flex items-center gap-1">
                     <UIcon name="i-heroicons-document-text" />
                     <span>{{ formatNumber(form.submissions_count) }}</span>
                   </div>
                 </UTooltip>
 
-                <span class="whitespace-nowrap">Edited {{ form.last_edited_human }}</span>
+                <span class="whitespace-nowrap">{{ $t('form_pages.show.edited_at', { time: form.last_edited_human }) }}</span>
               </div>
               
               <!-- Status Badges and Form Cleanings -->
@@ -153,8 +156,8 @@
           class="flex items-center justify-center h-screen bg-white"
         >
           <div class="flex flex-col gap-4 items-center justify-center">
-            <h2 class="text-lg font-semibold text-neutral-900">Form not found</h2>
-            <p class="text-neutral-500">The form you're looking for doesn't exist or has been deleted.</p>
+            <h2 class="text-lg font-semibold text-neutral-900">{{ $t('form_pages.show.not_found_title') }}</h2>
+            <p class="text-neutral-500">{{ $t('form_pages.show.not_found_description') }}</p>
             <div class="">
             <UButton
               variant="soft"
@@ -162,7 +165,7 @@
               icon="i-heroicons-arrow-left"
               :to="{ name: 'home' }"
             >
-                Go to Dashboard
+                {{ $t('form_pages.show.go_to_dashboard') }}
               </UButton>
             </div>
           </div>
@@ -186,8 +189,10 @@ definePageMeta({
   layout: "empty",
 })
 
+const { t } = useI18n()
+
 useOpnSeoMeta({
-  title: "Home",
+  title: t('form_pages.show.page_title'),
 })
 
 // Composables
@@ -223,8 +228,6 @@ watch(
 )
 
 const showDraftFormWarningNotification = () => {
-  useAlert().warning(
-    "This form is currently in Draft mode and is not publicly accessible, You can change the form status on the edit form page.",
-  )
+  useAlert().warning(t('form_pages.shared.draft_warning'))
 }
 </script>

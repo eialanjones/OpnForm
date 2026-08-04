@@ -3,7 +3,7 @@
     <div class="flex mt-6 mb-10">
       <div class="w-full md:w-2/3 md:mx-auto md:max-w-md px-4">
         <h1 class="my-6">
-          Reset Password
+          {{ $t('auth.password_reset.title') }}
         </h1>
         <form
           @submit.prevent="reset"
@@ -21,7 +21,7 @@
           <text-input
             name="email"
             :form="form"
-            label="Email"
+            :label="$t('common.labels.email')"
             :required="true"
           />
 
@@ -30,7 +30,7 @@
             native-type="password"
             name="password"
             :form="form"
-            label="Password"
+            :label="$t('common.labels.password')"
             :required="true"
           />
 
@@ -40,7 +40,7 @@
             class="mb-5"
             name="password_confirmation"
             :form="form"
-            label="Confirm Password"
+            :label="$t('auth.fields.confirm_password_label')"
             :required="true"
           />
 
@@ -49,7 +49,7 @@
             class="w-full"
             :loading="form.busy"
             type="submit"
-            label="Reset Password"
+            :label="$t('auth.password_reset.submit')"
           />
         </form>
       </div>
@@ -61,11 +61,13 @@
 <script>
 export default {
   setup() {
+    const { t } = useI18n()
+
     definePageMeta({
       middleware: "guest",
     })
     useOpnSeoMeta({
-      title: "Reset Password",
+      title: t("auth.password_reset.title"),
     })
   },
 

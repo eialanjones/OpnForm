@@ -13,7 +13,7 @@
       v-else
       :class="ui.container({ class: props.ui?.slots?.container })"
       :role="multiple ? 'group' : 'radiogroup'"
-      :aria-label="label || `Select ${multiple ? 'options' : 'option'}`"
+      :aria-label="label || (multiple ? $t('inputs.flat_select.aria_select_options') : $t('inputs.flat_select.aria_select_option'))"
     >
       <template
         v-if="options && options.length"
@@ -43,7 +43,7 @@
             />
           </template>
           <UTooltip
-            :text="disableOptionsTooltip"
+            :text="disableOptionsTooltip || $t('inputs.flat_select.not_allowed')"
             :disabled="!disableOptions.includes(option[optionKey])"
             class="w-full"
           >
@@ -77,13 +77,13 @@
     >
       <small :class="ui.help({ class: props.ui?.slots?.help })">
         <span v-if="minSelection && maxSelection">
-          {{ selectedCount }} of {{ minSelection }}-{{ maxSelection }}
+          {{ $t('inputs.selection.of_range', { count: selectedCount, min: minSelection, max: maxSelection }) }}
         </span>
         <span v-else-if="minSelection">
-          {{ selectedCount }} selected (min {{ minSelection }})
+          {{ $t('inputs.selection.selected_min', { count: selectedCount, min: minSelection }) }}
         </span>
         <span v-else-if="maxSelection">
-          {{ selectedCount }}/{{ maxSelection }} selected
+          {{ $t('inputs.selection.selected_max', { count: selectedCount, max: maxSelection }) }}
         </span>
       </small>
     </template>
@@ -116,7 +116,7 @@ export default {
     loading: {type: Boolean, default: false},
     multiple: { type: Boolean, default: false },
     disableOptions: { type: Array, default: () => [] },
-    disableOptionsTooltip: { type: String, default: "Not allowed" },
+    disableOptionsTooltip: { type: String, default: null },
     clearable: { type: Boolean, default: false },
     minSelection: { type: Number, default: null },
     maxSelection: { type: Number, default: null }

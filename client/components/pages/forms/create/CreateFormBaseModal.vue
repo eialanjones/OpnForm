@@ -24,8 +24,8 @@
               ref="step1Ref"
             >
               <div class="text-center mb-4">
-                <h2 class="text-xl font-bold text-slate-800">Choose a form style</h2>
-                <p class="text-slate-500 text-sm">Choose how your form appears to respondents.<br/>You can change this later.</p>
+                <h2 class="text-xl font-bold text-slate-800">{{ $t('form_pages.create_modal.style_heading') }}</h2>
+                <p class="text-slate-500 text-sm">{{ $t('form_pages.create_modal.style_description') }}<br/>{{ $t('form_pages.create_modal.style_change_later') }}</p>
               </div>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div
@@ -40,8 +40,8 @@
                       class="w-[140px] h-[100px] rounded-md shadow **:transition-colors duration-100 ease-out [--icon-fg:#737373] [--icon-muted:#D4D4D4] group-hover:[--icon-fg:#de5d00] group-hover:[--icon-muted:#feb77c]"
                     />
                   </div>
-                  <p class="font-medium">Classic</p>
-                  <p class="text-xs text-neutral-500 text-center mt-1">Multiple inputs per page; supports layout blocks and multi-page flows.</p>
+                  <p class="font-medium">{{ $t('form_pages.create_modal.style_classic_title') }}</p>
+                  <p class="text-xs text-neutral-500 text-center mt-1">{{ $t('form_pages.create_modal.style_classic_description') }}</p>
                 </div>
                 <div
                   role="button"
@@ -55,8 +55,8 @@
                       class="w-[140px] h-[100px] rounded-md shadow **:transition-colors duration-100 ease-out [--icon-fg:#737373] [--icon-muted:#D4D4D4] group-hover:[--icon-fg:#de5d00] group-hover:[--icon-muted:#feb77c]"
                     />
                   </div>
-                  <p class="font-medium">Focused</p>
-                  <p class="text-xs text-neutral-500 text-center mt-1">Typeform-style: one question per step for a streamlined flow.</p>
+                  <p class="font-medium">{{ $t('form_pages.create_modal.style_focused_title') }}</p>
+                  <p class="text-xs text-neutral-500 text-center mt-1">{{ $t('form_pages.create_modal.style_focused_description') }}</p>
                 </div>
               </div>
             </div>
@@ -69,7 +69,7 @@
               ref="step1Ref"
             >
               <div class="text-center mb-4">
-                <h2 class="text-xl font-bold text-slate-800">Choose a base for your form</h2>
+                <h2 class="text-xl font-bold text-slate-800">{{ $t('form_pages.create_modal.base_heading') }}</h2>
               </div>
               <div class="flex gap-2 mb-2">
                 <UButton
@@ -77,7 +77,7 @@
                   color="neutral"
                   icon="i-heroicons-arrow-left"
                   @click="goBackToStep1"
-                  label="Back to styles"
+                  :label="$t('form_pages.create_modal.back_to_styles')"
                 />
               </div>
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -94,7 +94,7 @@
                       />
                     </div>
                     <p class="font-medium">
-                      Simple contact form
+                      {{ $t('form_pages.create_modal.base_contact_form') }}
                     </p>
                   </div>
                 </TrackClick>
@@ -111,7 +111,7 @@
                       />
                     </div>
                     <p class="font-medium text-blue-700">
-                      AI Form Generator
+                      {{ $t('form_pages.create_modal.base_ai_generator') }}
                     </p>
                   </div>
                 </TrackClick>
@@ -125,7 +125,7 @@
                     />
                   </div>
                   <p class="font-medium">
-                    Browse templates <Icon name="heroicons:arrow-top-right-on-square-20-solid" class="w-3 h-3 text-neutral-500" />
+                    {{ $t('form_pages.create_modal.base_browse_templates') }} <Icon name="heroicons:arrow-top-right-on-square-20-solid" class="w-3 h-3 text-neutral-500" />
                   </p>
                   <TrackClick name="select_form_base" :properties="{ base: 'template' }">
                     <NuxtLink
@@ -145,25 +145,25 @@
               ref="step1Ref"
             >
               <div class="text-center mb-4">
-                <h2 class="text-xl font-bold text-slate-800">AI-powered form generator</h2>
+                <h2 class="text-xl font-bold text-slate-800">{{ $t('form_pages.create_modal.ai_heading') }}</h2>
               </div>
               <text-area-input
-                label="Form Description"
+                :label="$t('form_pages.create_modal.ai_prompt_label')"
                 :disabled="loading ? true : null"
                 :form="aiForm"
                 name="form_prompt"
-                help="Give us a description of the form you want to build (the more details the better)"
-                placeholder="A simple contact form, with a name, email and message field"
+                :help="$t('form_pages.create_modal.ai_prompt_help')"
+                :placeholder="$t('form_pages.create_modal.ai_prompt_placeholder')"
               />
               <UButton
                 class="mt-4"
                 block
                 :loading="loading"
                 @click="generateForm"
-                label="Generate a form"
+                :label="$t('form_pages.create_modal.ai_generate_button')"
               />
               <p class="text-neutral-500 text-xs text-center mt-1">
-                ~30 sec
+                {{ $t('form_pages.create_modal.ai_generate_eta') }}
               </p>
               <div
                 v-if="loading"
@@ -177,7 +177,7 @@
                   color="neutral"
                   icon="i-heroicons-arrow-left"
                   @click="currentStep = 2"
-                  label="Back to form types"
+                  :label="$t('form_pages.create_modal.back_to_form_types')"
                 />
               </div>
             </div>
@@ -202,6 +202,8 @@ const props = defineProps({
 })
 
 const emit = defineEmits(["close", "form-generated"])
+
+const { t } = useI18n()
 
 // Modal state
 const isOpen = computed({
@@ -304,7 +306,7 @@ const fetchGeneratedForm = (generationId) => {
           emit("form-generated", generated)
           emit("close")
         } else if (data.ai_form_completion.status === "failed") {
-          useAlert().error("Something went wrong, please try again.")
+          useAlert().error(t('form_pages.create_modal.ai_generation_failed'))
           currentStep.value = 2
           loading.value = false
         } else {

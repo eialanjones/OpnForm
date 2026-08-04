@@ -25,7 +25,7 @@
             class="h-5 w-5"
           />
           <span class="ml-2">
-            Upload
+            {{ $t('common.actions.upload') }}
           </span>
 
         </div>
@@ -65,7 +65,7 @@
     <!--  Modal  -->
     <UModal
       v-model:open="showUploadModal"
-      title="Upload an image"
+      :title="$t('widgets.image_input.modal_title')"
       :ui="{ content: 'sm:max-w-xl', body: 'pt-2!' }"
     >
       <template #body>
@@ -92,7 +92,7 @@
                 >
                   <loader class="h-5 w-5 mx-auto m-10" />
                   <p class="text-center mt-6">
-                    Uploading your file...
+                    {{ $t('widgets.image_input.uploading') }}
                   </p>
                 </div>
                 <template v-else>
@@ -122,12 +122,12 @@
                         class="font-semibold text-blue-500 hover:text-blue-800 focus:outline-hidden focus:underline transition duration-150 ease-in-out"
                         @click="openFileUpload"
                       >
-                        Upload your image,
+                        {{ $t('widgets.image_input.upload_cta') }}
                       </button>
-                      use drag and drop or paste it
+                      {{ $t('widgets.image_input.upload_hint') }}
                     </p>
                     <p class="mt-1 text-xs text-neutral-500">
-                      .jpg, .jpeg, .png, .bmp, .gif, .svg up to 5mb
+                      {{ $t('widgets.image_input.file_types_hint') }}
                     </p>
                   </div>
                 </template>
@@ -143,12 +143,12 @@
             <TextInput
               v-model="urlInput"
               name="image_url"
-              label="Enter the URL of the image you want to use"
+              :label="$t('widgets.image_input.url_label')"
               placeholder="https://example.com/image.jpg"
             />
             <div class="mt-4 flex justify-end gap-2">
               <UButton color="primary" :disabled="!urlInput" @click="insertUrl">
-                Insert
+                {{ $t('widgets.image_input.insert') }}
               </UButton>
             </div>
           </div>
@@ -199,7 +199,7 @@ export default {
     },
     tabItems() {
       const baseTabs = [
-        { label: 'Upload', value: 'upload' },
+        { label: this.$t('common.actions.upload'), value: 'upload' },
         { label: 'URL', value: 'url' },
       ]
       if (useFeatureFlag('services.unsplash')) {

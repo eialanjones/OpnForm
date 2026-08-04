@@ -32,22 +32,21 @@
                   clip-rule="evenodd"
                 />
               </svg>
-              Introducing Forms Mentorfy AI
+              {{ $t('marketing.welcome.ai_feature.badge') }}
             </span>
 
             <h2
               class="mt-6 text-2xl font-semibold tracking-tight text-neutral-900 sm:text-3xl lg:text-4xl"
             >
-              Say goodbye to tedious form building with Forms Mentorfy's new
+              {{ $t('marketing.welcome.ai_feature.title') }}
               <span
                 class="text-transparent bg-clip-text bg-gradient-to-r lg:block from-blue-600 to-blue-300"
-              >AI-powered feature!</span>
+              >{{ $t('marketing.welcome.ai_feature.title_highlight') }}</span>
             </h2>
             <p
               class="mt-4 text-base font-medium leading-7 text-neutral-500 sm:text-lg sm:leading-8"
             >
-              Easily generate a fully working form in seconds with just a simple
-              description.
+              {{ $t('marketing.welcome.ai_feature.description') }}
             </p>
 
             <div class="flex justify-center lg:justify-start mt-4">
@@ -58,7 +57,7 @@
                   :trailing="true"
                   color="primary"
                   size="lg"
-                  label="Try our AI form builder"
+                  :label="$t('marketing.welcome.ai_feature.cta')"
                 />
               </TrackClick>
             </div>
@@ -80,7 +79,7 @@
                     clip-rule="evenodd"
                   />
                 </svg>
-                Create form in minutes
+                {{ $t('marketing.welcome.ai_feature.bullets.fast') }}
               </li>
 
               <li class="flex items-center gap-2">
@@ -97,7 +96,7 @@
                     clip-rule="evenodd"
                   />
                 </svg>
-                Customizations
+                {{ $t('marketing.welcome.ai_feature.bullets.customizations') }}
               </li>
 
               <li class="flex items-center gap-2">
@@ -114,7 +113,7 @@
                     clip-rule="evenodd"
                   />
                 </svg>
-                No-coding required
+                {{ $t('marketing.welcome.ai_feature.bullets.no_coding') }}
               </li>
             </ul>
           </div>
@@ -125,7 +124,7 @@
             <img
               class="rounded-t-2xl ring-1 ring-blue-100 lg:rounded-tr-none w-full"
               src="/img/pages/ai_form_builder/ai-feature-illustration.svg"
-              alt="App screenshot"
+              :alt="$t('marketing.welcome.ai_feature.illustration_alt')"
             >
           </div>
         </div>

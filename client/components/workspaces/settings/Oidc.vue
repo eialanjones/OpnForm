@@ -12,21 +12,21 @@
 
     <div class="flex flex-col flex-wrap items-start justify-between gap-4 sm:flex-row sm:items-center">
       <div>
-        <h3 class="text-lg font-medium text-neutral-900">OIDC Settings</h3>
+        <h3 class="text-lg font-medium text-neutral-900">{{ $t('workspace.oidc.title') }}</h3>
         <p class="mt-1 text-sm text-neutral-500">
-          Configure OpenID Connect (OIDC) single sign-on for your workspace.
+          {{ $t('workspace.oidc.description') }}
         </p>
       </div>
 
       <UButton
         v-if="canManageConnections && canAccessFeature"
-        label="Add Connection"
+        :label="$t('workspace.sso.add_connection')"
         icon="i-heroicons-plus"
         @click="showCreateModal = true"
       />
       <UButton
         v-else-if="canManageConnections && !canAccessFeature"
-        label="Add Connection"
+        :label="$t('workspace.sso.add_connection')"
         icon="i-heroicons-plus"
         @click="openUpgradeModal"
       />
@@ -35,9 +35,7 @@
     <!-- Connections List -->
     <div v-if="connectionsData && connectionsData.length > 0" class="space-y-3">
       <p class="text-sm text-neutral-500 max-w-xl">
-        Each connection can be tied to one verified email domain, which we use to route incoming users to the
-        correct workspace when they start login. Manage multiple clients from here and toggle them on or off without
-        losing their configuration details.
+        {{ $t('workspace.oidc.connections_description') }}
       </p>
       <div class="grid gap-3 sm:grid-cols-2">
         <OidcConnectionCard
@@ -58,20 +56,20 @@
         class="w-12 h-12 text-neutral-400 mx-auto mb-4" 
       />
       <h4 class="text-lg font-medium text-neutral-900 mb-2">
-        No OIDC connections yet
+        {{ $t('workspace.oidc.empty_title') }}
       </h4>
       <p class="text-neutral-500 mb-4">
-        Configure your first OIDC connection to enable single sign-on for your workspace.
+        {{ $t('workspace.oidc.empty_description') }}
       </p>
       <UButton
         v-if="canManageConnections && canAccessFeature"
-        label="Add Your First Connection"
+        :label="$t('workspace.sso.add_first_connection')"
         icon="i-heroicons-plus"
         @click="showCreateModal = true"
       />
       <UButton
         v-else-if="canManageConnections && !canAccessFeature"
-        label="Add Your First Connection"
+        :label="$t('workspace.sso.add_first_connection')"
         icon="i-heroicons-plus"
         @click="openUpgradeModal"
       />
@@ -99,6 +97,7 @@ import OidcConnectionModal from './OidcConnectionModal.vue'
 const { current: workspace } = useCurrentWorkspace()
 const alert = useAlert()
 const { openSubscriptionModal } = useAppModals()
+const { t } = useI18n()
 
 const workspaceId = computed(() => workspace.value?.id)
 
@@ -127,11 +126,11 @@ const alertConfig = computed(() => {
     return {
       icon: 'i-heroicons-information-circle',
       color: 'info',
-      title: 'Beta Feature - Pro Plan Required',
-      description: 'OIDC SSO is currently in beta and requires a Pro plan. This feature will soon be part of our Enterprise plan. Upgrade now to start using it.',
+      title: t('workspace.oidc.beta_pro_title'),
+      description: t('workspace.oidc.beta_pro_description'),
       actions: [
         {
-          label: 'Upgrade to Pro',
+          label: t('workspace.pro.upgrade_to_pro'),
           onClick: openUpgradeModal
         }
       ]
@@ -143,8 +142,8 @@ const alertConfig = computed(() => {
     return {
       icon: 'i-heroicons-exclamation-triangle',
       color: 'warning',
-      title: 'Beta Feature - Pricing Change Coming',
-      description: 'OIDC SSO is currently in beta and available on Pro plans. In the coming weeks, when we release our new pricing, this feature will move to our Enterprise plan.',
+      title: t('workspace.oidc.beta_pricing_title'),
+      description: t('workspace.oidc.beta_pricing_description'),
       actions: []
     }
   }
@@ -153,16 +152,16 @@ const alertConfig = computed(() => {
   return {
     icon: 'i-heroicons-exclamation-triangle',
     color: 'warning',
-    title: 'Beta Feature',
-    description: 'OIDC SSO is still in beta. Test it against your identity provider before rolling it out to your whole workspace.',
+    title: t('workspace.oidc.beta_title'),
+    description: t('workspace.oidc.beta_description'),
     actions: []
   }
 })
 
 const openUpgradeModal = () => {
   openSubscriptionModal({
-    modal_title: 'Upgrade to Pro to use OIDC SSO',
-    modal_description: 'OIDC SSO is a Pro feature. Upgrade your plan to configure single sign-on for your workspace.'
+    modal_title: t('workspace.oidc.upgrade_modal_title'),
+    modal_description: t('workspace.oidc.upgrade_modal_description')
   })
 }
 
@@ -197,28 +196,28 @@ const saveConnection = () => {
     const updateMutation = update(editingConnection.value.id)
     connectionForm.mutate(updateMutation)
       .then(() => {
-        alert.success('OIDC connection updated successfully')
+        alert.success(t('workspace.oidc.updated'))
         showCreateModal.value = false
         cancelEdit()
       })
       .catch((error) => {
         // Form handles validation errors automatically
         if (error.response?.status !== 422) {
-          alert.error(error.response?._data?.message ?? 'Failed to update connection')
+          alert.error(error.response?._data?.message ?? t('workspace.oidc.update_error'))
         }
       })
   } else {
     // Create new connection
     connectionForm.mutate(createMutation)
       .then(() => {
-        alert.success('OIDC connection created successfully')
+        alert.success(t('workspace.oidc.created'))
         showCreateModal.value = false
         connectionForm.reset()
       })
       .catch((error) => {
         // Form handles validation errors automatically
         if (error.response?.status !== 422) {
-          alert.error(error.response?._data?.message ?? 'Failed to create connection')
+          alert.error(error.response?._data?.message ?? t('workspace.oidc.create_error'))
         }
       })
   }
@@ -248,14 +247,14 @@ const editConnection = (connection) => {
 
 const deleteConnection = (connection) => {
   alert.confirm(
-    `Are you sure you want to delete "${connection.name}"?`,
+    t('workspace.oidc.delete_confirm', { name: connection.name }),
     () => {
       deleteMutation.mutateAsync(connection.id)
         .then(() => {
-          alert.success('OIDC connection deleted successfully')
+          alert.success(t('workspace.oidc.deleted'))
         })
         .catch((error) => {
-          alert.error(error.response?._data?.message ?? 'Failed to delete connection')
+          alert.error(error.response?._data?.message ?? t('workspace.oidc.delete_error'))
         })
     }
   )

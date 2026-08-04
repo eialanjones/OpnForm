@@ -18,7 +18,7 @@
     <div class="flex flex-col gap-1 p-2">
       <!-- Pin Actions -->
       <div class="flex items-center justify-between">
-        <span class="text-xs text-neutral-500">Pin Column</span>
+        <span class="text-xs text-neutral-500">{{ $t('submissions.column_popover.pin_column') }}</span>
         <UButton
           size="xs"
           :variant="getColumnPreference().pinned === 'left' ? 'soft' : 'ghost'"
@@ -30,7 +30,7 @@
 
       <!-- Wrap Toggle -->
       <div class="flex items-center justify-between">
-        <span class="text-xs text-neutral-500">Text Wrapping</span>
+        <span class="text-xs text-neutral-500">{{ $t('submissions.column_popover.text_wrapping') }}</span>
         <UButton
           size="xs"
           :variant="getColumnPreference().wrapped ? 'soft' : 'ghost'"
@@ -42,7 +42,7 @@
 
       <!-- Visibility Toggle -->
       <div class="flex items-center justify-between">
-        <span class="text-xs text-neutral-500">Visibility</span>
+        <span class="text-xs text-neutral-500">{{ $t('submissions.column_popover.visibility') }}</span>
         <UButton
           size="xs"
           variant="ghost"

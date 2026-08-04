@@ -3,35 +3,36 @@ import { tokensApi } from '~/api/tokens'
 
 export function useTokens() {
   const queryClient = useQueryClient()
+  const { t } = useI18n()
 
   // Abilities configuration (moved from store)
   const abilities = [
     {
-      title: 'Manage integrations',
+      title: t('runtime.tokens.abilities.manage_integrations'),
       name: 'manage-integrations',
     },
     {
-      title: 'Forms – Read',
+      title: t('runtime.tokens.abilities.forms_read'),
       name: 'forms-read',
     },
     {
-      title: 'Forms – Write',
+      title: t('runtime.tokens.abilities.forms_write'),
       name: 'forms-write',
     },
     {
-      title: 'Workspaces – Read',
+      title: t('runtime.tokens.abilities.workspaces_read'),
       name: 'workspaces-read',
     },
     {
-      title: 'Workspaces – Write',
+      title: t('runtime.tokens.abilities.workspaces_write'),
       name: 'workspaces-write',
     },
     {
-      title: 'Workspace Users – Read',
+      title: t('runtime.tokens.abilities.workspace_users_read'),
       name: 'workspace-users-read',
     },
     {
-      title: 'Workspace Users – Write',
+      title: t('runtime.tokens.abilities.workspace_users_write'),
       name: 'workspace-users-write',
     },
   ]
@@ -83,7 +84,7 @@ export function useTokens() {
       if (currentList) {
         queryClient.setQueryData(['tokens', 'list'], [newToken, ...currentList])
       }
-      useAlert().success('Token created successfully')
+      useAlert().success(t('runtime.tokens.created'))
       },
       ...options
     })
@@ -104,7 +105,7 @@ export function useTokens() {
           currentList.filter(token => token.id != deletedTokenId) // Use != for loose equality
         )
       }
-      useAlert().success('Token deleted successfully')
+      useAlert().success(t('runtime.tokens.deleted'))
       },
       ...options
     })

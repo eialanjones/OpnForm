@@ -5,12 +5,12 @@
   >
     <EditorSectionHeader
       icon="i-heroicons-credit-card-20-solid"
-      title="Payment"
+      :title="$t('form_fields.payment.title')"
     />
 
     <select-input
       name="currency"
-      label="Currency"
+      :label="$t('form_fields.payment.currency_label')"
       :options="currencyList"
       :form="field"
       :required="true"
@@ -20,7 +20,7 @@
     <MentionInput
       class="mt-4"
       name="amount"
-      label="Amount"
+      :label="$t('form_fields.payment.amount_label')"
       native-type="number"
       :form="field"
       :mentions="form.properties"
@@ -30,7 +30,7 @@
     <MentionInput
       class="mt-4"
       name="prefill_name"
-      label="Name on Card"
+      :label="$t('form_fields.payment.name_on_card_label')"
       :form="field"
       :mentions="form.properties"
       :disabled="stripeAccounts.length === 0"
@@ -38,7 +38,7 @@
     <MentionInput
       class="mt-4"
       name="prefill_email"
-      label="Billing Email"
+      :label="$t('form_fields.payment.billing_email_label')"
       :form="field"
       :mentions="form.properties"
       :disabled="stripeAccounts.length === 0"
@@ -48,13 +48,13 @@
       <select-input
         class="mt-4"
         name="stripe_account_id"
-        label="Stripe Account"
+        :label="$t('form_fields.payment.stripe_account_label')"
         :options="stripeAccounts"
         :form="field"
         :required="true"
       />
       <p class="mt-4 text-sm text-center text-bold">
-        OR
+        {{ $t('form_fields.payment.or') }}
       </p>
     </div>
     <UButton
@@ -65,7 +65,7 @@
       :loading="stripeLoading"
       @click.prevent="connectStripe"
     >
-      Connect Stripe Account
+      {{ $t('form_fields.payment.connect_stripe') }}
     </UButton>
     <p class="text-sm text-neutral-500 mt-3">
       <a
@@ -77,7 +77,7 @@
           name="heroicons:information-circle-16-solid"
           class="h-3 w-3 mt-1"
         />
-        Learn how to accept payments
+        {{ $t('form_fields.payment.learn_more') }}
       </a>
     </p>
   </div>
@@ -99,6 +99,7 @@ const props = defineProps({
   }
 })
 
+const { t } = useI18n()
 const crisp = useCrisp()
 const oAuth = useOAuth()
 const { data: providersData, refetch} = oAuth.providers()
@@ -129,7 +130,7 @@ onMounted(async () => {
     if (stripeAccounts.value.length > 0) {
       props.field.stripe_account_id = stripeAccounts.value[0].value
     }
-    useAlert().success('Stripe accounts updated.')
+    useAlert().success(t('form_fields.payment.accounts_updated'))
   }, { 
     useMessageChannel: false, 
     acknowledge: false 

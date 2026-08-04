@@ -5,7 +5,7 @@
     class="shadow-none"
   >
     <UTooltip
-      text="Undo"
+      :text="$t('submissions.undo_redo.undo')"
       :kbds="['meta','Z']"
       :content="{ side: 'left' }"
       arrow
@@ -20,7 +20,7 @@
       />
     </UTooltip>
     <UTooltip
-      text="Redo"
+      :text="$t('submissions.undo_redo.redo')"
       :kbds="['meta','Shift','Z']"
       :content="{ side: 'right' }"
       arrow

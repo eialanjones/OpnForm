@@ -1,7 +1,7 @@
 <template>
   <span class="text-sm text-neutral-900" v-if="valueIsObject">
     <template v-if="value[0]">{{ formattedDate(value[0]) }}</template>
-    <template v-if="value[1]"><b class="mx-2">to</b>{{ formattedDate(value[1]) }}</template>
+    <template v-if="value[1]"><b class="mx-2">{{ $t('submissions.cells.date_range_separator') }}</b>{{ formattedDate(value[1]) }}</template>
   </span>
   <span class="text-sm text-neutral-900" v-else>
     {{ formattedDate(value) }}

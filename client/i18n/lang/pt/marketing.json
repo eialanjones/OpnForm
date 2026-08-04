@@ -1,0 +1,412 @@
+{
+    "marketing": {
+        "not_found_form": {
+            "image_alt": "Erro 404",
+            "title": "Sentimos muito! Este formulário não está mais aqui",
+            "description": "Ele pode ter sido excluído, desativado, ou o link do formulário pode ter sido regenerado ou atualizado pelo dono. Mas não se preocupe—você tem várias outras opções!",
+            "what_can_you_do": "O que você pode fazer?",
+            "more_ways_title": "Ainda em dúvida? Veja mais formas de começar!",
+            "more_ways_description": "Sem problemas! Aqui estão outras opções para você:",
+            "why_choose_label": "Quer saber por que as pessoas escolhem o Forms Mentorfy?",
+            "why_choose_link": "Saiba mais aqui!",
+            "templates_label": "Explorar templates",
+            "templates_link": "Inspire-se com templates de formulário prontos para usar!",
+            "help_center_label": "Visite nossa central de ajuda",
+            "help_center_link": "Encontre respostas rápidas para as dúvidas mais comuns.",
+            "actions": {
+                "create_form": "Criar formulário",
+                "find_your_forms": "Encontrar seus formulários",
+                "documentation": "Documentação",
+                "explore": "Conhecer o Forms Mentorfy",
+                "need_assistance": "Precisa de ajuda?"
+            }
+        },
+        "footer": {
+            "copyright": "© {year} {company}. Todos os direitos reservados",
+            "version": "Versão {version}",
+            "logo_alt": "Logo do Forms Mentorfy",
+            "support": "Suporte",
+            "source_code": "Código-fonte",
+            "integrations": "Integrações",
+            "report_abuse": "Denunciar abuso",
+            "privacy_policy": "Política de privacidade",
+            "terms_conditions": "Termos e condições"
+        },
+        "form_card": {
+            "last_updated": "Última atualização",
+            "updated_at": "Atualizado {time}",
+            "views_tooltip": "{count} visualizações",
+            "form_views": "Visualizações do formulário",
+            "submissions_tooltip": "{count} respostas",
+            "form_submissions": "Respostas do formulário"
+        },
+        "notion_block": {
+            "faq_title": "Perguntas frequentes",
+            "cta_title": "Pronto para turbinar seus formulários no Forms Mentorfy?",
+            "cta_button": "Teste o Forms Mentorfy de graça"
+        },
+        "billing_period": {
+            "monthly": "Mensal",
+            "yearly": "Anual",
+            "save_20": "Economize 20%"
+        },
+        "custom_plan": {
+            "title": "Plano Enterprise",
+            "description": "Tenha escalabilidade máxima e recursos de nível corporativo com o plano Enterprise. Feito para organizações que precisam de infraestrutura dedicada, segurança avançada e suporte prioritário.",
+            "whats_included": "O que está incluído",
+            "starting_from": "a partir de, por mês",
+            "contact_us": "Fale conosco",
+            "tailored_note": "Vamos desenhar um plano sob medida para as necessidades da sua empresa.",
+            "crisp_message": "Olá, gostaria de conversar sobre um plano enterprise",
+            "features": {
+                "everything_in_pro": "Tudo do plano Pro",
+                "dedicated_instance": "Instância dedicada ou self-hosted",
+                "priority_support": "Suporte prioritário",
+                "invoice_payment": "Pagamento via fatura/ordem de compra",
+                "saml_sso": "Single sign-on SAML (SSO)",
+                "security_audits": "Auditorias de segurança",
+                "two_factor": "Autenticação em duas etapas (2FA)",
+                "unlimited_users": "Usuários ilimitados"
+            }
+        },
+        "pricing_table": {
+            "check_out_our": "Conheça os",
+            "pro_features": "recursos Pro",
+            "pro_plan": "Plano Pro",
+            "pro_description": "O Forms Mentorfy Pro oferece recursos avançados pensados para times e criadores.",
+            "whats_included": "O que está incluído",
+            "per_month": "por mês",
+            "get_pro": "Assinar o Pro",
+            "view_billing": "Ver faturamento",
+            "invoices_note": "Faturas e recibos disponíveis para facilitar o reembolso na sua empresa.",
+            "features": {
+                "unlimited_workspaces": "Workspaces ilimitados",
+                "confirmation_emails": "E-mails de confirmação do formulário",
+                "slack_notifications": "Notificações no Slack",
+                "discord_notifications": "Notificações no Discord",
+                "editable_submissions": "Respostas editáveis",
+                "custom_domain": "1 domínio personalizado",
+                "custom_code": "Código personalizado",
+                "larger_uploads": "Uploads de arquivos maiores (50mb)",
+                "remove_branding": "Remover a marca do Forms Mentorfy",
+                "priority_support": "Suporte prioritário",
+                "form_analytics": "Analytics do formulário",
+                "custom_sender_email": "E-mail de envio personalizado (SMTP)"
+            }
+        },
+        "subscription_modal": {
+            "icon_alt": "Ícone de assinatura",
+            "default_title": "Faça upgrade para o Pro",
+            "default_description": "Libere todos os recursos e aproveite o máximo do Forms Mentorfy.",
+            "plan_pro": "Pro",
+            "plan_team": "Team",
+            "plan_line": "Forms Mentorfy - plano {plan}",
+            "per_month_billed_yearly": "por mês, cobrado anualmente",
+            "per_month_billed_monthly": "por mês, cobrado mensalmente",
+            "manage_plan": "Gerenciar plano",
+            "see_full_comparison": "E muito mais. Veja a comparação completa dos planos",
+            "confirm_upgrade": "Confirmar upgrade",
+            "confirm_subscription": "Confirmar assinatura",
+            "no_discount": "Sem desconto",
+            "discount_applied": "Desconto aplicado",
+            "yearly_upsell": "20% de desconto no plano anual",
+            "company_name_label": "Nome da empresa",
+            "company_name_help": "Nome que vai aparecer nas faturas",
+            "invoicing_email_label": "E-mail de faturamento",
+            "invoicing_email_help": "Para onde as faturas serão enviadas",
+            "subscribe": "Assinar",
+            "success_team": "Excelente! Sua assinatura do Forms Mentorfy está confirmada! Agora você tem acesso a todos os recursos do plano Team. Não precisa convidar seu time, basta pedir que criem uma conta no Forms Mentorfy e conectem o mesmo workspace do Notion. Fale com a gente se tiver qualquer dúvida 🙌",
+            "success_pro": "Excelente! Sua assinatura do Forms Mentorfy está confirmada! Agora você tem acesso a todos os recursos do plano Pro. Fale com a gente se tiver qualquer dúvida 🙌",
+            "confirm_error": "Infelizmente não conseguimos confirmar sua assinatura. Tente novamente e fale com a gente se o problema continuar.",
+            "features": {
+                "branding_title": "Remova a marca do Forms Mentorfy.",
+                "branding_description": "Tire nossa marca d'água e crie formulários com a cara da sua marca.",
+                "customization_title": "Personalização completa do formulário.",
+                "customization_description": "Personalize cores, temas, imagens e mais nos seus formulários. Injete código CSS e JS personalizado.",
+                "uploads_title": "Uploads de arquivos maiores.",
+                "uploads_description": "Envie arquivos maiores nos seus formulários (até 50 mb). Assim você coleta anexos mais pesados.",
+                "integrations_title": "Todas as integrações e acesso à API.",
+                "integrations_description": "Configure notificações por e-mail, Slack e Discord ou integrações com GSheet, Zapier e webhooks.",
+                "domain_title": "1 domínio personalizado.",
+                "domain_description": "Hospede seu formulário no seu próprio domínio para um visual profissional e mais identidade de marca.",
+                "editable_title": "Respostas editáveis.",
+                "editable_description": "Quem responde pode voltar e editar as respostas enviadas, permitindo atualizações e correções."
+            }
+        },
+        "settings_modal": {
+            "empty_title": "Selecione uma configuração",
+            "empty_description": "Escolha uma opção na barra lateral para ajustar suas configurações."
+        },
+        "templates": {
+            "new_badge": "Novo",
+            "search_placeholder": "Buscar...",
+            "no_templates_found": "Nenhum template encontrado.",
+            "all_types_heading": "Todos os tipos",
+            "all_industries_heading": "Todos os setores",
+            "all_types_option": "Todos os tipos",
+            "all_industries_option": "Todos os setores",
+            "view_all_templates": "Ver todos os templates"
+        },
+        "welcome": {
+            "ai_feature": {
+                "badge": "Apresentamos o Forms Mentorfy AI",
+                "title": "Diga adeus ao trabalho manual de criar formulários com o novo",
+                "title_highlight": "recurso com IA do Forms Mentorfy!",
+                "description": "Gere um formulário completo em segundos com apenas uma descrição simples.",
+                "cta": "Testar nosso criador de formulários com IA",
+                "illustration_alt": "Captura de tela do app",
+                "bullets": {
+                    "fast": "Crie formulários em minutos",
+                    "customizations": "Personalizações",
+                    "no_coding": "Sem precisar programar"
+                }
+            },
+            "features": {
+                "heading_line1": "A forma mais fácil de criar formulários.",
+                "heading_line2": "Plano generoso e ilimitado,",
+                "heading_highlight": "de graça.",
+                "subheading": "Precisa de um formulário de contato? Vai fazer uma pesquisa? Crie um formulário em 2 minutos e comece a receber respostas.",
+                "image_alt": "Ilustração de recurso do produto",
+                "steps": {
+                    "create": {
+                        "title": "Criar",
+                        "description": "Crie um formulário em 2 minutos. Mais de 10 tipos de campo, imagens, lógica e muito mais.",
+                        "bullet_1": "Monte um formulário simples em minutos.",
+                        "bullet_2": "Sem precisar programar."
+                    },
+                    "share": {
+                        "title": "Compartilhar",
+                        "description": "Seu formulário tem um link único que você pode compartilhar em qualquer lugar. Envie o link ou incorpore o formulário no seu site.",
+                        "bullet_1": "Compartilhe o link do seu formulário",
+                        "bullet_2": "Incorpore o formulário no seu site"
+                    },
+                    "results": {
+                        "title": "Ver resultados",
+                        "description": "Receba as respostas do seu formulário. Receba notificações, envie confirmações. Exporte respostas e acompanhe o analytics do formulário.",
+                        "bullet_1": "Respostas ilimitadas de graça",
+                        "bullet_2": "Exporte respostas em CSV facilmente",
+                        "bullet_3": "Analytics de visualizações e respostas"
+                    }
+                },
+                "notifications": {
+                    "title": "Notificações",
+                    "description": "Receba notificações direto no Slack ou no seu e-mail sempre que seu formulário tiver uma nova resposta (se você quiser)."
+                },
+                "file_uploads": {
+                    "title": "Upload de arquivos",
+                    "description": "Adicione campos de upload aos seus formulários com facilidade. Os arquivos enviados ficam armazenados com segurança. Até 5mb!"
+                },
+                "customize": {
+                    "title": "Personalize tudo",
+                    "description": "Mude o tema do formulário, textos, cores, adicione imagens, páginas de agradecimento personalizadas e muito mais."
+                }
+            },
+            "more_features": {
+                "title": "E muitos outros recursos",
+                "description": "O Forms Mentorfy deixa a criação de formulários simples e vem cheio de recursos poderosos.",
+                "items": {
+                    "form_logic": "Lógica de formulário",
+                    "url_prefill": "Preenchimento pela URL",
+                    "unique_submission_id": "ID único de resposta",
+                    "hidden_fields": "Campos ocultos",
+                    "form_password": "Senha no formulário",
+                    "webhooks": "Webhooks",
+                    "custom_code": "Código personalizado",
+                    "closing_date": "Data de encerramento",
+                    "and_much_more": "E muito mais..."
+                }
+            },
+            "templates_slider": {
+                "eyebrow": "Formulários de uma ou várias páginas",
+                "title": "Conheça nossos templates",
+                "description": "Se precisar de inspiração, dê uma olhada nos nossos templates.",
+                "see_all": "Ver todos os templates"
+            },
+            "testimonials": {
+                "iframe_title": "Depoimento sobre o Forms Mentorfy"
+            }
+        },
+        "not_found_page": {
+            "image_alt": "Uma plantinha, já que não temos mais nada para mostrar!",
+            "title": "Página não encontrada (404)",
+            "go_home": "Ir para a home",
+            "meta_title": "404 - Página não encontrada"
+        },
+        "ai_form_builder": {
+            "hero_title": "Diga adeus ao trabalho manual de criar formulários com o novo",
+            "hero_title_highlight": "recurso com IA do Forms Mentorfy!",
+            "hero_description": "Gere um formulário completo em segundos com apenas uma descrição simples.",
+            "get_started": "Comece de graça",
+            "video_fallback": "Este navegador não exibe a tag de vídeo.",
+            "how_it_works_eyebrow": "Como funciona?",
+            "how_it_works_title": "Economize horas em poucos cliques",
+            "how_it_works_description": "Criar formulários nunca foi tão fácil",
+            "cta_title": "Crie formulários bonitos e compartilhe em qualquer lugar",
+            "cta_description": "Leva segundos, você não precisa saber programar e",
+            "cta_description_highlight": "é de graça",
+            "meta_title": "Criador de formulários com IA gratuito",
+            "meta_description": "Transforme suas ideias em formulários totalmente funcionais com o Forms Mentorfy AI Builder – rápido, preciso e sob medida para qualquer necessidade.",
+            "perks": {
+                "faster_title": "Mais rápido do que nunca",
+                "faster_description": "Economize tempo e esforço gerando um formulário em segundos",
+                "customization_title": "Personalizações",
+                "customization_description": "Personalize seu formulário exatamente como você quer",
+                "no_coding_title": "Sem precisar programar",
+                "no_coding_description": "Não é preciso saber programar e o uso é totalmente gratuito"
+            },
+            "steps": {
+                "step_1_title": "Criar formulários ficou fácil",
+                "step_1_description": "O criador de formulários online do Forms Mentorfy permite montar um formulário bonito em pouquíssimo tempo. Seja para criar formulários de contato e inscrição para uma landing page ou um formulário de pedido para o seu negócio, você não vai mais perder horas com isso.",
+                "step_2_title": "Formulários personalizados fazem diferença",
+                "step_2_description": "Sabia que formulários bonitos costumam converter mais respostas do que os comuns? No Forms Mentorfy, você personaliza o design do seu formulário nos mínimos detalhes e alinha tudo com a identidade da sua marca.",
+                "step_3_title": "Compartilhe seus formulários em qualquer lugar",
+                "step_3_description": "Você pode compartilhar seus formulários em qualquer lugar usando o link único ou incorporá-los nas suas landing pages sem complicação. Além disso, dá para ajustar as configurações de privacidade do formulário para alcançar o público certo e impedir que outras pessoas o vejam."
+            },
+            "cta_bullets": {
+                "no_design_skills": "Sem precisar saber design",
+                "setup_in_minutes": "Configuração em minutos",
+                "free_plan": "Plano gratuito disponível"
+            }
+        },
+        "home_page": {
+            "search_placeholder": "Buscar formulários...",
+            "tags_placeholder": "Tags",
+            "create_form": "Criar formulário",
+            "empty_title": "Crie seu primeiro formulário",
+            "empty_description": "Comece criando um novo formulário para coletar respostas.",
+            "no_forms_found_title": "Nenhum formulário encontrado",
+            "no_forms_found_description": "Sua busca e seus filtros não encontraram nenhum formulário.",
+            "clear_filters": "Limpar filtros",
+            "loaded_pages": "{current} de {total} páginas carregadas",
+            "meta_title": "Seus formulários",
+            "meta_description": "Todos os seus formulários estão aqui. Crie novos formulários ou atualize os existentes."
+        },
+        "landing": {
+            "background_alt": "Fundo abstrato da página",
+            "hero_title_start": "Crie",
+            "hero_title_highlight": "formulários bonitos",
+            "hero_title_end": "em segundos",
+            "hero_description": "Crie formulários bonitos e compartilhe em qualquer lugar. É super rápido e você não precisa saber programar. Comece",
+            "hero_description_highlight": "de graça",
+            "product_screenshot_alt": "Captura de tela do produto",
+            "create_form_cta": "Criar um formulário GRÁTIS",
+            "read_more_pricing": "Saiba mais sobre nossos preços",
+            "cta_title": "Leve seus formulários para o próximo nível",
+            "cta_description": "Plano gratuito generoso e ilimitado.",
+            "bullets": {
+                "unlimited_forms": "Formulários ilimitados",
+                "unlimited_fields": "Campos ilimitados",
+                "unlimited_responses": "Respostas ilimitadas"
+            }
+        },
+        "pricing_page": {
+            "hero_title": "Preço simples e transparente. Sem surpresas.",
+            "hero_description": "Assim como nosso código, nosso preço é 100% transparente. Um valor único para todos os recursos. Sem taxas escondidas.",
+            "extra_users": "Usuários extras por {price}/mês",
+            "free_features_title": "dos recursos estão disponíveis para todos, de graça e sem limites.",
+            "discount_title": "Desconto para ONGs e estudantes — 50%",
+            "discount_description": "Não importa se sua ONG é grande ou pequena, o criador de formulários online do Forms Mentorfy ajuda sua organização a ajudar outras pessoas. Leva poucos minutos para criar e publicar seus formulários online. Como benefício exclusivo, oferecemos 50% de desconto para ONGs e estudantes!",
+            "faq_title": "Ficou com alguma dúvida?",
+            "faq_description": "Reunimos aqui as perguntas que mais recebemos.",
+            "not_found_answer": "Não encontrou a resposta?",
+            "contact_us": "Fale conosco",
+            "meta_title": "Preços",
+            "meta_description": "Todos os nossos recursos principais são gratuitos e sem limite de quantidade. Você também pode criar formulários mais avançados e personalizados com o Forms Mentorfy Pro.",
+            "free_features": {
+                "unlimited_forms": "Formulários ilimitados",
+                "unlimited_submissions": "Respostas ilimitadas",
+                "unlimited_fields": "Campos ilimitados",
+                "multiple_input_types": "Vários tipos de campo",
+                "form_password": "Senha no formulário",
+                "webhooks": "Webhooks",
+                "api_tokens": "Tokens de acesso à API",
+                "closing_date": "Data de encerramento",
+                "and_much_more": "E muito mais..."
+            },
+            "faq": {
+                "free_version": {
+                    "question": "Existe uma versão gratuita do Forms Mentorfy?",
+                    "answer": "Sim, o Forms Mentorfy tem uma versão gratuita com acesso a 99% dos recursos, incluindo formulários, respostas, campos, webhooks e tokens de API ilimitados, entre outros. Nosso objetivo é oferecer uma ferramenta robusta para todo mundo, sem limitações."
+                },
+                "pro_plan": {
+                    "question": "O que está incluído no plano Pro?",
+                    "answer": "O plano Pro do Forms Mentorfy foi feito para atender às necessidades avançadas de times e criadores. Ele inclui recursos como e-mails de confirmação, notificações no Slack e no Discord, respostas editáveis, domínio personalizado, código personalizado, uploads maiores, remoção da marca do Forms Mentorfy, suporte prioritário e muito mais."
+                },
+                "annual_discount": {
+                    "question": "Existe desconto no plano anual?",
+                    "answer": "Sim, oferecemos 20% de desconto nas assinaturas anuais do plano Pro. Escolhendo a cobrança anual, você aproveita os mesmos recursos por um valor menor."
+                },
+                "nonprofit_discount": {
+                    "question": "Como funciona o desconto para ONGs e estudantes?",
+                    "answer": "O Forms Mentorfy tem o compromisso de apoiar ONGs e estudantes. Oferecemos 50% de desconto exclusivo no plano Pro para organizações sem fins lucrativos e estudantes. Assim você aproveita o máximo do nosso criador de formulários sem estourar o orçamento."
+                },
+                "cancel_plan": {
+                    "question": "Posso cancelar ou mudar meu plano quando quiser?",
+                    "answer": "Sim, você tem total flexibilidade para fazer upgrade, downgrade ou cancelar o plano Pro do Forms Mentorfy quando quiser. As mudanças entram em vigor imediatamente e você é cobrado apenas pelo plano em que está."
+                }
+            }
+        },
+        "legal": {
+            "privacy_policy_title": "Política de privacidade",
+            "terms_title": "Termos e condições"
+        },
+        "report_abuse": {
+            "meta_title": "Denunciar abuso"
+        },
+        "redirects": {
+            "billing_portal_loading": "Redirecionando para o portal de faturamento...",
+            "billing_portal_error": "Não foi possível acessar o portal de faturamento. Tente novamente ou fale com o suporte.",
+            "checkout_loading": "Preparando seu checkout...",
+            "checkout_error": "Não foi possível iniciar o checkout. Tente novamente ou fale com o suporte.",
+            "missing_plan": "Informação do plano ausente",
+            "customer_details_error": "Não foi possível atualizar os dados do cliente, mas seguiremos com o checkout"
+        },
+        "subscription_success": {
+            "title": "Obrigado!",
+            "description": "Estamos verificando o status da sua assinatura, aguarde um instante...",
+            "meta_title": "Assinatura confirmada"
+        },
+        "templates_index": {
+            "title": "Templates de formulário",
+            "description": "Nossa coleção de templates prontos para você criar seus próprios formulários!"
+        },
+        "my_templates": {
+            "title": "Meus templates de formulário",
+            "how_to_create": "Como criar",
+            "empty_title": "Nenhum template ainda",
+            "empty_description": "Você ainda não criou nenhum template. Crie formulários e compartilhe-os como templates!",
+            "meta_title": "Meus templates"
+        },
+        "template_page": {
+            "edit_template": "Editar template",
+            "copy_template_url": "Copiar link do template",
+            "use_template": "Usar este template",
+            "not_found": "Não encontramos este template.",
+            "cover_alt": "Imagem de capa do template",
+            "preview_label": "Prévia do template",
+            "faq_title": "Perguntas frequentes",
+            "faq_description": "Tudo o que você precisa saber sobre este template.",
+            "related_title": "Templates relacionados",
+            "view_all": "Ver todos",
+            "how_it_works_title": "Como o Forms Mentorfy funciona",
+            "step_1_title": "Copie o template e mude do jeito que quiser",
+            "step_1_link": "Clique aqui para copiar este template",
+            "step_1_description": "e comece a personalizar. Mude as perguntas, adicione novas, escolha cores e muito mais.",
+            "step_2_title": "Incorpore o formulário ou compartilhe por link",
+            "step_2_description": "Você pode compartilhar o link do formulário diretamente ou incorporá-lo no seu site. É mágica! 🪄",
+            "breadcrumb_templates": "Templates",
+            "url_copied": "Link copiado para a área de transferência!",
+            "perks": {
+                "free_core": "✓ Recursos principais 100% gratuitos",
+                "no_credit_card": "✓ Sem cartão de crédito",
+                "no_limit": "✓ Sem limite de respostas no plano gratuito"
+            }
+        },
+        "template_industry": {
+            "not_found": "Não encontramos este setor."
+        },
+        "template_type": {
+            "not_found": "Não encontramos este tipo."
+        }
+    }
+}

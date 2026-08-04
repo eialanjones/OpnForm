@@ -4,7 +4,7 @@
     :ui="{ content: 'sm:max-w-md' }"
   >
     <template #header>
-      <h2 class="text-lg font-semibold">Disable Two-Factor Authentication</h2>
+      <h2 class="text-lg font-semibold">{{ $t('user_settings.two_factor.disable_modal.title') }}</h2>
     </template>
 
     <template #body>
@@ -12,12 +12,12 @@
         <UAlert
           color="warning"
           variant="subtle"
-          description="Disabling two-factor authentication will reduce the security of your account. Please verify with a code from your authenticator app."
+          :description="$t('user_settings.two_factor.disable_modal.warning')"
         />
 
         <div>
           <p class="text-sm font-medium text-neutral-900 mb-2">
-            Enter the 6-digit code from your authenticator app:
+            {{ $t('user_settings.two_factor.enter_code_prompt') }}
           </p>
           <div class="flex justify-center mb-4">
             <UPinInput
@@ -35,7 +35,7 @@
               size="sm"
               @click="showRecoveryCode = !showRecoveryCode"
             >
-              Use recovery code instead
+              {{ $t('user_settings.two_factor.use_recovery_code') }}
             </UButton>
           </div>
         </div>
@@ -44,8 +44,8 @@
           <div v-if="showRecoveryCode" class="mt-4">
             <TextInput
               v-model="recoveryCode"
-              label="Recovery Code"
-              placeholder="Enter recovery code"
+              :label="$t('user_settings.two_factor.recovery_code_label')"
+              :placeholder="$t('user_settings.two_factor.recovery_code_placeholder')"
               @keyup.enter="handleDisable"
             />
           </div>
@@ -60,7 +60,7 @@
           variant="outline"
           @click="handleClose"
         >
-          Cancel
+          {{ $t('common.actions.cancel') }}
         </UButton>
         <UButton
           color="error"
@@ -68,7 +68,7 @@
           :disabled="code.length !== 6 && !recoveryCode"
           @click="handleDisable"
         >
-          Disable 2FA
+          {{ $t('user_settings.two_factor.disable_button') }}
         </UButton>
       </div>
     </template>

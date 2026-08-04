@@ -4,10 +4,10 @@
       class="w-full md:max-w-3xl md:mx-auto px-4 mb-10 md:pb-20 md:pt-16 text-center flex-grow"
     >
       <h1 class="text-4xl font-semibold">
-        Thank you!
+        {{ $t('marketing.subscription_success.title') }}
       </h1>
       <h4 class="text-xl mt-6">
-        We're checking the status of your subscription please wait a moment...
+        {{ $t('marketing.subscription_success.description') }}
       </h4>
       <div class="text-center">
         <Loader class="h-6 w-6 text-blue-500 mx-auto mt-20" />
@@ -26,8 +26,10 @@ definePageMeta({
   middleware: 'auth'
 })
 
+const { t } = useI18n()
+
 useOpnSeoMeta({
-  title: 'Subscription Success'
+  title: t('marketing.subscription_success.meta_title')
 })
 
 const confetti = useConfetti()

@@ -23,12 +23,11 @@
     <UModal
       v-model:open="showDeleteFormModal"
       :ui="{ content: 'sm:max-w-sm' }"
-      title="Delete form"
+      :title="$t('form_pages.extra_menu.delete_modal_title')"
     >
       <template #body>
         <p>
-          If you want to permanently delete this form and all of its data, you
-          can do so below.
+          {{ $t('form_pages.extra_menu.delete_modal_body') }}
         </p>
       </template>
 
@@ -38,13 +37,13 @@
             color="neutral"
             variant="outline"
             @click="showDeleteFormModal = false"
-            label="Cancel"
+            :label="$t('common.actions.cancel')"
           />
           <UButton
             color="error"
             :loading="deleteFormMutation.isPending.value"
             @click="deleteForm"
-            label="Yes, delete it"
+            :label="$t('form_pages.extra_menu.delete_confirm')"
           />
         </div>
       </template>
@@ -70,6 +69,7 @@ import FormTemplateModal from "../../../open/forms/components/templates/FormTemp
 import FormWorkspaceModal from "../../../open/forms/components/FormWorkspaceModal.vue"
 
 const { copy } = useClipboard()
+const { t } = useI18n()
 const router = useRouter()
 
 const props = defineProps({
@@ -99,7 +99,7 @@ const items = computed(() => {
   return [
     [
       ...props.isMainPage ? [{
-        label: 'Open form',
+        label: t('form_pages.extra_menu.open_form'),
         icon: 'i-heroicons-arrow-top-right-on-square',
         onClick: () => {
           if (props.isMainPage && props.form.visibility === 'draft') {
@@ -110,7 +110,7 @@ const items = computed(() => {
         }
       }] : [],
       {
-        label: 'Copy link to share',
+        label: t('form_pages.extra_menu.copy_link_to_share'),
         icon: 'i-heroicons-clipboard-document-check-20-solid',
         onClick: copyLink
       }
@@ -118,26 +118,26 @@ const items = computed(() => {
     ...workspace.value?.is_readonly ? [] : [
       [
         ...props.isMainPage ? [{
-        label: 'Edit',
+        label: t('common.actions.edit'),
         icon: 'i-heroicons-pencil-square-20-solid',
         to: { name: 'forms-slug-edit', params: { slug: props.form.slug } }
       }] : [],
       {
-        label: 'Duplicate form',
+        label: t('form_pages.extra_menu.duplicate_form'),
         icon: 'i-heroicons-document-duplicate-20-solid',
         onClick: duplicateForm
         
       }], 
     [
       ...props.isMainPage ? [] : [{
-        label: 'Create Template',
+        label: t('form_pages.extra_menu.create_template'),
         icon: 'i-heroicons-document-plus-20-solid',
         onClick: () => {
           showFormTemplateModal.value = true
         }
       }],
       {
-        label: 'Change workspace',
+        label: t('form_pages.extra_menu.change_workspace'),
         icon: 'i-heroicons-building-office-2-20-solid',
         onClick: () => {
           showFormWorkspaceModal.value = true
@@ -145,7 +145,7 @@ const items = computed(() => {
       },
     ],[
       {
-        label: 'Delete form',
+        label: t('form_pages.extra_menu.delete_form'),
         icon: 'i-heroicons-trash-20-solid',
         onClick: () => {
           showDeleteFormModal.value = true
@@ -160,7 +160,7 @@ const items = computed(() => {
 
 const copyLink = () => {
   copy(props.form.share_url)
-  useAlert().success("Copied!")
+  useAlert().success(t('common.states.copied'))
 }
 
 const duplicateForm = () => {
@@ -171,7 +171,7 @@ const duplicateForm = () => {
     })
     useAlert().success(data.message)
   }).catch((error) => {
-    useAlert().error(error.data?.message || "Failed to duplicate form")
+    useAlert().error(error.data?.message || t('form_pages.extra_menu.duplicate_failed'))
   })
 }
 
@@ -181,13 +181,11 @@ const deleteForm = () => {
     showDeleteFormModal.value = false
     router.push({ name: "home" })
   }).catch((error) => {
-    useAlert().error(error.data?.message || "Failed to delete form")
+    useAlert().error(error.data?.message || t('form_pages.extra_menu.delete_failed'))
   })
 }
 
 const showDraftFormWarningNotification = () => {
-  useAlert().warning(
-    "This form is currently in Draft mode and is not publicly accessible, You can change the form status on the edit form page.",
-  )
+  useAlert().warning(t('form_pages.shared.draft_warning'))
 }
 </script>

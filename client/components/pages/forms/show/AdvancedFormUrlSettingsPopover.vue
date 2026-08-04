@@ -15,16 +15,16 @@
     <template #content>
       <div class="p-4 w-80">
         <h3 class="font-semibold text-medium">
-          Advanced Settings
+          {{ $t('form_pages.advanced_url_settings.heading') }}
         </h3>
-        <p class="text-sm text-neutral-600">Configure advanced sharing options for your form.</p>
-        
+        <p class="text-sm text-neutral-600">{{ $t('form_pages.advanced_url_settings.description') }}</p>
+
         <div class="space-y-4">
           <toggle-switch-input
             :model-value="modelValue.auto_submit"
             name="auto_submit"
-            label="Auto Submit Form"
-            help="Submits immediately after opening URL"
+            :label="$t('form_pages.advanced_url_settings.auto_submit_label')"
+            :help="$t('form_pages.advanced_url_settings.auto_submit_help')"
             @update:model-value="onChangeAutoSubmit"
           />
         </div>

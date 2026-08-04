@@ -1,0 +1,179 @@
+{
+    "admin": {
+        "errors": {
+            "generic": "An error occurred."
+        },
+        "table": {
+            "no_items": "No items.",
+            "id": "ID",
+            "plan": "Plan",
+            "creation_date": "Creation date"
+        },
+        "roles": {
+            "user": "User",
+            "admin": "Admin",
+            "readonly": "Read Only"
+        },
+        "page": {
+            "meta_title": "Admin",
+            "heading": "Admin settings",
+            "identifier_label": "Identifier",
+            "identifier_help": "User Id, User Email, Form Slug or View Slug",
+            "identifier_required": "Identifier is required.",
+            "fetch_user": "Fetch User",
+            "user_fetched": "User Fetched: {name}",
+            "template_description_label": "Template Description",
+            "template_description_help": "Describe the template you want to create",
+            "create_template": "Create Template",
+            "template_prompt_required": "Template prompt is required.",
+            "template_created": "Template created."
+        },
+        "add_user_to_workspace": {
+            "email_placeholder": "Add a new user by email",
+            "role_label": "Role",
+            "role_placeholder": "Select User Role",
+            "invite_user": "Invite User",
+            "add_error": "There was an error adding user: {message}"
+        },
+        "edit_workspace_user": {
+            "title": "Edit User Role",
+            "new_role_for": "New Role for {name}",
+            "updated": "User role updated.",
+            "update_error": "There was an error updating user role"
+        },
+        "billing_customer": {
+            "title": "Billing info",
+            "description": "You can update the billing info of the subscriber in Stripe.",
+            "billing_name": "Billing name",
+            "billing_email": "Billing email",
+            "update_button": "Update billing info"
+        },
+        "block_user": {
+            "block_title": "Block User",
+            "unblock_title": "Unblock User",
+            "reason_label": "Reason",
+            "reason_help": "Reason will be sent to the user via email.",
+            "view_history": "View History",
+            "history_title": "Blocking History",
+            "block_warning": "This will block the user from accessing their account and set all their forms to draft.",
+            "unblock_warning": "This will unblock the user and allow them to log in again. Their forms will remain in draft status.",
+            "auto_blocked_by_ai": "Automatically blocked by our AI",
+            "blocked_on": "Blocked on:",
+            "blocked_by": "Blocked by:",
+            "reason": "Reason:",
+            "columns": {
+                "blocked_at": "Blocked At",
+                "blocked_by": "Blocked By",
+                "reason": "Reason",
+                "unblocked_at": "Unblocked At",
+                "unblocked_by": "Unblocked By",
+                "unblock_reason": "Unblock Reason"
+            }
+        },
+        "clarity_link": {
+            "label": "Open in Clarity"
+        },
+        "clear_cache": {
+            "label": "Clear Cache",
+            "success": "User cache cleared."
+        },
+        "deleted_forms": {
+            "title": "Deleted forms",
+            "restore": "Restore",
+            "restore_confirm": "Are you sure you want to restore this form?",
+            "columns": {
+                "slug": "Slug",
+                "created_by": "Created by",
+                "deleted_at": "Deleted at"
+            }
+        },
+        "discount": {
+            "title": "Apply discount",
+            "description": "This is only for students, academics and NGOs. Make sure to verify their status before applying discount (student/university email, NGO website, proof of non-profit, etc). They need to create their subscriptions before you can apply the 40% discount.",
+            "apply_button": "Apply Discount"
+        },
+        "extend_trial": {
+            "title": "Extend trial",
+            "description": "You can extend the trial of subscribers that are still in the trial period. Usually, you should not offer more than 7 days of trial, but you can add up to 14 days if needed.",
+            "days_label": "Number of days",
+            "days_help": "Number Of Days",
+            "apply_button": "Apply Extend Trial"
+        },
+        "impersonate": {
+            "label": "Impersonate User",
+            "success": "Impersonating {name}",
+            "error": "Failed to impersonate user"
+        },
+        "password_reset": {
+            "label": "Reset Password",
+            "confirm": "Are you sure you want to send a password reset email?",
+            "error": "Failed to send password reset email"
+        },
+        "two_factor_disable": {
+            "title": "Disable Two-Factor Authentication",
+            "warning": "Disabling two-factor authentication is a critical security action. Make sure you have a solid reason and strong proof of account ownership (such as verified identity or written consent) before proceeding. The user will be required to re-enable 2FA on their next login.",
+            "reason_label": "Reason",
+            "reason_help": "Reason will be sent to slack for internal use only."
+        },
+        "payments": {
+            "title": "Payments",
+            "refund": "Refund",
+            "refund_modal_title": "Refund payment",
+            "refund_notice_manual": "We will not update to user. Please inform them manually.",
+            "refund_notice_delay": "After refund it will take some time to update this page.",
+            "refund_reason_label": "Refund reason",
+            "refund_reason_help": "Please provide a clear reason for refunding this payment. This will be logged for future reference.",
+            "refund_now": "Refund payment now",
+            "refund_confirm": "Are you sure? This will refund the payment for this user.",
+            "columns": {
+                "amount_paid": "Amount paid"
+            }
+        },
+        "subscriptions": {
+            "title": "Subscriptions",
+            "cancel_modal_title": "Cancel subscription",
+            "cancel_notice": "Ideally customers should cancel subscription themselves via the UI. If you cancel the subscription for them, please provide a reason.",
+            "cancellation_reason_label": "Cancellation reason",
+            "cancellation_reason_help": "Please provide a clear reason for cancelling this subscription. This will be logged for future reference.",
+            "cancel_now": "Cancel subscription now",
+            "cancel_confirm": "Are you sure? This will cancel the subscription for this user.",
+            "columns": {
+                "stripe_id": "Stripe ID",
+                "canceled_at": "Canceled at"
+            }
+        },
+        "workspaces": {
+            "title": "Workspaces",
+            "columns": {
+                "forms_count": "# of forms"
+            }
+        },
+        "featurebase": {
+            "feedback": "Feedback"
+        },
+        "google_one_tap": {
+            "registered_welcome": "You're now registered with your Google account! Welcome to Forms Mentorfy.",
+            "create_first_form": "Time to create your first form!",
+            "signed_in": "Successfully signed in with Google!",
+            "auth_failed": "Authentication failed",
+            "one_tap_failed": "Google One Tap authentication failed"
+        },
+        "appsumo": {
+            "billing": {
+                "license_active": "Your AppSumo lifetime deal tier {tier} license is active. Here's a reminder of your plan details:",
+                "forms_count": "Number of Forms:",
+                "custom_domains": "Custom domains:",
+                "file_upload_size": "File Size Uploads:",
+                "users_limit": "Users limit:",
+                "unlimited": "Unlimited",
+                "manage_button": "Manage in AppSumo"
+            },
+            "register": {
+                "found_license": "We found your AppSumo Lifetime deal license!",
+                "complete_registration": "Just complete the registration form to finalize the activation of your license.",
+                "invalid_license": "Invalid AppSumo license.",
+                "invalid_license_details": "The license was probably already attached to a Forms Mentorfy account. Please contact support."
+            }
+        }
+    }
+}

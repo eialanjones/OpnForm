@@ -4,7 +4,7 @@
       <div class="flex justify-center items-center mb-6">
         <img
           src="/img/logo.svg"
-          alt="Forms Mentorfy logo"
+          :alt="$t('auth.setup.logo_alt')"
           class="w-8 h-8"
         >
         <h1 class="ml-2 text-xl font-semibold text-black">
@@ -13,7 +13,7 @@
       </div>
       
       <p class="mt-2 text-center text-sm text-neutral-600">
-        Welcome to Forms Mentorfy! Let's get you set up. Create your admin account to start building beautiful forms.
+        {{ $t('auth.setup.intro') }}
       </p>
     </div>
 
@@ -32,6 +32,7 @@
 <script setup>
 import RegisterForm from '~/components/pages/auth/components/RegisterForm.vue'
 
+const { t } = useI18n()
 const { invalidateFlags } = useFeatureFlags()
 const router = useRouter()
 
@@ -41,13 +42,13 @@ const selfHosted = useFeatureFlag('self_hosted', false)
 
 // Show 404 if setup not required or not self-hosted
 if (!setupRequired || !selfHosted) {
-  throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
+  throw createError({ statusCode: 404, statusMessage: t('auth.setup.not_found') })
 }
 
 // SEO
 useOpnSeoMeta({
-  title: "Setup - Forms Mentorfy",
-  description: "Set up your Forms Mentorfy instance",
+  title: t('auth.setup.page_title'),
+  description: t('auth.setup.page_description'),
   robots: "noindex, nofollow"
 })
 
@@ -62,8 +63,8 @@ const handleSetupComplete = async () => {
   
   // Show success message
   useAlert().success({
-    title: "Setup Complete! 🎉",
-    description: "Your Forms Mentorfy instance is ready. Time to create your first form!"
+    title: t('auth.setup.complete_title'),
+    description: t('auth.setup.complete_description')
   })
   
   // Redirect to dashboard

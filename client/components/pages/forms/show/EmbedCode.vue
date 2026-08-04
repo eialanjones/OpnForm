@@ -1,7 +1,7 @@
 <template>
     <copy-content
       :content="embedCode"
-      label="Copy Code"
+      :label="$t('form_pages.embed_code.copy_button')"
       tracking-event="embed_code_copy_click"
       :tracking-properties="{form_id: form.id, form_slug: form.slug}"
     />

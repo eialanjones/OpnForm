@@ -6,7 +6,7 @@
   >
     <div class="mb-4">
       <p class="text-neutral-500 mb-4">
-        Adds new entry to spreadsheets on each form submission.
+        {{ $t('integrations.google_sheets.description') }}
       </p>
       <FlatSelectInput
         v-if="providers.length"
@@ -14,12 +14,12 @@
         name="provider"
         :options="providers"
         :disable-options="disableProviders"
-        disable-options-tooltip="Re-connect account to fix permissions"
+        :disable-options-tooltip="$t('integrations.google_sheets.reconnect_tooltip')"
         display-key="email"
         option-key="id"
         emit-key="id"
         :required="true"
-        label="Select Google Account"
+        :label="$t('integrations.google_sheets.select_account_label')"
       >
         <template #help>
           <InputHelp>
@@ -28,9 +28,8 @@
                 class="text-blue-500 cursor-pointer"
                 @click="openConnectionsModal"
               >
-                Click here
+                {{ $t('integrations.google_sheets.connect_another_account') }}
               </a>
-              to connect another account.
             </span>
           </InputHelp>
         </template>
@@ -42,7 +41,7 @@
         variant="outline"
         :loading="isLoading"
         @click.prevent="connect"
-        label="Connect Google account"
+        :label="$t('integrations.google_sheets.connect_account')"
       />
     </div>
   </IntegrationWrapper>

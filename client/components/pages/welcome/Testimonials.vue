@@ -1,7 +1,7 @@
 <template>
   <iframe
     :id="iframeId"
-    title="Forms Mentorfy testimonial"
+    :title="$t('marketing.welcome.testimonials.iframe_title')"
     loading="lazy"
     height="500px"
     :src="'https://embed-v2.testimonial.to/w/notionforms?theme=light&card=base&loadMore=on&initialCount=8&tag=all'"

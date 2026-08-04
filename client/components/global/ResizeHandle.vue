@@ -4,7 +4,7 @@
     :delayDuration="400"
     :open="open"
     :reference="reference"
-    text="Drag to resize"
+    :text="$t('app_shell.resize_handle.tooltip')"
     :content="{ side: tooltipSide, sideOffset: 8, updatePositionStrategy: 'always' }"
     arrow
   >

@@ -7,8 +7,8 @@
         icon="i-heroicons-information-circle"
         color="warning"
         variant="subtle"
-        title="Draft Form"
-        description="Only you can visit the form link while logged in. Visitors won't be able to access this form."
+        :title="$t('form_pages.share.draft_title')"
+        :description="$t('form_pages.share.draft_description')"
       />
       
       <UAlert
@@ -16,15 +16,15 @@
         icon="i-heroicons-lock-closed"
         color="warning"
         variant="subtle"
-        title="Closed Form"
-        description="People can access the form but it won't accept new submissions."
+        :title="$t('form_pages.share.closed_title')"
+        :description="$t('form_pages.share.closed_description')"
       />
 
       <!-- Primary Section: Share Link -->
       <UCard class="shadow">
         <div class="space-y-4">
           <div class="flex flex-wrap items-center gap-2">
-            <h2 class="text-xl grow font-semibold">Share Your Form</h2>
+            <h2 class="text-xl grow font-semibold">{{ $t('form_pages.share.heading') }}</h2>
             <div class="flex gap-2">
               <AdvancedFormUrlSettingsPopover
                 v-model="shareFormConfig"
@@ -33,8 +33,7 @@
             </div>
           </div>
           <p class="text-neutral-600 text-sm">
-            Share your form with anyone by copying this link. You can use it on social media,
-            in messages, or send it via email to reach your audience.
+            {{ $t('form_pages.share_link.description') }}
           </p>
           
           <CopyContent
@@ -70,8 +69,8 @@
       <!-- Secondary Section: Embed -->
       <UCard class="shadow-sm">        
         <div class="space-y-4">
-          <h2 class="text-xl font-semibold">Embed Form</h2>
-          <p class="text-neutral-600 text-sm">Embed your form on your website by copying the HTML code below.</p>
+          <h2 class="text-xl font-semibold">{{ $t('form_pages.share.embed_heading') }}</h2>
+          <p class="text-neutral-600 text-sm">{{ $t('form_pages.share.embed_description') }}</p>
           
           <EmbedCode
             :form="props.form"
@@ -105,8 +104,12 @@ definePageMeta({
   middleware: "auth",
 })
 
+const { t } = useI18n()
+
 useOpnSeoMeta({
-  title: props.form ? "Share Form - " + props.form.title : "Share Form",
+  title: props.form
+    ? t('form_pages.share.page_title_with_form', { title: props.form.title })
+    : t('form_pages.share.page_title'),
 })
 
 const shareFormConfig = ref({

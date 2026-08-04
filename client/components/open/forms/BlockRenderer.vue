@@ -58,7 +58,7 @@
           href="#"
           class="text-blue-800 dark:text-blue-200"
           @click.prevent="editFieldOptions"
-        >Open block settings to upload image.</a>
+        >{{ $t('form_share.block_renderer.upload_image_prompt') }}</a>
       </div>
       <img
         v-else
@@ -84,7 +84,7 @@
           href="#"
           class="text-blue-800 dark:text-blue-200"
           @click.prevent="editFieldOptions"
-        >Open block settings to add video URL.</a>
+        >{{ $t('form_share.block_renderer.add_video_url_prompt') }}</a>
       </div>
       <EmbedMedia
         v-else
@@ -108,6 +108,7 @@ const props = defineProps({
 })
 
 const workingFormStore = useWorkingFormStore()
+const { t } = useI18n()
 
 const form = computed(() => props.formManager?.config?.value || {})
 const dataForm = computed(() => props.formManager?.form || {})
@@ -220,7 +221,7 @@ const boundProps = computed(() => {
     key: field.id,
     name: field.id,
     form: dataForm.value,
-    label: (field.hide_field_name) ? null : field.name + (unified.hiddenIndicator ? ' (Hidden Field)' : ''),
+    label: (field.hide_field_name) ? null : field.name + (unified.hiddenIndicator ? t('form_share.block_renderer.hidden_field_suffix') : ''),
     color: form.value.color,
     placeholder: field.placeholder,
     help: field.help,

@@ -1,13 +1,13 @@
 <template>
   <AdminCard
-    title="Deleted forms"
+    :title="$t('admin.deleted_forms.title')"
     icon="heroicons:trash-16-solid"
   >
     <UTable
       :loading="loading"
-      :loading-state="{ icon: 'i-heroicons-arrow-path-20-solid', label: 'Loading...' }"
+      :loading-state="{ icon: 'i-heroicons-arrow-path-20-solid', label: $t('common.states.loading') }"
       :progress="{ color: 'primary', animation: 'carousel' }"
-      :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No items.' }"
+      :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: $t('admin.table.no_items') }"
       :columns="columns"
       :data="rows"
       class="-mx-6"
@@ -20,7 +20,7 @@
           variant="outline"
           @click.prevent="restoreForm(row.original.slug)"
         >
-          Restore
+          {{ $t('admin.deleted_forms.restore') }}
         </UButton>
       </template>
     </UTable>
@@ -39,6 +39,8 @@
 
 <script setup>
 import { adminApi } from '~/api'
+
+const { t } = useI18n()
 
 const props = defineProps({
     user: { type: Object, required: true }
@@ -70,7 +72,7 @@ const getDeletedForms = () => {
 
 const restoreForm = (slug) => {
     return useAlert().confirm(
-        "Are you sure you want to restore this form?",
+        t("admin.deleted_forms.restore_confirm"),
         () => {
             restoringForm.value = true
             adminApi.forms.restore(slug).then(data => {
@@ -85,29 +87,29 @@ const restoreForm = (slug) => {
 }
 
 
-const columns = [{
+const columns = computed(() => [{
     accessorKey: 'id',
-    header: 'ID'
+    header: t('admin.table.id')
 }, {
     accessorKey: 'slug',
-    header: 'Slug',
+    header: t('admin.deleted_forms.columns.slug'),
     sortable: true
 }, {
     accessorKey: 'title',
-    header: 'Title',
+    header: t('common.labels.title'),
     sortable: true
 }, {
     accessorKey: 'created_by',
-    header: 'Created by',
+    header: t('admin.deleted_forms.columns.created_by'),
     sortable: true
 }, {
     accessorKey: 'deleted_at',
-    header: 'Deleted at',
+    header: t('admin.deleted_forms.columns.deleted_at'),
     sortable: true,
 }, {
     id: 'actions',
-    header: 'Restore',
+    header: t('admin.deleted_forms.restore'),
     sortable: false,
-}]
+}])
 
 </script>

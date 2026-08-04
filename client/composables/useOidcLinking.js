@@ -4,6 +4,7 @@ export const useOidcLinking = () => {
   const router = useRouter()
   const route = useRoute()
   const alert = useAlert()
+  const { t } = useI18n()
 
   const linkToken = computed(() => {
     const token = route.query.oidc_link_token
@@ -41,11 +42,11 @@ export const useOidcLinking = () => {
 
     return oidcApi.link(linkToken.value)
       .then(() => {
-        alert.success("Your SSO account has been linked.")
+        alert.success(t('runtime.oidc.linked'))
         return true
       })
       .catch((error) => {
-        const errorMessage = error.response?._data?.message || 'Failed to link your SSO account.'
+        const errorMessage = error.response?._data?.message || t('runtime.oidc.link_failed')
         alert.error(errorMessage)
         return false
       })

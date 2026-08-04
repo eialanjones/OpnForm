@@ -1,8 +1,8 @@
 export default {
   app_name: "Forms Mentorfy",
   company_name: "Mentorfy Educação LTDA",
-  locale: "en",
-  locales: { en: "EN" },
+  locale: "pt",
+  locales: { pt: "PT", en: "EN" },
   githubAuth: null,
   notion: { worker: "https://notion-forms-worker.notionforms.workers.dev/v1" },
   links: {

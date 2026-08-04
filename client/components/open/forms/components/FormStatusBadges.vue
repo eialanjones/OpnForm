@@ -4,58 +4,58 @@
     class="flex items-center flex-wrap gap-1"
   >
     <!-- Draft Badge -->
-    <UTooltip v-if="form.visibility === 'draft'" text="Not publicly accessible">
+    <UTooltip v-if="form.visibility === 'draft'" :text="$t('form_editor.status_badges.draft_tooltip')">
       <UBadge
         color="warning"
         variant="subtle"
         icon="i-heroicons-pencil-square"
         :size="size"
       >
-        Draft
+        {{ $t('form_editor.status_badges.draft') }}
       </UBadge>
     </UTooltip>
-    
+
     <!-- Closed Badge -->
-    <UTooltip v-else-if="form.visibility === 'closed'" text="Won't accept new submissions">
+    <UTooltip v-else-if="form.visibility === 'closed'" :text="$t('form_editor.status_badges.closed_tooltip')">
       <UBadge
         color="neutral"
         variant="subtle"
         icon="i-heroicons-lock-closed"
         :size="size"
       >
-        Closed
+        {{ $t('form_editor.status_badges.closed') }}
       </UBadge>
     </UTooltip>
-    
+
     <!-- Time Limited Badge -->
      <template v-else-if="form.closes_at">
-      <UTooltip v-if="!form.is_closed" :text="`Will close on ${closesDate}`">
+      <UTooltip v-if="!form.is_closed" :text="$t('form_editor.status_badges.will_close_on', { date: closesDate })">
         <UBadge
           color="warning"
           variant="subtle"
           icon="i-heroicons-clock"
           :size="size"
         >
-          Time limited
+          {{ $t('form_editor.status_badges.time_limited') }}
         </UBadge>
       </UTooltip>
-      <UTooltip v-else :text="`Closed on ${closesDate}`">
+      <UTooltip v-else :text="$t('form_editor.status_badges.closed_on', { date: closesDate })">
         <UBadge
           color="neutral"
           variant="subtle"
           icon="i-heroicons-clock"
           :size="size"
         >
-          Closed
+          {{ $t('form_editor.status_badges.closed') }}
         </UBadge>
       </UTooltip>
   </template>
-    
+
     <!-- Submission Limited Badge -->
     <template v-else-if="form.max_submissions_count > 0">
-      <UTooltip 
+      <UTooltip
         v-if="!form.max_number_of_submissions_reached"
-        :text="`Limited to ${form.max_submissions_count} submissions`"
+        :text="$t('form_editor.status_badges.limited_to', { count: form.max_submissions_count })"
       >
         <UBadge
           color="warning"
@@ -63,12 +63,12 @@
           icon="i-heroicons-chart-bar"
           :size="size"
         >
-          Submission limited
+          {{ $t('form_editor.status_badges.submission_limited') }}
         </UBadge>
       </UTooltip>
-      <UTooltip 
+      <UTooltip
         v-else
-        :text="`Maximum ${form.max_submissions_count} submissions reached`"
+        :text="$t('form_editor.status_badges.max_reached', { count: form.max_submissions_count })"
       >
         <UBadge
           color="neutral"
@@ -76,7 +76,7 @@
           icon="i-heroicons-lock-closed"
           :size="size"
         >
-          Limit reached
+          {{ $t('form_editor.status_badges.limit_reached') }}
         </UBadge>
       </UTooltip>
     </template>

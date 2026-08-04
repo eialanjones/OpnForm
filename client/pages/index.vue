@@ -7,7 +7,7 @@
         <img
           class="w-full h-full object-cover object-top"
           src="/img/pages/ai_form_builder/background-pattern.svg"
-          alt="Page abstract background"
+          :alt="$t('marketing.landing.background_alt')"
         >
       </div>
 
@@ -18,19 +18,18 @@
           <h1
             class="text-4xl sm:text-5xl lg:text-6xl font-semibold text-neutral-900 tracking-tight"
           >
-            Build
+            {{ $t('marketing.landing.hero_title_start') }}
             <span
               class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400"
-            >beautiful forms</span>
+            >{{ $t('marketing.landing.hero_title_highlight') }}</span>
             <br>
-            in seconds
+            {{ $t('marketing.landing.hero_title_end') }}
           </h1>
           <p
             class="mt-4 sm:mt-5 text-base leading-7 sm:text-xl sm:leading-9 font-medium text-neutral-500"
           >
-            Create beautiful forms and share them anywhere. It's super fast, you
-            don't need to know how to code. Get started
-            <span class="font-semibold">for free</span>!
+            {{ $t('marketing.landing.hero_description') }}
+            <span class="font-semibold">{{ $t('marketing.landing.hero_description_highlight') }}</span>!
           </p>
 
           <div class="mt-8 flex justify-center">
@@ -39,14 +38,14 @@
               class="mr-1"
               :to="{ name: 'forms-create-guest' }"
               trailing-icon="i-heroicons-arrow-right-20-solid"
-              label="Create a form for FREE"
+              :label="$t('marketing.landing.create_form_cta')"
             />
             <UButton
               v-else
               class="mr-1"
               :to="{ name: 'forms-create' }"
               trailing-icon="i-heroicons-arrow-right-20-solid"
-              label="Create a form for FREE"
+              :label="$t('marketing.landing.create_form_cta')"
             />
           </div>
 
@@ -66,7 +65,7 @@
                   d="M4.5 12.75l6 6 9-13.5"
                 />
               </svg>
-              <span>Unlimited forms</span>
+              <span>{{ $t('marketing.landing.bullets.unlimited_forms') }}</span>
             </div>
             <div class="flex items-center text-neutral-400 text-sm">
               <svg
@@ -83,7 +82,7 @@
                   d="M4.5 12.75l6 6 9-13.5"
                 />
               </svg>
-              <span> Unlimited fields </span>
+              <span>{{ $t('marketing.landing.bullets.unlimited_fields') }}</span>
             </div>
             <div class="flex text-neutral-400 text-sm">
               <svg
@@ -100,7 +99,7 @@
                   d="M4.5 12.75l6 6 9-13.5"
                 />
               </svg>
-              <span>Unlimited responses</span>
+              <span>{{ $t('marketing.landing.bullets.unlimited_responses') }}</span>
             </div>
           </div>
         </div>
@@ -114,7 +113,7 @@
             <img
               src="/img/pages/welcome/product-cover.jpg"
               sizes="320px sm:650px lg:896px"
-              alt="Product screenshot"
+              :alt="$t('marketing.landing.product_screenshot_alt')"
               loading="lazy"
                                 class="rounded-sm w-full shadow-2xl ring ring-neutral-900/10"
             >
@@ -148,7 +147,7 @@
               class="flex gap-3"
             >
               <div class="w-5" />
-              Read more about our pricing
+              {{ $t('marketing.landing.read_more_pricing') }}
             </NuxtLink>
           </li>
         </template>
@@ -166,10 +165,10 @@
 
       <div class="w-full bg-blue-900 p-12 md:p-24 text-center">
         <h4 class="font-semibold text-3xl text-white">
-          Take your forms to the next level
+          {{ $t('marketing.landing.cta_title') }}
         </h4>
         <p class="text-neutral-300 my-8">
-          Generous, unlimited free plan.
+          {{ $t('marketing.landing.cta_description') }}
         </p>
         <div class="mt-6 flex justify-center">
           <TrackClick
@@ -178,7 +177,7 @@
             <UButton
               :to="{ name: 'forms-create-guest' }"
               trailing-icon="i-heroicons-arrow-right-20-solid"
-              label="Create a form for FREE"
+              :label="$t('marketing.landing.create_form_cta')"
             />
           </TrackClick>
         </div>

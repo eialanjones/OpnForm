@@ -4,14 +4,14 @@
       <div class="max-w-5xl mx-auto bg-white shadow-xl rounded-3xl ring-1 ring-neutral-200 lg:flex isolate">
         <div class="p-8 sm:p-8 lg:flex-auto">
           <h3 class="text-3xl font-semibold tracking-tight text-blue-500">
-            Enterprise Plan
+            {{ $t('marketing.custom_plan.title') }}
           </h3>
           <p class="mt-2 text-base font-medium leading-7 text-neutral-600">
-            Unlock ultimate scalability and enterprise-grade features with the Enterprise Plan. Tailored to meet the needs of organizations requiring dedicated infrastructure, advanced security, and priority support.
+            {{ $t('marketing.custom_plan.description') }}
           </p>
           <div class="flex items-center mt-6 gap-x-4">
             <h4 class="flex-none text-sm font-semibold leading-6 tracking-widest text-neutral-400 uppercase">
-              What's included
+              {{ $t('marketing.custom_plan.whats_included') }}
             </h4>
             <div class="flex-auto h-px bg-neutral-200" />
           </div>
@@ -34,7 +34,7 @@
                   stroke-linejoin="round"
                 />
               </svg>
-              Everything in Pro Plan
+              {{ $t('marketing.custom_plan.features.everything_in_pro') }}
             </li>
             <li class="flex gap-x-3">
               <svg
@@ -51,7 +51,7 @@
                   stroke-linejoin="round"
                 />
               </svg>
-              Self-hosted/dedicated instance
+              {{ $t('marketing.custom_plan.features.dedicated_instance') }}
             </li>
             <li class="flex gap-x-3">
               <svg
@@ -68,7 +68,7 @@
                   stroke-linejoin="round"
                 />
               </svg>
-              Priority support
+              {{ $t('marketing.custom_plan.features.priority_support') }}
             </li>
             <li class="flex gap-x-3">
               <svg
@@ -85,7 +85,7 @@
                   stroke-linejoin="round"
                 />
               </svg>
-              Payment via invoice/PO
+              {{ $t('marketing.custom_plan.features.invoice_payment') }}
             </li>
             <li class="flex gap-x-3">
               <svg
@@ -102,7 +102,7 @@
                   stroke-linejoin="round"
                 />
               </svg>
-              SAML single sign-on (SSO)
+              {{ $t('marketing.custom_plan.features.saml_sso') }}
             </li>
             <li class="flex gap-x-3">
               <svg
@@ -119,7 +119,7 @@
                   stroke-linejoin="round"
                 />
               </svg>
-              Security audits
+              {{ $t('marketing.custom_plan.features.security_audits') }}
             </li>
             <li class="flex gap-x-3">
               <svg
@@ -136,14 +136,14 @@
                   stroke-linejoin="round"
                 />
               </svg>
-              Two-factor authentication (2FA)
+              {{ $t('marketing.custom_plan.features.two_factor') }}
             </li>
             <li class="flex gap-x-3">
               <Icon
                 class="w-5 h-5 shrink-0 text-blue-600"
                 name="i-heroicons-users-16-solid"
               />
-              Unlimited users
+              {{ $t('marketing.custom_plan.features.unlimited_users') }}
             </li>
           </ul>
         </div>
@@ -159,7 +159,7 @@
                   <template v-else>$100</template>
                 </span>
                 <span class="text-sm font-medium leading-6 text-neutral-600">
-                  starting from per month
+                  {{ $t('marketing.custom_plan.starting_from') }}
                 </span>
               </p>
               <div class="flex justify-center">
@@ -167,11 +167,11 @@
                   class="v-btn py-2 px-4 bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200               text-center text-base font-medium focus:outline-hidden focus:ring-2 focus:ring-offset-2 rounded-lg flex items-center hover:no-underline"
                   @click="customPlanClick"
                 >
-                  <span class="no-underline mx-auto">Contact Us</span>
+                  <span class="no-underline mx-auto">{{ $t('marketing.custom_plan.contact_us') }}</span>
                 </button>
               </div>
               <p class="text-xs font-medium leading-5 text-neutral-600">
-                Let us design a tailored plan to meet your enterprise needs.
+                {{ $t('marketing.custom_plan.tailored_note') }}
               </p>
             </div>
           </div>
@@ -199,7 +199,7 @@ export default {
   methods: {
     customPlanClick() {
       useCrisp().sendTextMessage(
-        "Hi, I would like to discuss about an enterprise plan",
+        this.$t("marketing.custom_plan.crisp_message"),
       )
     },
   },

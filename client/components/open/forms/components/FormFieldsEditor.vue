@@ -2,7 +2,7 @@
   <div class="relative h-[calc(100vh-55px)] overflow-y-auto">
     <div class="flex gap-2 sticky top-0 bg-white border-b z-10 p-4">
       <UTooltip
-        text="Shortcut"
+        :text="$t('form_editor.fields_editor.shortcut')"
         :kbds="['meta', 'B']"
         arrow
       >
@@ -13,7 +13,7 @@
           class="flex-grow justify-center"
           @click.prevent="openAddFieldSidebar"
         >
-          Add Block
+          {{ $t('form_editor.fields_editor.add_block') }}
         </UButton>
       </UTooltip>
     </div>
@@ -64,7 +64,7 @@
                 </EditableTag>
               </div>
 
-              <UTooltip arrow :text="element.hidden ? 'Show Block' : 'Hide Block'">
+              <UTooltip arrow :text="element.hidden ? $t('form_editor.fields_editor.show_block') : $t('form_editor.fields_editor.hide_block')">
                 <button
                   class="hidden !cursor-pointer rounded-sm p-1 transition-colors hover:bg-blue-100 items-center justify-center"
                   :class="{
@@ -89,7 +89,7 @@
               </UTooltip>
               <UTooltip
                 v-if="element.type && typeof element.type === 'string' && !element.type.startsWith('nf-')"
-                :text="element.required ? 'Make it optional' : 'Make it required'"
+                :text="element.required ? $t('form_editor.fields_editor.make_optional') : $t('form_editor.fields_editor.make_required')"
                 arrow
               >
                 <button
@@ -107,7 +107,7 @@
                   </div>
                 </button>
               </UTooltip>
-              <UTooltip arrow text="Open settings">
+              <UTooltip arrow :text="$t('form_editor.fields_editor.open_settings')">
                 <button
                   class="cursor-pointer rounded-sm p-1 transition-colors hover:bg-blue-100 text-neutral-300 hover:text-blue-500 flex items-center justify-center field-settings-button"
                   @click="editOptions(index)"

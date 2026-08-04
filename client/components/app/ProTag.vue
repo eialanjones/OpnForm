@@ -1,7 +1,7 @@
 <template>
   <UTooltip
     v-if="shouldDisplayProTag"
-    :text="upgradeModalTitle??'You need a Pro plan to use this feature'"
+    :text="upgradeModalTitle ?? $t('app_shell.pro_tag.default_tooltip')"
     class="inline normal-case"
   >
     <TrackClick

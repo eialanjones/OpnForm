@@ -6,7 +6,7 @@
     <template #header>
       <div class="flex items-center w-full gap-4 px-2">
         <h2 class="font-semibold">
-          Change form's workspace
+          {{ $t('form_editor.workspace_modal.title') }}
         </h2>
       </div>
       <UButton
@@ -16,13 +16,13 @@
         size="sm"
         @click="crisp.openHelpdeskArticle('how-to-move-a-form-to-another-workspace-1twq0kg')"
       >
-        Help
+        {{ $t('form_editor.workspace_modal.help') }}
       </UButton>
     </template>
 
     <template #body>
       <div class="flex space-x-4 items-center">
-        <p>Current workspace:</p>
+        <p>{{ $t('form_editor.workspace_modal.current_workspace') }}</p>
         <div class="flex items-center cursor group p-2 rounded-sm border">
           <WorkspaceIcon :workspace="workspace" />
           <p
@@ -40,7 +40,7 @@
             class=""
             :options="workspacesSelectOptions"
             :required="true"
-            label="Select destination workspace"
+            :label="$t('form_editor.workspace_modal.select_label')"
           />
         </div>
       </form>
@@ -52,12 +52,12 @@
           color="neutral"
           variant="outline"
           @click="close"
-          label="Close"
+          :label="$t('common.actions.close')"
         />
         <UButton
           :loading="loading"
           @click="onSubmit"
-          label="Change workspace"
+          :label="$t('form_editor.workspace_modal.change_workspace')"
         />
       </div>
     </template>
@@ -71,6 +71,7 @@ import WorkspaceIcon from "~/components/workspaces/WorkspaceIcon.vue"
 const emit = defineEmits(["close"])
 const { switchTo } = useCurrentWorkspace()
 const crisp = useCrisp()
+const { t } = useI18n()
 
 const selectedWorkspace = ref(null)
 const props = defineProps({
@@ -112,7 +113,7 @@ const close = () => {
 
 const onSubmit = () => {
   if (!selectedWorkspace.value) {
-    useAlert().error("Please select a workspace!")
+    useAlert().error(t("form_editor.workspace_modal.select_error"))
     return
   }
   
@@ -125,7 +126,7 @@ const onSubmit = () => {
   }).then(() => {
     loading.value = false
     emit("close")
-    useAlert().success("Form workspace updated successfully.")
+    useAlert().success(t("form_editor.workspace_modal.success"))
     
     // Switch to the new workspace
     switchTo(selectedWorkspace.value)
@@ -138,7 +139,7 @@ const onSubmit = () => {
     }
   }).catch((error) => {
     useAlert().error(
-      error?.data?.message ?? "Something went wrong, please try again!",
+      error?.data?.message ?? t("form_editor.workspace_modal.generic_error"),
     )
     loading.value = false
   })

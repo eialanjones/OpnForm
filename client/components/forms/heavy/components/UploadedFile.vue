@@ -42,7 +42,7 @@
         href="javascript:void(0);"
                   class="flex text-neutral-400 rounded-sm hover:bg-neutral-50 hover:text-red-500 dark:text-neutral-600 p-1"
         role="button"
-        title="Remove"
+        :title="$t('common.actions.remove')"
         @click.stop="$emit('remove')"
       >
         <svg

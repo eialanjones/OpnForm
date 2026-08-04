@@ -30,6 +30,7 @@ import { WindowMessageTypes } from "~/composables/useWindowMessage"
 const appStore = useAppStore()
 const workingFormStore = useWorkingFormStore()
 const route = useRoute()
+const { t } = useI18n()
 const queryClient = useQueryClient()
 
 let template = null
@@ -50,7 +51,7 @@ const workspacesLoading = computed(() => {
 const form = storeToRefs(workingFormStore).content
 
 useOpnSeoMeta({
-  title: "Create a new Form for free",
+  title: t('form_pages.create.guest_page_title'),
 })
 definePageMeta({
   middleware: ["guest", "self-hosted"],
@@ -70,7 +71,7 @@ onMounted(() => {
   // Set guest workspace data in query cache instead of store
   const guestWorkspace = {
     id: null,
-    name: "Guest Workspace",
+    name: t('form_pages.create.guest_workspace_name'),
     is_enterprise: false,
     is_pro: false,
   }

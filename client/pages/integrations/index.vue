@@ -13,10 +13,10 @@
       >
         <div class="max-w-6xl mx-auto">
           <h1 class="text-3xl font-bold text-center text-neutral-900">
-            Available Integrations
+            {{ $t('integrations.page.heading') }}
           </h1>
           <p class="text-center text-neutral-600 mt-2 mb-10">
-            Explore our powerful Integrations
+            {{ $t('integrations.page.subheading') }}
           </p>
 
           <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -33,7 +33,7 @@
                 v-if="integration.popular"
                 class="absolute -top-2 -left-3 -rotate-12 bg-blue-500 text-white text-xs font-semibold px-2 py-1 rounded-sm shadow-sm"
               >
-                Most Popular
+                {{ $t('integrations.page.most_popular') }}
               </div>
               <div class="flex justify-between items-start">
                 <div class="w-10 h-10 bg-white border border-neutral-200 rounded-xl flex items-center justify-center">
@@ -47,7 +47,7 @@
                   href="#"
                   class="text-sm text-blue-500 font-medium hover:underline flex items-center gap-1"
                 >
-                  Setup Guide
+                  {{ $t('integrations.page.setup_guide') }}
                   <Icon
                     name="heroicons:arrow-top-right-on-square"
                     class="w-4 h-4 flex-shrink-0"
@@ -80,10 +80,10 @@
 
       <div class="bg-white p-10 max-w-6xl mx-auto">
         <h2 class="text-4xl font-bold text-center text-neutral-900 mb-2">
-          Integration General Setup Guides
+          {{ $t('integrations.page.guides_heading') }}
         </h2>
         <p class="text-center text-neutral-600 mb-12">
-          This can be another text
+          {{ $t('integrations.page.guides_subheading') }}
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-neutral-800 max-w-6xl mx-auto">
@@ -111,17 +111,17 @@
       <div class="bg-blue-50 max-w-6xl mx-auto rounded-3xl m-10 p-10 flex justify-between items-center">
         <div class="max-w-md">
           <h2 class="text-3xl font-bold text-neutral-900">
-            Need help?
+            {{ $t('integrations.page.need_help_heading') }}
           </h2>
           <p class="mt-2 text-neutral-500 text-lg">
-            Visit our Help Center for detailed documentation!
+            {{ $t('integrations.page.need_help_description') }}
           </p>
           <a
             href="#"
                             class="inline-flex items-center gap-2 mt-6 px-4 py-2 bg-blue-500 text-white text-sm font-semibold rounded-lg shadow-sm hover:bg-blue-600 transition"
             @click.prevent="crisp.openHelpdesk()"
           >
-            Help Center
+            {{ $t('integrations.page.help_center') }}
             <Icon
               name="heroicons:arrow-top-right-on-square"
               class="w-4 h-4 flex-shrink-0"
@@ -164,10 +164,11 @@
 <script setup>
 import { useNotionCmsStore } from '~/stores/notion_cms.js'
 
+const { t } = useI18n()
+
 useOpnSeoMeta({
-  title: 'Integrations',
-  description:
-    'Create beautiful forms for free. Unlimited fields, unlimited submissions.'
+  title: () => t('integrations.page.meta_title'),
+  description: () => t('integrations.page.meta_description')
 })
 defineRouteRules({
   swr: 3600
@@ -198,35 +199,35 @@ const integrationsList = computed(() => {
 })
 
 
-const setupGuides = [
+const setupGuides = computed(() => [
   {
-    title: 'Email Integration Setup',
+    title: t('integrations.page.guides.email.title'),
     steps: [
-      'Navigate to <b>Forms Mentorfy</b> > <b>Integrations</b>.',
-      'Select <b>Email</b> and configure SMTP settings.',
-      'Set up email rules for notifications.',
-      'Save & activate email alerts.'
+      t('integrations.page.guides.email.step_1'),
+      t('integrations.page.guides.email.step_2'),
+      t('integrations.page.guides.email.step_3'),
+      t('integrations.page.guides.email.step_4')
     ]
   },
   {
-    title: 'Slack Integration Setup',
+    title: t('integrations.page.guides.slack.title'),
     steps: [
-      'Navigate to <b>Forms Mentorfy</b> > <b>Integrations</b>.',
-      'Select <b>Slack</b> and authorize your workspace.',
-      'Choose a channel & customize messages.',
-      'Save & activate Slack alerts.'
+      t('integrations.page.guides.slack.step_1'),
+      t('integrations.page.guides.slack.step_2'),
+      t('integrations.page.guides.slack.step_3'),
+      t('integrations.page.guides.slack.step_4')
     ]
   },
   {
-    title: 'WebHook Integration Setup',
+    title: t('integrations.page.guides.webhook.title'),
     steps: [
-      'Navigate to <b>Forms Mentorfy</b> > <b>Integrations</b>.',
-      'Select <b>WebHook</b> and enter your endpoint URL.',
-      'Map fields & configure triggers.',
-      'Save & activate WebHook alerts.'
+      t('integrations.page.guides.webhook.step_1'),
+      t('integrations.page.guides.webhook.step_2'),
+      t('integrations.page.guides.webhook.step_3'),
+      t('integrations.page.guides.webhook.step_4')
     ]
   }
-]
+])
 
 </script>
 

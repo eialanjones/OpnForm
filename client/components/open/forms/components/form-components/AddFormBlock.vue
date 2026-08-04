@@ -14,7 +14,7 @@
           @click="closeSidebar"
         />
         <div class="font-medium inline ml-2 flex-grow truncate">
-          Add Block
+          {{ $t('form_blocks.add_block.title') }}
         </div>
         <AiFieldGenerator
           class="py-2 px-4"
@@ -29,7 +29,7 @@
         autofocus
         variant="outline"
         class="w-full"
-        placeholder="Search for a block..."
+        :placeholder="$t('form_blocks.add_block.search_placeholder')"
         icon="i-heroicons-magnifying-glass-solid"
         :ui="{ trailing: 'pe-1' }"
         @keydown.down.prevent="handleKeydown"
@@ -43,8 +43,8 @@
             variant="link"
             size="sm"
             icon="i-lucide-circle-x"
-            aria-label="Clear"
-            title="Clear"
+            :aria-label="$t('common.actions.clear')"
+            :title="$t('common.actions.clear')"
             @click="searchTerm = ''"
           />
         </template>
@@ -53,7 +53,7 @@
 
     <div class="py-2 px-4">
       <p class="text-neutral-500 text-xs font-medium my-2">
-        Input Blocks
+        {{ $t('form_blocks.add_block.input_blocks') }}
       </p>
       <VueDraggable
         :model-value="filteredInputBlocks"
@@ -83,7 +83,7 @@
           >
             <BlockTypeIcon :type="element.name" />
             <p class="w-full text-sm text-neutral-500">
-              {{ element.title }}
+              {{ $t(`form_blocks.types.${element.name}`, element.title) }}
             </p>
             <Icon
               v-if="element.auth_required && !authenticated"
@@ -95,14 +95,14 @@
             v-if="searchTerm && filteredInputBlocks.length === 0"
             class="text-neutral-400 text-xs px-2 py-1"
           >
-            No input blocks match your search.
+            {{ $t('form_blocks.add_block.no_input_match') }}
           </p>
         </template>
       </VueDraggable>
     </div>
     <div class="px-4 border-t mb-4">
       <p class="text-neutral-500 text-xs font-medium my-2">
-        Layout Blocks
+        {{ $t('form_blocks.add_block.layout_blocks') }}
       </p>
       <VueDraggable
         :model-value="filteredLayoutBlocks"
@@ -132,7 +132,7 @@
           >
             <BlockTypeIcon :type="element.name" />
             <p class="w-full text-sm text-neutral-500">
-              {{ element.title }}
+              {{ $t(`form_blocks.types.${element.name}`, element.title) }}
             </p>
             <Icon
               v-if="element.auth_required && !authenticated"
@@ -144,7 +144,7 @@
             v-if="searchTerm && filteredLayoutBlocks.length === 0"
             class="text-neutral-400 text-xs px-2 py-1"
           >
-            No layout blocks match your search.
+            {{ $t('form_blocks.add_block.no_layout_match') }}
           </p>
         </template>
       </VueDraggable>
@@ -159,6 +159,7 @@ import BlockTypeIcon from '../BlockTypeIcon.vue'
 import AiFieldGenerator from './components/AiFieldGenerator.vue'
 import Fuse from 'fuse.js'
 
+const { t } = useI18n()
 const workingFormStore = useWorkingFormStore()
 const { isAuthenticated: authenticated } = useIsAuthenticated()
 
@@ -178,11 +179,20 @@ const allowedBlocks = computed(() => {
   })
 })
 
+// Carry the translated label alongside each block so the search matches what the
+// user actually reads, not only the English title from blocks_types.json.
+const searchableBlocks = computed(() => {
+  return allowedBlocks.value.map(block => ({
+    ...block,
+    translated_title: t(`form_blocks.types.${block.name}`, block.title),
+  }))
+})
+
 const searchTerm = ref('')
 const normalizedSearch = computed(() => searchTerm.value.trim().toLowerCase())
 
 const fuseOptions = {
-  keys: ['title', 'name'],
+  keys: ['translated_title', 'title', 'name'],
   threshold: 0.3,
   ignoreLocation: true,
   includeScore: false,
@@ -190,12 +200,12 @@ const fuseOptions = {
 
 // Create a single Fuse instance that's reused
 const fuseInstance = computed(() => {
-  return new Fuse(allowedBlocks.value, fuseOptions)
+  return new Fuse(searchableBlocks.value, fuseOptions)
 })
 
 // Search through all blocks once
 const filteredBlocks = computed(() => {
-  if (!normalizedSearch.value) return allowedBlocks.value
+  if (!normalizedSearch.value) return searchableBlocks.value
   return fuseInstance.value.search(normalizedSearch.value).map(r => r.item)
 })
 

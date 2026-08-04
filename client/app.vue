@@ -34,15 +34,15 @@ import Clarity from "~/components/vendor/Clarity.vue"
 
 const config = useRuntimeConfig()
 const route = useRoute()
+const { t, locale, locales } = useI18n()
 
 // Check if current page is a public form page (for performance optimization)
 const isPublicFormPage = computed(() => route.name === 'forms-slug')
 
 // SEO and head configuration
 useOpnSeoMeta({
-  title: "Form Builder with Unlimited Submissions",
-  description:
-    "Build beautiful, powerful forms with Forms Mentorfy. Unlimited submissions, rich features, and seamless integrations.",
+  title: () => t("app_shell.seo.default_title"),
+  description: () => t("app_shell.seo.default_description"),
   ogImage: "/img/social-preview.jpg",
   robots: () => {
     return config.public.env === "production" ? null : "noindex, nofollow"
@@ -72,6 +72,9 @@ useHead({
     }
   ],
   htmlAttrs: () => ({
+    // Keep <html lang> in step with the active locale — screen readers and translation
+    // prompts key off it, and it used to be hardcoded away by the ltr-only attrs.
+    lang: locales.value.find(l => l.code === locale.value)?.iso ?? locale.value,
     dir: 'ltr'
   })
 })

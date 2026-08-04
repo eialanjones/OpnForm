@@ -3,9 +3,9 @@
     <!-- Password Section -->
     <div class="space-y-4">
       <div>
-        <h3 class="text-lg font-medium text-neutral-900">Change Password</h3>
+        <h3 class="text-lg font-medium text-neutral-900">{{ $t('user_settings.security.password_heading') }}</h3>
         <p class="text-sm text-neutral-500 mt-1">
-          Update your password to keep your account secure.
+          {{ $t('user_settings.security.password_description') }}
         </p>
       </div>
 
@@ -17,18 +17,18 @@
             <TextInput
               :form="passwordForm"
               name="current_password"
-              label="Current Password"
+              :label="$t('user_settings.security.current_password_label')"
               native-type="password"
-              placeholder="Enter current password"
+              :placeholder="$t('user_settings.security.current_password_placeholder')"
               :required="true"
             />
 
             <TextInput
               :form="passwordForm"
               name="password"
-              label="New Password"
+              :label="$t('user_settings.security.new_password_label')"
               native-type="password"
-              placeholder="Enter new password"
+              :placeholder="$t('user_settings.security.new_password_placeholder')"
               :required="true"
               @focus="isPasswordFocused = true"
               @blur="isPasswordFocused = false"
@@ -41,9 +41,9 @@
             <TextInput
               :form="passwordForm"
               name="password_confirmation"
-              label="Confirm Password"
+              :label="$t('user_settings.security.confirm_password_label')"
               native-type="password"
-              placeholder="Confirm new password"
+              :placeholder="$t('user_settings.security.confirm_password_placeholder')"
               :required="true"
             />
           </div>
@@ -54,7 +54,7 @@
               :loading="passwordForm.busy"
               color="primary"
             >
-              Update Password
+              {{ $t('user_settings.security.update_password_button') }}
             </UButton>
           </div>
         </form>
@@ -69,6 +69,7 @@
 
 <script setup>
 const alert = useAlert()
+const { t } = useI18n()
 
 // Password form
 const passwordForm = useForm({
@@ -86,7 +87,7 @@ const updatePassword = () => {
     .patch('/settings/password')
     .then(() => {
       passwordForm.reset()
-      alert.success('Password updated.')
+      alert.success(t('user_settings.security.password_updated'))
     })
     .catch((error) => {
       console.error(error)

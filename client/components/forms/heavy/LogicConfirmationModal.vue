@@ -2,11 +2,11 @@
   <UModal
     v-model:open="isOpen"
     :ui="{ content: 'sm:max-w-lg' }"
-    title="Incomplete Form Logic"
+    :title="$t('widgets.logic_confirmation.title')"
   >
     <template #body>
       <p class="text-neutral-700">
-        Some logic rules are incomplete or invalid and will be cleaned up to ensure that the form works correctly.
+        {{ $t('widgets.logic_confirmation.description') }}
       </p>
 
       <div class="mt-4 space-y-3">
@@ -21,7 +21,7 @@
                 class="h-5 w-5 text-yellow-400"
               />
               <h4 class="ml-2 text-sm font-medium text-yellow-800">
-                Field: {{ error.fieldName }}
+                {{ $t('widgets.logic_confirmation.field_label', { name: error.fieldName }) }}
               </h4>
             </div>
             <div class="mt-2 text-sm text-yellow-700">
@@ -45,13 +45,13 @@
           variant="outline"
           @click="closeModal"
         >
-          Cancel
+          {{ $t('common.actions.cancel') }}
         </UButton>
         <UButton
           color="primary"
           @click="$emit('confirm')"
         >
-          Save Anyway (Remove Invalid Logic)
+          {{ $t('widgets.logic_confirmation.save_anyway') }}
         </UButton>
       </div>
     </template>

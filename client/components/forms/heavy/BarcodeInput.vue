@@ -45,7 +45,7 @@
       :class="ui.container({ class: props.ui?.slots?.container })"
       tabindex="0"
       role="button"
-      aria-label="Click to open a camera"
+      :aria-label="$t('widgets.barcode_input.open_camera_aria')"
       @click="startScanning"
       @keydown.enter="handleEnterPress"
     >

@@ -26,15 +26,15 @@
               <main class="flex flex-col mt-4 max-w-full text-center w-[591px] max-md:mt-10">
                 <img
                   src="/img/subscription-modal-icon.svg"
-                  alt="Subscription Icon"
+                  :alt="$t('marketing.subscription_modal.icon_alt')"
                   class="self-center max-w-full aspect-[0.98] w-[107px]"
                 >
                 <section class="flex flex-col mt-2 max-md:max-w-full">
                   <h1 class="text-2xl font-bold tracking-tight leading-9 text-slate-800 max-md:max-w-full">
-                    {{ modal_title }}
+                    {{ modalTitle }}
                   </h1>
                   <p class="mt-4 text-base leading-6 text-slate-500 max-md:max-w-full">
-                    {{ modal_description }}
+                    {{ modalDescription }}
                   </p>
                 </section>
               </main>
@@ -54,13 +54,13 @@
                         <div class="flex flex-col items-center">
                           <div class="flex gap-2 py-px">
                             <h2 class="my-auto text-xl font-semibold tracking-tighter leading-5 text-slate-900">
-                              Pro
+                              {{ $t('marketing.subscription_modal.plan_pro') }}
                             </h2>
                             <span
                               v-if="isYearly"
                               class="justify-center px-2 py-1 text-xs font-semibold tracking-wide text-center text-emerald-600 uppercase bg-emerald-50 rounded-md"
                             >
-                              Save 20%
+                              {{ $t('marketing.billing_period.save_20') }}
                             </span>
                           </div>
                           <div class="flex flex-col justify-end mt-4 leading-[100%]">
@@ -73,13 +73,7 @@
                               </template>
                             </p>
                             <p class="text-xs text-slate-500">
-                              per month, billed
-                              <template v-if="isYearly">
-                                yearly
-                              </template>
-                              <template v-else>
-                                monthly
-                              </template>
+                              {{ isYearly ? $t('marketing.subscription_modal.per_month_billed_yearly') : $t('marketing.subscription_modal.per_month_billed_monthly') }}
                             </p>
                           </div>
                         </div>
@@ -92,7 +86,7 @@
                           <UButton
                             class="relative border border-white border-opacity-20 h-10 inline-flex px-4 items-center rounded-lg text-sm font-semibold w-full justify-center mt-4"
                             @click.prevent="onSelectPlan('default')"
-                            label="Get Pro"
+                            :label="$t('marketing.pricing_table.get_pro')"
                           />
                         </TrackClick>
                         <UButton
@@ -101,7 +95,7 @@
                           :to="{ name: 'redirect-billing-portal' }"
                           target="_blank"
                           class="relative border border-white border-opacity-20 h-10 inline-flex px-4 items-center rounded-lg text-sm font-semibold w-full justify-center mt-4"
-                          label="Manage Plan"
+                          :label="$t('marketing.subscription_modal.manage_plan')"
                         />
                       </div>
                     </article>
@@ -118,8 +112,8 @@
                           class="w-5 h-5 text-blue-500"
                         />
                         <p class="mt-2">
-                          <strong class="font-semibold text-slate-800">Remove Forms Mentorfy branding.</strong>
-                          <span class="text-slate-500"> Remove our watermark, create forms that match your brand.</span>
+                          <strong class="font-semibold text-slate-800">{{ $t('marketing.subscription_modal.features.branding_title') }}</strong>
+                          <span class="text-slate-500"> {{ $t('marketing.subscription_modal.features.branding_description') }}</span>
                         </p>
                       </div>
                     </article>
@@ -130,8 +124,8 @@
                           class="w-5 h-5 text-blue-500"
                         />
                         <p class="mt-2">
-                          <strong class="font-semibold text-slate-800">Full form customization.</strong>
-                          <span class="text-slate-500"> Customize the colors, themes, images etc of your forms. Inject custom CSS and JS code.</span>
+                          <strong class="font-semibold text-slate-800">{{ $t('marketing.subscription_modal.features.customization_title') }}</strong>
+                          <span class="text-slate-500"> {{ $t('marketing.subscription_modal.features.customization_description') }}</span>
                         </p>
                       </div>
                     </article>
@@ -142,8 +136,8 @@
                           class="w-5 h-5 text-blue-500"
                         />
                         <p class="mt-2">
-                          <strong class="font-semibold text-slate-800">Larger File uploads.</strong>
-                          <span class="text-slate-500"> Larger files upload in your forms (up to 50 mb). This allows you to collect bigger attachments.</span>
+                          <strong class="font-semibold text-slate-800">{{ $t('marketing.subscription_modal.features.uploads_title') }}</strong>
+                          <span class="text-slate-500"> {{ $t('marketing.subscription_modal.features.uploads_description') }}</span>
                         </p>
                       </div>
                     </article>
@@ -158,8 +152,8 @@
                           class="w-5 h-5 text-blue-500"
                         />
                         <p class="mt-2">
-                          <strong class="font-semibold text-slate-800">All integrations & API access.</strong>
-                          <span class="text-slate-500"> Setup email, Slack, Discord notifications or GSheet, Zapier or webhooks integrations.</span>
+                          <strong class="font-semibold text-slate-800">{{ $t('marketing.subscription_modal.features.integrations_title') }}</strong>
+                          <span class="text-slate-500"> {{ $t('marketing.subscription_modal.features.integrations_description') }}</span>
                         </p>
                       </div>
                     </article>
@@ -170,8 +164,8 @@
                           class="w-5 h-5 text-blue-500"
                         />
                         <p class="mt-2">
-                          <strong class="font-semibold text-slate-800">1 custom domain.</strong>
-                          <span class="text-slate-500"> Host your form on your own domain for a professional look and improved branding.</span>
+                          <strong class="font-semibold text-slate-800">{{ $t('marketing.subscription_modal.features.domain_title') }}</strong>
+                          <span class="text-slate-500"> {{ $t('marketing.subscription_modal.features.domain_description') }}</span>
                         </p>
                       </div>
                     </article>
@@ -182,8 +176,8 @@
                           class="w-5 h-5 text-blue-500"
                         />
                         <p class="mt-2">
-                          <strong class="font-semibold text-slate-800">Editable submissions.</strong>
-                          <span class="text-slate-500"> Form respondents can go back and edit their form submissions, allowing for updates and corrections.</span>
+                          <strong class="font-semibold text-slate-800">{{ $t('marketing.subscription_modal.features.editable_title') }}</strong>
+                          <span class="text-slate-500"> {{ $t('marketing.subscription_modal.features.editable_description') }}</span>
                         </p>
                       </div>
                     </article>
@@ -199,7 +193,7 @@
                   target="_blank"
                   trailing-icon="heroicons:arrow-small-right"
                   variant="link"
-                  label="And much more. See full plans comparison"
+                  :label="$t('marketing.subscription_modal.see_full_comparison')"
                 />
               </footer>
             </div>
@@ -217,13 +211,7 @@
                   />
                 </div>
                 <h1 class="flex-1 my-auto text-xl font-bold leading-8 text-center text-slate-800 max-md:max-w-full">
-                  Confirm
-                  <template v-if="isSubscribed">
-                    Upgrade
-                  </template>
-                  <template v-else>
-                    Subscription
-                  </template>
+                  {{ isSubscribed ? $t('marketing.subscription_modal.confirm_upgrade') : $t('marketing.subscription_modal.confirm_subscription') }}
                 </h1>
               </div>
               <div class="flex-grow w-full max-w-sm">
@@ -233,13 +221,13 @@
                 >
                   <div class="flex w-full">
                     <p class="text-blue-500 capitalize font-medium flex-grow">
-                      Forms Mentorfy - {{ currentPlan == 'default' ? 'Pro' : 'Team' }} plan
+                      {{ $t('marketing.subscription_modal.plan_line', { plan: currentPlan == 'default' ? $t('marketing.subscription_modal.plan_pro') : $t('marketing.subscription_modal.plan_team') }) }}
                     </p>
                     <UBadge
                       :color="isYearly?'success':'warning'"
                       variant="subtle"
                     >
-                      {{ !isYearly ? 'No Discount' : 'Discount Applied' }}
+                      {{ !isYearly ? $t('marketing.subscription_modal.no_discount') : $t('marketing.subscription_modal.discount_applied') }}
                     </UBadge>
                   </div>
 
@@ -258,13 +246,7 @@
                       class="text-xs"
                       :class="{'text-green-700':isYearly}"
                     >
-                      per month, billed
-                      <template v-if="isYearly">
-                        yearly
-                      </template>
-                      <template v-else>
-                        monthly
-                      </template>
+                      {{ isYearly ? $t('marketing.subscription_modal.per_month_billed_yearly') : $t('marketing.subscription_modal.per_month_billed_monthly') }}
                     </span>
                   </p>
                   <div v-if="shouldShowUpsell">
@@ -272,7 +254,7 @@
                       <toggle-switch-input
                         name=""
                         v-model="isYearly"
-                        label="20% off with the yearly plan"
+                        :label="$t('marketing.subscription_modal.yearly_upsell')"
                         size="sm"
                         wrapper-class="mb-0"
                       />
@@ -281,19 +263,19 @@
                 </div>
                 <text-input
                   ref="companyName"
-                  label="Company Name"
+                  :label="$t('marketing.subscription_modal.company_name_label')"
                   name="name"
                   :required="true"
                   :form="form"
-                  help="Name that will appear on invoices"
+                  :help="$t('marketing.subscription_modal.company_name_help')"
                 />
                 <text-input
-                  label="Invoicing Email"
+                  :label="$t('marketing.subscription_modal.invoicing_email_label')"
                   name="email"
                   native-type="email"
                   :required="true"
                   :form="form"
-                  help="Where invoices will be sent"
+                  :help="$t('marketing.subscription_modal.invoicing_email_help')"
                 />
                 <div
                   class="flex gap-2 mt-6 w-full"
@@ -312,12 +294,7 @@
                       :to="checkoutUrl"
                       target="_blank"
                     >
-                      <template v-if="isSubscribed">
-                        Upgrade
-                      </template>
-                      <template v-else>
-                        Subscribe
-                      </template>
+                      {{ isSubscribed ? $t('common.actions.upgrade') : $t('marketing.subscription_modal.subscribe') }}
                     </UButton>
                   </TrackClick>
                 <UButton
@@ -326,7 +303,7 @@
                     variant="outline"
                     @click="goBackToStep1"
                   >
-                    Back
+                    {{ $t('common.actions.back') }}
                   </UButton>
                 </div>
               </div>
@@ -354,11 +331,11 @@ const props = defineProps({
   },
   modal_title: {
     type: String,
-    default: 'Upgrade to Pro'
+    default: null
   },
   modal_description: {
     type: String,
-    default: 'Unlock all features and get the most out of Forms Mentorfy.'
+    default: null
   },
   plan: {
     type: String,
@@ -372,7 +349,11 @@ const props = defineProps({
 
 const emit = defineEmits(['close'])
 
+const { t } = useI18n()
 const router = useRouter()
+
+const modalTitle = computed(() => props.modal_title || t('marketing.subscription_modal.default_title'))
+const modalDescription = computed(() => props.modal_description || t('marketing.subscription_modal.default_description'))
 
 const currentPlan = ref(props.plan)
 const currentStep = ref(1)
@@ -474,22 +455,14 @@ watch(broadcastData, () => {
     invalidateAll() // Refresh all workspace data
 
     if (user.value.has_enterprise_subscription) {
-      useAlert().success(
-        'Awesome! Your subscription to Forms Mentorfy is now confirmed! You now have access to all Team '
-        + 'features. No need to invite your teammates, just ask them to create a Forms Mentorfy account and to connect the same Notion workspace. Feel free to contact us if you have any question 🙌'
-      )
+      useAlert().success(t('marketing.subscription_modal.success_team'))
     } else {
-      useAlert().success(
-        'Awesome! Your subscription to Forms Mentorfy is now confirmed! You now have access to all Pro '
-        + 'features. Feel free to contact us if you have any question 🙌'
-      )
+      useAlert().success(t('marketing.subscription_modal.success_pro'))
     }
     confetti.play()
     closeModal()
   } else {
-    useAlert().error(
-      'Unfortunately we could not confirm your subscription. Please try again and contact us if the issue persists.'
-    )
+    useAlert().error(t('marketing.subscription_modal.confirm_error'))
     currentStep.value = 1
     shouldShowUpsell.value = true
   }

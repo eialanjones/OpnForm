@@ -6,7 +6,7 @@
         :class="{ 'bg-white shadow-sm text-slate-900': !modelValue }"
         @click="set(false)"
       >
-        Monthly
+        {{ $t('marketing.billing_period.monthly') }}
       </div>
     </button>
     <button
@@ -17,7 +17,7 @@
         class="py-1.5 px-4 rounded-lg transition-colors text-slate-500"
         :class="{ 'bg-white shadow-sm text-slate-900': modelValue }"
       >
-        Yearly
+        {{ $t('marketing.billing_period.yearly') }}
       </div>
     </button>
     <div
@@ -26,7 +26,7 @@
       <div
         class="justify-center px-2 py-1 text-xs font-semibold tracking-wide text-center text-emerald-600 uppercase bg-emerald-50 rounded-md"
       >
-        Save 20%
+        {{ $t('marketing.billing_period.save_20') }}
       </div>
     </div>
   </div>

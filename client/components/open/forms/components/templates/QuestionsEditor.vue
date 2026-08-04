@@ -27,19 +27,19 @@
           class="mb-2"
           @click.prevent="onRemove(quesKey)"
           icon="i-heroicons-trash"
-          label="Remove"
+          :label="$t('common.actions.remove')"
         />
         <text-input
           name="question"
           :form="questionForm"
-          placeholder="Question title"
+          :placeholder="$t('form_editor.questions_editor.question_placeholder')"
         />
         <rich-text-area-input
           name="answer"
           :allow-fullscreen="true"
           :form="questionForm"
           class="mt-4"
-          placeholder="Question response"
+          :placeholder="$t('form_editor.questions_editor.answer_placeholder')"
         />
       </div>
       <UButton
@@ -49,7 +49,7 @@
         class="mt-2 flex"
         @click.prevent="onAdd"
         icon="i-heroicons-plus"
-        label="Add New"
+        :label="$t('form_editor.questions_editor.add_new')"
       />
     </div>
 

@@ -30,7 +30,7 @@
               color="neutral"
               variant="outline"
               @click="openSettings"
-              label="Settings"
+              :label="$t('common.actions.settings')"
             />
             <UButton
               v-if="workspace.is_admin"
@@ -39,7 +39,7 @@
               color="neutral"
               variant="outline"
               @click="openInviteUserModal"
-              label="Invite Members"
+              :label="$t('app_shell.workspace_dropdown.invite_members')"
             />
           </div>
         </div>
@@ -75,7 +75,7 @@
             color="neutral"
             variant="ghost"
             @click="createNewWorkspace"
-            label="Create Workspace"
+            :label="$t('app_shell.workspace_dropdown.create_workspace')"
             size="sm"
           />
         </div>
@@ -114,6 +114,7 @@ defineProps({
   }
 })
 
+const { t } = useI18n()
 const { openSubscriptionModal } = useAppModals()
 const router = useRouter()
 const route = useRoute()
@@ -137,14 +138,14 @@ const isDropdownOpen = ref(false)
 // Computed text for workspace plan
 const workspacePlanText = computed(() => {
   if (!workspace.value) return ''
-  return workspace.value.is_pro ? 'Pro Plan' : 'Free Plan'
+  return workspace.value.is_pro ? t('app_shell.workspace_dropdown.pro_plan') : t('app_shell.workspace_dropdown.free_plan')
 })
 
 // Computed text for member count
 const memberCountText = computed(() => {
-  if (!workspace.value || !workspace.value.users_count) return '1 member'
+  if (!workspace.value || !workspace.value.users_count) return t('app_shell.workspace_dropdown.member_count_one')
   const count = workspace.value.users_count
-  return count === 1 ? '1 member' : `${count} members`
+  return count === 1 ? t('app_shell.workspace_dropdown.member_count_one') : t('app_shell.workspace_dropdown.member_count_other', { count })
 })
 
 const switchWorkspace = (workspaceToSwitch) => {
@@ -161,7 +162,7 @@ const switchWorkspace = (workspaceToSwitch) => {
 
 const createNewWorkspace = () => {
   if (!user.value.is_pro && workspaces.value.length >= 1) {
-    openSubscriptionModal({ modal_title: 'Upgrade to create additional workspaces', modal_description: 'Try our Pro plan for free today, and unlock all of our features such as collaboration, multiple workspaces, custom domains, forms analytics, integrations, and more!' })
+    openSubscriptionModal({ modal_title: t('app_shell.workspace_dropdown.upgrade_workspaces_title'), modal_description: t('app_shell.workspace_dropdown.upgrade_workspaces_description') })
     return
   }
   showCreateModal.value = true
@@ -184,7 +185,7 @@ const openInviteUserModal = () => {
   isDropdownOpen.value = false
 
   if (workspace.value && !workspace.value.is_pro) {
-    openSubscriptionModal({ modal_title: 'Upgrade to invite users to your workspace' })
+    openSubscriptionModal({ modal_title: t('app_shell.workspace_dropdown.upgrade_invite_title') })
     return
   }
   

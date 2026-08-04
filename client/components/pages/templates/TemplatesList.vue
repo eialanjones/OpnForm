@@ -30,7 +30,7 @@
               v-model="search"
               autocomplete="off"
               name="search"
-              placeholder="Search..."
+              :placeholder="$t('marketing.templates.search_placeholder')"
             />
           </div>
         </VForm>
@@ -76,7 +76,7 @@
           v-else-if="enrichedTemplates.length === 0"
           class="text-center mt-4"
         >
-          No templates found.
+          {{ $t('marketing.templates.no_templates_found') }}
         </p>
         <div
           v-else
@@ -106,7 +106,7 @@
           <h4
             class="text-xl font-bold tracking-tight text-neutral-900 sm:text-2xl"
           >
-            All Types
+            {{ $t('marketing.templates.all_types_heading') }}
           </h4>
           <UButton
             v-if="$route.name !== 'templates'"
@@ -114,7 +114,7 @@
             color="neutral"
             size="sm"
             trailing-icon="i-heroicons-arrow-right"
-            label="View All Templates"
+            :label="$t('marketing.templates.view_all_templates')"
           />
         </div>
 
@@ -143,7 +143,7 @@
           <h4
             class="text-xl font-bold tracking-tight text-neutral-900 sm:text-2xl"
           >
-            All Industries
+            {{ $t('marketing.templates.all_industries_heading') }}
           </h4>
           <UButton
             v-if="$route.name !== 'templates'"
@@ -151,7 +151,7 @@
             color="neutral"
             size="sm"
             trailing-icon="i-heroicons-arrow-right"
-            label="View All Templates"
+            :label="$t('marketing.templates.view_all_templates')"
           />
         </div>
 
@@ -214,6 +214,7 @@ const props = defineProps({
   },
 })
 
+const { t } = useI18n()
 const { industries: industriesMap, types: typesMap } = useTemplateMeta()
 
 const industries = computed(() => [...industriesMap.values()])
@@ -226,7 +227,7 @@ const selectedType = ref("all")
 const selectedIndustry = ref("all")
 
 const industriesOptions = computed(() => {
-  return [{ name: "All Industries", value: "all" }].concat(
+  return [{ name: t("marketing.templates.all_industries_option"), value: "all" }].concat(
     industries.value.map((industry) => ({
       name: industry.name,
       value: industry.slug,
@@ -235,7 +236,7 @@ const industriesOptions = computed(() => {
 })
 
 const typesOptions = computed(() => {
-  return [{ name: "All Types", value: "all" }].concat(
+  return [{ name: t("marketing.templates.all_types_option"), value: "all" }].concat(
     types.value.map((type) => ({
       name: type.name,
       value: type.slug,

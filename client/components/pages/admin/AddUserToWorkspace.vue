@@ -7,18 +7,18 @@
     <text-input
       v-model="newUser"
       name="email"
-      label="Email"
+      :label="$t('common.labels.email')"
       :required="true"
       :disabled="disabled"
-      placeholder="Add a new user by email"
+      :placeholder="$t('admin.add_user_to_workspace.email_placeholder')"
     />
     <select-input
       v-model="newUserRole"
       name="newUserRole"
       :options="roleOptions"
       :disabled="disabled"
-      placeholder="Select User Role"
-      label="Role"
+      :placeholder="$t('admin.add_user_to_workspace.role_placeholder')"
+      :label="$t('admin.add_user_to_workspace.role_label')"
       :required="true"
     />
     <div class="flex justify-center mt-2">
@@ -28,7 +28,7 @@
         :loading="addMutation.isPending.value"
         icon="i-heroicons-envelope"
       >
-        Invite User
+        {{ $t('admin.add_user_to_workspace.invite_user') }}
       </UButton>
     </div>
   </form>
@@ -43,14 +43,15 @@ defineProps({
   },
 })
 
+const { t } = useI18n()
 const { currentId } = useCurrentWorkspace()
 const { addUser: addUserMutation } = useWorkspaceUsers()
 
-const roleOptions = [
-  {name: "User", value: "user"},
-  {name: "Admin", value: "admin"},
-  {name: "Read Only", value: "readonly"}
-]
+const roleOptions = computed(() => [
+  {name: t("admin.roles.user"), value: "user"},
+  {name: t("admin.roles.admin"), value: "admin"},
+  {name: t("admin.roles.readonly"), value: "readonly"}
+])
 
 const newUser = ref("")
 const newUserRole = ref("user")
@@ -69,7 +70,7 @@ const addUser = () => {
     useAlert().success(data.message)
     // No need to emit 'fetchUsers' - the mutation handles cache updates automatically
   }).catch((error) => {
-    useAlert().error("There was an error adding user: " + error.data.message)
+    useAlert().error(t("admin.add_user_to_workspace.add_error", { message: error.data.message }))
   })
 }
 </script>

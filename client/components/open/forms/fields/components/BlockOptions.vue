@@ -9,7 +9,7 @@
         :form="field"
         wrapper-class="mb-2"
         :required="true"
-        label="Block Name"
+        :label="$t('form_fields.block_options.name_label')"
       />
 
       <HiddenRequiredDisabled
@@ -25,11 +25,11 @@
           name="width"
           class="grow mt-4"
           :form="field"
-          label="Block Width"
+          :label="$t('form_fields.width.label')"
           seamless
           v-if="!isFocused"
           :options="[
-            { name: 'full', label: 'Full' },
+            { name: 'full', label: $t('form_fields.width.full') },
             { name: '1/2', label: '1/2' },
             { name: '1/3', label: '1/3' },
             { name: '2/3', label: '2/3' },
@@ -45,13 +45,13 @@
           name="align"
           class="mt-4 w-2/3"
           :form="field"
-          label="Text Alignment"
+          :label="$t('form_fields.block_options.alignment.label')"
           seamless
           :options="[
-            { name: 'left', icon: 'i-heroicons-bars-3-bottom-left', tooltip: 'Align left' },
-            { name: 'center', icon: 'i-heroicons-bars-3', tooltip: 'Align center' },
-            { name: 'right', icon: 'i-heroicons-bars-3-bottom-right', tooltip: 'Align right' },
-            { name: 'justify', icon: 'i-heroicons-bars-4', tooltip: 'Justify text' },
+            { name: 'left', icon: 'i-heroicons-bars-3-bottom-left', tooltip: $t('form_fields.block_options.alignment.left') },
+            { name: 'center', icon: 'i-heroicons-bars-3', tooltip: $t('form_fields.block_options.alignment.center') },
+            { name: 'right', icon: 'i-heroicons-bars-3-bottom-right', tooltip: $t('form_fields.block_options.alignment.right') },
+            { name: 'justify', icon: 'i-heroicons-bars-4', tooltip: $t('form_fields.block_options.alignment.justify') },
           ]"
           :multiple="false"
           :columns="4"
@@ -72,7 +72,7 @@
         :allow-fullscreen="true"
         name="content"
         :form="field"
-        label="Content"
+        :label="$t('form_fields.block_options.content_label')"
         :required="false"
       />
     </div>
@@ -84,14 +84,14 @@
       <text-input
         name="next_btn_text"
         :form="field"
-        label="Next button label"
+        :label="$t('form_fields.block_options.next_button_label')"
         :required="true"
       />
       <text-input
         name="previous_btn_text"
         :form="field"
-        label="Previous button label"
-        help="Displayed on the next page"
+        :label="$t('form_fields.block_options.previous_button_label')"
+        :help="$t('form_fields.block_options.previous_button_help')"
         :required="true"
       />
     </div>
@@ -104,7 +104,7 @@
         name="image_block"
         class="mx-4"
         :form="field"
-        label="Upload Image"
+        :label="$t('form_fields.block_options.upload_image_label')"
         :required="false"
       />
     </div>
@@ -117,8 +117,8 @@
         name="video_block"
         class="mx-4"
         :form="field"
-        label="Video URL"
-        help="You can add a video URL here. It will be displayed as a video block."
+        :label="$t('form_fields.block_options.video_url_label')"
+        :help="$t('form_fields.block_options.video_url_help')"
       />
     </div>
 
@@ -131,8 +131,8 @@
         name="content"
         class="mt-4 mx-4"
         :form="field"
-        label="Content"
-        help="You can add any html code, including iframes"
+        :label="$t('form_fields.block_options.content_label')"
+        :help="$t('form_fields.block_options.code_content_help')"
       />
     </div>
   </div>

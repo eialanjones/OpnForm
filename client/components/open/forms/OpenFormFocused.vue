@@ -2,12 +2,12 @@
   <form ref="formElement" v-if="form" @submit.prevent="" class="@container w-full relative overflow-hidden flex flex-col min-h-full">
     <!-- Fixed fullscreen background from form cover -->
     <div v-if="form.cover_picture" class="absolute inset-0 pointer-events-none">
-      <BlockMediaLayout :image="coverMedia" alt="Form cover image" />
+      <BlockMediaLayout :image="coverMedia" :alt="$t('form_share.renderer.cover_image_alt')" />
     </div>
 
     <!-- Fixed logo in top-left -->
     <div v-if="form.logo_picture" class="absolute top-10 left-10 z-20">
-      <img :src="form.logo_picture" :alt="form.seo_meta?.site_name ? `${form.seo_meta.site_name} logo` : 'Form logo'" class="size-8 md:size-16 object-contain">
+      <img :src="form.logo_picture" :alt="form.seo_meta?.site_name ? $t('form_share.renderer.logo_alt_named', { name: form.seo_meta.site_name }) : $t('form_share.renderer.logo_alt')" class="size-8 md:size-16 object-contain">
     </div>
 
     <!-- Progressbar -->
@@ -82,7 +82,7 @@
     </div>
 
     <!-- Bottom right controls: arrows and branding -->
-    <div class="flex gap-2 fixed bottom-8 right-8 z-10" aria-label="Form controls">
+    <div class="flex gap-2 fixed bottom-8 right-8 z-10" :aria-label="$t('form_share.renderer.form_controls_aria_label')">
       <!-- Focused nav arrows with fade transition -->
       <Transition name="fade" mode="out-in">
         <div v-if="shouldShowArrows && showArrowsOnCurrentPage" class="flex gap-2">

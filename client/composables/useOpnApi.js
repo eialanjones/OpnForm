@@ -31,6 +31,17 @@ function addCustomDomainHeader(request, options) {
   options.headers["x-custom-domain"] = getDomain(getHost())
 }
 
+/**
+ * Laravel picks its locale from Accept-Language (App\Http\Middleware\SetLocale), so this is
+ * what makes server-side validation messages and Carbon relative dates ("há 2 dias") come
+ * back in the language currently on screen instead of the browser's preference.
+ */
+function addLocaleHeader(request, options) {
+  const locale = useNuxtApp().$i18n?.locale?.value
+  if (!locale) return
+  options.headers["Accept-Language"] = locale
+}
+
 export function getOpnRequestsOptions(request, opts) {
   const config = useRuntimeConfig()
 
@@ -51,6 +62,7 @@ export function getOpnRequestsOptions(request, opts) {
   addAuthHeader(request, opts)
   addPasswordToFormRequest(request, opts)
   addCustomDomainHeader(request, opts)
+  addLocaleHeader(request, opts)
 
   if (!opts.baseURL) {
     // Use privateApiBase only on server side, fallback to public.apiBase on client

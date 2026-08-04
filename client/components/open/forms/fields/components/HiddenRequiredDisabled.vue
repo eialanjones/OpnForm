@@ -32,30 +32,32 @@ const props = defineProps({
 })
 const emit = defineEmits(['update:field'])
 
-const options = [
+const { t } = useI18n()
+
+const options = computed(() => [
   {
     name: 'required',
-    label: 'Required',
+    label: t('common.states.required'),
     icon: 'ph:asterisk-bold',
     selectedIcon: 'ph:asterisk-bold',
     iconClass: (isActive) => isActive ? 'text-red-500' : '',
   },
   {
     name: 'hidden',
-    label: 'Hidden',
+    label: t('form_fields.state.hidden'),
     icon: 'heroicons:eye',
     selectedIcon: 'heroicons:eye-slash-solid',
   },
   {
     name: 'disabled',
-    label: 'Disabled',
+    label: t('common.states.disabled'),
     icon: 'heroicons:lock-open',
     selectedIcon: 'heroicons:lock-closed-solid',
   }
-]
+])
 
 const availableOptions = computed(() => {
-  return options.filter(option => {
+  return options.value.filter(option => {
     if (option.name === 'disabled') return props.canBeDisabled
     if (option.name === 'required') return props.canBeRequired
     if (option.name === 'hidden') return props.canBeHidden

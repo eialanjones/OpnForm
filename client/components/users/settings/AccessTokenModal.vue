@@ -6,7 +6,7 @@
     <template #header>
       <div class="flex items-center w-full gap-4 px-2">
         <h2 class="font-semibold">
-          Create an access token
+          {{ $t('user_settings.access_tokens.modal.title') }}
         </h2>
       </div>
       <UButton
@@ -16,7 +16,7 @@
         size="sm"
         @click="crisp.openHelpdesk()"
       >
-        Help
+        {{ $t('user_settings.access_tokens.modal.help_button') }}
       </UButton>
     </template>
  
@@ -26,13 +26,13 @@
           icon="i-heroicons-key-20-solid"
           color="success"
           variant="subtle"
-          title="Copy your access token"
-          description="Your token will only be shown once. Make sure to save it safely."
+          :title="$t('user_settings.access_tokens.modal.token_ready_title')"
+          :description="$t('user_settings.access_tokens.modal.token_ready_description')"
         />
         <CopyContent
           class="mt-4"
           :content="token"
-          label="Copy Token"
+          :label="$t('user_settings.access_tokens.modal.copy_token')"
         />
       </template>
 
@@ -45,13 +45,13 @@
               :form="tokenForm"
               name="name"
               :required="true"
-              label="Name"
+              :label="$t('common.labels.name')"
             />
 
             <FlatSelectInput
               :form="tokenForm"
               name="abilities"
-              label="Abilities"
+              :label="$t('user_settings.access_tokens.abilities')"
               :options="abilitiesOptions"
               multiple
             />
@@ -66,7 +66,7 @@
         variant="outline"
         @click="closeModal"
       >
-        Close
+        {{ $t('common.actions.close') }}
       </UButton>
       <UButton
         v-if="!token"
@@ -76,7 +76,7 @@
         :loading="tokenForm.busy"
         @click="createToken"
       >
-        Create Token
+        {{ $t('user_settings.access_tokens.modal.create_button') }}
       </UButton>
     </template>
   </UModal>
@@ -96,6 +96,7 @@ const emit = defineEmits(['close'])
 
 const { abilities, create } = useTokens()
 const alert = useAlert()
+const { t } = useI18n()
 
 const abilitiesOptions = computed(() => abilities.map(ability => ({
   name: ability.title,
@@ -129,7 +130,7 @@ function createToken() {
     // Assuming the response contains the token
     token.value = response.token || response.data?.token || response
   }).catch(() => {
-    alert.error("An error occurred while creating the token")
+    alert.error(t('user_settings.access_tokens.modal.create_error'))
   })
 }
 </script>

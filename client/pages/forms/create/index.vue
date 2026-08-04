@@ -36,13 +36,15 @@ definePageMeta({
   layout: 'empty'
 })
 
+const { t } = useI18n()
+
 useOpnSeoMeta({
-  title: "Create a new Form",
+  title: t('form_pages.create.page_title'),
 })
 
 onBeforeRouteLeave((to, from, next) => {
   if (isDirty()) {
-      if (window.confirm('Changes you made may not be saved. Are you sure want to leave?')) {
+      if (window.confirm(t('form_pages.shared.leave_confirm'))) {
         window.onbeforeunload = null
         next()
       } else {

@@ -8,7 +8,7 @@
       class="rounded-lg bg-white z-10 pt-10"
     >
       <h2 class="font-medium">
-        Frequently Asked Questions
+        {{ $t('marketing.notion_block.faq_title') }}
       </h2>
       <dl class="pt-4 space-y-6">
         <div
@@ -41,7 +41,7 @@
       </div>
       <div class="relative z-20 flex flex-col items-center gap-4 pb-1">
         <h2 class="text-xl md:text-2xl text-center font-medium text-white">
-          {{ innerJson.title ? innerJson.title : 'Ready to upgrade your Forms Mentorfy forms?' }}
+          {{ innerJson.title ? innerJson.title : $t('marketing.notion_block.cta_title') }}
         </h2>
         <UButton
           to="/register"
@@ -51,7 +51,7 @@
           icon="i-heroicons-arrow-right"
           trailing
         >
-          Try Forms Mentorfy for free
+          {{ $t('marketing.notion_block.cta_button') }}
         </UButton>
       </div>
     </div>

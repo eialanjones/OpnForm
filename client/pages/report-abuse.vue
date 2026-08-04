@@ -15,8 +15,10 @@
 </template>
 
 <script setup>
+const { t } = useI18n()
+
 useOpnSeoMeta({
-  title: "Report Abuse",
+  title: t('marketing.report_abuse.meta_title'),
 })
 definePageMeta({
   middleware: ["self-hosted"]

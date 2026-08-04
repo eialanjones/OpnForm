@@ -43,17 +43,19 @@
 </template>
 
 <script setup>
+const { t } = useI18n()
+
 const messages = [
-  { text: "Starting AI magic", emoji: "✨" },
-  { text: "Analyzing requirements", emoji: "🤔" },
-  { text: "Designing layout", emoji: "📐" },
-  { text: "Adding form fields", emoji: "📝" },
-  { text: "Fine-tuning validation", emoji: "🎯" },
-  { text: "Optimizing UX", emoji: "💫" },
-  { text: "Adding smart features", emoji: "🧠" },
-  { text: "Polishing design", emoji: "✨" },
-  { text: "Running final checks", emoji: "🔍" },
-  { text: "Almost ready", emoji: "🚀" },
+  { text: t("form_editor.ai_loading.starting_magic"), emoji: "✨" },
+  { text: t("form_editor.ai_loading.analyzing_requirements"), emoji: "🤔" },
+  { text: t("form_editor.ai_loading.designing_layout"), emoji: "📐" },
+  { text: t("form_editor.ai_loading.adding_fields"), emoji: "📝" },
+  { text: t("form_editor.ai_loading.fine_tuning_validation"), emoji: "🎯" },
+  { text: t("form_editor.ai_loading.optimizing_ux"), emoji: "💫" },
+  { text: t("form_editor.ai_loading.adding_smart_features"), emoji: "🧠" },
+  { text: t("form_editor.ai_loading.polishing_design"), emoji: "✨" },
+  { text: t("form_editor.ai_loading.running_final_checks"), emoji: "🔍" },
+  { text: t("form_editor.ai_loading.almost_ready"), emoji: "🚀" },
 ]
 
 const currentMessage = ref(messages[0].text)

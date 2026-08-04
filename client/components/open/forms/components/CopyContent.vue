@@ -20,7 +20,7 @@
           class="w-full"
           @click.prevent="copyToClipboard"
         >
-          <span class="hidden md:inline">{{ copySuccess ? 'Copied!' : label }}</span>
+          <span class="hidden md:inline">{{ copySuccess ? $t('common.states.copied') : displayLabel }}</span>
         </UButton>
       </TrackClick>
       <UButton
@@ -30,17 +30,18 @@
         class="w-full"
         @click.prevent="copyToClipboard"
       >
-        <span class="hidden md:inline">{{ copySuccess ? 'Copied!' : label }}</span>
+        <span class="hidden md:inline">{{ copySuccess ? $t('common.states.copied') : displayLabel }}</span>
       </UButton>
     </div>
   </div>
 </template>
 
 <script setup>
-import { defineProps, ref } from "vue"
+import { computed, defineProps, ref } from "vue"
 import TrackClick from '~/components/global/TrackClick.vue'
 
 const { copy } = useClipboard()
+const { t } = useI18n()
 
 const props = defineProps({
   content: {
@@ -53,7 +54,7 @@ const props = defineProps({
   },
   label: {
     type: String,
-    default: "Copy Link",
+    default: null,
   },
   trackingEvent: {
     type: String,
@@ -64,6 +65,8 @@ const props = defineProps({
     default: () => ({}),
   },
 })
+
+const displayLabel = computed(() => props.label ?? t('form_editor.copy_content.copy_link'))
 
 const copySuccess = ref(false)
 

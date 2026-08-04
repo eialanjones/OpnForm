@@ -17,7 +17,7 @@
         :disabled="props.disabled"
         :aria-expanded="pickerOpen"
         :aria-haspopup="true"
-        :aria-label="formattedDatePreview ? `Selected date: ${formattedDatePreview}` : 'Select date'"
+        :aria-label="formattedDatePreview ? $t('widgets.date_input.selected_date_aria', { date: formattedDatePreview }) : $t('widgets.date_input.select_date_aria')"
         @keydown="handleTriggerKeydown"
       >
         <div class="flex items-stretch min-w-0">
@@ -48,7 +48,7 @@
           <button
             v-if="fromDate && !props.disabled"
             :class="ui.clearButton({ class: props.ui?.slots?.clearButton })"
-            :aria-label="'Clear date'"
+            :aria-label="$t('widgets.date_input.clear_date_aria')"
             @click.prevent="clear()"
             @keydown="handleClearKeydown"
           >

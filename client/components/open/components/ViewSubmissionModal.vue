@@ -6,7 +6,7 @@
     <template #header>
       <div class="flex items-center justify-between w-full">
         <h2 class="font-semibold">
-          View Submission
+          {{ $t('submissions.view_modal.title') }}
         </h2>
         <UPagination
           v-model:page="currentPage"
@@ -23,7 +23,7 @@
           }"
         >
           <template #item="{ page, pageCount }">
-            <span class="text-sm font-medium px-2">{{ page }} of {{ pageCount }}</span>
+            <span class="text-sm font-medium px-2">{{ $t('submissions.pagination.page_of', { page, total: pageCount }) }}</span>
           </template>
         </UPagination>
       </div>
@@ -41,7 +41,7 @@
             color="neutral"
             variant="outline"
             @click.prevent="isModalOpen = false"
-            label="Close"
+            :label="$t('common.actions.close')"
           />
         </template>
       </OpenForm>

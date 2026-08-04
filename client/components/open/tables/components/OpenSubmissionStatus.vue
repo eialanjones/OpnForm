@@ -16,8 +16,10 @@ const props = defineProps({
   },
 })
 
+const { t } = useI18n()
+
 const displayLabel = computed(() => {
-  return props.value === 'partial' ? 'In Progress' : 'Submitted'
+  return props.value === 'partial' ? t('submissions.status.in_progress') : t('submissions.status.submitted')
 })
 
 const badgeColor = computed(() => {

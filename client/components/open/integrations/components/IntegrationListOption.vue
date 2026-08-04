@@ -28,7 +28,7 @@
           <span
             v-if="integration.coming_soon"
             class="text-xs text-neutral-500"
-          >(soon)</span>
+          >{{ $t('integrations.list_option.soon') }}</span>
         </div>
       </div>
       <pro-tag
@@ -50,6 +50,7 @@ import { computed } from 'vue'
 import ProTag from "~/components/app/ProTag.vue"
 import TrackClick from "~/components/global/TrackClick.vue"
 const emit = defineEmits(["select"])
+const { t } = useI18n()
 const { openSubscriptionModal } = useAppModals()
 
 const props = defineProps({
@@ -69,9 +70,9 @@ const unavailable = computed(() => {
 })
 
 const tooltipText = computed(() => {
-  if (props.integration.coming_soon) return "This integration is coming soon"
+  if (props.integration.coming_soon) return t('integrations.list_option.coming_soon_tooltip')
   if (props.integration.requires_subscription && !currentWorkspace.value.is_pro )
-    return "You need a subscription to use this integration."
+    return t('integrations.list_option.subscription_tooltip')
   return null
 })
 
@@ -79,8 +80,8 @@ const onClick = () => {
   if (props.integration.coming_soon) return
   if (props.integration.requires_subscription && !currentWorkspace.value.is_pro ) {
     openSubscriptionModal({
-      modal_title: 'Upgrade today to use this integration',
-      modal_description: `Upgrade your account to use our ${props.integration.name} and unlock all of our Pro features.`
+      modal_title: t('integrations.list_option.upgrade_modal_title'),
+      modal_description: t('integrations.list_option.upgrade_modal_description', { name: props.integration.name })
     })
     return
   }

@@ -3,9 +3,9 @@
     <!-- Profile Information Section -->
     <div class="space-y-4">
       <div>
-        <h3 class="text-lg font-medium text-neutral-900">Profile Information</h3>
+        <h3 class="text-lg font-medium text-neutral-900">{{ $t('user_settings.account.profile_heading') }}</h3>
         <p class="text-sm text-neutral-500 mt-1">
-          Update your account profile information and email address.
+          {{ $t('user_settings.account.profile_description') }}
         </p>
       </div>
 
@@ -17,16 +17,16 @@
             <text-input
               :form="profileForm"
               name="name"
-              label="Full Name"
-              placeholder="Enter your full name"
+              :label="$t('user_settings.account.name_label')"
+              :placeholder="$t('user_settings.account.name_placeholder')"
               :required="true"
             />
             <text-input
               :form="profileForm"
               name="email"
-              label="Email Address"
+              :label="$t('user_settings.account.email_label')"
               type="email"
-              placeholder="Enter your email"
+              :placeholder="$t('user_settings.account.email_placeholder')"
               :required="true"
             />
           </div>
@@ -37,7 +37,7 @@
               :loading="profileForm.busy"
               color="primary"
             >
-              Save Changes
+              {{ $t('user_settings.account.save_button') }}
             </UButton>
           </div>
         </form>
@@ -47,9 +47,9 @@
     <div class="pt-8 border-t border-neutral-200">
       <div class="flex flex-col gap-2 items-start">
         <div>
-          <h4 class="font-medium text-red-800">Delete Account</h4>
+          <h4 class="font-medium text-red-800">{{ $t('user_settings.account.delete_heading') }}</h4>
           <p class="mt-1 text-sm text-neutral-500">
-            This will permanently delete your entire account. This cannot be undone.
+            {{ $t('user_settings.account.delete_description') }}
           </p>
         </div>
         
@@ -58,7 +58,7 @@
             :loading="deleteMutation.isPending.value"
             @click="confirmDeleteAccount"
           >
-            Delete Account
+            {{ $t('user_settings.account.delete_button') }}
           </UButton>
         
       </div>
@@ -69,6 +69,7 @@
 <script setup>
 // Use useAuth composable for all user-related mutations
 const alert = useAlert()
+const { t } = useI18n()
 
 // Auth composable (TanStack Query powered)
 const {
@@ -94,18 +95,18 @@ const updateProfile = () => {
   profileForm.mutate(updateMutation)
     .then(() => {
       invalidateUser()
-      alert.success('Your info has been updated!')
+      alert.success(t('user_settings.account.profile_updated'))
     })
     .catch((error) => {
       console.error(error)
-      alert.error(error?.data?.message || 'Error updating profile')
+      alert.error(error?.data?.message || t('user_settings.account.profile_update_error'))
     })
 }
 
 // Delete account confirmation
 const confirmDeleteAccount = () => {
   alert.confirm(
-    'Do you really want to delete your account?',
+    t('user_settings.account.delete_confirm'),
     deleteAccount
   )
 }
@@ -114,11 +115,11 @@ const confirmDeleteAccount = () => {
 const deleteAccount = () => {
   deleteMutation.mutateAsync()
     .then((data) => {
-      alert.success(data?.message || 'Your account has been deleted')
+      alert.success(data?.message || t('user_settings.account.delete_success'))
       // Navigation handled by deleteAccount mutation
     })
     .catch((error) => {
-      alert.error(error?.data?.message || 'Error deleting account')
+      alert.error(error?.data?.message || t('user_settings.account.delete_error'))
     })
 }
 

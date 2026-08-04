@@ -3,9 +3,9 @@
     <div class="grid md:grid-cols-3 my-8">
       <div class="flex mt-2 items-center">
         <p class="text-sm text-neutral-600 dark:text-neutral-400 text-center w-full">
-          © {{ currYear }} {{ opnformConfig.company_name }}. All Rights Reserved
+          {{ $t('marketing.footer.copyright', { year: currYear, company: opnformConfig.company_name }) }}
           <span v-if="version">
-            <br>Version {{ version }}
+            <br>{{ $t('marketing.footer.version', { version }) }}
           </span>
         </p>
       </div>
@@ -16,7 +16,7 @@
         >
           <img
             src="/img/logo.svg"
-            alt="Forms Mentorfy logo"
+            :alt="$t('marketing.footer.logo_alt')"
             class="w-10 h-10"
           >
           <span class="ml-2 text-xl text-black dark:text-white"> Forms Mentorfy </span>
@@ -29,40 +29,40 @@
             target="_blank"
             class="text-neutral-600 dark:text-neutral-400 transition-colors duration-300 hover:text-blue-500"
           >
-            Support
+            {{ $t('marketing.footer.support') }}
           </a>
           <a
             :href="opnformConfig.links.source_code"
             target="_blank"
             class="text-neutral-600 dark:text-neutral-400 transition-colors duration-300 hover:text-blue-500"
           >
-            Source code
+            {{ $t('marketing.footer.source_code') }}
           </a>
           <template v-if="!useFeatureFlag('self_hosted')">
             <router-link
               :to="{ name: 'integrations' }"
               class="text-neutral-600 dark:text-neutral-400 transition-colors duration-300 hover:text-blue-500"
             >
-              Integrations
+              {{ $t('marketing.footer.integrations') }}
             </router-link>
             <router-link
               :to="{ name: 'report-abuse' }"
               class="text-neutral-600 dark:text-neutral-400 transition-colors duration-300 hover:text-blue-500"
             >
-              Report Abuse
+              {{ $t('marketing.footer.report_abuse') }}
             </router-link>
             <router-link
               :to="{ name: 'privacy-policy' }"
               class="text-neutral-600 dark:text-neutral-400 transition-colors duration-300 hover:text-blue-500"
             >
-              Privacy Policy
+              {{ $t('marketing.footer.privacy_policy') }}
             </router-link>
 
             <router-link
               :to="{ name: 'terms-conditions' }"
               class="text-neutral-600 dark:text-neutral-400 transition-colors duration-300 hover:text-blue-500"
             >
-              Terms & Conditions
+              {{ $t('marketing.footer.terms_conditions') }}
             </router-link>
           </template>
         </div>

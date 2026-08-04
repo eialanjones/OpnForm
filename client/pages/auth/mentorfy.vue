@@ -3,13 +3,13 @@
     <div class="text-center">
       <Loader v-if="!error" class="mx-auto h-6 w-6 text-nt-blue" />
       <p v-if="!error" class="mt-4 text-sm text-gray-500">
-        Entrando…
+        {{ $t('auth.sso.signing_in') }}
       </p>
 
       <div v-else class="max-w-sm">
         <p class="text-sm text-red-600">{{ error }}</p>
         <p class="mt-2 text-xs text-gray-500">
-          Volte para a Mentorfy e abra a área de formulários novamente.
+          {{ $t('auth.sso.error_hint') }}
         </p>
       </div>
     </div>
@@ -32,6 +32,7 @@ definePageMeta({
   middleware: [], // pública: é justamente aqui que a sessão nasce
 })
 
+const { t } = useI18n()
 const route = useRoute()
 const router = useRouter()
 const authStore = useAuthStore()
@@ -41,7 +42,7 @@ onMounted(async () => {
   const token = route.query.token
 
   if (!token) {
-    error.value = 'Link de acesso inválido.'
+    error.value = t('auth.sso.invalid_link')
     return
   }
 
@@ -59,7 +60,7 @@ onMounted(async () => {
     const target = sanitizeRedirect(route.query.redirect) || '/home'
     await router.replace(target)
   } catch (e) {
-    error.value = e?.data?.message || 'Não foi possível entrar.'
+    error.value = e?.data?.message || t('auth.sso.failed')
   }
 })
 

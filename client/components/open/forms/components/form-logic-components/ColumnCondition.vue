@@ -9,7 +9,7 @@
       class="w-[100px]"
       :items="operators"
       value-key="value"
-      placeholder="Operator"
+      :placeholder="$t('form_logic.column_condition.operator_placeholder')"
       size="sm"
       variant="outline"
       :search-input="false"
@@ -27,7 +27,7 @@
         v-model="content.value"
         class="flex-1 min-w-[120px]"
         :name="'value_' + property.id"
-        placeholder="Value"
+        :placeholder="$t('form_logic.column_condition.value_placeholder')"
         wrapper-class="my-0"
         margin-bottom=""
         @update:model-value="emitInput()"
@@ -231,6 +231,11 @@ export default {
       ]
     },
     optionFilterNames(key) {
+      const translationKey = `form_logic.operators.${key}`
+      const translated = this.$t(translationKey)
+      if (translated !== translationKey) {
+        return translated
+      }
       return key
         .split("_")
         .map(function (item) {

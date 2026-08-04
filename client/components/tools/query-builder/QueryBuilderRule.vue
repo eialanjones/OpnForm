@@ -6,7 +6,7 @@
     <!-- Third+ rules: text-only operator -->
     
     <div v-if="index === 0" class="flex-shrink-0 text-sm font-medium text-neutral-600 w-17 text-right">
-      {{ whereText }}
+      {{ whereText || $t('form_logic.query_builder.where') }}
     </div>
     
     <div v-else-if="index === 1" class="flex-shrink-0 w-17 text-right">
@@ -30,7 +30,7 @@
       v-model="selectedField"
       :items="availableFields"
       value-key="value"
-      placeholder="Select field..."
+      :placeholder="$t('form_logic.query_builder.select_field_placeholder')"
       class="min-w-[140px] max-w-[200px]"
       size="sm"
       :ui="{
@@ -83,11 +83,13 @@ const props = defineProps({
   },
   whereText: {
     type: String,
-    default: 'Where'
+    default: ''
   }
 })
 
 const emit = defineEmits(['query-update', 'operator-update'])
+
+const { t } = useI18n()
 
 const ruleDefinition = computed(() => {
   return props.config.rules.find(rule => rule.identifier === props.query.identifier)
@@ -149,6 +151,6 @@ const currentOperator = computed({
 
 const operatorDisplayName = computed(() => {
   const operator = props.operatorOptions.find(op => op.value === props.selectedOperator)
-  return operator?.label || 'And'
+  return operator?.label || t('form_logic.query_builder.and')
 })
 </script>

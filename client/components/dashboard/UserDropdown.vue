@@ -34,7 +34,9 @@
 <script setup>
 import { computed } from "vue"
 
+const { t } = useI18n()
 const { openUserSettings } = useAppModals()
+const { uiLocale, locales: uiLocales, setUiLocale } = useUiLocale()
 
 const { user: userQuery, logout: logoutMutationFactory } = useAuth()
 const { data: user } = userQuery()
@@ -65,7 +67,7 @@ const dropdownItems = computed(() => {
 
   // Settings
   navItems.push({
-    label: 'Settings',
+    label: t('common.actions.settings'),
     icon: 'i-heroicons-cog-6-tooth',
     onSelect: () => openUserSettings('account')
   })
@@ -73,11 +75,26 @@ const dropdownItems = computed(() => {
   // Admin - only show for moderators
   if (user.value.moderator) {
     navItems.push({
-      label: 'Admin',
+      label: t('app_shell.user_dropdown.admin'),
       icon: 'i-heroicons-shield-check',
       to: { name: 'admin' }
     })
   }
+
+  // Language — the builder ships in pt and en; the choice is remembered per browser.
+  navItems.push({
+    label: t('app_shell.user_dropdown.language'),
+    icon: 'i-heroicons-language',
+    children: uiLocales.map(item => ({
+      label: `${item.flag} ${item.label}`,
+      type: 'checkbox',
+      checked: uiLocale.value === item.code,
+      onSelect: (event) => {
+        event?.preventDefault?.()
+        setUiLocale(item.code)
+      }
+    }))
+  })
 
   if (navItems.length > 0) {
     items.push(navItems)
@@ -86,7 +103,7 @@ const dropdownItems = computed(() => {
   // Logout
   items.push([
     {
-      label: 'Logout',
+      label: t('app_shell.user_dropdown.logout'),
       icon: 'i-heroicons-arrow-right-start-on-rectangle',
       onSelect: logout
     }

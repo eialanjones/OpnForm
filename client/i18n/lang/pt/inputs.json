@@ -1,0 +1,21 @@
+{
+    "inputs": {
+        "selection": {
+            "of_range": "{count} de {min}-{max}",
+            "selected_min": "{count} selecionados (mín. {min})",
+            "selected_max": "{count}/{max} selecionados"
+        },
+        "flat_select": {
+            "aria_select_option": "Selecione uma opção",
+            "aria_select_options": "Selecione as opções",
+            "not_allowed": "Não permitido"
+        },
+        "scale": {
+            "aria_group": "Escala de {min} a {max}",
+            "aria_value": "Valor da escala {value}"
+        },
+        "validation": {
+            "field_has_errors": "Este campo tem alguns erros:"
+        }
+    }
+}

@@ -1,12 +1,12 @@
 <template>
   <AdminCard
-    title="Workspaces"
+    :title="$t('admin.workspaces.title')"
     icon="heroicons:globe-alt"
   >
     <UTable
-      :loading-state="{ icon: 'i-heroicons-arrow-path-20-solid', label: 'Loading...' }"
+      :loading-state="{ icon: 'i-heroicons-arrow-path-20-solid', label: $t('common.states.loading') }"
       :progress="{ color: 'primary', animation: 'carousel' }"
-      :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No items.' }"
+      :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: $t('admin.table.no_items') }"
       :columns="columns"
       :data="rows"
       class="-mx-6"
@@ -35,6 +35,8 @@
   
 <script setup>
 
+const { t } = useI18n()
+
 const props = defineProps({
     user: { type: Object, required: true }
 })
@@ -48,22 +50,22 @@ const rows = computed(() => {
 })
 
 
-const columns = [{
+const columns = computed(() => [{
     accessorKey: 'id',
-    header: 'ID'
+    header: t('admin.table.id')
 }, {
     accessorKey: 'name',
-    header: 'Name',
+    header: t('common.labels.name'),
     sortable: true
 }, {
     accessorKey: 'plan',
-    header: 'Plan',
+    header: t('admin.table.plan'),
     sortable: true
 }, {
     accessorKey: 'forms_count',
-    header: '# of forms',
+    header: t('admin.workspaces.columns.forms_count'),
     sortable: true
-}]
+}])
 
 function userPlanStyles(plan) {
     switch (plan) {

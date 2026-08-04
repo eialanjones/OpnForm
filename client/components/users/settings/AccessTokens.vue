@@ -3,15 +3,15 @@
     <!-- Header -->
     <div class="flex flex-col flex-wrap items-start justify-between gap-4 sm:flex-row sm:items-center">
       <div>
-        <h3 class="text-lg font-medium text-neutral-900">API Access Tokens</h3>
+        <h3 class="text-lg font-medium text-neutral-900">{{ $t('user_settings.access_tokens.heading') }}</h3>
         <p class="mt-1 text-sm text-neutral-500">
-          Manage your API access tokens for programmatic access.
+          {{ $t('user_settings.access_tokens.description') }}
         </p>
       </div>
 
       <div class="flex shrink-0 items-center gap-2">
         <UButton
-          label="API Docs"
+          :label="$t('user_settings.access_tokens.api_docs_button')"
           icon="i-heroicons-book-open"
           variant="outline"
           color="primary"
@@ -20,7 +20,7 @@
         />
 
         <UButton
-          label="Create New Token"
+          :label="$t('user_settings.access_tokens.create_button')"
           icon="i-heroicons-plus"
           :loading="loading"
           @click="accessTokenModal = true"
@@ -36,13 +36,13 @@
           class="w-12 h-12 text-neutral-400 mx-auto mb-4" 
         />
         <h4 class="text-lg font-medium text-neutral-900 mb-2">
-          No access tokens yet
+          {{ $t('user_settings.access_tokens.empty_title') }}
         </h4>
         <p class="text-neutral-500 mb-4">
-          Create your first API access token to start using our API programmatically.
+          {{ $t('user_settings.access_tokens.empty_description') }}
         </p>
         <UButton
-          label="Create Your First Token"
+          :label="$t('user_settings.access_tokens.create_first_button')"
           icon="i-heroicons-plus"
           @click="accessTokenModal = true"
         />
@@ -82,9 +82,9 @@
     <!-- API Information -->
     <div class="space-y-4 pt-8 border-t border-neutral-200">
       <div>
-        <h3 class="text-lg font-medium text-neutral-900">API Information</h3>
+        <h3 class="text-lg font-medium text-neutral-900">{{ $t('user_settings.access_tokens.api_info.heading') }}</h3>
         <p class="text-sm text-neutral-500 mt-1">
-          Learn how to use your access tokens with our API.
+          {{ $t('user_settings.access_tokens.api_info.description') }}
         </p>
       </div>
 
@@ -93,9 +93,9 @@
           <div class="flex items-start gap-3">
             <UIcon name="i-heroicons-information-circle" class="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
             <div>
-              <h4 class="text-sm font-medium text-neutral-900">Getting Started</h4>
+              <h4 class="text-sm font-medium text-neutral-900">{{ $t('user_settings.access_tokens.api_info.getting_started_title') }}</h4>
               <p class="text-sm text-neutral-600 mt-1">
-                Use your access tokens in the Authorization header: <code class="bg-neutral-200 px-1 rounded text-xs">Bearer YOUR_TOKEN</code>
+                {{ $t('user_settings.access_tokens.api_info.getting_started_description') }} <code class="bg-neutral-200 px-1 rounded text-xs">Bearer YOUR_TOKEN</code>
               </p>
             </div>
           </div>
@@ -103,9 +103,9 @@
           <div class="flex items-start gap-3">
             <UIcon name="i-heroicons-shield-check" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
             <div>
-              <h4 class="text-sm font-medium text-neutral-900">Security</h4>
+              <h4 class="text-sm font-medium text-neutral-900">{{ $t('user_settings.access_tokens.api_info.security_title') }}</h4>
               <p class="text-sm text-neutral-600 mt-1">
-                Keep your tokens secure and never share them publicly. Rotate them regularly for better security.
+                {{ $t('user_settings.access_tokens.api_info.security_description') }}
               </p>
             </div>
           </div>
@@ -113,10 +113,17 @@
           <div class="flex items-start gap-3">
             <UIcon name="i-heroicons-clock" class="w-5 h-5 text-yellow-500 mt-0.5 flex-shrink-0" />
             <div>
-              <h4 class="text-sm font-medium text-neutral-900">Rate Limits</h4>
-              <p class="text-sm text-neutral-600 mt-1">
-                API requests are rate limited. <a href="https://docs.opnform.com/api-reference/introduction#rate-limits" target="_blank" class="text-blue-500 hover:underline">Check our documentation</a> for current limits and best practices.
-              </p>
+              <h4 class="text-sm font-medium text-neutral-900">{{ $t('user_settings.access_tokens.api_info.rate_limits_title') }}</h4>
+              <i18n-t
+                keypath="user_settings.access_tokens.api_info.rate_limits_description"
+                scope="global"
+                tag="p"
+                class="text-sm text-neutral-600 mt-1"
+              >
+                <template #link>
+                  <a href="https://docs.opnform.com/api-reference/introduction#rate-limits" target="_blank" class="text-blue-500 hover:underline">{{ $t('user_settings.access_tokens.api_info.rate_limits_link') }}</a>
+                </template>
+              </i18n-t>
             </div>
           </div>
         </div>
@@ -137,6 +144,7 @@ import AbilitiesBadges from '~/components/users/settings/access-tokens/Abilities
 
 const accessTokenModal = ref(false)
 const alert = useAlert()
+const { t } = useI18n()
 
 // Use TanStack Query instead of Pinia store
 const { list, remove: removeToken } = useTokens()
@@ -158,13 +166,13 @@ const tableColumns = [
   {
     id: 'name',
     accessorKey: 'name',
-    header: 'Name',
+    header: t('common.labels.name'),
     enableSorting: true
   },
   {
     id: 'abilities',
     accessorKey: 'abilities',
-    header: 'Abilities',
+    header: t('user_settings.access_tokens.abilities'),
     enableSorting: false
   },
   {
@@ -176,11 +184,11 @@ const tableColumns = [
 ]
 
 const deleteToken = (token) => {
-  alert.confirm("Do you really want to delete this token?", () => {
+  alert.confirm(t('user_settings.access_tokens.delete_confirm'), () => {
     deleteTokenMutation.mutateAsync(token.id).then(() => {
-      alert.success("Token deleted successfully")
+      alert.success(t('user_settings.access_tokens.delete_success'))
     }).catch(() => {
-      alert.error("An error occurred while deleting the token")
+      alert.error(t('user_settings.access_tokens.delete_error'))
     })
   })
 }

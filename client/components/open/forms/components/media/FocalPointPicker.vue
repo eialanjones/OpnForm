@@ -20,7 +20,7 @@
       <button
         class="absolute -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full border-2 border-white bg-neutral-700/80 shadow"
         :style="{ left: x + '%', top: y + '%' }"
-        aria-label="Focal point"
+        :aria-label="$t('form_editor.media.focal_point')"
       />
     </div>
 

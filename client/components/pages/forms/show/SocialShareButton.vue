@@ -4,7 +4,7 @@
       name="social_share_button_click"
       :properties="{form_id: form.id, form_slug: form.slug}"
     >
-      <UTooltip text="Share">
+      <UTooltip :text="$t('common.actions.share')">
         <UButton
           variant="outline"
           color="neutral"
@@ -32,19 +32,24 @@ export default {
     },
   },
 
+  setup() {
+    const { t } = useI18n()
+    return { t }
+  },
+
   computed: {
     shareItems() {
       return [
         [{
-          label: 'Share via Email',
+          label: this.t('form_pages.social_share.via_email'),
           icon: 'i-heroicons-envelope',
           onSelect: () => this.shareViaEmail()
         }, {
-          label: 'Share on Twitter',
+          label: this.t('form_pages.social_share.on_twitter'),
           icon: 'i-simple-icons-twitter',
           onSelect: () => this.shareOnTwitter()
         }, {
-          label: 'Share on LinkedIn',
+          label: this.t('form_pages.social_share.on_linkedin'),
           icon: 'i-simple-icons-linkedin',
           onSelect: () => this.shareOnLinkedIn()
         }]
@@ -61,8 +66,8 @@ export default {
         method: 'email'
       })
       
-      const subject = encodeURIComponent(`Check out this form: ${this.form.title}`)
-      const body = encodeURIComponent(`I'd like to share this form with you: ${this.shareUrl}`)
+      const subject = encodeURIComponent(this.t('form_pages.social_share.share_text', { title: this.form.title }))
+      const body = encodeURIComponent(this.t('form_pages.social_share.email_body', { url: this.shareUrl }))
       window.open(`mailto:?subject=${subject}&body=${body}`)
     },
 
@@ -74,7 +79,7 @@ export default {
         method: 'twitter'
       })
       
-      const text = encodeURIComponent(`Check out this form: ${this.form.title}`)
+      const text = encodeURIComponent(this.t('form_pages.social_share.share_text', { title: this.form.title }))
       const url = encodeURIComponent(this.shareUrl)
       window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank')
     },

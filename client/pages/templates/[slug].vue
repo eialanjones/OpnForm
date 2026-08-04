@@ -13,7 +13,7 @@
             color="neutral"
             size="sm"
             @click.prevent="showFormTemplateModal = true"
-            label="Edit Template"
+            :label="$t('marketing.template_page.edit_template')"
           />
           <form-template-modal
             v-if="form"
@@ -34,7 +34,7 @@
             size="sm"
             variant="outline"
             @click.prevent="copyTemplateUrl"
-            label="Copy Template URL"
+            :label="$t('marketing.template_page.copy_template_url')"
           />
         </TrackClick>
         <TrackClick
@@ -44,7 +44,7 @@
           <UButton
             size="sm"
             :to="createFormWithTemplateUrl"
-            label="Use this template"
+            :label="$t('marketing.template_page.use_template')"
           />
         </TrackClick>
       </template>
@@ -54,7 +54,7 @@
       v-if="template === null || !template"
       class="text-center my-4"
     >
-      We could not find this template.
+      {{ $t('marketing.template_page.not_found') }}
     </p>
     <template v-else>
       <section class="pt-12 bg-neutral-50 sm:pt-16 border-b pb-[250px] relative">
@@ -68,7 +68,7 @@
               <img
                 class="object-cover w-full h-full transition-all duration-200 group-hover:scale-110 absolute inset-0"
                 :src="template.image_url"
-                alt="Template cover image"
+                :alt="$t('marketing.template_page.cover_alt')"
               >
             </div>
 
@@ -96,7 +96,7 @@
           class="p-4 mx-auto bg-white shadow-lg sm:p-6 lg:p-8 rounded-xl ring ring-inset ring-neutral-200 isolate"
         >
           <p class="text-sm font-medium text-center text-neutral-500 -mt-2 mb-2">
-            Template Preview
+            {{ $t('marketing.template_page.preview_label') }}
           </p>
           <div class="mb-4">
             <div
@@ -133,15 +133,15 @@
                 <UButton
                   block
                   :to="createFormWithTemplateUrl"
-                  label="Use this template"
+                  :label="$t('marketing.template_page.use_template')"
                 />
               </TrackClick>
             </div>
             <div class="flex items-center justify-center">
               <div class="text-left mx-auto text-neutral-500 text-xs mt-4">
-                ✓ Core features 100% free<br>
-                ✓ No credit card required<br>
-                ✓ No submissions limit on Free plan
+                {{ $t('marketing.template_page.perks.free_core') }}<br>
+                {{ $t('marketing.template_page.perks.no_credit_card') }}<br>
+                {{ $t('marketing.template_page.perks.no_limit') }}
               </div>
             </div>
           </div>
@@ -165,10 +165,10 @@
                   <h3
                     class="text-xl font-bold tracking-tight text-neutral-900 sm:text-2xl"
                   >
-                    Frequently asked questions
+                    {{ $t('marketing.template_page.faq_title') }}
                   </h3>
                   <p class="mt-2 text-base font-normal text-neutral-600">
-                    Everything you need to know about this template.
+                    {{ $t('marketing.template_page.faq_description') }}
                   </p>
                 </div>
                 <dl class="mt-12 space-y-10">
@@ -201,14 +201,14 @@
             <h4
               class="text-xl font-bold tracking-tight text-neutral-900 sm:text-2xl"
             >
-              Related templates
+              {{ $t('marketing.template_page.related_title') }}
             </h4>
             <UButton
               :to="{ name: 'templates' }"
               color="white"
               size="sm"
               trailing-icon="i-heroicons-arrow-right-20-solid"
-              label="View All"
+              :label="$t('marketing.template_page.view_all')"
             />
           </div>
 
@@ -230,7 +230,7 @@
             <h4
               class="text-xl font-bold tracking-tight text-neutral-900 sm:text-2xl"
             >
-              How Forms Mentorfy works
+              {{ $t('marketing.template_page.how_it_works_title') }}
             </h4>
           </div>
 
@@ -245,14 +245,13 @@
               </div>
               <div>
                 <h5 class="text-base font-bold leading-tight text-neutral-900">
-                  Copy the template and change it the way you like
+                  {{ $t('marketing.template_page.step_1_title') }}
                 </h5>
                 <p class="mt-2 text-sm font-normal text-neutral-600">
                   <NuxtLink :to="createFormWithTemplateUrl">
-                    Click here to copy this template
+                    {{ $t('marketing.template_page.step_1_link') }}
                   </NuxtLink>
-                  and start customizing it. Change the questions, add new ones,
-                  choose colors and more.
+                  {{ $t('marketing.template_page.step_1_description') }}
                 </p>
               </div>
             </div>
@@ -267,11 +266,10 @@
               </div>
               <div>
                 <h5 class="text-base font-bold leading-tight text-neutral-900">
-                  Embed the form or share it via a link
+                  {{ $t('marketing.template_page.step_2_title') }}
                 </h5>
                 <p class="mt-2 text-sm font-normal text-neutral-600">
-                  You can directly share your form link, or embed the form on
-                  your website. It's magic! 🪄
+                  {{ $t('marketing.template_page.step_2_description') }}
                 </p>
               </div>
             </div>
@@ -300,6 +298,7 @@ import Breadcrumb from "~/components/app/Breadcrumb.vue"
 import TrackClick from "~/components/global/TrackClick.vue"
 import { handleDarkMode, useDarkMode } from "~/lib/forms/public-page.js"
 
+const { t } = useI18n()
 const route = useRoute()
 const { detail, list } = useTemplates()
 
@@ -366,7 +365,7 @@ const breadcrumbs = computed(() => {
     return []
   }
   return [
-    { name: "Templates", to: { name: "templates" } },
+    { name: t("marketing.template_page.breadcrumb_templates"), to: { name: "templates" } },
     {
       name: template.value.name,
       to: { name: "templates-slug", params: { slug: template.value.slug } },
@@ -376,7 +375,7 @@ const breadcrumbs = computed(() => {
 
 const copyTemplateUrl = () => {
   navigator.clipboard.writeText(window.location.href)
-  useAlert().success("URL copied to clipboard!")
+  useAlert().success(t("marketing.template_page.url_copied"))
 }
 
 useOpnSeoMeta(

@@ -8,13 +8,12 @@
           <h1
             class="text-4xl font-semibold tracking-tight text-neutral-900 sm:text-5xl lg:text-6xl"
           >
-            Simple, transparent pricing. No surprises.
+            {{ $t('marketing.pricing_page.hero_title') }}
           </h1>
           <p
             class="max-w-2xl mx-auto mt-4 text-base font-medium leading-7 text-neutral-500 sm:mt-5 sm:text-xl sm:leading-9"
           >
-            Just like our codebase, our pricing is 100% transparent. One flat
-            price for all features. No hidden fees.
+            {{ $t('marketing.pricing_page.hero_description') }}
           </p>
         </div>
       </div>
@@ -28,7 +27,7 @@
             name="heroicons:user-plus-16-solid"
           />
           <p>
-            Extra users for {{ isYearly?'$5/month':'$6/month' }}
+            {{ $t('marketing.pricing_page.extra_users', { price: isYearly ? '$5' : '$6' }) }}
           </p>
         </div>
       </template>
@@ -40,8 +39,7 @@
           <h2
             class="text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl lg:leading-tight"
           >
-            <span class="text-blue-600">99%</span> of features are available to
-            all users for free and without limits.
+            <span class="text-blue-600">99%</span> {{ $t('marketing.pricing_page.free_features_title') }}
           </h2>
         </div>
 
@@ -66,7 +64,7 @@
             <p
               class="text-base font-semibold sm:text-lg lg:text-xl text-neutral-950"
             >
-              Unlimited forms
+              {{ $t('marketing.pricing_page.free_features.unlimited_forms') }}
             </p>
           </div>
 
@@ -88,7 +86,7 @@
             <p
               class="text-base font-semibold sm:text-lg lg:text-xl text-neutral-950"
             >
-              Unlimited submissions
+              {{ $t('marketing.pricing_page.free_features.unlimited_submissions') }}
             </p>
           </div>
 
@@ -116,7 +114,7 @@
             <p
               class="text-base font-semibold sm:text-lg lg:text-xl text-neutral-950"
             >
-              Unlimited fields
+              {{ $t('marketing.pricing_page.free_features.unlimited_fields') }}
             </p>
           </div>
 
@@ -138,7 +136,7 @@
             <p
               class="text-base font-semibold sm:text-lg lg:text-xl text-neutral-950"
             >
-              Multiple input types
+              {{ $t('marketing.pricing_page.free_features.multiple_input_types') }}
             </p>
           </div>
 
@@ -160,7 +158,7 @@
             <p
               class="text-base font-semibold sm:text-lg lg:text-xl text-neutral-950"
             >
-              Form password
+              {{ $t('marketing.pricing_page.free_features.form_password') }}
             </p>
           </div>
 
@@ -182,7 +180,7 @@
             <p
               class="text-base font-semibold sm:text-lg lg:text-xl text-neutral-950"
             >
-              Webhooks
+              {{ $t('marketing.pricing_page.free_features.webhooks') }}
             </p>
           </div>
 
@@ -204,7 +202,7 @@
             <p
               class="text-base font-semibold sm:text-lg lg:text-xl text-neutral-950"
             >
-              API Access Tokens
+              {{ $t('marketing.pricing_page.free_features.api_tokens') }}
             </p>
           </div>
 
@@ -226,7 +224,7 @@
             <p
               class="text-base font-semibold sm:text-lg lg:text-xl text-neutral-950"
             >
-              Closing date
+              {{ $t('marketing.pricing_page.free_features.closing_date') }}
             </p>
           </div>
 
@@ -298,7 +296,7 @@
             <p
               class="text-base font-semibold sm:text-lg lg:text-xl text-neutral-950"
             >
-              And much more...
+              {{ $t('marketing.pricing_page.free_features.and_much_more') }}
             </p>
           </div>
         </div>
@@ -323,13 +321,10 @@
             </svg>
             <div>
               <p class="text-lg font-semibold text-yellow-600">
-                Nonprofit & Student Discount — 50%
+                {{ $t('marketing.pricing_page.discount_title') }}
               </p>
               <p class="mt-1 text-base font-medium leading-7 text-yellow-600">
-                Whether your nonprofit is large or small, Forms Mentorfy's online Form
-                Builder helps your organization help others. It takes just a few
-                minutes to create and publish your forms online. As an exclusive
-                benefit, we offer nonprofits & students a 50-percent discount!
+                {{ $t('marketing.pricing_page.discount_description') }}
               </p>
             </div>
           </div>
@@ -345,12 +340,12 @@
           <h2
             class="text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl lg:leading-tight"
           >
-            Got any question?
+            {{ $t('marketing.pricing_page.faq_title') }}
           </h2>
           <p
             class="max-w-2xl mx-auto mt-4 text-base font-medium leading-7 text-neutral-600 sm:text-lg sm:leading-8"
           >
-            We've compiled a list of the most common questions we get asked.
+            {{ $t('marketing.pricing_page.faq_description') }}
           </p>
         </div>
 
@@ -360,29 +355,24 @@
           <div
             v-for="q in [
               {
-                question: 'Is there a free version of Forms Mentorfy available?',
-                answer:
-                  'Yes, Forms Mentorfy offers a free version with access to 99% of features, including unlimited forms, submissions, fields, webhooks, API access tokens, and more. Our goal is to provide robust functionality for all users without limitations.',
+                question: $t('marketing.pricing_page.faq.free_version.question'),
+                answer: $t('marketing.pricing_page.faq.free_version.answer'),
               },
               {
-                question: 'What does the Pro Plan include?',
-                answer:
-                  'The Forms Mentorfy Pro Plan is designed to meet the advanced needs of teams and creators. It includes features like form confirmation emails, Slack and Discord notifications, editable submissions, custom domain, custom code integration, larger file uploads, removal of Forms Mentorfy branding, priority support, and more.',
+                question: $t('marketing.pricing_page.faq.pro_plan.question'),
+                answer: $t('marketing.pricing_page.faq.pro_plan.answer'),
               },
               {
-                question: 'Is there a discount for annual plans?',
-                answer:
-                  'Yes, we offer a 20% discount for annual Pro Plan subscriptions. By choosing the yearly billing option, you can enjoy the same great features at a reduced cost.',
+                question: $t('marketing.pricing_page.faq.annual_discount.question'),
+                answer: $t('marketing.pricing_page.faq.annual_discount.answer'),
               },
               {
-                question: 'How does the nonprofit and student discount work?',
-                answer:
-                  'Forms Mentorfy is committed to supporting nonprofits and students. We provide an exclusive 50% discount on the Pro Plan for nonprofit organizations and students. This discount helps you make the most of our form builder while staying within your budget.',
+                question: $t('marketing.pricing_page.faq.nonprofit_discount.question'),
+                answer: $t('marketing.pricing_page.faq.nonprofit_discount.answer'),
               },
               {
-                question: 'Can I cancel or change my plan at any time?',
-                answer:
-                  'Yes, you have the flexibility to upgrade, downgrade, or cancel your Forms Mentorfy Pro Plan at any time. Changes will take effect immediately, and you\'ll only be billed based on the plan you\'re currently on.',
+                question: $t('marketing.pricing_page.faq.cancel_plan.question'),
+                answer: $t('marketing.pricing_page.faq.cancel_plan.answer'),
               },
             ]"
             :key="q.question"
@@ -400,12 +390,12 @@
 
         <div class="mt-12 text-center sm:mt-16">
           <p class="text-base font-medium text-neutral-950">
-            Didn't find the answer?
+            {{ $t('marketing.pricing_page.not_found_answer') }}
             <a
               href="#"
               class="font-semibold text-blue-600 hover:underline"
               @click.prevent="contactUs"
-            >Contact us</a>
+            >{{ $t('marketing.pricing_page.contact_us') }}</a>
           </p>
         </div>
       </div>
@@ -424,10 +414,11 @@ export default {
   layout: "default",
 
   setup() {
+    const { t } = useI18n()
+
     useOpnSeoMeta({
-      title: "Pricing",
-      description:
-        "All of our core features are free, and there is no quantity limit. You can also created more advanced and customized forms with Forms Mentorfy Pro.",
+      title: t("marketing.pricing_page.meta_title"),
+      description: t("marketing.pricing_page.meta_description"),
     })
 
     definePageMeta({

@@ -4,18 +4,18 @@
       <div class="flex flex-col flex-wrap items-start justify-between gap-4 sm:flex-row sm:items-center">
         <div>
           <h3 class="text-lg font-medium text-neutral-900">
-            SEO & Social Sharing - Meta <ProTag
+            {{ $t('form_blocks.seo.heading') }} <ProTag
             class="ml-2"
-            upgrade-modal-title="Upgrade to Enhance Your Form's SEO"
-            upgrade-modal-description="Explore advanced SEO features in the editor on our Free plan. Upgrade to fully implement custom meta tags, Open Graph data, and improved search visibility. Boost your form's online presence and attract more respondents with our premium SEO toolkit."
+            :upgrade-modal-title="$t('form_blocks.seo.pro_title')"
+            :upgrade-modal-description="$t('form_blocks.seo.pro_description')"
           />
           </h3>
           <p class="mt-1 text-sm text-neutral-500">
-            Customize the image and text that appear when you share your form on other sites (Open Graph).
+            {{ $t('form_blocks.seo.description') }}
           </p>
         </div>
       <UButton
-        label="Help"
+        :label="$t('form_blocks.actions.help')"
         icon="i-heroicons-question-mark-circle"
         variant="outline"
         color="neutral"
@@ -34,32 +34,32 @@
               :disabled="customDomainOptions.length <= 0"
               :options="customDomainOptions"
               name="type"
-              label="Form Domain"
-              placeholder="yourdomain.com"
+              :label="$t('form_blocks.seo.form_domain_label')"
+              :placeholder="$t('form_blocks.seo.form_domain_placeholder')"
             />
             <text-input
               v-model="form.seo_meta.page_title"
               name="page_title"
-              label="Page Title"
-              help="Max 60 characters recommended"
+              :label="$t('form_blocks.seo.page_title_label')"
+              :help="$t('form_blocks.seo.page_title_help')"
             />
             <text-area-input
               v-model="form.seo_meta.page_description"
               name="page_description"
-              label="Page Description"
-              help="Between 150 and 160 characters"
+              :label="$t('form_blocks.seo.page_description_label')"
+              :help="$t('form_blocks.seo.page_description_help')"
             />
             <image-input
               v-model="form.seo_meta.page_thumbnail"
               name="page_thumbnail"
-              label="Thumbnail Image"
-              help="og:image - 1200px X 630px"
+              :label="$t('form_blocks.seo.thumbnail_label')"
+              :help="$t('form_blocks.seo.thumbnail_help')"
             />
             <image-input
               v-model="form.seo_meta.page_favicon"
               name="page_favicon"
-              label="Favicon Image"
-              help="Public form page favicon"
+              :label="$t('form_blocks.seo.favicon_label')"
+              :help="$t('form_blocks.seo.favicon_help')"
             />
           </div>
           
@@ -70,31 +70,31 @@
 
       <div class="w-full border-t pt-4 mt-4">
         <h4 class="font-semibold">
-          Link Privacy
+          {{ $t('form_blocks.seo.link_privacy_heading') }}
         </h4>
         <p class="text-neutral-500 text-sm mb-4">
-          Disable to prevent Google from listing your form in search results.
+          {{ $t('form_blocks.seo.link_privacy_description') }}
         </p>
         <ToggleSwitchInput
           name="can_be_indexed"
           :form="form"
-          label="Indexable by Google"
+          :label="$t('form_blocks.seo.indexable_label')"
         />
       </div>
 
       <div v-if="useFeatureFlag('self_hosted')" class="w-full border-t pt-4 mt-4">
         <h4 class="font-semibold">
-          Custom Form URL
+          {{ $t('form_blocks.seo.custom_url_heading') }}
         </h4>
         <p class="text-neutral-500 text-sm mb-4">
-          Create a custom URL for your form. This will be the unique identifier in your form's URL.
+          {{ $t('form_blocks.seo.custom_url_description') }}
         </p>
         <text-input
           :form="form"
           name="slug"
           class="mt-4 max-w-xs"
-          label="Custom Form URL"
-          help="Use only lowercase letters, numbers, and hyphens. Example: my-custom-form"
+          :label="$t('form_blocks.seo.custom_url_label')"
+          :help="$t('form_blocks.seo.custom_url_help')"
         />
       </div>
     </div>

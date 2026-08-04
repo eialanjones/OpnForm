@@ -2,7 +2,7 @@
   <div class="flex flex-col items-center justify-center min-h-screen gap-4">
     <Loader class="w-8 h-8 text-blue-500" />
     <p class="text-neutral-500">
-      Preparing your checkout...
+      {{ $t('marketing.redirects.checkout_loading') }}
     </p>
   </div>
 </template>
@@ -14,13 +14,14 @@ definePageMeta({
   middleware: 'auth'
 })
 
+const { t } = useI18n()
 const route = useRoute()
 
 onMounted(async () => {
   const { plan, yearly, trial_duration, currency, name, email } = route.query
   
   if (!plan) {
-    useAlert().error('Missing plan information')
+    useAlert().error(t('marketing.redirects.missing_plan'))
     navigateTo({ name: 'pricing' })
     return
   }
@@ -31,7 +32,7 @@ onMounted(async () => {
       try {
         await billingApi.updateCustomerDetails({ name, email })
       } catch {
-        useAlert().error('Failed to update customer details, but proceeding with checkout')
+        useAlert().error(t('marketing.redirects.customer_details_error'))
       }
     }
 
@@ -56,7 +57,7 @@ onMounted(async () => {
     
     window.location.href = checkout_url
   } catch {
-    useAlert().error('Unable to start checkout process. Please try again or contact support.')
+    useAlert().error(t('marketing.redirects.checkout_error'))
     setTimeout(() => {
       navigateTo({ name: 'pricing' })
     }, 2000)

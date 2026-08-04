@@ -5,7 +5,7 @@
   >
     <EditorSectionHeader
       icon="i-heroicons-table-cells-20-solid"
-      title="Matrix"
+      :title="$t('form_fields.matrix.title')"
     />
 
     <div class="grid grid-cols-2 gap-4">
@@ -35,7 +35,7 @@
           icon="i-heroicons-plus"
           @click="addMatrixRow"
         >
-          Add row
+          {{ $t('form_fields.matrix.add_row') }}
         </UButton>
       </div>
       <div class="">
@@ -63,7 +63,7 @@
           icon="i-heroicons-plus"
           @click="addMatrixColumn"
         >
-          Add column
+          {{ $t('form_fields.matrix.add_column') }}
         </UButton>
       </div>
     </div>
@@ -83,6 +83,8 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue'])
 
+const { t } = useI18n()
+
 const localField = ref({ ...props.modelValue })
 
 watch(() => props.modelValue, (newField) => {
@@ -98,7 +100,7 @@ function updateField() {
 }
 
 function addMatrixRow() {
-  localField.value.rows.push(generateUniqueLabel(localField.value.rows, 'Row'))
+  localField.value.rows.push(generateUniqueLabel(localField.value.rows, t('form_fields.matrix.default_row_prefix')))
   localField.value.selection_data = selectionData.value
   updateField()
 }

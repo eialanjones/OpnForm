@@ -5,51 +5,51 @@
       :mentions="form.properties"
       name="message"
       class="mt-4"
-      label="Notification Message"
-      help="Customize the text of the notification message. Click @ to include form field values."
+      :label="$t('integrations.notifications.message_label')"
+      :help="$t('integrations.notifications.message_help')"
     />
     <toggle-switch-input
       v-model="compVal.include_submission_data"
       name="include_submission_data"
       class="mt-4"
-      label="Include submission data"
-      help="With form submission answers"
+      :label="$t('integrations.notifications.include_submission_data_label')"
+      :help="$t('integrations.notifications.include_submission_data_help')"
     />
     <toggle-switch-input
       v-if="compVal.include_submission_data"
       v-model="compVal.include_hidden_fields_submission_data"
       name="include_hidden_fields_submission_data"
       class="mt-4"
-      label="Include hidden fields"
-      help="If enabled then hidden fields will be included in the notification message"
+      :label="$t('integrations.notifications.include_hidden_fields_label')"
+      :help="$t('integrations.notifications.include_hidden_fields_help')"
     />
     <toggle-switch-input
       v-model="compVal.link_open_form"
       name="link_open_form"
       class="mt-4"
-      label="'Open Form' Link"
-      help="Link to the form public page"
+      :label="$t('integrations.notifications.open_form_link_label')"
+      :help="$t('integrations.notifications.open_form_link_help')"
     />
     <toggle-switch-input
       v-model="compVal.link_edit_form"
       name="link_edit_form"
       class="mt-4"
-      label="'Edit Form' Link"
-      help="Link to the form admin page"
+      :label="$t('integrations.notifications.edit_form_link_label')"
+      :help="$t('integrations.notifications.edit_form_link_help')"
     />
     <toggle-switch-input
       v-model="compVal.views_submissions_count"
       name="views_submissions_count"
       class="mt-4"
-      label="Form Analytics"
-      help="Form views and submissions count"
+      :label="$t('integrations.notifications.analytics_label')"
+      :help="$t('integrations.notifications.analytics_help')"
     />
     <toggle-switch-input
       v-if="form.editable_submissions"
       v-model="compVal.link_edit_submission"
       name="link_edit_submission"
       class="mt-4"
-      label="Edit Submission Link"
+      :label="$t('integrations.notifications.edit_submission_link_label')"
     />
   </div>
 </template>
@@ -102,7 +102,7 @@ export default {
     ].forEach((keyname) => {
       if (this.compVal[keyname] === undefined) {
         if (keyname === 'message') {
-          this.compVal[keyname] = 'New form submission'
+          this.compVal[keyname] = this.$t('integrations.notifications.default_message')
         } else if (['include_hidden_fields_submission_data'].includes(keyname)) {
           this.compVal[keyname] = false
         } else {

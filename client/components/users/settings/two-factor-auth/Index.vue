@@ -1,9 +1,9 @@
 <template>
   <div class="space-y-4">
     <div>
-      <h3 class="text-lg font-medium text-neutral-900">Two-Factor Authentication</h3>
+      <h3 class="text-lg font-medium text-neutral-900">{{ $t('user_settings.two_factor.heading') }}</h3>
       <p class="text-sm text-neutral-500 mt-1">
-        Add an extra layer of security to your account using an authenticator app.
+        {{ $t('user_settings.two_factor.description') }}
       </p>
     </div>
 
@@ -13,7 +13,7 @@
         color="success"
         variant="subtle"
         icon="i-heroicons-check-circle"
-        description="Two-factor authentication is enabled on your account."
+        :description="$t('user_settings.two_factor.enabled_alert')"
       />
 
       <div class="flex gap-2">
@@ -22,14 +22,14 @@
           variant="outline"
           @click="showRegenerateModal = true"
         >
-          Regenerate Recovery Codes
+          {{ $t('user_settings.two_factor.regenerate_codes_button') }}
         </UButton>
         <UButton
           color="neutral"
           variant="outline"
           @click="showDisableModal = true"
         >
-          Disable 2FA
+          {{ $t('user_settings.two_factor.disable_button') }}
         </UButton>
       </div>
     </div>
@@ -80,6 +80,7 @@ import DisableTwoFactorModal from './DisableTwoFactorModal.vue'
 import RegenerateRecoveryCodesModal from './RegenerateRecoveryCodesModal.vue'
 
 const alert = useAlert()
+const { t } = useI18n()
 const auth = useAuth()
 const { data: user } = auth.user()
 
@@ -105,7 +106,7 @@ const enableTwoFactor = async () => {
     twoFactorSecret.value = response.secret
     twoFactorQrCode.value = response.qr_code
   } catch (error) {
-    alert.error(error.response?._data?.message || 'Failed to enable two-factor authentication')
+    alert.error(error.response?._data?.message || t('user_settings.two_factor.enable_error'))
   } finally {
     enabling2FA.value = false
   }
@@ -127,9 +128,9 @@ const confirmTwoFactor = async (code) => {
     justRegenerated.value = false
     showRecoveryCodesModal.value = true
     
-    alert.success('Two-factor authentication has been enabled successfully.')
+    alert.success(t('user_settings.two_factor.enable_success'))
   } catch (error) {
-    alert.error(error.response?._data?.message || error.response?._data?.errors?.code?.[0] || 'Invalid code. Please try again.')
+    alert.error(error.response?._data?.message || error.response?._data?.errors?.code?.[0] || t('user_settings.two_factor.invalid_code'))
   } finally {
     confirming2FA.value = false
   }
@@ -145,9 +146,9 @@ const disableTwoFactor = async (code) => {
     // Refresh user data
     await auth.invalidateUser()
     
-    alert.success('Two-factor authentication has been disabled.')
+    alert.success(t('user_settings.two_factor.disable_success'))
   } catch (error) {
-    alert.error(error.response?._data?.message || error.response?._data?.errors?.code?.[0] || 'Invalid code. Please try again.')
+    alert.error(error.response?._data?.message || error.response?._data?.errors?.code?.[0] || t('user_settings.two_factor.invalid_code'))
   } finally {
     disabling2FA.value = false
   }
@@ -175,9 +176,9 @@ const handleRegenerateRecoveryCodes = async (data) => {
     justRegenerated.value = true
     showRegenerateModal.value = false
     showRecoveryCodesModal.value = true
-    alert.success('Recovery codes have been regenerated. Please save them in a safe place.')
+    alert.success(t('user_settings.two_factor.regenerate_success'))
   } catch (error) {
-    alert.error(error.response?._data?.message || error.response?._data?.errors?.code?.[0] || 'Failed to regenerate recovery codes')
+    alert.error(error.response?._data?.message || error.response?._data?.errors?.code?.[0] || t('user_settings.two_factor.regenerate_error'))
   } finally {
     regeneratingCodes.value = false
   }
@@ -192,7 +193,7 @@ const copyRecoveryCodes = () => {
   )
   const codesText = codes.join('\n')
   copyToClipboard(codesText)
-  alert.success('Recovery codes copied to clipboard')
+  alert.success(t('user_settings.two_factor.codes_copied'))
 }
 </script>
 

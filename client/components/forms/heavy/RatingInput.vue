@@ -10,7 +10,7 @@
       :aria-valuemin="0"
       :aria-valuemax="starsCount"
       :aria-valuenow="compVal"
-      :aria-label="`Rating: ${compVal} out of ${starsCount} stars`"
+      :aria-label="$t('widgets.rating_input.rating_aria', { value: compVal, total: starsCount })"
     >
       <div
         v-for="i in starsCount"
@@ -23,7 +23,7 @@
         })"
         role="button"
         :tabindex="getStarTabIndex(i)"
-        :aria-label="`${i} star${i > 1 ? 's' : ''}`"
+        :aria-label="$t('widgets.rating_input.star_aria', i)"
         @click="setRating(i)"
         @mouseenter="onMouseHover(i)"
         @mouseleave="hoverRating = -1"

@@ -7,10 +7,10 @@
         <div class="w-full md:w-1/2 md:p-6">
           <div class="border rounded-md p-6 shadow-md sticky top-4">
             <h2 class="font-semibold text-2xl">
-              Login to Forms Mentorfy
+              {{ $t('auth.login.title') }}
             </h2>
             <p class="text-sm text-neutral-500">
-              Welcome back! Please enter your details.
+              {{ $t('auth.login.subtitle') }}
             </p>
 
             <login-form />
@@ -18,10 +18,10 @@
         </div>
         <div class="w-full md:w-1/2 md:p-6 mt-8 md:mt-0">
           <h1 class="font-bold">
-            Create beautiful forms and share them anywhere
+            {{ $t('auth.marketing.headline') }}
           </h1>
           <p class="text-neutral-900 my-4 text-lg">
-            It takes seconds, you don't need to know how to code and it's free.
+            {{ $t('auth.marketing.subheadline') }}
           </p>
           <div class="flex flex-wrap justify-center">
             <p class="px-3 pb-3 text-sm text-neutral-500">
@@ -39,7 +39,7 @@
                   d="M5 13l4 4L19 7"
                 />
               </svg>
-              Unlimited forms
+              {{ $t('auth.marketing.unlimited_forms') }}
             </p>
             <p class="px-3 pb-3 text-sm text-neutral-500">
               <svg
@@ -56,7 +56,7 @@
                   d="M5 13l4 4L19 7"
                 />
               </svg>
-              Unlimited fields
+              {{ $t('auth.marketing.unlimited_fields') }}
             </p>
             <p class="px-3 pb-3 text-sm text-neutral-500">
               <svg
@@ -73,7 +73,7 @@
                   d="M5 13l4 4L19 7"
                 />
               </svg>
-              Unlimited submissions
+              {{ $t('auth.marketing.unlimited_submissions') }}
             </p>
           </div>
         </div>
@@ -86,10 +86,12 @@
 <script setup>
 import LoginForm from "~/components/pages/auth/components/LoginForm.vue"
 
+const { t } = useI18n()
+
 definePageMeta({
   middleware: "guest",
 })
 useOpnSeoMeta({
-  title: "Login",
+  title: t('auth.login.page_title'),
 })
 </script>

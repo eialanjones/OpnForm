@@ -1,11 +1,11 @@
 <template>
   <AdminCard
     v-if="props.user.stripe_id"
-    title="Billing info"
+    :title="$t('admin.billing_customer.title')"
     icon="heroicons:credit-card-16-solid"
   >
     <p class="text-xs text-neutral-500">
-      You can update the billing info of the subscriber in Stripe.
+      {{ $t('admin.billing_customer.description') }}
     </p>
     <div
       v-if="loading"
@@ -22,18 +22,18 @@
         <TextInput
           name="billing_name"
           :form="form"
-          label="Billing name"
+          :label="$t('admin.billing_customer.billing_name')"
           :required="true"
-          placeholder="Billing name"
+          :placeholder="$t('admin.billing_customer.billing_name')"
           :disabled="!customerLoaded"
         />
         <TextInput
           name="billing_email"
           :form="form"
-          label="Billing email"
+          :label="$t('admin.billing_customer.billing_email')"
           native-type="email"
           :required="true"
-          placeholder="Billing email"
+          :placeholder="$t('admin.billing_customer.billing_email')"
           :disabled="!customerLoaded"
         />
         <UButton
@@ -41,7 +41,7 @@
           type="submit"
           block
           :disabled="!customerLoaded"
-          label="Update billing info"
+          :label="$t('admin.billing_customer.update_button')"
         />
       </div>
     </form>

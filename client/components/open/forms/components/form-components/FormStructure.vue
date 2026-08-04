@@ -1,6 +1,6 @@
 <template>
   <editor-options-panel
-    name="Form Structure"
+    :name="$t('form_blocks.structure.title')"
     :already-opened="true"
   >
     <template #icon>

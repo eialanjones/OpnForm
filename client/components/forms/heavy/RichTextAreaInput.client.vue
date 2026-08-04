@@ -48,7 +48,7 @@
       <div class="flex items-center justify-between p-4 border-b">
         <div>
           <h3 class="text-lg font-medium text-neutral-900 dark:text-white">
-            {{ label || 'Rich Text Editor' }}
+            {{ label || $t('widgets.rich_text.default_title') }}
           </h3>
         </div>
         <UButton
@@ -57,7 +57,7 @@
           size="sm"
           icon="i-heroicons-x-mark"
           :ui="{ rounded: 'rounded-md' }"
-          title="Exit fullscreen"
+          :title="$t('widgets.fullscreen.exit')"
         />
       </div>
 

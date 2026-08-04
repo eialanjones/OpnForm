@@ -4,7 +4,7 @@
     icon="i-heroicons-arrow-top-right-on-square"
     :to="clarityLink"
     target="_blank"
-    label="Open in Clarity"
+    :label="$t('admin.clarity_link.label')"
   />
 </template>
 

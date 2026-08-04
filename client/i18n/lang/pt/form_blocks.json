@@ -1,0 +1,273 @@
+{
+    "form_blocks": {
+        "actions": {
+            "help": "Ajuda"
+        },
+        "sections": {
+            "submission_settings": "Configurações de envio",
+            "security_access": "Segurança e acesso",
+            "seo_social_sharing": "SEO e compartilhamento social",
+            "custom_code": "Código personalizado"
+        },
+        "closed_form": {
+            "text_label": "Texto do formulário encerrado",
+            "text_help": "Esta mensagem será exibida quando o formulário estiver encerrado"
+        },
+        "types": {
+            "text": "Texto",
+            "rich_text": "Texto formatado",
+            "date": "Data",
+            "url": "URL",
+            "phone_number": "Telefone",
+            "email": "E-mail",
+            "checkbox": "Caixa de seleção",
+            "select": "Seleção",
+            "radio": "Botão de opção",
+            "multi_select": "Seleção múltipla",
+            "matrix": "Matriz",
+            "number": "Número",
+            "rating": "Avaliação",
+            "scale": "Escala",
+            "slider": "Controle deslizante",
+            "files": "Arquivo",
+            "signature": "Assinatura",
+            "barcode": "Leitor de código de barras",
+            "qrcode": "Leitor de QR Code",
+            "password": "Senha",
+            "toggle_switch": "Botão de alternância",
+            "payment": "Pagamento",
+            "nf-text": "Texto",
+            "nf-page-break": "Quebra de página",
+            "nf-divider": "Divisor",
+            "nf-image": "Imagem",
+            "nf-video": "Vídeo",
+            "nf-code": "Código"
+        },
+        "add_block": {
+            "title": "Adicionar bloco",
+            "search_placeholder": "Buscar um bloco...",
+            "input_blocks": "Blocos de entrada",
+            "layout_blocks": "Blocos de layout",
+            "no_input_match": "Nenhum bloco de entrada corresponde à sua busca.",
+            "no_layout_match": "Nenhum bloco de layout corresponde à sua busca."
+        },
+        "ai": {
+            "tooltip": "Adicionar pergunta com IA",
+            "heading": "Adicionar novos campos com IA",
+            "description": "Isso vai gerar novos campos com base na sua descrição.",
+            "prompt_placeholder": "Descreva a pergunta que você quer adicionar com IA...",
+            "generate": "Gerar",
+            "prompt_required": "Descreva os campos que você quer adicionar com IA.",
+            "failed": "Não foi possível adicionar os campos.",
+            "success": "Campos adicionados com sucesso.",
+            "generation_failed": "Algo deu errado, tente novamente."
+        },
+        "custom_code": {
+            "pro_title": "Faça upgrade para desbloquear o código personalizado",
+            "pro_description": "No plano gratuito, você pode explorar os recursos de código personalizado dentro do editor de formulários. Faça upgrade do seu plano para usar scripts, estilos e rastreamento avançado nos formulários publicados. Amplie a funcionalidade e o design do seu formulário com opções ilimitadas de personalização.",
+            "code_injection_help_html": "O código será injetado na seção <b>head</b> da página do seu formulário.",
+            "code_label": "Código personalizado",
+            "css_heading": "CSS personalizado",
+            "css_pro_title": "Faça upgrade para desbloquear o CSS personalizado",
+            "css_pro_description": "No plano gratuito, você pode explorar o CSS personalizado dentro do editor. Faça upgrade para aplicar estilos personalizados aos seus formulários publicados.",
+            "css_injection_help_html": "O CSS será injetado no <b>head</b> da página do seu formulário.",
+            "css_input_help": "Somente CSS. Exemplo: body {'{'} background: #f8fafc {'}'}",
+            "css_label": "CSS personalizado",
+            "help_enabled": "Salve as alterações e acesse a página real do formulário para testar.",
+            "help_self_hosted_disabled": "O código personalizado está desativado por segurança no modo self-hosted. Ative com CUSTOM_CODE_ENABLE_SELF_HOSTED=true. Veja a documentação técnica: https://docs.opnform.com/introduction",
+            "help_requires_custom_domain": "O código personalizado exige o uso de um domínio personalizado."
+        },
+        "seo": {
+            "heading": "SEO e compartilhamento social - Meta",
+            "pro_title": "Faça upgrade para melhorar o SEO do seu formulário",
+            "pro_description": "Explore recursos avançados de SEO no editor com o plano gratuito. Faça upgrade para usar meta tags personalizadas, dados de Open Graph e mais visibilidade nas buscas. Aumente a presença online do seu formulário e atraia mais respondentes com nosso conjunto premium de SEO.",
+            "description": "Personalize a imagem e o texto que aparecem quando você compartilha seu formulário em outros sites (Open Graph).",
+            "form_domain_label": "Domínio do formulário",
+            "form_domain_placeholder": "seudominio.com",
+            "page_title_label": "Título da página",
+            "page_title_help": "Recomendado no máximo 60 caracteres",
+            "page_description_label": "Descrição da página",
+            "page_description_help": "Entre 150 e 160 caracteres",
+            "thumbnail_label": "Imagem de miniatura",
+            "thumbnail_help": "og:image - 1200px X 630px",
+            "favicon_label": "Imagem do favicon",
+            "favicon_help": "Favicon da página pública do formulário",
+            "link_privacy_heading": "Privacidade do link",
+            "link_privacy_description": "Desative para impedir que o Google liste seu formulário nos resultados de busca.",
+            "indexable_label": "Indexável pelo Google",
+            "custom_url_heading": "URL personalizada do formulário",
+            "custom_url_description": "Crie uma URL personalizada para o seu formulário. Ela será o identificador único na URL do formulário.",
+            "custom_url_label": "URL personalizada do formulário",
+            "custom_url_help": "Use apenas letras minúsculas, números e hífens. Exemplo: meu-formulario"
+        },
+        "customization": {
+            "basic_appearance": "Aparência básica",
+            "form_theme_label": "Tema do formulário",
+            "themes": {
+                "notion": "Notion",
+                "simple": "Simples (sem sombras)",
+                "minimal": "Minimalista",
+                "transparent": "Transparente"
+            },
+            "accent_color_label": "Cor de destaque",
+            "color_mode_label": "Modo de cor",
+            "color_modes": {
+                "system": "Sistema",
+                "light": "Claro",
+                "dark": "Escuro"
+            },
+            "text_and_language": "Texto e idioma",
+            "font_family_label": "Família de fontes",
+            "language_label": "Idioma",
+            "rtl_label": "Layout da direita para a esquerda",
+            "uppercase_labels_label": "Rótulos dos campos em maiúsculas",
+            "layout_and_sizing": "Layout e tamanho",
+            "input_size_label": "Tamanho dos campos",
+            "sizes": {
+                "small": "P",
+                "medium": "M",
+                "large": "G"
+            },
+            "input_roundness_label": "Arredondamento dos campos",
+            "form_width_label": "Largura do formulário",
+            "widths": {
+                "centered": "Centralizado",
+                "full": "Largura total"
+            },
+            "branding": "Marca",
+            "logo_label": "Logo",
+            "background_label": "Plano de fundo",
+            "cover_label": "Capa (~1500px)",
+            "hide_branding_label": "Ocultar a marca do Forms Mentorfy",
+            "hide_branding_pro_title": "Faça upgrade hoje para remover a marca do Forms Mentorfy",
+            "advanced_options": "Opções avançadas",
+            "navigation_arrows_label": "Exibir setas de navegação",
+            "progress_bar_label": "Exibir barra de progresso",
+            "progress_bar_help": "A barra fica no topo da página (acima da navegação neste editor) ou abaixo do título quando o formulário está incorporado",
+            "transparent_background_label": "Fundo transparente",
+            "transparent_background_help": "Quando o formulário está incorporado",
+            "confetti_label": "Confetes ao enviar com sucesso",
+            "auto_focus_label": "Focar automaticamente o primeiro campo da página"
+        },
+        "preview": {
+            "title": "Pré-visualização do formulário",
+            "restart": "Reiniciar",
+            "collapse": "Recolher",
+            "expand": "Expandir",
+            "add_block": "Adicionar bloco",
+            "edit_question": "Editar pergunta"
+        },
+        "error_modal": {
+            "title": "Não conseguimos salvar seu formulário"
+        },
+        "information": {
+            "description": "Informações básicas sobre o seu formulário.",
+            "form_name_label": "Nome do formulário",
+            "form_name_placeholder": "Meu formulário",
+            "tags_label": "Tags",
+            "tags_help": "Para organizar seus formulários",
+            "tags_placeholder": "Selecione as tags",
+            "visibility_label": "Visibilidade do formulário",
+            "visibility_placeholder": "Selecione a visibilidade",
+            "visibility": {
+                "published": "Publicado",
+                "draft": "Rascunho - não acessível publicamente",
+                "closed": "Encerrado - não aceitará novas respostas"
+            },
+            "copy_settings_button": "Copiar configurações de outro formulário",
+            "import_settings_title": "Importar configurações de outro formulário",
+            "copy_from_label": "Copiar configurações de",
+            "copy_from_placeholder": "Escolha um formulário",
+            "confirm_and_copy": "Confirmar e copiar",
+            "select_form_error": "Selecione um formulário para copiar as configurações",
+            "settings_copied": "Configurações do formulário copiadas."
+        },
+        "security": {
+            "description": "Gerencie quem pode acessar seu formulário e quando.",
+            "password_label": "Senha do formulário",
+            "password_help": "Deixe em branco para desativar a proteção por senha",
+            "closing_date_label": "Data de encerramento",
+            "closing_date_help": "Deixe em branco para manter o formulário aberto por tempo indeterminado",
+            "max_submissions_label": "Limitar o número de respostas",
+            "max_submissions_placeholder": "Máximo de respostas",
+            "max_submissions_help": "Deixe em branco para respostas ilimitadas",
+            "max_submissions_reached_label": "Texto de limite de respostas atingido",
+            "max_submissions_reached_help": "Esta mensagem será exibida quando o formulário atingir o número máximo de respostas",
+            "section_heading": "Segurança",
+            "section_description": "Proteja seu formulário e seus arquivos sensíveis.",
+            "bot_protection_label": "Proteção contra bots",
+            "bot_protection_help": "Protege seu formulário contra spam e abuso com um captcha",
+            "captcha_provider_label": "Selecione um provedor de captcha"
+        },
+        "structure": {
+            "title": "Estrutura do formulário"
+        },
+        "submission": {
+            "description": "Configure como as respostas do formulário são tratadas.",
+            "submit_button_label": "Texto do botão de envio",
+            "next_button_label": "Texto do botão de avançar",
+            "auto_save_label": "Salvar resposta automaticamente",
+            "auto_save_help": "Salva o progresso do formulário, permitindo que os respondentes continuem depois.",
+            "payment_auto_save_notice": "Precisa estar ativado com um bloco de pagamento.",
+            "database_action_label": "Ação de envio no banco de dados",
+            "database_actions": {
+                "create": "Criar novo registro",
+                "update": "Atualizar registro existente"
+            },
+            "update_record_help": "Quando valores correspondentes forem encontrados nas colunas selecionadas, o (primeiro) registro existente será atualizado em vez de criar um novo registro. Se não houver correspondência, um novo registro será criado.",
+            "learn_more_link": "Saiba mais.",
+            "properties_to_check_label": "Propriedades a verificar na atualização",
+            "clear_empty_fields_label": "Limpar campos vazios na atualização",
+            "clear_empty_fields_help": "Quando ativado, os campos deixados em branco na resposta limpam os valores existentes na resposta salva. Quando desativado, apenas os campos preenchidos são atualizados.",
+            "advanced_heading": "Opções avançadas de envio",
+            "advanced_description": "Configure opções avançadas para envios de formulário e coleta de dados.",
+            "partial_submissions_label": "Coletar respostas parciais",
+            "partial_submissions_help": "Capture respostas incompletas para analisar em que ponto as pessoas desistem e colete dados parciais mesmo quando o formulário não é concluído.",
+            "partial_submissions_pro_title": "Faça upgrade para coletar respostas parciais",
+            "partial_submissions_pro_description": "Capture dados valiosos de respostas incompletas. Analise onde as pessoas desistem e colete informações parciais mesmo quando elas não concluem o formulário inteiro.",
+            "ip_tracking_label": "Coletar endereços IP",
+            "ip_tracking_help": "Colete e armazene os endereços IP de quem responde para análises, prevenção de fraudes e insights geográficos. Ajuda a identificar padrões de resposta e a melhorar a segurança.",
+            "ip_tracking_pro_title": "Faça upgrade para coletar endereços IP",
+            "ip_tracking_pro_description": "Capture automaticamente os endereços IP de quem responde para obter insights valiosos sobre o tráfego do seu formulário. Analise padrões geográficos, detecte atividades suspeitas e reforce a segurança com análises detalhadas das respostas.",
+            "gdpr_title": "Conformidade com LGPD e privacidade",
+            "gdpr_description": "Garanta que sua política de privacidade informe a coleta de endereços IP e obtenha o consentimento adequado quando necessário.",
+            "after_submission_heading": "Após o envio",
+            "after_submission_pro_title": "Faça upgrade para personalizar o comportamento após o envio",
+            "after_submission_pro_description": "Personalize o comportamento após o envio: redirecione as pessoas, exiba mensagens personalizadas ou dispare ações. Faça upgrade para desbloquear opções avançadas e uma experiência sem atritos. Temos muitos outros recursos pro para ampliar a funcionalidade do seu formulário e o engajamento das pessoas.",
+            "after_submission_description": "Personalize a experiência após o envio do formulário.",
+            "action_after_label": "Ação após o envio do formulário",
+            "actions": {
+                "success_page": "Exibir página de sucesso",
+                "redirect": "Redirecionar"
+            },
+            "redirect_url_label": "URL de redirecionamento",
+            "success_text_label": "Texto da página de sucesso",
+            "re_fillable_label": "Formulário pode ser preenchido novamente",
+            "re_fillable_help": "Permite preencher o formulário várias vezes",
+            "restart_button_label": "Texto do botão de recomeçar",
+            "editable_heading": "Respostas editáveis",
+            "editable_pro_title": "Faça upgrade para usar respostas editáveis",
+            "editable_pro_description": "No plano gratuito, você pode testar todos os recursos pagos apenas dentro do editor de formulários. Faça upgrade do seu plano para permitir que as pessoas atualizem suas respostas por um link único, e muito mais. Tenha acesso completo a todos os recursos avançados.",
+            "editable_description": "Permita que os respondentes editem e atualizem suas respostas por um link único.",
+            "editable_label": "Ativar respostas editáveis",
+            "editable_help": "Permite editar respostas por uma URL única",
+            "edit_button_label": "Texto do botão de editar resposta"
+        },
+        "style_switch": {
+            "label": "Estilo do formulário",
+            "styles": {
+                "classic": "Clássico",
+                "focused": "Focado"
+            },
+            "tooltips": {
+                "classic": "Formulário clássico: vários campos por página, layout em várias linhas, com suporte a múltiplas páginas e blocos de layout.",
+                "focused": "No estilo Typeform, uma pergunta por etapa."
+            },
+            "confirm_title": "Mudar para o estilo {style}?",
+            "confirm_button": "Mudar para {style}",
+            "removal_description": "Mudar para o estilo Focado vai remover {count} bloco não suportado neste modo. | Mudar para o estilo Focado vai remover {count} blocos não suportados neste modo.",
+            "switch_description": "Mudar para o estilo Focado.",
+            "no_blocks_removed": "Nenhum bloco será removido."
+        }
+    }
+}

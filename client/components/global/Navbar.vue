@@ -12,7 +12,7 @@
           >
             <img
               src="/img/logo.svg"
-              alt="Forms Mentorfy logo"
+              :alt="$t('app_shell.navbar.logo_alt')"
               class="w-6 h-6"
             >
             <span
@@ -45,14 +45,14 @@
             :class="navLinkClasses"
             class="hidden lg:block"
           >
-            My Forms
-          </NuxtLink>  
+            {{ $t('app_shell.navbar.my_forms') }}
+          </NuxtLink>
           <NuxtLink
             v-if="$route.name !== 'templates'"
             :to="{ name: 'templates' }"
             :class="navLinkClasses"
           >
-            Templates
+            {{ $t('app_shell.navbar.templates') }}
           </NuxtLink>
           <NuxtLink
             v-if="($route.name !== 'ai-form-builder' && user === null) && (!useFeatureFlag('self_hosted') && useFeatureFlag('ai_features'))"
@@ -60,7 +60,7 @@
             :class="navLinkClasses"
             class="hidden lg:inline"
           >
-            AI Form Builder
+            {{ $t('app_shell.navbar.ai_form_builder') }}
           </NuxtLink>
           <NuxtLink
             v-if="
@@ -74,8 +74,8 @@
             <span
               v-if="user"
               class="text-primary"
-            >Upgrade</span>
-            <span v-else>Pricing</span>
+            >{{ $t('common.actions.upgrade') }}</span>
+            <span v-else>{{ $t('app_shell.navbar.pricing') }}</span>
           </NuxtLink>
 
           <NuxtLink
@@ -83,7 +83,7 @@
             :class="navLinkClasses"
             target="_blank"
           >
-            Help
+            {{ $t('app_shell.navbar.help') }}
           </NuxtLink>
         </div>
         <div
@@ -124,7 +124,7 @@
                     :class="navLinkClasses"
                     active-class="text-neutral-800 dark:text-white"
                   >
-                    Login
+                    {{ $t('app_shell.navbar.login') }}
                   </NuxtLink>
 
                   <TrackClick
@@ -137,7 +137,7 @@
                       variant="outline"
                       color="primary"
                       trailing-icon="i-heroicons-arrow-right"
-                      label="Create a form"
+                      :label="$t('app_shell.navbar.create_a_form')"
                     />
                   </TrackClick>
                 </div>

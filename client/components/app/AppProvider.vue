@@ -1,13 +1,23 @@
 <template>
-  <UApp :toaster="toasterConfig" :tooltip="tooltipConfig">
+  <UApp
+    :locale="uiKitLocale"
+    :toaster="toasterConfig"
+    :tooltip="tooltipConfig"
+  >
     <slot />
   </UApp>
 </template>
 
 <script setup>
+import { en as uiKitEn, pt_br as uiKitPtBr } from "@nuxt/ui/locale"
 import { useAppStore } from "~/stores/app"
 
 const appStore = useAppStore()
+const { locale } = useI18n()
+
+// Nuxt UI ships its own strings (select-menu search + empty state, modal close labels).
+// They stay English unless UApp is told which locale to use.
+const uiKitLocale = computed(() => (locale.value === "pt" ? uiKitPtBr : uiKitEn))
 
 // Get Crisp chat state from the store
 const crispChatOpened = computed(() => appStore.crisp.chatOpened)

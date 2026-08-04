@@ -8,7 +8,7 @@
         <toggle-switch-input
           v-model="statusToggle"
           name="status"
-          label="Enabled"
+          :label="$t('common.states.enabled')"
         />
       </slot>
     </div>
@@ -37,20 +37,21 @@
               </div>
               <div class="flex-grow">
                 <h3 class="font-semibold">
-                  {{ hasLogic ? 'Logic configured' : 'Add logic' }}
+                  {{ hasLogic ? $t('integrations.wrapper.logic_configured') : $t('integrations.wrapper.add_logic') }}
                 </h3>
                 <p class="text-neutral-500 text-xs">
-                  {{ hasLogic ? 'Conditions control when integration runs' : 'Set conditions for when to run' }}
+                  {{ hasLogic ? $t('integrations.wrapper.logic_configured_hint') : $t('integrations.wrapper.add_logic_hint') }}
                 </p>
               </div>
             </div>
           </template>
 
 
-          <p class="text-xs font-medium text-gray-600 mb-2 mt-4">When should this integration run?</p>
-          <p class="text-neutral-500 text-xs mb-3">
-            Set <span class="font-semibold">conditions that control when this integration executes</span>. Leave empty to always run.
-          </p>
+          <p class="text-xs font-medium text-gray-600 mb-2 mt-4">{{ $t('integrations.wrapper.logic_question') }}</p>
+          <p
+            class="text-neutral-500 text-xs mb-3"
+            v-html="$t('integrations.wrapper.logic_description')"
+          />
           <div class="p-3 border border-gray-200 rounded-lg bg-gray-50/50 mt-4">
             <condition-editor
               ref="filter-editor"

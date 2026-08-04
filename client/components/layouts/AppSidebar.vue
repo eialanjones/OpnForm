@@ -78,6 +78,7 @@ import UserDropdown from "~/components/dashboard/UserDropdown.vue"
 import NavigationList from "~/components/global/NavigationList.vue"
 import { useSharedNavigation } from "~/composables/components/useSharedNavigation"
 
+const { t } = useI18n()
 const route = useRoute()
 const sidebar = ref(null)
 
@@ -100,7 +101,7 @@ const navigationSections = computed(() => [
     name: null,
     items: [
       createNavItem({
-        label: 'Create Form',
+        label: t('app_shell.app_sidebar.create_form'),
         icon: 'i-heroicons-plus',
         to: { name: 'forms-create' },
         active: isActiveRoute('forms-create'),
@@ -109,25 +110,25 @@ const navigationSections = computed(() => [
         kbd: ['N'],
       }),
       createNavItem({
-        label: 'Home', 
+        label: t('app_shell.app_sidebar.home'),
         icon: 'i-heroicons-home',
         to: { name: 'home' },
         active: isActiveRoute('home')
       }),
       createNavItem({
-        label: 'Templates',
+        label: t('app_shell.app_sidebar.templates'),
         icon: 'i-heroicons-document-duplicate',
         to: { name: 'templates-my-templates' },
         active: isActiveRoute('templates')
       }),
       // Show upgrade for non-pro users
       ...(workspace.value && !workspace.value.is_pro && !isSelfHosted.value ? [createNavItem({
-        label: 'Upgrade to Pro',
-        icon: 'i-heroicons-sparkles-solid', 
+        label: t('app_shell.app_sidebar.upgrade_to_pro'),
+        icon: 'i-heroicons-sparkles-solid',
         onClick: () => {
           useAmplitude().logEvent('app_sidebar_upgrade_click')
           openSubscriptionModal({
-            modal_title: 'Upgrade to Pro plan',
+            modal_title: t('app_shell.app_sidebar.upgrade_modal_title'),
           })
         },
         color: 'primary' // Override default color
