@@ -101,7 +101,7 @@
             "encryption_ssl": "SSL",
             "username": "Usuário",
             "sender_address": "Endereço do remetente",
-            "save_button": "Salvar domínio(s)",
+            "save_button": "Salvar configurações",
             "clear_button": "Limpar configurações",
             "saved": "Configurações de e-mail salvas.",
             "save_error": "Falha ao atualizar as configurações de e-mail: {message}"

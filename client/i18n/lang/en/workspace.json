@@ -101,7 +101,7 @@
             "encryption_ssl": "SSL",
             "username": "Username",
             "sender_address": "Sender address",
-            "save_button": "Save Domain(s)",
+            "save_button": "Save settings",
             "clear_button": "Clear settings",
             "saved": "Email settings saved.",
             "save_error": "Failed to update email settings: {message}"
