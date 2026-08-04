@@ -11,7 +11,7 @@ We generally support the latest release series and the `main` branch. Security f
 -   Please do not open public GitHub issues for security reports.
 -   For anything specific to Forms Mentorfy — this deployment, the Mentorfy SSO
     flow, or Mentorfy data — contact Mentorfy through
-    [mentorfy.com.br](https://www.mentorfy.com.br).
+    [mentorfy.io](https://www.mentorfy.io).
 -   For a vulnerability in the upstream codebase that also affects other OpnForm
     installations, please report it to the
     [OpnForm project](https://github.com/OpnForm/OpnForm/security) so every

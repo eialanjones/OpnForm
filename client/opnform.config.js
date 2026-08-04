@@ -6,7 +6,7 @@ export default {
   githubAuth: null,
   notion: { worker: "https://notion-forms-worker.notionforms.workers.dev/v1" },
   links: {
-    help_url: "https://www.mentorfy.com.br",
+    help_url: "https://www.mentorfy.io",
     api_docs: "https://docs.opnform.com/api-reference/introduction",
     // AGPLv3 §13: a network-deployed modified version must offer its users the
     // Corresponding Source. This is the only reason a repository link remains

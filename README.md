@@ -4,8 +4,8 @@
 <img src="client/public/img/social-preview.jpg">
 </p>
 
-Forms Mentorfy is the form builder used by [Mentorfy](https://www.mentorfy.com.br),
-self-hosted at `forms.mentorfy.com.br`.
+Forms Mentorfy is the form builder used by [Mentorfy](https://www.mentorfy.io),
+self-hosted at `forms.mentorfy.io`.
 
 It is a fork of [OpnForm](https://github.com/OpnForm/OpnForm), pinned to the last
 commit before OpnForm V2 and stripped of the Enterprise-licensed directory.

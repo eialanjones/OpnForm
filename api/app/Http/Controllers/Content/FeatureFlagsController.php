@@ -61,7 +61,21 @@ class FeatureFlagsController extends Controller
             return null;
         }
 
-        return config('app.docker_version');
+        $version = trim((string) config('app.docker_version'));
+
+        // O Dockerfile define `ARG APP_VERSION=unknown`, e um build que não
+        // sobrescreve esse arg entrega a string literal "unknown". Ela é truthy,
+        // então o `v-if="version"` do BaseSidebar — que existe justamente para
+        // esconder o sufixo quando não há versão — não segurava nada, e o rodapé
+        // mostrava "Forms Mentorfy vunknown".
+        //
+        // Placeholder não é versão. Devolver null faz o guard do front voltar a
+        // funcionar como foi desenhado.
+        if ($version === '' || strtolower($version) === 'unknown') {
+            return null;
+        }
+
+        return $version;
     }
 
     /**
