@@ -51,18 +51,39 @@ export const useAuthStore = defineStore("auth", {
       this.admin_token = token
     },
 
+    // Writes straight to document.cookie instead of going through useCookie.
+    //
+    // useCookie only flushes a new value on the next Vue scheduler tick, while
+    // *creating* a useCookie ref for a cookie that isn't there yet writes an
+    // expired cookie synchronously. Setting a token and navigating away in the
+    // same tick — which is exactly what the Mentorfy SSO bridge does — puts
+    // those two writes in a race, and when the delete wins the session survives
+    // only in memory: navigation keeps working and the next reload lands on the
+    // login page. Writing here is synchronous, so there is nothing to race.
     setCookie(name, value, options = {}) {
-      if (import.meta.client) {
-        const secureDefault = (typeof window !== 'undefined') ? window.location.protocol === 'https:' : true
-        const embedded = typeof window !== 'undefined' && window.top !== window.self
-        const safeOptions = {
-          path: options.path ?? '/',
-          sameSite: options.sameSite ?? (embedded ? 'none' : 'lax'),
-          secure: options.secure ?? (embedded ? true : secureDefault),
-          ...options,
-        }
-        useCookie(name, safeOptions).value = value
-      }
+      if (!import.meta.client) return
+
+      const embedded = window.top !== window.self
+      const path = options.path ?? "/"
+      const sameSite = options.sameSite ?? (embedded ? "none" : "lax")
+      const secure =
+        options.secure ?? (embedded ? true : window.location.protocol === "https:")
+
+      // A null value means "drop this cookie", regardless of the max age asked for.
+      const clearing = value === null || value === undefined
+      const maxAge = clearing ? 0 : options.maxAge
+
+      const parts = [
+        `${name}=${clearing ? "" : encodeURIComponent(value)}`,
+        `Path=${path}`,
+      ]
+
+      // No max age on a live value means a session cookie, same as before.
+      if (maxAge !== undefined) parts.push(`Max-Age=${maxAge}`)
+      if (sameSite) parts.push(`SameSite=${sameSite}`)
+      if (secure) parts.push("Secure")
+
+      document.cookie = parts.join("; ")
     },
 
     initStore(token, adminToken) {
