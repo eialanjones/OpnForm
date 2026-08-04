@@ -33,17 +33,23 @@ class MentorfyProvisioner
      */
     public function provision(array $identity): User
     {
-        return DB::transaction(function () use ($identity) {
+        [$user, $workspace] = DB::transaction(function () use ($identity) {
             $user = $this->resolveUser($identity);
             $workspace = $this->resolveWorkspace($identity['workspace_owner']);
 
             $this->attach($user, $workspace, $this->normalizeRole($identity['role']));
             $this->attachServiceAccount($workspace);
 
-            $this->notifyMentorfy($identity['workspace_owner'], $workspace, $identity);
-
-            return $user;
+            return [$user, $workspace];
         });
+
+        // Fora da transação de propósito. É uma chamada HTTP com timeout de 5s no
+        // caminho do login: dentro da transação ela seguraria os locks do
+        // provisionamento por todo esse tempo. Depois do commit também é mais
+        // honesto — a Mentorfy só ouve falar de um vínculo que de fato existe.
+        $this->notifyMentorfy($identity['workspace_owner'], $workspace, $identity);
+
+        return $user;
     }
 
     private function resolveUser(array $identity): User
@@ -187,11 +193,14 @@ class MentorfyProvisioner
             return;
         }
 
-        $ownerUser = $ownerProfileId === $identity['sub']
-            ? User::where('mentorfy_profile_id', $ownerProfileId)->first()
-            : User::where('mentorfy_profile_id', $ownerProfileId)->first();
-
         try {
+            // Dentro do try junto com a chamada HTTP: fora dele, uma falha de
+            // banco aqui escaparia e viraria "não foi possível preparar sua
+            // conta" para um mentor cuja conta já está criada e commitada.
+            $ownerUser = $ownerProfileId === $identity['sub']
+                ? User::where('mentorfy_profile_id', $ownerProfileId)->first()
+                : User::where('mentorfy_profile_id', $ownerProfileId)->first();
+
             $response = Http::timeout(5)
                 ->withHeaders(['X-API-Key' => $apiKey])
                 ->post($url, array_filter([
