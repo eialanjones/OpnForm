@@ -164,9 +164,15 @@ const { isAuthenticated: authenticated } = useIsAuthenticated()
 
 const formStyle = computed(() => workingFormStore.content?.presentation_style || 'classic')
 
+const selfHosted = computed(() => !!useFeatureFlag('self_hosted'))
+
 const allowedBlocks = computed(() => {
   const all = Object.values(blocksTypes)
   return all.filter(block => {
+    // Mirrors the guard in useWorkingFormStore().addBlock — blocks flagged as
+    // unavailable on self hosted can only ever raise an error, so keep them out
+    // of the list instead of offering something that can't be added.
+    if (block.self_hosted !== undefined && !block.self_hosted && selfHosted.value) return false
     const modes = block.available_in || ['classic', 'focused']
     return modes.includes(formStyle.value)
   })

@@ -239,7 +239,7 @@ export const useWorkingFormStore = defineStore("working_form", {
       }
 
       if (originalBlockDefinition?.self_hosted !== undefined && !originalBlockDefinition.self_hosted && useFeatureFlag('self_hosted')) {
-        useAlert().error(block?.title + ' is not allowed on self hosted. Please use our hosted version.')
+        useAlert().error(originalBlockDefinition?.title + ' is not allowed on self hosted. Please use our hosted version.')
         return
       }
       if (originalBlockDefinition?.auth_required && !useIsAuthenticated().isAuthenticated.value) {
