@@ -1,10 +1,9 @@
 import { getDomain, getHost, customDomainUsed } from "~/lib/utils.js"
 
-function addAuthHeader(request, options) {
-  const authStore = useAuthStore()
-  if (authStore.token) {
+function addAuthHeader(request, options, token) {
+  if (token) {
     options.headers = {
-      Authorization: `Bearer ${authStore.token}`,
+      Authorization: `Bearer ${token}`,
       ...options.headers,
     }
   }
@@ -44,40 +43,52 @@ function addLocaleHeader(request, options) {
 
 export function getOpnRequestsOptions(request, opts) {
   const config = useRuntimeConfig()
+  const authStore = useAuthStore()
+  const shouldAuthenticate = opts.auth !== false
+  const shouldHandleUnauthorized = opts.handleUnauthorized ?? shouldAuthenticate
+  const requestToken = shouldAuthenticate ? authStore.token : null
 
-  if (opts.body && opts.body instanceof FormData) {
-    opts.headers = {
+  // `auth` and `handleUnauthorized` are client-only controls. Do not leak them
+  // into ofetch, where they have no meaning.
+  const requestOptions = { ...opts }
+  delete requestOptions.auth
+  delete requestOptions.handleUnauthorized
+
+  if (requestOptions.body && requestOptions.body instanceof FormData) {
+    requestOptions.headers = {
       charset: "utf-8",
-      ...opts.headers,
+      ...requestOptions.headers,
     }
   }
 
-  opts.headers = { accept: "application/json", ...opts.headers }
+  requestOptions.headers = { accept: "application/json", ...requestOptions.headers }
 
   // Authenticate requests coming from the server
   if (import.meta.server && config.apiSecret) {
-    opts.headers["x-api-secret"] = config.apiSecret
+    requestOptions.headers["x-api-secret"] = config.apiSecret
   }
 
-  addAuthHeader(request, opts)
-  addPasswordToFormRequest(request, opts)
-  addCustomDomainHeader(request, opts)
-  addLocaleHeader(request, opts)
+  addAuthHeader(request, requestOptions, requestToken)
+  addPasswordToFormRequest(request, requestOptions)
+  addCustomDomainHeader(request, requestOptions)
+  addLocaleHeader(request, requestOptions)
 
-  if (!opts.baseURL) {
+  if (!requestOptions.baseURL) {
     // Use privateApiBase only on server side, fallback to public.apiBase on client
-    opts.baseURL = (import.meta.server && config.privateApiBase) || config.public.apiBase
+    requestOptions.baseURL = (import.meta.server && config.privateApiBase) || config.public.apiBase
   }
 
   return {
     async onResponseError({ response }) {
       const { status } = response
-      if (status === 401) {
+      if (status === 401 && shouldHandleUnauthorized && requestToken) {
         // Do not run token-expiry UX during SSR. Server-side bootstrap requests can
         // fail for context-specific reasons and should be retried client-side first.
-        if (import.meta.client) {
+        // Also ignore a late response belonging to a token that has already been
+        // replaced by another login.
+        if (import.meta.client && authStore.token === requestToken) {
           const { handleTokenExpiry } = useAuthFlow()
-          await handleTokenExpiry()
+          await handleTokenExpiry(requestToken)
         }
       } else if (status === 420) {
         // If invalid domain, redirect to main domain
@@ -88,7 +99,7 @@ export function getOpnRequestsOptions(request, opts) {
         console.error("Request error", status)
       }
     },
-    ...opts,
+    ...requestOptions,
   }
 }
 

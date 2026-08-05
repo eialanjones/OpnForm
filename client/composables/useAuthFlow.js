@@ -34,6 +34,7 @@ const pendingAuthContext = ref(null)
 
 export const useAuthFlow = () => {
   const authStore = useAuthStore()
+  const appStore = useAppStore()
   const { logEvent } = useAmplitude()
   const router = useRouter()
 
@@ -67,6 +68,11 @@ export const useAuthFlow = () => {
       authStore.updateUser(tokenData.user)
       initServiceClients(tokenData.user)
     }
+
+    // Authentication may have completed outside QuickRegister (Mentorfy SSO,
+    // OAuth callback, regular login). Never carry an expired-session modal into
+    // the newly authenticated session.
+    appStore.resetAuthModals()
 
     // 3. Handle AppSumo license feedback (registration-specific)
     if (isNewUser && tokenData.appsumo_license !== undefined) {
@@ -193,8 +199,13 @@ export const useAuthFlow = () => {
    * Handle token expiry (401 errors)
    * Preserves cache and work state, opens QuickRegister modal
    */
-  const handleTokenExpiry = async () => {
-    const appStore = useAppStore()
+  const handleTokenExpiry = async (expiredToken = authStore.token) => {
+    // A request made with an older token can finish after another login has
+    // already installed a fresh token. That stale 401 must not clear the new
+    // session or reopen its login modal.
+    if (!expiredToken || authStore.token !== expiredToken) {
+      return
+    }
     
     // Handle admin token expiry by undoing impersonation
     if (authStore.isImpersonating) {

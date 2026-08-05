@@ -10,6 +10,12 @@ export const useAppStore = defineStore("app", () => {
   const quickLoginModal = ref(false)
   const quickRegisterModal = ref(false)
 
+  const resetAuthModals = () => {
+    isUnauthorizedError.value = false
+    quickLoginModal.value = false
+    quickRegisterModal.value = false
+  }
+
   const featureBaseEnabled = computed(() => useRuntimeConfig().public.featureBaseOrganization !== null)
   const crispEnabled = computed(() => useRuntimeConfig().public.crispWebsiteId !== null && useRuntimeConfig().public.crispWebsiteId !== '')
   
@@ -37,6 +43,7 @@ export const useAppStore = defineStore("app", () => {
     isUnauthorizedError,
     quickLoginModal,
     quickRegisterModal,
+    resetAuthModals,
     featureBaseEnabled,
     crispEnabled,
   

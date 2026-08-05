@@ -6,7 +6,14 @@ const LEGACY_AUTH_COOKIE_NAME = 'token'
 const ADMIN_AUTH_COOKIE_NAME = 'opnform_admin_token'
 const LEGACY_ADMIN_AUTH_COOKIE_NAME = 'admin_token'
 
-export default defineNuxtRouteMiddleware(async (_to, _from) => {
+export default defineNuxtRouteMiddleware(async (to, _from) => {
+  // External authentication bridges must establish their new session before
+  // any request is made with a previous cookie. Page middleware: [] does not
+  // disable global middleware, so this opt-out has to live here.
+  if (to.meta.skipAuthBootstrap) {
+    return
+  }
+
   const authStore = useAuthStore()
   const queryClient = useQueryClient()
   const tokenCookie = useCookie(AUTH_COOKIE_NAME)

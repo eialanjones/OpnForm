@@ -300,6 +300,14 @@ Route::group(['middleware' => 'auth.multi'], function () {
     });
 });
 
+// SSO da Mentorfy autentica com seu próprio token curto assinado e deve poder
+// substituir uma sessão OpnForm já existente. Por isso não pertence ao grupo
+// guest:api; o endpoint continua público e protegido pelo throttle e pelas
+// verificações RS256, issuer, audience, expiração e uso único no controller.
+Route::post('auth/mentorfy/exchange', [MentorfySsoController::class, 'exchange'])
+    ->middleware('throttle:20,1')
+    ->name('mentorfy.sso.exchange');
+
 Route::group(['middleware' => 'guest:api'], function () {
     Route::post('login', [LoginController::class, 'login'])->name('login');
     Route::post('register', [RegisterController::class, 'register']);
@@ -309,12 +317,6 @@ Route::group(['middleware' => 'guest:api'], function () {
 
     Route::post('email/verify/{user}', [VerificationController::class, 'verify'])->name('verification.verify');
     Route::post('email/resend', [VerificationController::class, 'resend']);
-
-    // SSO da Mentorfy: troca o token curto assinado por um JWT do OpnForm.
-    // Throttle apertado: endpoint de autenticação sem credencial de usuário.
-    Route::post('auth/mentorfy/exchange', [MentorfySsoController::class, 'exchange'])
-        ->middleware('throttle:20,1')
-        ->name('mentorfy.sso.exchange');
 
     // Two-factor authentication verification (public, but requires pending auth token)
     Route::post('/auth/two-factor/verify', [\App\Http\Controllers\Auth\TwoFactorVerificationController::class, 'verify'])->name('two-factor.verify');
