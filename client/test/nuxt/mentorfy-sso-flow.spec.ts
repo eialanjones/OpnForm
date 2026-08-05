@@ -6,6 +6,7 @@ import checkAuthMiddleware from '~/middleware/01.check-auth.global.js'
 import { getOpnRequestsOptions } from '~/composables/useOpnApi.js'
 
 const nuxtMocks = vi.hoisted(() => ({
+  queryClient: null as Record<string, any> | null,
   handleAuthSuccess: vi.fn(() => Promise.resolve()),
   handleTokenExpiry: vi.fn(() => Promise.resolve()),
   opnFetch: vi.fn(() => Promise.resolve({
@@ -22,6 +23,10 @@ const nuxtMocks = vi.hoisted(() => ({
   router: {
     replace: vi.fn(() => Promise.resolve()),
   },
+}))
+
+vi.mock('@tanstack/vue-query', () => ({
+  useQueryClient: () => nuxtMocks.queryClient,
 }))
 
 mockNuxtImport('opnFetch', () => nuxtMocks.opnFetch)
@@ -68,6 +73,7 @@ describe('Mentorfy SSO flow', () => {
       clear: vi.fn(),
       getQueryData: vi.fn(),
     }
+    nuxtMocks.queryClient = queryClient
     router = nuxtMocks.router
     nuxtMocks.route.query = {
       token: 'short-mentorfy-token',
@@ -84,7 +90,6 @@ describe('Mentorfy SSO flow', () => {
 
     vi.stubGlobal('useAuthStore', () => authStore)
     vi.stubGlobal('useAppStore', () => appStore)
-    vi.stubGlobal('useQueryClient', () => queryClient)
     vi.stubGlobal('useRuntimeConfig', () => ({
       apiSecret: null,
       privateApiBase: null,

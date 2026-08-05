@@ -17,6 +17,8 @@
 </template>
 
 <script setup>
+import { useQueryClient } from '@tanstack/vue-query'
+
 /**
  * Ponte de SSO da Mentorfy.
  *
