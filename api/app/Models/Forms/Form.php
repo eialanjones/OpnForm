@@ -436,6 +436,34 @@ class Form extends Model implements CachableAttributes
                 ->each(function (FormIntegration $integration): void {
                     $integration->delete();
                 });
+
+            // AI PDF knowledge sources are keyed by workspace + block id, since
+            // a block can be configured before its form has ever been saved and
+            // so may carry no form_id. Deleting through the model also removes
+            // the stored file.
+            $aiBlockIds = collect($form->properties ?? [])
+                ->filter(fn ($property) => ($property['type'] ?? null) === 'ai_pdf')
+                ->pluck('id')
+                ->filter()
+                ->all();
+
+            \App\Models\Forms\AI\FormAiDocument::query()
+                ->where('workspace_id', $form->workspace_id)
+                ->where(function ($query) use ($form, $aiBlockIds) {
+                    $query->where('form_id', $form->id);
+                    if ($aiBlockIds !== []) {
+                        $query->orWhereIn('block_id', $aiBlockIds);
+                    }
+                })
+                ->lazyById()
+                ->each(fn ($document) => $document->delete());
+
+            // Deleted explicitly rather than by cascade, so the pending PDFs
+            // still sitting in tmp storage go with them.
+            \App\Models\Forms\AI\FormAiPdfGeneration::query()
+                ->where('form_id', $form->id)
+                ->lazyById()
+                ->each(fn ($generation) => $generation->delete());
         });
     }
 }

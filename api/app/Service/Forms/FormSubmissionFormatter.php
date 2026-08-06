@@ -159,7 +159,7 @@ class FormSubmissionFormatter
                 }
             } elseif ($field['type'] == 'matrix' && is_array($data[$field['id']])) {
                 $returnArray[$field['name']] = $this->getMatrixString($data[$field['id']]);
-            } elseif (in_array($field['type'], ['files', 'signature'])) {
+            } elseif (in_array($field['type'], ['files', 'signature', 'ai_pdf'])) {
                 if ($this->outputStringsOnly) {
                     $formId = $this->form->id;
                     $returnArray[$field['name']] = implode(
@@ -239,7 +239,7 @@ class FormSubmissionFormatter
                 }
             } elseif ($field['type'] == 'matrix') {
                 $field['value'] = str_replace(' | ', "\n", $this->getMatrixString($data[$field['id']]));
-            } elseif (in_array($field['type'], ['files', 'signature'])) {
+            } elseif (in_array($field['type'], ['files', 'signature', 'ai_pdf'])) {
                 if ($this->outputStringsOnly) {
                     $formId = $this->form->id;
                     $files = collect($data[$field['id']])->map(function ($file) use ($formId) {

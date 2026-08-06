@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Forms\AI\FormAiPdfGeneration;
 use App\Models\Forms\FormStatistic;
 use App\Models\Forms\FormView;
 use Illuminate\Console\Command;
@@ -31,10 +32,31 @@ class CleanDatabase extends Command
     public function handle()
     {
         $this->cleanFormStatistics();
+        $this->cleanAiPdfGenerations();
 
         $this->line('Database Cleanup Success.');
 
         return Command::SUCCESS;
+    }
+
+    /**
+     * Drops AI PDF generations whose file was never attached to a submission.
+     *
+     * Deleting through the model removes the PDF still parked in tmp storage.
+     */
+    private function cleanAiPdfGenerations()
+    {
+        $cutoff = now()->subHours((int) config('ai_pdf.generation_retention_hours'));
+        $removed = 0;
+
+        FormAiPdfGeneration::where('created_at', '<', $cutoff)
+            ->lazyById()
+            ->each(function (FormAiPdfGeneration $generation) use (&$removed) {
+                $generation->delete();
+                $removed++;
+            });
+
+        $this->line($removed . ' AI PDF generations deleted.');
     }
 
     /**

@@ -114,7 +114,7 @@ services:
     ports:
       - 80:80
     environment:
-      - NGINX_MAX_BODY_SIZE=64m
+      - NGINX_MAX_BODY_SIZE=128m
     depends_on:
       api:
         condition: service_started

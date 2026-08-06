@@ -167,6 +167,50 @@
                 "generates_auto_increment_id": "Generates an auto-incremented id",
                 "generates_auto_increment_id_help": "If you enable this, we will hide this field and fill it a unique incrementing number on each new form submission"
             }
+        },
+        "ai_pdf": {
+            "title": "AI PDF Generator",
+            "sources_label": "Answers the AI may read",
+            "sources_help": "Only questions that come before this block are listed.",
+            "sources_empty": "Add questions before this block so the AI has something to read.",
+            "sources_count": "{selected} of {total} answers selected",
+            "select_all": "Select all",
+            "select_none": "Clear selection",
+            "page_label": "Page {number}",
+            "prompt_label": "Generation prompt",
+            "prompt_help": "Describe the document the AI should write: tone, sections, and what it must cover.",
+            "prompt_placeholder": "Write a business diagnosis in a direct tone. Open with a summary of where they stand, name the costliest bottlenecks, and close with a 90 day plan.",
+            "knowledge_label": "Knowledge sources (optional)",
+            "knowledge_help": "Documents the AI consults while writing. We read the text once, on upload. Keep confidential material out — its content can surface in the PDF the respondent downloads.",
+            "template_label": "Structure template (optional)",
+            "template_help": "The AI copies the shape and headings of this file, not its content.",
+            "file_name_label": "Generated file name",
+            "file_name_help": "Use answers from the form to personalise the name.",
+            "auto_generate_label": "Generate as soon as the step opens",
+            "auto_generate_help": "Turn off to make the respondent press a button first.",
+            "allow_regenerate_label": "Let the respondent generate again",
+            "allow_regenerate_help": "Every regeneration is another AI call.",
+            "upload_cta": "Click to upload a file",
+            "uploading": "Uploading…",
+            "remove_file": "Remove file",
+            "status": {
+                "pending": "queued",
+                "processing": "reading",
+                "completed": "ready",
+                "failed": "failed"
+            },
+            "errors": {
+                "too_large": "This file is over 100 MB.",
+                "no_workspace": "Open the form inside a workspace to upload files.",
+                "upload_failed": "We could not upload this file.",
+                "remove_failed": "We could not remove this file.",
+                "extraction": {
+                    "empty": "we found no text in this file. Scanned PDFs need OCR first.",
+                    "unsupported": "unsupported format.",
+                    "file_missing": "the file is no longer available.",
+                    "generic": "we could not read this file."
+                }
+            }
         }
     }
 }

@@ -80,18 +80,20 @@ apply_php_configuration() {
         echo "max_execution_time = 300" >> $PHP_CUSTOM_CONFIG_FILE
     fi
     
-    # Apply upload max filesize if provided, otherwise default to 50M
+    # Apply upload max filesize if provided, otherwise default to 110M.
+    # The AI PDF block accepts knowledge sources up to 100MB, so the default
+    # has to leave room above that ceiling.
     if [ -n "$PHP_UPLOAD_MAX_FILESIZE" ]; then
         echo "upload_max_filesize = $PHP_UPLOAD_MAX_FILESIZE" >> $PHP_CUSTOM_CONFIG_FILE
     else
-        echo "upload_max_filesize = 50M" >> $PHP_CUSTOM_CONFIG_FILE
+        echo "upload_max_filesize = 110M" >> $PHP_CUSTOM_CONFIG_FILE
     fi
-    
-    # Apply post max size if provided, otherwise default to 55M
+
+    # Apply post max size if provided, otherwise default to 115M
     if [ -n "$PHP_POST_MAX_SIZE" ]; then
         echo "post_max_size = $PHP_POST_MAX_SIZE" >> $PHP_CUSTOM_CONFIG_FILE
     else
-        echo "post_max_size = 55M" >> $PHP_CUSTOM_CONFIG_FILE
+        echo "post_max_size = 115M" >> $PHP_CUSTOM_CONFIG_FILE
     fi
     
     # Endereço de escuta do php-fpm.

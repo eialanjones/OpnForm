@@ -14,7 +14,7 @@ FROM nginx:1-alpine
 ENV NGINX_ENVSUBST_FILTER="^(PORT|NGINX_|OPNFORM_)"
 
 # Padrões. Sobrescreva no painel do Railway se os serviços tiverem outro nome.
-ENV NGINX_MAX_BODY_SIZE=64m \
+ENV NGINX_MAX_BODY_SIZE=128m \
     OPNFORM_API_HOST=api.railway.internal:9000 \
     OPNFORM_CLIENT_HOST=client.railway.internal:3000 \
     PORT=8080

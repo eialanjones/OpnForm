@@ -74,6 +74,27 @@
         "toggle": {
             "yes": "Sim",
             "no": "Não"
+        },
+        "ai_pdf": {
+            "editor_placeholder_title": "Gerador de PDF (IA)",
+            "editor_placeholder_body": "O PDF é gerado quando alguém responder o formulário.",
+            "idle_hint": "Vamos montar seu documento com base no que você respondeu. Leva menos de um minuto.",
+            "generate": "Gerar meu PDF",
+            "download": "Baixar PDF",
+            "regenerate": "Gerar de novo",
+            "try_again": "Tentar de novo",
+            "saved_document": "Documento gerado",
+            "progress": {
+                "reading_answers": "Lendo suas respostas…",
+                "consulting_sources": "Consultando a base de conhecimento…",
+                "writing": "Escrevendo o documento…",
+                "building_pdf": "Montando o PDF…"
+            },
+            "errors": {
+                "generation_failed": "Não conseguimos montar seu PDF desta vez. Suas respostas estão salvas — tente gerar de novo.",
+                "timed_out": "A geração demorou mais que o esperado. Tente de novo.",
+                "too_many_requests": "Muitas tentativas seguidas. Espere um minuto e tente de novo."
+            }
         }
     }
-} 
+}

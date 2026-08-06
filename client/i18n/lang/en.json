@@ -74,6 +74,27 @@
         "toggle": {
             "yes": "Yes",
             "no": "No"
+        },
+        "ai_pdf": {
+            "editor_placeholder_title": "AI PDF Generator",
+            "editor_placeholder_body": "The PDF is written when someone answers the form.",
+            "idle_hint": "We will build your document from what you answered. It takes under a minute.",
+            "generate": "Generate my PDF",
+            "download": "Download PDF",
+            "regenerate": "Generate again",
+            "try_again": "Try again",
+            "saved_document": "Generated document",
+            "progress": {
+                "reading_answers": "Reading your answers…",
+                "consulting_sources": "Consulting the knowledge sources…",
+                "writing": "Writing the document…",
+                "building_pdf": "Building the PDF…"
+            },
+            "errors": {
+                "generation_failed": "We could not build your PDF this time. Your answers are saved — try generating again.",
+                "timed_out": "This took longer than expected. Try again.",
+                "too_many_requests": "Too many attempts in a row. Wait a minute and try again."
+            }
         }
     }
-} 
+}

@@ -79,7 +79,7 @@ class FormSubmissionResource extends JsonResource
             $value = $data[$fieldId];
 
             // Files and signatures → signed URLs array
-            if (in_array($type, ['files', 'signature'], true) && !empty($value)) {
+            if (in_array($type, ['files', 'signature', 'ai_pdf'], true) && !empty($value)) {
                 $fileItems = is_array($value) ? $value : [$value];
                 $mapped = collect($fileItems)
                     ->filter(fn ($file) => !is_null($file) && $file !== '')

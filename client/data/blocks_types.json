@@ -315,6 +315,25 @@
     "max_count": 1,
     "auth_required": true
   },
+  "ai_pdf": {
+    "name": "ai_pdf",
+    "title": "AI PDF Generator",
+    "icon": "i-heroicons-document-arrow-down",
+    "default_block_name": "Your document",
+    "bg_class": "bg-orange-100",
+    "text_class": "text-orange-900",
+    "available_in": ["classic", "focused"],
+    "is_input": true,
+    "auth_required": true,
+    "default_values": {
+      "ai_pdf_prompt": "",
+      "ai_pdf_source_fields": null,
+      "ai_pdf_file_name": "",
+      "ai_pdf_auto_generate": true,
+      "ai_pdf_allow_regenerate": false,
+      "required": true
+    }
+  },
   "nf-text": {
     "name": "nf-text",
     "title": "Text",

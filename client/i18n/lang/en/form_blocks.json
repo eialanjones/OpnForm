@@ -36,6 +36,7 @@
             "password": "Password",
             "toggle_switch": "Toggle Switch",
             "payment": "Payment",
+            "ai_pdf": "AI PDF Generator",
             "nf-text": "Text",
             "nf-page-break": "Page-break",
             "nf-divider": "Divider",

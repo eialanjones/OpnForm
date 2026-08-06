@@ -218,6 +218,12 @@
       :form="form"
     />
 
+    <AiPdfFieldOptions
+      v-if="field.type === 'ai_pdf'"
+      :field="field"
+      :form="form"
+    />
+
     <!--   Text Options   -->
     <div
       v-if="field.type === 'text' && displayBasedOnAdvanced"
@@ -562,7 +568,7 @@
         :label="$t('form_fields.options.customization.prefill_label')"
       />
       <text-input
-        v-else-if="!['files', 'signature', 'rich_text', 'payment'].includes(field.type)"
+        v-else-if="!['files', 'signature', 'rich_text', 'payment', 'ai_pdf'].includes(field.type)"
         name="prefill"
         class="mt-3"
         :form="field"
@@ -718,6 +724,7 @@ import countryCodes from '~/data/country_codes.json'
 import CountryFlag from 'vue-country-flag-next'
 import MatrixFieldOptions from './MatrixFieldOptions.vue'
 import PaymentFieldOptions from './PaymentFieldOptions.vue'
+import AiPdfFieldOptions from './AiPdfFieldOptions.vue'
 import HiddenRequiredDisabled from './HiddenRequiredDisabled.vue'
 import EditorSectionHeader from '~/components/open/forms/components/form-components/EditorSectionHeader.vue'
 import ProTag from '~/components/app/ProTag.vue'
@@ -728,7 +735,7 @@ import BlockMediaOptions from '~/components/open/forms/components/media/BlockMed
 
 export default {
   name: 'FieldOptions',
-  components: { CountryFlag, MatrixFieldOptions, HiddenRequiredDisabled, EditorSectionHeader, PaymentFieldOptions, ProTag, BlockMediaOptions },
+  components: { CountryFlag, MatrixFieldOptions, HiddenRequiredDisabled, EditorSectionHeader, PaymentFieldOptions, AiPdfFieldOptions, ProTag, BlockMediaOptions },
   props: {
     field: {
       type: Object,
@@ -745,7 +752,7 @@ export default {
   },
   data() {
     return {
-      typesWithoutPlaceholder: ['date', 'checkbox', 'files', 'payment', 'matrix', 'signature', 'barcode', 'scale', 'slider', 'rating'],
+      typesWithoutPlaceholder: ['date', 'checkbox', 'files', 'payment', 'matrix', 'signature', 'barcode', 'scale', 'slider', 'rating', 'ai_pdf'],
       allCountries: countryCodes
     }
   },

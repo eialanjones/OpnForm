@@ -7,6 +7,7 @@ use App\Rules\CustomFieldValidationRule;
 use App\Rules\MatrixValidationRule;
 use App\Rules\StorageFile;
 use App\Rules\ValidHCaptcha;
+use App\Rules\ValidAiPdfReference;
 use App\Rules\ValidPhoneInputRule;
 use App\Rules\ValidReCaptcha;
 use App\Rules\ValidUrl;
@@ -238,6 +239,10 @@ class AnswerFormRequest extends FormRequest
                 $this->requestRules[$property['id'] . '.*'] = [new StorageFile($this->getFieldMaxFileSize($property), $allowedFileTypes, $this->form)];
 
                 return ['array'];
+            case 'ai_pdf':
+                // The value is a reference to a file this server generated, so
+                // it is checked against the generation record rather than trusted.
+                return ['string', new ValidAiPdfReference($this->form, $property['id'])];
             case 'email':
                 return ['email:filter'];
             case 'date':

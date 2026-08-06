@@ -50,6 +50,22 @@ export const formsApi = {
     get: (generationId, options) => apiService.get(`/forms/ai/${generationId}`, options)
   },
 
+  // AI PDF generator block
+  aiPdf: {
+    // Respondent side. The prompt and knowledge sources live on the server —
+    // only the block being asked for travels with the request.
+    generate: (slug, data) => apiService.post(`/forms/${slug}/ai-pdf/generate`, data),
+    status: (slug, generationId, token, options = {}) => apiService.get(
+      `/forms/${slug}/ai-pdf/${generationId}`,
+      { ...options, headers: { ...(options.headers || {}), 'X-Ai-Pdf-Token': token } }
+    ),
+
+    // Editor side: knowledge sources and the structure template.
+    documents: (params, options) => apiService.get('/open/forms/ai-documents', { ...options, params }),
+    uploadDocument: (formData, options) => apiService.post('/open/forms/ai-documents', formData, options),
+    deleteDocument: (documentId) => apiService.delete(`/open/forms/ai-documents/${documentId}`)
+  },
+
   // Stripe/Payment
   stripe: {
     getAccount: (slug, options) => apiService.get(`/forms/${slug}/stripe-connect/get-account`, options),

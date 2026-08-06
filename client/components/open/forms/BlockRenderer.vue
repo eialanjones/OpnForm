@@ -154,6 +154,7 @@ const componentInfo = computed(() => {
       matrix: 'MatrixInput',
       barcode: 'BarcodeInput',
       payment: 'PaymentInput',
+      ai_pdf: 'AiPdfInput',
       code: 'CodeInput'
     }[field.type]
   }
@@ -267,6 +268,13 @@ const boundProps = computed(() => {
     if (field?.max_file_size > 0) maxFileSize = Math.min(field.max_file_size, maxFileSize)
     inputProperties.mbLimit = maxFileSize
     inputProperties.accept = (form.value.is_pro && field.allowed_file_types) ? field.allowed_file_types : ''
+  } else if (field.type === 'ai_pdf') {
+    // The prompt and knowledge sources stay server side; the block only needs
+    // to know which form it belongs to and how it should behave.
+    inputProperties.formSlug = form.value?.slug || null
+    inputProperties.autoGenerate = field.ai_pdf_auto_generate !== false
+    inputProperties.allowRegenerate = field.ai_pdf_allow_regenerate === true
+    inputProperties.isAdminPreview = isAdminPreview.value
   } else if (field.type === 'rating') {
     inputProperties.numberOfStars = parseInt(field.rating_max_value) ?? 5
   } else if (field.type === 'scale') {

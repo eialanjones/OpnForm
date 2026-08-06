@@ -8,6 +8,8 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\Forms\AI\AiPdfGenerationController;
+use App\Http\Controllers\Forms\AI\FormAiDocumentController;
 use App\Http\Controllers\Forms\FormController;
 use App\Http\Controllers\Forms\FormStatsController;
 use App\Http\Controllers\Forms\FormSubmissionController;
@@ -190,6 +192,13 @@ Route::group(['middleware' => 'auth.multi'], function () {
                 [FormController::class, 'duplicate']
             )->name('duplicate');
 
+            // AI PDF knowledge sources & structure templates
+            Route::prefix('/ai-documents')->name('ai-documents.')->group(function () {
+                Route::get('/', [FormAiDocumentController::class, 'index'])->name('index');
+                Route::post('/', [FormAiDocumentController::class, 'store'])->name('store');
+                Route::delete('/{formAiDocument}', [FormAiDocumentController::class, 'destroy'])->name('destroy');
+            });
+
             // Assets & uploaded files
             Route::post(
                 '/assets/upload',
@@ -351,7 +360,20 @@ Route::prefix('forms')->name('forms.')->group(function () {
             '{form}/users',
             [PublicFormController::class, 'listUsers']
         )->name('users.index');
+
+        // AI PDF generation, mid-form
+        Route::post('{form}/ai-pdf/generate', [AiPdfGenerationController::class, 'generate'])
+            ->middleware('throttle:ai-pdf-generation')
+            ->name('ai-pdf.generate');
+        Route::get('{form}/ai-pdf/{generation}', [AiPdfGenerationController::class, 'show'])
+            ->name('ai-pdf.show');
     });
+
+    // Signed, time limited download of a generated PDF. The signature is the
+    // authorisation: the link is only ever issued to a holder of the token.
+    Route::get('ai-pdf/{generation}/download', [AiPdfGenerationController::class, 'download'])
+        ->middleware('signed')
+        ->name('ai-pdf.download');
 
     // File uploads
     Route::get('assets/{assetFileName}', [PublicFormController::class, 'showAsset'])->name('assets.show');

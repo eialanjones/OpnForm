@@ -65,6 +65,18 @@ class RouteServiceProvider extends ServiceProvider
                     ->by('public-uploads:hour:' . $key),
             ];
         });
+
+        // Anti-abuse only: a public form endpoint that spends money on every
+        // call must not be scriptable. Generous enough that a respondent who
+        // regenerates a few times never notices it.
+        RateLimiter::for('ai-pdf-generation', function (Request $request) {
+            $identifier = 'ip:' . $request->ip();
+
+            return [
+                Limit::perMinute(6)->by('ai-pdf:minute:' . $identifier),
+                Limit::perHour(40)->by('ai-pdf:hour:' . $identifier),
+            ];
+        });
     }
 
     protected function registerGlobalRouteParamConstraints()

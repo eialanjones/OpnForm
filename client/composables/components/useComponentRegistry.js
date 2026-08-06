@@ -13,6 +13,8 @@ const integrationRegistry = new Map([
 const clientOnlyHeavyFormComponentsRegistry = new Map([
   ['RichTextAreaInput', () => import('~/components/forms/heavy/RichTextAreaInput.client.vue')],
   ['PaymentInput', () => import('~/components/forms/heavy/PaymentInput.client.vue')],
+  // Talks to the API and runs timers as soon as it mounts.
+  ['AiPdfInput', () => import('~/components/forms/heavy/AiPdfInput.vue')],
   ['CodeInput', () => import('~/components/forms/heavy/CodeInput.client.vue')],
   ['EmbedMedia', () => import('~/components/forms/heavy/components/EmbedMedia.vue')],
 ])

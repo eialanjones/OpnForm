@@ -23,6 +23,11 @@ class FileUploadPathService
     private const TMP_FILE_UPLOAD_PATH = 'tmp/';
 
     /**
+     * Base path for AI PDF knowledge sources and structure templates
+     */
+    private const AI_DOCUMENT_PATH = 'forms/ai-documents';
+
+    /**
      * Generate the file upload path for a specific form
      *
      * @param int|string $formId The form ID
@@ -68,6 +73,36 @@ class FileUploadPathService
             self::validatePathComponent($fileName);
 
             // Ensure consistent directory separator
+            $path = Str::finish($path, '/') . $fileName;
+        }
+
+        return $path;
+    }
+
+    /**
+     * Generate the storage path for an AI PDF knowledge source or template
+     *
+     * Keyed by workspace first: block ids are client generated and visible in
+     * the public form payload, so they alone must never decide where a file
+     * lands or which tenant can reach it.
+     *
+     * @param int|string $workspaceId The workspace owning the document
+     * @param string $blockId The UUID of the AI PDF block owning the document
+     * @param string|null $fileName Optional filename to append
+     * @return string The complete AI document path
+     *
+     * @example FileUploadPathService::getAiDocumentPath(12, '9f1c…') // returns "forms/ai-documents/12/9f1c…"
+     */
+    public static function getAiDocumentPath(int|string $workspaceId, string $blockId, ?string $fileName = null): string
+    {
+        self::validatePathComponent($workspaceId);
+        self::validatePathComponent($blockId);
+
+        $path = self::AI_DOCUMENT_PATH . '/' . $workspaceId . '/' . $blockId;
+
+        if ($fileName) {
+            self::validatePathComponent($fileName);
+
             $path = Str::finish($path, '/') . $fileName;
         }
 

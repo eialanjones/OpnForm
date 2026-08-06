@@ -36,6 +36,7 @@
             "password": "Senha",
             "toggle_switch": "Botão de alternância",
             "payment": "Pagamento",
+            "ai_pdf": "Gerador de PDF (IA)",
             "nf-text": "Texto",
             "nf-page-break": "Quebra de página",
             "nf-divider": "Divisor",

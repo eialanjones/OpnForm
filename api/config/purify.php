@@ -67,6 +67,23 @@ return [
             ],
         ],
 
+        /*
+         * Model written HTML on its way into the PDF renderer.
+         *
+         * Deliberately narrower than 'default': no links, no images, no inline
+         * styles and no URI carrying attributes at all. dompdf resolves src and
+         * url() references at render time, so anything that could carry a path
+         * is stripped before it ever reaches the renderer.
+         */
+        'ai_pdf' => [
+            'HTML.Allowed' => 'h1,h2,h3,h4,p,br,hr,strong,b,em,i,u,ul,ol,li,blockquote,table,thead,tbody,tfoot,tr,th[colspan|rowspan],td[colspan|rowspan],small,sub,sup',
+            'HTML.ForbiddenElements' => 'script,style,iframe,object,embed,link,img,svg,form,input,a,base,meta',
+            'CSS.AllowedProperties' => '',
+
+            'AutoFormat.AutoParagraph' => false,
+            'AutoFormat.RemoveEmpty' => true,
+        ],
+
     ],
 
     /*

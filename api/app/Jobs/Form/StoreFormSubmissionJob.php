@@ -251,6 +251,9 @@ class StoreFormSubmissionJob implements ShouldQueue
             if (
                 ($field['type'] == 'url' && isset($field['file_upload']) && $field['file_upload'])
                 || $field['type'] == 'files'
+                // The AI PDF block stores a reference to a server generated file,
+                // so it follows the same tmp -> submission move as an upload.
+                || $field['type'] == 'ai_pdf'
             ) {
                 if (is_array($answerValue)) {
                     $processedFiles = [];
@@ -412,7 +415,7 @@ class StoreFormSubmissionJob implements ShouldQueue
             if (!isset($property['prefill']) || is_null($property['prefill'])) {
                 return;
             }
-            if (in_array($property['type'], ['files']) || ($property['type'] == 'url' && isset($property['file_upload']) && $property['file_upload'])) {
+            if (in_array($property['type'], ['files', 'ai_pdf']) || ($property['type'] == 'url' && isset($property['file_upload']) && $property['file_upload'])) {
                 return;
             }
 

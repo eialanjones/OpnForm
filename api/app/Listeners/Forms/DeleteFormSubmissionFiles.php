@@ -19,7 +19,7 @@ class DeleteFormSubmissionFiles
 
         $fileFieldIds = collect($submission->form->properties)
             ->filter(function ($property) {
-                return in_array($property['type'], ['files', 'signature']) ||
+                return in_array($property['type'], ['files', 'signature', 'ai_pdf']) ||
                     ($property['type'] === 'url' && ($property['file_upload'] ?? false));
             })
             ->pluck('id')

@@ -167,6 +167,50 @@
                 "generates_auto_increment_id": "Gerar um id autoincremental",
                 "generates_auto_increment_id_help": "Se você ativar isso, vamos ocultar este campo e preenchê-lo com um número incremental único a cada nova resposta do formulário"
             }
+        },
+        "ai_pdf": {
+            "title": "Gerador de PDF (IA)",
+            "sources_label": "Respostas que a IA vai usar",
+            "sources_help": "Só aparecem aqui as perguntas que vêm antes deste bloco no formulário.",
+            "sources_empty": "Adicione perguntas antes deste bloco para a IA ter o que ler.",
+            "sources_count": "{selected} de {total} respostas selecionadas",
+            "select_all": "Selecionar todas",
+            "select_none": "Limpar seleção",
+            "page_label": "Página {number}",
+            "prompt_label": "Prompt de geração",
+            "prompt_help": "Descreva o documento que a IA deve escrever: tom, seções e o que não pode faltar.",
+            "prompt_placeholder": "Escreva um diagnóstico em português, com tom direto. Comece por um resumo do momento atual, aponte os principais gargalos e feche com um plano de 90 dias.",
+            "knowledge_label": "Base de conhecimento (opcional)",
+            "knowledge_help": "Documentos que a IA consulta ao escrever. Lemos o texto uma vez, no envio. Não use material confidencial: o conteúdo pode aparecer no PDF que o respondente baixa.",
+            "template_label": "Modelo de estrutura (opcional)",
+            "template_help": "A IA copia a estrutura e os títulos deste arquivo — não o conteúdo.",
+            "file_name_label": "Nome do arquivo gerado",
+            "file_name_help": "Use respostas do formulário para personalizar o nome.",
+            "auto_generate_label": "Gerar assim que a etapa abrir",
+            "auto_generate_help": "Desligue para que o respondente clique num botão antes de gerar.",
+            "allow_regenerate_label": "Deixar o respondente gerar de novo",
+            "allow_regenerate_help": "Cada nova geração é uma nova chamada de IA.",
+            "upload_cta": "Clique para enviar um arquivo",
+            "uploading": "Enviando…",
+            "remove_file": "Remover arquivo",
+            "status": {
+                "pending": "na fila",
+                "processing": "lendo",
+                "completed": "pronto",
+                "failed": "falhou"
+            },
+            "errors": {
+                "too_large": "O arquivo passa de 100 MB.",
+                "no_workspace": "Abra o formulário dentro de um espaço de trabalho para enviar arquivos.",
+                "upload_failed": "Não foi possível enviar este arquivo.",
+                "remove_failed": "Não foi possível remover este arquivo.",
+                "extraction": {
+                    "empty": "não encontramos texto neste arquivo. PDFs escaneados precisam de OCR antes.",
+                    "unsupported": "formato não suportado.",
+                    "file_missing": "o arquivo não está mais disponível.",
+                    "generic": "não conseguimos ler este arquivo."
+                }
+            }
         }
     }
 }

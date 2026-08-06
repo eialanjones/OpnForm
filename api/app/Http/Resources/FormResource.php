@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Http\Middleware\Form\ProtectedForm;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User as UserModel;
 
@@ -48,7 +49,17 @@ class FormResource extends JsonResource
             }
         }
 
-        return array_merge(parent::toArray($request), $ownerData, [
+        $data = parent::toArray($request);
+
+        // The AI PDF prompt, its source field selection and its file name
+        // template belong to the form owner. Respondents never need them —
+        // generation reads them server side — so they must not ship with the
+        // public form payload.
+        if (!$this->userIsFormOwner() && isset($data['properties']) && is_array($data['properties'])) {
+            $data['properties'] = $this->withoutOwnerOnlyBlockConfig($data['properties']);
+        }
+
+        return array_merge($data, $ownerData, [
             'settings' => $this->settings ?? new \stdClass(),
             'is_pro' => $this->workspaceIsPro(),
             'is_trialing' => $this->workspaceIsTrialing(),
@@ -68,6 +79,26 @@ class FormResource extends JsonResource
             'cover_settings' => $this->cover_settings ?? new \stdClass(),
             'translations' => $this->translations ?? new \stdClass(),
         ]);
+    }
+
+    /**
+     * Block settings that must stay behind the owner boundary.
+     */
+    private const AI_PDF_OWNER_ONLY_KEYS = [
+        'ai_pdf_prompt',
+        'ai_pdf_source_fields',
+        'ai_pdf_file_name',
+    ];
+
+    private function withoutOwnerOnlyBlockConfig(array $properties): array
+    {
+        return array_map(function ($property) {
+            if (!is_array($property) || ($property['type'] ?? null) !== 'ai_pdf') {
+                return $property;
+            }
+
+            return Arr::except($property, self::AI_PDF_OWNER_ONLY_KEYS);
+        }, $properties);
     }
 
     public function setCleanings(array $cleanings)

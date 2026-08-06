@@ -56,6 +56,15 @@ class TypePropertyValidator implements PropertyValidatorInterface
         'checkbox' => [
             'use_toggle_switch' => ['type' => 'boolean'],
         ],
+
+        // AI PDF generator rules
+        'ai_pdf' => [
+            'ai_pdf_prompt' => ['type' => 'string', 'max' => 10000],
+            'ai_pdf_source_fields' => ['type' => 'array', 'max' => 200],
+            'ai_pdf_file_name' => ['type' => 'string', 'max' => 2000],
+            'ai_pdf_auto_generate' => ['type' => 'boolean'],
+            'ai_pdf_allow_regenerate' => ['type' => 'boolean'],
+        ],
     ];
 
     /**
@@ -137,6 +146,24 @@ class TypePropertyValidator implements PropertyValidatorInterface
                 }
                 if (isset($config['max']) && (float)$value > $config['max']) {
                     return "The {$field} field must not be greater than {$config['max']}.";
+                }
+                break;
+
+            case 'string':
+                if (!is_string($value)) {
+                    return "The {$field} field must be a string.";
+                }
+                if (isset($config['max']) && mb_strlen($value) > $config['max']) {
+                    return "The {$field} field must not be longer than {$config['max']} characters.";
+                }
+                break;
+
+            case 'array':
+                if (!is_array($value)) {
+                    return "The {$field} field must be an array.";
+                }
+                if (isset($config['max']) && count($value) > $config['max']) {
+                    return "The {$field} field must not have more than {$config['max']} items.";
                 }
                 break;
 
