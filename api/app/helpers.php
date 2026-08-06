@@ -54,3 +54,33 @@ if (!function_exists('telemetry')) {
         );
     }
 }
+
+if (!function_exists('public_api_url')) {
+    /**
+     * Rewrites a URL this app generated so it points at where the API actually
+     * answers from the outside.
+     *
+     * Needed when a proxy routes a path prefix to the API and strips it before
+     * forwarding: url() and signedRoute() only know the path this app sees, so
+     * the link they produce lands on the front end instead.
+     *
+     * Signed links keep working because the signature is computed first, over
+     * the internal path, and only the base is swapped afterwards.
+     *
+     * Returns the URL untouched when API_PUBLIC_URL is not configured.
+     */
+    function public_api_url(string $url): string
+    {
+        $publicBase = config('app.api_public_url');
+        if (!$publicBase) {
+            return $url;
+        }
+
+        $appUrl = rtrim((string) config('app.url'), '/');
+        if ($appUrl === '' || !str_starts_with($url, $appUrl)) {
+            return $url;
+        }
+
+        return rtrim($publicBase, '/') . substr($url, strlen($appUrl));
+    }
+}

@@ -84,11 +84,11 @@ class AiPdfGenerationController extends Controller
             $payload['file_name'] = $generation->file_name;
             $payload['file_reference'] = $generation->file_reference;
             $payload['size_bytes'] = $generation->size_bytes;
-            $payload['download_url'] = URL::temporarySignedRoute(
+            $payload['download_url'] = public_api_url(URL::temporarySignedRoute(
                 'forms.ai-pdf.download',
                 now()->addMinutes((int) config('ai_pdf.download_url_ttl')),
                 ['generation' => $generation->id]
-            );
+            ));
         }
 
         return $this->success(['generation' => $payload]);

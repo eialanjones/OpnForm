@@ -94,11 +94,11 @@ class FormSubmissionResource extends JsonResource
                         $encodedFilename = FilenameUrlEncoder::encode($file);
 
                         return [
-                            'file_url' => URL::signedRoute(
+                            'file_url' => public_api_url(URL::signedRoute(
                                 'open.forms.submissions.file',
                                 [$this->form_id, $encodedFilename],
                                 now()->addMinutes(10)
-                            ),
+                            )),
                             'file_name' => $file,
                         ];
                     });

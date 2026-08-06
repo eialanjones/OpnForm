@@ -89,6 +89,24 @@ return [
     */
 
     'front_url' => env('FRONT_URL', null),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Publicly Routable API URL
+    |--------------------------------------------------------------------------
+    |
+    | Where the API answers from the outside, when that differs from APP_URL —
+    | typically a shared host that routes a path prefix to the API and
+    | everything else to the front end, e.g. https://example.com/api.
+    |
+    | Signed URLs are still generated against APP_URL, because the signature has
+    | to match the path this app receives after the proxy strips the prefix.
+    | Only the base of an already-signed URL is swapped, by public_api_url().
+    |
+    | Leave null when the API is reachable at APP_URL.
+    |
+    */
+    'api_public_url' => env('API_PUBLIC_URL', null),
     'front_api_secret' => env('FRONT_API_SECRET', null),
 
     /*
