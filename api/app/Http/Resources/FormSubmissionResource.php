@@ -59,8 +59,13 @@ class FormSubmissionResource extends JsonResource
             $extraData['ip_address'] = $this->meta['ip_address'] ?? null;
         }
         if ($this->form->scoring_enabled) {
+            // The colour travels along so consumers can render the tier exactly
+            // as this form defines it, instead of guessing from the value.
+            $tier = ScoreTierResolver::resolve($this->form, $this->score);
+
             $extraData['score'] = $this->score;
-            $extraData['score_tier'] = ScoreTierResolver::label($this->form, $this->score);
+            $extraData['score_tier'] = $tier['label'] ?? null;
+            $extraData['score_tier_color'] = $tier['color'] ?? null;
         }
 
         $this->data = array_merge($this->data, $extraData);
