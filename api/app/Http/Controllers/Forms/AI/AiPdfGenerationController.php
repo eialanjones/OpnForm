@@ -73,10 +73,11 @@ class AiPdfGenerationController extends Controller
             return $this->error(['message' => 'Generation not found.'], 404);
         }
 
+        // No `error` here on purpose: it carries the underlying failure message
+        // for the form owner, and this endpoint answers anonymous respondents.
         $payload = [
             'id' => $generation->id,
             'status' => $generation->status,
-            'error' => $generation->error,
         ];
 
         if ($generation->isReady()) {

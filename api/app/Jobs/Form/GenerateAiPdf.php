@@ -98,7 +98,14 @@ class GenerateAiPdf implements ShouldQueue
                 'exception' => $exception->getMessage(),
             ]);
 
-            $this->markFailed('generation_failed');
+            // Kept on the record as well as in the log: the log channel is not
+            // always reachable on a hosted worker, and without this the only
+            // trace of a failure is an unqualified "generation_failed".
+            $this->markFailed('generation_failed', sprintf(
+                '%s: %s',
+                class_basename($exception),
+                $exception->getMessage()
+            ));
         }
     }
 
@@ -167,11 +174,15 @@ class GenerateAiPdf implements ShouldQueue
         };
     }
 
-    private function markFailed(string $reason): void
+    /**
+     * `error` is owner-facing only — the public status endpoint never returns
+     * it — so it can safely carry the underlying message.
+     */
+    private function markFailed(string $reason, ?string $detail = null): void
     {
         $this->generation->update([
             'status' => FormAiPdfGeneration::STATUS_FAILED,
-            'error' => $reason,
+            'error' => $detail ? Str::limit($reason . ' — ' . $detail, 500) : $reason,
         ]);
     }
 }

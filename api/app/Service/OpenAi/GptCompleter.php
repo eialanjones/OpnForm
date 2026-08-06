@@ -151,6 +151,19 @@ class GptCompleter
         return trim($this->result);
     }
 
+    /**
+     * Whether a model belongs to the reasoning family, which constrains the
+     * chat completions payload.
+     *
+     * Covers the o-series (o1, o3, o4…) and GPT-5 onwards. Older families —
+     * gpt-4.1 and friends, still used elsewhere in the app — keep the classic
+     * `max_tokens` plus a custom temperature.
+     */
+    public static function isReasoningModel(string $model): bool
+    {
+        return (bool) preg_match('/^(o\d|gpt-[5-9])/i', $model);
+    }
+
     public function getInputTokens(): int
     {
         return $this->inputTokens;
@@ -175,11 +188,19 @@ class GptCompleter
             'messages' => $messages,
         ];
 
+        $isReasoningModel = self::isReasoningModel($this->model);
+
         if (!is_null($maxTokens)) {
-            $completionInput['max_tokens'] = $maxTokens;
+            // Reasoning models reject `max_tokens` outright:
+            // "Unsupported parameter: 'max_tokens' is not supported with this
+            // model. Use 'max_completion_tokens' instead."
+            $completionInput[$isReasoningModel ? 'max_completion_tokens' : 'max_tokens'] = $maxTokens;
         }
 
-        if (!is_null($temperature)) {
+        // Same family only accepts the default temperature:
+        // "Unsupported value: 'temperature' does not support 0.4 with this
+        // model. Only the default (1) value is supported."
+        if (!is_null($temperature) && !$isReasoningModel) {
             $completionInput['temperature'] = $temperature;
         }
 
