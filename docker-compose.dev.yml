@@ -17,6 +17,11 @@ services:
       FRONT_URL: http://localhost:3000
       APP_KEY: base64:dD8AFEB45nKZ0VWmIPiW495rDYb+ywRJnCCSdycw0pI=
       JWT_SECRET: 38hjE96gYu4ceKSSHNnzgeynMr2m3WkNBN2u7zzpVeiITtxFEloxAjcr7TCKuiiy
+      # Paired with NUXT_API_SECRET on the ui service. Without it, dev would not
+      # exercise the same trusted-SSR path production takes.
+      FRONT_API_SECRET: dev-shared-ssr-secret
+      JWT_TTL: "43200"
+      JWT_REFRESH_TTL: "44640"
       # Database settings
       DB_HOST: db
       DB_DATABASE: ${DB_DATABASE:-forge}
@@ -69,6 +74,8 @@ services:
       NUXT_PUBLIC_APP_URL: "http://localhost:3000"
       NUXT_PUBLIC_API_BASE: "http://localhost"
       NUXT_PRIVATE_API_BASE: "http://opnform-ingress"
+      # Same value as FRONT_API_SECRET on the api service.
+      NUXT_API_SECRET: dev-shared-ssr-secret
     extra_hosts:
       - "host.docker.internal:host-gateway"
     ports:

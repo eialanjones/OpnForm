@@ -44,16 +44,14 @@ class AuthenticateJWT
                 return $next($request);
             }
 
-            $error = null;
             if (! Hash::check($request->userAgent(), $payload->get('ua'))) {
-                $error = 'Origin User Agent is invalid';
-            }
-
-            if ($error) {
-                auth()->invalidate();
-
+                // Reject the request, but leave the token alone. Blacklisting here
+                // turns one mismatched request into a permanent logout, and the
+                // client that trips it is far more often our own SSR than a thief —
+                // who would be replaying the User Agent along with the token anyway,
+                // since both travel in the same request.
                 return response()->json([
-                    'message' => $error,
+                    'message' => 'Origin User Agent is invalid',
                 ], 401);
             }
         }

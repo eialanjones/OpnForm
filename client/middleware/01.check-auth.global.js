@@ -49,8 +49,11 @@ export default defineNuxtRouteMiddleware(async (to, _from) => {
     } catch (error) {
       // A server-side bootstrap request can 401 even when the browser still has a
       // valid token (for example if SSR auth validation differs from the browser
-      // request context). Do not destroy auth state during SSR; let the client
-      // retry before treating it as a real logout.
+      // request context). Do not destroy auth state during SSR: global route
+      // middleware does not run again on hydration, so nothing here would get a
+      // second chance. The retry comes from vue-query instead — the ['user'] query
+      // is enabled on any token and refetches from the browser as soon as a
+      // consumer mounts, which on every authenticated page is the user dropdown.
       if (error?.status === 401) {
         if (import.meta.client) {
           authStore.clearToken()

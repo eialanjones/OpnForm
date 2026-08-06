@@ -73,6 +73,9 @@ explicitamente antes do `artisan`.
 APP_ENV=production
 APP_KEY=                      # php artisan key:generate --show
 JWT_SECRET=                   # php artisan jwt:secret --show (64 chars aleatórios)
+FRONT_API_SECRET=             # mesmo valor de NUXT_API_SECRET no client
+JWT_TTL=43200                 # 30 dias
+JWT_REFRESH_TTL=44640         # 31 dias, sempre acima do TTL
 APP_URL=https://forms.mentorfy.io
 SELF_HOSTED=true
 CASHIER_KEY=
@@ -115,6 +118,22 @@ do controller: todo endpoint devolve `{"message":"Server Error"}`, inclusive o
 Rota inexistente continua devolvendo 404 limpo — é o teste que separa "app não
 sobe" de "middleware quebrado".
 
+O `FRONT_API_SECRET` custa uma sessão inteira se faltar, e o sintoma aponta para
+o lugar errado. Todo JWT nasce com um hash do User-Agent de quem o pediu
+(`User::getJWTCustomClaims`), e o `AuthenticateJWT` recusa quem chegar com outro.
+No reload de qualquer página quem busca `/user` é o **SSR do Nuxt**, com o agente
+do Nitro — não o do browser. Sem o segredo casando com o `NUXT_API_SECRET` do
+`client`, essa requisição é lida como token roubado e volta 401. O usuário navega
+sem problema e é deslogado no primeiro F5. O código também repassa o User-Agent
+do browser no SSR, então as duas camadas se cobrem — mas com as duas de pé o
+`x-api-secret` resolve antes, sem depender de header nenhum.
+
+`JWT_TTL` decide quanto tempo a sessão dura: o `Max-Age` do cookie `opnform_token`
+é copiado dele (`MentorfySsoController` devolve `expires_in`, o client grava). Não
+existe refresh deslizante, então baixar esse valor é logout duro no fim do prazo,
+inclusive para quem entrou pelo SSO da Mentorfy. `JWT_REFRESH_TTL` só precisa
+ficar acima do `JWT_TTL`; o default do pacote é 14 dias, menor que os 30 daqui.
+
 `LOG_CHANNEL=errorlog` não é preferência. Em php-fpm o `stderr` do worker é
 descartado por padrão, então `LOG_CHANNEL=stderr` não produz **nada**: a
 requisição volta 500 e o log do container fica limpo. O canal `errorlog` escreve
@@ -147,7 +166,11 @@ NUXT_PUBLIC_API_BASE=https://forms.mentorfy.io/api
 NUXT_PUBLIC_APP_URL=https://forms.mentorfy.io
 NUXT_PRIVATE_API_BASE=http://opnform-ingress.railway.internal:8080/api
 NUXT_PUBLIC_ENV=production
+NUXT_API_SECRET=                    # mesmo valor de FRONT_API_SECRET na api
 ```
+
+O `NUXT_API_SECRET` e o `FRONT_API_SECRET` são um par: setar só um lado não
+adianta nada, porque o header sai e não casa. Sobem juntos ou não sobem.
 
 O `runtimeConfig.js` lê tudo em **runtime**, não no build — então não precisa de
 build args, e mudar uma dessas variáveis não exige rebuild da imagem.

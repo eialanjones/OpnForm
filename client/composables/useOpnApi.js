@@ -68,6 +68,19 @@ export function getOpnRequestsOptions(request, opts) {
     requestOptions.headers["x-api-secret"] = config.apiSecret
   }
 
+  // SSR acts on behalf of the browser. The API pins every JWT to the User Agent
+  // that minted it (User::getJWTCustomClaims) and AuthenticateJWT rejects any
+  // request that arrives under a different one — so a server-side call carrying
+  // Nitro's own agent reads as a stolen token, and the reload that triggers it
+  // lands on the login page. Forward the browser's agent so the check validates
+  // what it exists to validate.
+  if (import.meta.server) {
+    const forwardedUserAgent = useRequestHeaders(["user-agent"])["user-agent"]
+    if (forwardedUserAgent) {
+      requestOptions.headers["user-agent"] = forwardedUserAgent
+    }
+  }
+
   addAuthHeader(request, requestOptions, requestToken)
   addPasswordToFormRequest(request, requestOptions)
   addCustomDomainHeader(request, requestOptions)
