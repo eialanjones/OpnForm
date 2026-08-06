@@ -177,6 +177,14 @@
             "question_placeholder": "Título da pergunta",
             "answer_placeholder": "Resposta da pergunta",
             "add_new": "Adicionar novo"
+        },
+        "score_breakdown": {
+            "heading": "Distribuição por faixa de score",
+            "no_data": "Nenhuma resposta pontuada ainda.",
+            "average": "Score médio: {score}",
+            "count": "{count} resposta | {count} respostas",
+            "pro_required": "Você precisa de uma assinatura Pro para ver a distribuição de score.",
+            "upgrade_modal_title": "Faça upgrade para acessar a distribuição de score"
         }
     }
 }

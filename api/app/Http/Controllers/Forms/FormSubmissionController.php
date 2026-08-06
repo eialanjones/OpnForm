@@ -10,6 +10,7 @@ use App\Http\Resources\FormSubmissionResource;
 use App\Http\Resources\ExportJobStatusResource;
 use App\Jobs\Form\StoreFormSubmissionJob;
 use App\Jobs\Form\ExportFormSubmissionsJob;
+use App\Jobs\Form\RecalculateFormScoresJob;
 use App\Models\Forms\Form;
 use App\Models\Forms\FormSubmission;
 use App\Service\Forms\FormExportService;
@@ -18,6 +19,7 @@ use App\Service\Storage\FilenameUrlEncoder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
@@ -107,6 +109,53 @@ class FormSubmissionController extends Controller
 
         // Process synchronously for small exports
         return $this->processSyncExport($form, $displayColumns, $submissionIds, $exportService);
+    }
+
+    // ===== SCORE RECALCULATION =====
+
+    public function recalculateScores(Form $form)
+    {
+        // Not `view`: this rewrites historic data, so it needs write access.
+        $this->authorize('update', $form);
+
+        if (!$form->scoring_enabled) {
+            return $this->error([
+                'message' => 'Score calculation is not enabled for this form.'
+            ], 422);
+        }
+
+        $jobId = (string) Str::uuid();
+        Cache::put(RecalculateFormScoresJob::cacheKey($jobId), [
+            'job_id' => $jobId,
+            'status' => 'queued',
+            'progress' => 0,
+            'form_id' => $form->id,
+            'processed_submissions' => 0,
+            'total_submissions' => null,
+        ], now()->addHours(2));
+
+        RecalculateFormScoresJob::dispatch($form, $jobId);
+
+        return $this->success([
+            'message' => 'Score recalculation started.',
+            'job_id' => $jobId,
+        ]);
+    }
+
+    public function recalculateScoresStatus(Form $form, string $jobId)
+    {
+        $this->authorize('update', $form);
+
+        $jobData = Cache::get(RecalculateFormScoresJob::cacheKey($jobId));
+
+        // A job id alone must not expose another form's progress.
+        if (!$jobData || ($jobData['form_id'] ?? null) !== $form->id) {
+            return $this->error([
+                'message' => 'Recalculation job not found or has expired.'
+            ], 404);
+        }
+
+        return $this->success($jobData);
     }
 
     public function exportStatus(Form $form, string $jobId, FormExportService $exportService)

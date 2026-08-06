@@ -178,7 +178,9 @@
             "avg_duration": "Avg. Duration",
             "duration_placeholder": "10 seconds",
             "page_title": "Form Analytics",
-            "page_title_with_form": "Form Analytics - {title}"
+            "page_title_with_form": "Form Analytics - {title}",
+            "average_score": "Average score",
+            "score_placeholder": "7.5"
         },
         "submissions": {
             "page_title": "Form Submissions",

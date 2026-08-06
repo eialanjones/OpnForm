@@ -6,6 +6,7 @@ use App\Service\Storage\FilenameUrlEncoder;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\URL;
 use Stevebauman\Purify\Facades\Purify;
+use App\Service\Forms\ScoreTierResolver;
 use App\Service\Forms\SubmissionUrlService;
 
 /**
@@ -56,6 +57,10 @@ class FormSubmissionResource extends JsonResource
         ];
         if ($this->form->enable_ip_tracking && $this->form->is_pro && !empty($this->meta)) {
             $extraData['ip_address'] = $this->meta['ip_address'] ?? null;
+        }
+        if ($this->form->scoring_enabled) {
+            $extraData['score'] = $this->score;
+            $extraData['score_tier'] = ScoreTierResolver::label($this->form, $this->score);
         }
 
         $this->data = array_merge($this->data, $extraData);

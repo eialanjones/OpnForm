@@ -88,7 +88,14 @@ class TemplateController extends Controller
         $template = Template::findOrFail($id);
         $this->authorize('update', $template);
 
-        $template->update($request->all());
+        $payload = $request->all();
+        // Templates are served to anonymous visitors, so the scoring config of
+        // the source form must never reach one through this path either.
+        if (isset($payload['structure']) && is_array($payload['structure'])) {
+            $payload['structure'] = FormTemplateRequest::withoutScoringConfig($payload['structure']);
+        }
+
+        $template->update($payload);
 
         return $this->success([
             'message' => 'Template was updated.',

@@ -8,6 +8,7 @@ use App\Models\Forms\Form;
 use App\Models\Integration\FormIntegrationsEvent;
 use App\Service\Forms\FormSubmissionFormatter;
 use App\Service\Forms\FormLogicConditionChecker;
+use App\Service\Forms\FormScoreCalculator;
 use App\Service\Forms\SubmissionUrlService;
 use App\Service\Security\PublicWebhookUrl;
 use Illuminate\Http\Client\RequestException;
@@ -149,6 +150,12 @@ abstract class AbstractIntegrationHandler
         ];
         if (isset($submissionData['submission_id'])) {
             $data['submission_id'] = $submissionData['submission_id'];
+        }
+        // Top level too, so integrations can map the score without digging
+        // through the field list.
+        if (array_key_exists(FormScoreCalculator::SCORE_FIELD_ID, $submissionData)) {
+            $data['score'] = $submissionData[FormScoreCalculator::SCORE_FIELD_ID];
+            $data['score_tier'] = $submissionData[FormScoreCalculator::SCORE_TIER_FIELD_ID] ?? null;
         }
         if ($form->is_pro && $form->editable_submissions && isset($submissionData['submission_id'])) {
             $data['edit_link'] = SubmissionUrlService::buildEditUrl($form, $submissionData['submission_id']);

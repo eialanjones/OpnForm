@@ -7,7 +7,8 @@
             "submission_settings": "Submission Settings",
             "security_access": "Security & Access",
             "seo_social_sharing": "SEO & Social Sharing",
-            "custom_code": "Custom Code"
+            "custom_code": "Custom Code",
+            "scoring": "Score calculation"
         },
         "closed_form": {
             "text_label": "Closed form text",
@@ -269,6 +270,32 @@
             "removal_description": "Switching to Focused will remove {count} block not supported in this mode. | Switching to Focused will remove {count} blocks not supported in this mode.",
             "switch_description": "Switch to Focused style.",
             "no_blocks_removed": "No blocks will be removed."
+        },
+        "scoring": {
+            "description": "Give every submission a 0 to 10 score.",
+            "enable_label": "Enable score calculation",
+            "enable_help": "When off, blocks stop earning points and the score disappears from results.",
+            "budget_heading": "Points distribution",
+            "budget_summary": "{used} of {max} points distributed · {remaining} available",
+            "budget_exceeded": "Total weight exceeds {max} points. Adjust the blocks below.",
+            "blocks_heading": "Scored blocks",
+            "blocks_empty": "No block has a weight yet.",
+            "block_no_weight": "No weight",
+            "tiers_heading": "Score tiers",
+            "tiers_help": "Each tier starts at the given value and runs up to the next tier.",
+            "tier_label": "Tier name",
+            "tier_from": "Starting at",
+            "tier_color": "Color",
+            "tier_add": "Add tier",
+            "tier_remove": "Remove tier",
+            "tier_first_must_be_zero": "The first tier must start at 0.",
+            "tier_duplicate_threshold": "Two tiers start at the same value.",
+            "recalculate_heading": "Past submissions",
+            "recalculate_help": "Recalculates the score of existing submissions using the saved configuration.",
+            "recalculate_button": "Recalculate past submissions",
+            "recalculate_confirm": "Recalculate the score of every submission in this form?",
+            "mention_score": "Submission score",
+            "mention_score_tier": "Score tier"
         }
     }
 }

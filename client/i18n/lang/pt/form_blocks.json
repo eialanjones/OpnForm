@@ -7,7 +7,8 @@
             "submission_settings": "Configurações de envio",
             "security_access": "Segurança e acesso",
             "seo_social_sharing": "SEO e compartilhamento social",
-            "custom_code": "Código personalizado"
+            "custom_code": "Código personalizado",
+            "scoring": "Cálculo de score"
         },
         "closed_form": {
             "text_label": "Texto do formulário encerrado",
@@ -269,6 +270,32 @@
             "removal_description": "Mudar para o estilo Focado vai remover {count} bloco não suportado neste modo. | Mudar para o estilo Focado vai remover {count} blocos não suportados neste modo.",
             "switch_description": "Mudar para o estilo Focado.",
             "no_blocks_removed": "Nenhum bloco será removido."
+        },
+        "scoring": {
+            "description": "Atribua um score de 0 a 10 para cada resposta enviada.",
+            "enable_label": "Ativar cálculo de score",
+            "enable_help": "Quando desativado, os blocos deixam de somar pontos e o score some dos resultados.",
+            "budget_heading": "Distribuição dos pontos",
+            "budget_summary": "{used} de {max} pontos distribuídos · {remaining} disponíveis",
+            "budget_exceeded": "A soma dos pesos passou de {max} pontos. Ajuste os blocos abaixo.",
+            "blocks_heading": "Blocos pontuados",
+            "blocks_empty": "Nenhum bloco tem peso definido ainda.",
+            "block_no_weight": "Sem peso",
+            "tiers_heading": "Faixas de score",
+            "tiers_help": "Cada faixa começa no valor informado e vai até a próxima faixa.",
+            "tier_label": "Nome da faixa",
+            "tier_from": "A partir de",
+            "tier_color": "Cor",
+            "tier_add": "Adicionar faixa",
+            "tier_remove": "Remover faixa",
+            "tier_first_must_be_zero": "A primeira faixa precisa começar em 0.",
+            "tier_duplicate_threshold": "Duas faixas começam no mesmo valor.",
+            "recalculate_heading": "Respostas anteriores",
+            "recalculate_help": "Recalcula o score das respostas já enviadas usando a configuração salva.",
+            "recalculate_button": "Recalcular submissões antigas",
+            "recalculate_confirm": "Recalcular o score de todas as respostas deste formulário?",
+            "mention_score": "Score da resposta",
+            "mention_score_tier": "Faixa do score"
         }
     }
 }

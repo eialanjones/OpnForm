@@ -8,6 +8,15 @@ namespace App\Rules\PropertyValidators;
  */
 class LogicPropertyValidator implements PropertyValidatorInterface
 {
+    /**
+     * Scoring actions are orthogonal to the block state actions below: they
+     * change what the block is worth, not whether it is shown or required.
+     */
+    public const SCORE_ACTIONS = [
+        'award-score',
+        'zero-score',
+    ];
+
     public const ACTIONS_VALUES = [
         'show-block',
         'hide-block',
@@ -15,6 +24,8 @@ class LogicPropertyValidator implements PropertyValidatorInterface
         'require-answer',
         'enable-block',
         'disable-block',
+        'award-score',
+        'zero-score',
     ];
 
     private static ?array $conditionMappingData = null;
@@ -226,9 +237,26 @@ class LogicPropertyValidator implements PropertyValidatorInterface
         $isDisabled = $this->field['disabled'] ?? false;
 
         foreach ($actions as $action) {
+            if (!in_array($action, self::ACTIONS_VALUES)) {
+                $this->isActionCorrect = false;
+                break;
+            }
+
+            $isLayoutBlock = in_array($fieldType, $layoutBlocks);
+
+            // Scoring actions are legal whatever the block state, but layout
+            // blocks never produce an answer, so they can never be scored.
+            if (in_array($action, self::SCORE_ACTIONS, true)) {
+                if ($isLayoutBlock) {
+                    $this->isActionCorrect = false;
+                    break;
+                }
+
+                continue;
+            }
+
             if (
-                !in_array($action, self::ACTIONS_VALUES) ||
-                (in_array($fieldType, $layoutBlocks) && !in_array($action, ['hide-block', 'show-block'])) ||
+                ($isLayoutBlock && !in_array($action, ['hide-block', 'show-block'])) ||
                 ($isHidden && !in_array($action, ['show-block', 'require-answer'])) ||
                 ($isRequired && !in_array($action, ['make-it-optional', 'hide-block', 'disable-block'])) ||
                 ($isDisabled && !in_array($action, ['enable-block', 'require-answer', 'make-it-optional']))

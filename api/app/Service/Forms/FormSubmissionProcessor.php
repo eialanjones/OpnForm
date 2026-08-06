@@ -17,19 +17,38 @@ class FormSubmissionProcessor
             return true;
         }
 
+        // The score only exists once the job has run, so a form that shows it
+        // on its thank-you screen or in its redirect URL cannot wait for the
+        // queue. Gated on the mention actually being used, so nobody else pays
+        // for leaving the queue.
+        if ($form->scoring_enabled && $this->isScoreMentioned($form)) {
+            return true;
+        }
+
         // If no redirect URL, no need to process synchronously
         if (!$form->redirect_url) {
             return false;
         }
 
         // Check if any UUID/auto-increment fields are used in redirect URL
-        foreach ($form->properties as $field) {
+        foreach ($form->properties ?? [] as $field) {
             if ($this->isGeneratedField($field) && $this->isFieldUsedInRedirectUrl($form, $field['id'])) {
                 return true;
             }
         }
 
         return false;
+    }
+
+    /**
+     * Checks whether the thank-you text or the redirect URL reference the
+     * score or its tier.
+     */
+    public function isScoreMentioned(Form $form): bool
+    {
+        $haystack = ($form->submitted_text ?? '') . ($form->redirect_url ?? '');
+
+        return str_contains($haystack, FormScoreCalculator::SCORE_FIELD_ID);
     }
 
     /**

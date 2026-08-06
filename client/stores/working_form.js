@@ -277,6 +277,13 @@ export const useWorkingFormStore = defineStore("working_form", {
         Object.assign(newBlock, originalBlockDefinition.default_values)
       }
 
+      // A fresh literal per block. This cannot live in blocks_types.json:
+      // Object.assign above is shallow over a shared JSON module, so every
+      // block would end up pointing at the same scoring object.
+      if (effectiveBlockDefinition?.is_input) {
+        newBlock.scoring = { weight: 0, mode: 'answered' }
+      }
+
       const insertIndex = this.determineInsertIndex(index)
       
       const newFields = clonedeep(this.content.properties || [])

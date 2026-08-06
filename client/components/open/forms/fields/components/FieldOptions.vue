@@ -714,6 +714,11 @@
       />
     </div>
 
+    <BlockScoringOptions
+      :field="field"
+      :form="form"
+    />
+
   <!--  (moved above for focused mode)  -->
   </div>
 </template>
@@ -725,6 +730,7 @@ import CountryFlag from 'vue-country-flag-next'
 import MatrixFieldOptions from './MatrixFieldOptions.vue'
 import PaymentFieldOptions from './PaymentFieldOptions.vue'
 import AiPdfFieldOptions from './AiPdfFieldOptions.vue'
+import BlockScoringOptions from './BlockScoringOptions.vue'
 import HiddenRequiredDisabled from './HiddenRequiredDisabled.vue'
 import EditorSectionHeader from '~/components/open/forms/components/form-components/EditorSectionHeader.vue'
 import ProTag from '~/components/app/ProTag.vue'
@@ -735,7 +741,7 @@ import BlockMediaOptions from '~/components/open/forms/components/media/BlockMed
 
 export default {
   name: 'FieldOptions',
-  components: { CountryFlag, MatrixFieldOptions, HiddenRequiredDisabled, EditorSectionHeader, PaymentFieldOptions, AiPdfFieldOptions, ProTag, BlockMediaOptions },
+  components: { CountryFlag, MatrixFieldOptions, HiddenRequiredDisabled, EditorSectionHeader, PaymentFieldOptions, AiPdfFieldOptions, BlockScoringOptions, ProTag, BlockMediaOptions },
   props: {
     field: {
       type: Object,

@@ -30,6 +30,8 @@ export const formsApi = {
     deleteMulti: (formId, submissionIds) => apiService.post(`/open/forms/${formId}/submissions/multi`, { submissionIds }),
     export: (formId, data) => apiService.post(`/open/forms/${formId}/submissions/export`, data),
     exportStatus: (formId, jobId) => apiService.get(`/open/forms/${formId}/submissions/export/status/${jobId}`),
+    recalculateScores: (formId) => apiService.post(`/open/forms/${formId}/submissions/recalculate-scores`),
+    recalculateScoresStatus: (formId, jobId) => apiService.get(`/open/forms/${formId}/submissions/recalculate-scores/status/${jobId}`),
     answer: (slug, data, options) => apiService.post(`/forms/${slug}/answer`, data, options)
   },
 

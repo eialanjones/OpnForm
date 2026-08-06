@@ -190,6 +190,17 @@ import ScrollableContainer from "~/components/dashboard/ScrollableContainer.vue"
 import clonedeep from "clone-deep"
 import { default as _has } from "lodash/has"
 
+const LAYOUT_BLOCK_TYPES = [
+  "nf-text",
+  "nf-code",
+  "nf-page-break",
+  "nf-divider",
+  "nf-image",
+  "nf-video",
+]
+
+const SCORING_ACTIONS = ["award-score", "zero-score"]
+
 export default {
   name: "FormBlockLogicEditor",
   components: { ConditionEditor, ScrollableContainer },
@@ -257,17 +268,33 @@ export default {
           return { label: field.name, value: field.id }
         })
     },
+    isLayoutBlock() {
+      return LAYOUT_BLOCK_TYPES.includes(this.field.type)
+    },
+    scoringActionOptions() {
+      // Layout blocks never produce an answer, so they can never be scored.
+      if (this.isLayoutBlock) {
+        return []
+      }
+      if ((this.form?.settings?.scoring_enabled ?? true) === false) {
+        return []
+      }
+      return [
+        {
+          name: this.$t("form_logic.block_logic.actions.award_score"),
+          value: "award-score",
+        },
+        {
+          name: this.$t("form_logic.block_logic.actions.zero_score"),
+          value: "zero-score",
+        },
+      ]
+    },
     actionOptions() {
-      if (
-        [
-          "nf-text",
-          "nf-code",
-          "nf-page-break",
-          "nf-divider",
-          "nf-image",
-          "nf-video",
-        ].includes(this.field.type)
-      ) {
+      return [...this.stateActionOptions, ...this.scoringActionOptions]
+    },
+    stateActionOptions() {
+      if (this.isLayoutBlock) {
         if (this.field.hidden) {
           return [{ name: this.$t("form_logic.block_logic.actions.show_block"), value: "show-block" }]
         } else {
@@ -364,20 +391,34 @@ export default {
       this.refreshActions()
     },
     onActionInput() {
-      if (this.logic.actions.length >= 2) {
-        if (
-          this.logic.actions[1] === "require-answer" &&
-          this.logic.actions[0] === "hide-block"
-        ) {
-          this.logic.actions = ["require-answer"]
-        } else if (
-          this.logic.actions[1] === "hide-block" &&
-          this.logic.actions[0] === "require-answer"
-        ) {
-          this.logic.actions = ["hide-block"]
-        }
+      const scoringChanged = this.enforceExclusivity(SCORING_ACTIONS)
+      const stateChanged = this.enforceExclusivity([
+        "hide-block",
+        "require-answer",
+      ])
+
+      if (scoringChanged || stateChanged) {
         this.refreshActions()
       }
+    },
+    // Drops every action of a mutually exclusive pair except the one the user
+    // picked last. The select appends on selection, so the last index wins.
+    enforceExclusivity(pair) {
+      const actions = this.logic.actions
+      if (!pair.every((action) => actions.includes(action))) {
+        return false
+      }
+
+      const keep = pair.reduce((latest, action) =>
+        actions.lastIndexOf(action) > actions.lastIndexOf(latest)
+          ? action
+          : latest,
+      )
+      this.logic.actions = actions.filter(
+        (action) => action === keep || !pair.includes(action),
+      )
+
+      return true
     },
     cleanConditions() {
       const availableActions = this.actionOptions.map(function (op) {

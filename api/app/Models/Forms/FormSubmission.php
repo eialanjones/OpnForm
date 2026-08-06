@@ -18,7 +18,8 @@ class FormSubmission extends Model
         'completion_time',
         'status',
         'meta',
-        'public_id'
+        'public_id',
+        'score',
     ];
 
     protected function casts(): array
@@ -28,6 +29,9 @@ class FormSubmission extends Model
             'completion_time' => 'integer',
             'meta' => 'array',
             'public_id' => 'string',
+            // Not `decimal:1`: that cast returns a string, which would ship the
+            // score quoted in every API response and webhook payload.
+            'score' => 'float',
         ];
     }
 

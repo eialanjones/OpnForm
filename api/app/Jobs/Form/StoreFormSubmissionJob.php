@@ -9,6 +9,8 @@ use App\Service\Storage\FileUploadPathService;
 use App\Models\Forms\Form;
 use App\Models\Forms\FormSubmission;
 use App\Service\Forms\FormLogicPropertyResolver;
+use App\Service\Forms\FormScoreCalculator;
+use App\Service\Forms\ScoreTierResolver;
 use App\Service\Storage\StorageFileNameParser;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -52,6 +54,7 @@ class StoreFormSubmissionJob implements ShouldQueue
     private bool $isPartial = false;
     private bool $isClientProvidedSubmissionId = false;
     private ?string $submitterIp = null;
+    private ?float $score = null;
 
     /**
      * Create a new job instance.
@@ -75,7 +78,14 @@ class StoreFormSubmissionJob implements ShouldQueue
         $this->formData = $this->getFormData();
         $this->addHiddenPrefills($this->formData);
         $this->storeSubmission($this->formData);
+        // Injected only after storing: storeSubmission() assigns $formData
+        // wholesale to the jsonb column, so these reserved keys would otherwise
+        // be persisted as if they were answers.
         $this->formData['submission_id'] = $this->submissionId;
+        if ($this->form->scoring_enabled) {
+            $this->formData[FormScoreCalculator::SCORE_FIELD_ID] = $this->score;
+            $this->formData[FormScoreCalculator::SCORE_TIER_FIELD_ID] = ScoreTierResolver::label($this->form, $this->score);
+        }
         if (!$this->isPartial) {
             FormSubmitted::dispatch($this->form, $this->formData);
         }
@@ -207,6 +217,22 @@ class StoreFormSubmissionJob implements ShouldQueue
             $existingMeta = $submission->meta ?? [];
             $existingMeta['ip_address'] = $this->submitterIp;
             $submission->meta = $existingMeta;
+        }
+
+        // Computed from the very array being persisted, so the score can never
+        // drift from the answers it was derived from.
+        if ($this->form->scoring_enabled) {
+            $result = FormScoreCalculator::compute($this->form, $formData);
+            $this->score = $result['score'];
+            $submission->score = $result['score'];
+            $submission->meta = array_merge($submission->meta ?? [], [
+                'score_breakdown' => [
+                    'version' => 1,
+                    'earned' => $result['earned'],
+                    'attainable' => $result['attainable'],
+                    'blocks' => $result['blocks'],
+                ],
+            ]);
         }
 
         $submission->save();

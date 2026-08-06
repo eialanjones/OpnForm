@@ -69,6 +69,8 @@ class FormTemplateRequest extends FormRequest
             }
         }
 
+        $structure = self::withoutScoringConfig($structure);
+
         return new Template([
             'creator_id' => $this->user()?->id ?? null,
             'publicly_listed' => $this->publicly_listed,
@@ -83,5 +85,29 @@ class FormTemplateRequest extends FormRequest
             'related_templates' => $this->related_templates ?? [],
             'questions' => $this->questions ?? [],
         ]);
+    }
+
+    /**
+     * Templates are served to anonymous visitors, so the scoring configuration
+     * of the source form must never travel into one: block weights and the
+     * per-option point map would hand out the best answers.
+     */
+    public static function withoutScoringConfig(array $structure): array
+    {
+        if (isset($structure['properties']) && is_array($structure['properties'])) {
+            $structure['properties'] = array_map(function ($property) {
+                if (is_array($property)) {
+                    unset($property['scoring']);
+                }
+
+                return $property;
+            }, $structure['properties']);
+        }
+
+        if (isset($structure['settings']) && is_array($structure['settings'])) {
+            unset($structure['settings']['score_tiers']);
+        }
+
+        return $structure;
     }
 }

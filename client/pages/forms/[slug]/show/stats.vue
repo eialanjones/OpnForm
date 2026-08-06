@@ -1,13 +1,11 @@
 <template>
   <div class="p-4">
-    <div class="w-full max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-2">
+    <div
+      class="w-full max-w-4xl mx-auto grid grid-cols-2 gap-2"
+      :class="metrics.length > 4 ? 'md:grid-cols-3 lg:grid-cols-5' : 'md:grid-cols-4'"
+    >
       <div
-        v-for="(stat, index) in [
-          { label: $t('form_pages.stats.views'), value: totalViews, placeholder: '123' },
-          { label: $t('form_pages.stats.submissions'), value: totalSubmissions, placeholder: '123' },
-          { label: $t('form_pages.stats.completion'), value: completionRate + '%', placeholder: '100%' },
-          { label: $t('form_pages.stats.avg_duration'), value: averageDuration, placeholder: $t('form_pages.stats.duration_placeholder') }
-        ]"
+        v-for="(stat, index) in metrics"
         :key="index"
         class="border border-neutral-300 rounded-lg shadow-xs p-4"
       >
@@ -41,10 +39,18 @@
       :form="form" 
     />
     
+    <FormScoreBreakdown
+      v-if="hasScoring"
+      class="w-full max-w-4xl mx-auto mt-8"
+      :form="form"
+      :score-stats="statsData?.score_stats ?? {}"
+      :is-loading="isLoading"
+    />
+
     <FormTrafficBreakdown
-      class="w-full max-w-4xl mx-auto mt-8" 
-      :form="form" 
-      :meta-data="statsData?.meta_stats ?? {}" 
+      class="w-full max-w-4xl mx-auto mt-8"
+      :form="form"
+      :meta-data="statsData?.meta_stats ?? {}"
       :is-loading="isLoading"
     />
   </div>
@@ -53,6 +59,8 @@
 <script setup>
 import FormStats from "~/components/open/forms/components/FormStats.vue"
 import FormTrafficBreakdown from "~/components/open/forms/components/FormTrafficBreakdown.vue"
+import FormScoreBreakdown from "~/components/open/forms/components/FormScoreBreakdown.vue"
+import { formatScore, formHasScoreWeights, isScoringEnabled } from "~/lib/forms/scoring"
 
 const props = defineProps({
   form: { type: Object, required: true },
@@ -93,4 +101,24 @@ const totalViews = computed(() => statsData.value?.views ?? 0)
 const totalSubmissions = computed(() => statsData.value?.submissions ?? 0)
 const completionRate = computed(() => Math.min(100, statsData.value?.completion_rate ?? 0))
 const averageDuration = computed(() => statsData.value?.average_duration ?? '-')
+
+// Only forms that actually weight a block get the score metric and breakdown.
+const hasScoring = computed(
+  () => isScoringEnabled(props.form) && formHasScoreWeights(props.form),
+)
+
+const averageScore = computed(() => {
+  const average = statsData.value?.score_stats?.average
+  return average === null || average === undefined ? '-' : formatScore(average)
+})
+
+const metrics = computed(() => [
+  { label: t('form_pages.stats.views'), value: totalViews.value, placeholder: '123' },
+  { label: t('form_pages.stats.submissions'), value: totalSubmissions.value, placeholder: '123' },
+  { label: t('form_pages.stats.completion'), value: completionRate.value + '%', placeholder: '100%' },
+  { label: t('form_pages.stats.avg_duration'), value: averageDuration.value, placeholder: t('form_pages.stats.duration_placeholder') },
+  ...(hasScoring.value
+    ? [{ label: t('form_pages.stats.average_score'), value: averageScore.value, placeholder: t('form_pages.stats.score_placeholder') }]
+    : []),
+])
 </script>

@@ -78,7 +78,9 @@
                 "enable_block": "Habilitar bloco",
                 "disable_block": "Desabilitar bloco",
                 "require_answer": "Exigir resposta",
-                "make_it_optional": "Tornar opcional"
+                "make_it_optional": "Tornar opcional",
+                "award_score": "Pontuar bloco",
+                "zero_score": "Zerar pontuação do bloco"
             }
         },
         "group_control": {

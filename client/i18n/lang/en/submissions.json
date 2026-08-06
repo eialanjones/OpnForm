@@ -19,7 +19,8 @@
             "delete_count": "Delete ({count})",
             "fullscreen": "Fullscreen",
             "exit_fullscreen": "Exit fullscreen",
-            "delete_selected_confirm": "Do you really want to delete selected {count} record? | Do you really want to delete selected {count} records?"
+            "delete_selected_confirm": "Do you really want to delete selected {count} record? | Do you really want to delete selected {count} records?",
+            "score_column": "Score"
         },
         "status": {
             "all": "All",
@@ -48,7 +49,8 @@
         },
         "cells": {
             "date_range_separator": "to",
-            "payment": "Payment"
+            "payment": "Payment",
+            "score_empty": "—"
         },
         "font_picker": {
             "modal_title": "Google fonts",

@@ -21,6 +21,14 @@
     </SettingsModalPage>
 
     <SettingsModalPage
+      id="scoring"
+      :label="$t('form_blocks.sections.scoring')"
+      icon="i-heroicons-calculator"
+    >
+      <FormScoringSettings />
+    </SettingsModalPage>
+
+    <SettingsModalPage
       id="security"
       :label="$t('form_blocks.sections.security_access')"
       icon="i-heroicons-shield-check"
@@ -52,6 +60,7 @@ import SettingsModal from '~/components/pages/settings/SettingsModal.vue'
 import SettingsModalPage from '~/components/pages/settings/SettingsModalPage.vue'
 import FormInformation from '~/components/open/forms/components/form-components/FormInformation.vue'
 import FormSubmissionSettings from '~/components/open/forms/components/form-components/FormSubmissionSettings.vue'
+import FormScoringSettings from '~/components/open/forms/components/form-components/FormScoringSettings.vue'
 import FormSecurityAccess from '~/components/open/forms/components/form-components/FormSecurityAccess.vue'
 import FormCustomSeo from '~/components/open/forms/components/form-components/FormCustomSeo.vue'
 import FormCustomCode from '~/components/open/forms/components/form-components/FormCustomCode.vue'
@@ -85,6 +94,9 @@ const activeTab = computed({
 const closeModal = () => {
   isOpen.value = false
 }
+
+// Lets the scoring overview send the user to a block in the editor behind.
+provide('closeSettingsModal', closeModal)
 
 // Define keyboard shortcuts
 defineShortcuts({

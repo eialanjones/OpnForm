@@ -54,6 +54,11 @@
         },
         "payment": {
             "missing_form_or_provider": "Missing form slug or OAuth provider ID"
+        },
+        "scoring": {
+            "recalculate_started": "Recalculating submission scores…",
+            "recalculate_error": "Could not recalculate the scores.",
+            "recalculate_success": "Score recalculated for {count} submission | Score recalculated for {count} submissions"
         }
     }
 }

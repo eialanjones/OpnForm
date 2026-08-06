@@ -54,6 +54,11 @@
         },
         "payment": {
             "missing_form_or_provider": "Slug do formulário ou ID do provedor OAuth ausente"
+        },
+        "scoring": {
+            "recalculate_started": "Recalculando o score das respostas…",
+            "recalculate_error": "Não foi possível recalcular os scores.",
+            "recalculate_success": "Score recalculado para {count} resposta | Score recalculado para {count} respostas"
         }
     }
 }

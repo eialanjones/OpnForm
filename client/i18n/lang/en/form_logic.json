@@ -78,7 +78,9 @@
                 "enable_block": "Enable Block",
                 "disable_block": "Disable Block",
                 "require_answer": "Require answer",
-                "make_it_optional": "Make it optional"
+                "make_it_optional": "Make it optional",
+                "award_score": "Award score",
+                "zero_score": "Zero out score"
             }
         },
         "group_control": {

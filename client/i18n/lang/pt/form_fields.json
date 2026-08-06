@@ -211,6 +211,32 @@
                     "generic": "não conseguimos ler este arquivo."
                 }
             }
+        },
+        "scoring": {
+            "title": "Cálculo de score",
+            "weight_label": "Peso do bloco",
+            "budget_hint": "Restam {remaining} de {max} pontos para distribuir.",
+            "budget_exceeded": "A soma dos pesos passou de {max} pontos.",
+            "mode_label": "Como pontuar",
+            "modes": {
+                "answered": "Ao responder",
+                "options": "Pontos por opção",
+                "proportional": "Proporcional ao valor",
+                "logic": "Pela lógica do bloco"
+            },
+            "mode_help": {
+                "answered": "Qualquer resposta preenchida vale o peso inteiro.",
+                "options": "Cada opção pode valer no máximo o peso do bloco.",
+                "proportional": "O bloco recebe (valor - {min}) / ({max} - {min}) do seu peso.",
+                "logic": "O bloco recebe o peso inteiro quando as condições da aba Lógica forem atendidas e a ação de pontuar estiver selecionada."
+            },
+            "options_title": "Pontos por opção",
+            "option_exceeds_weight": "Alguma opção vale mais que o peso do bloco.",
+            "checkbox_checked": "Marcado",
+            "checkbox_unchecked": "Desmarcado",
+            "proportional_max_label": "Valor máximo esperado",
+            "proportional_max_help": "Necessário para calcular a proporção em blocos numéricos.",
+            "disabled_notice": "O cálculo de score está desativado neste formulário."
         }
     }
 }

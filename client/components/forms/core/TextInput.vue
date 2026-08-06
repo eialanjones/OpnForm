@@ -18,6 +18,7 @@
       :placeholder="placeholder"
       :min="min"
       :max="max"
+      :step="step"
       :maxlength="maxCharLimit"
       @change="onChange"
       @keydown.enter="onEnterPress"
@@ -64,6 +65,7 @@ export default {
     accept: {type: String, default: null},
     min: {type: Number, required: false, default: null},
     max: {type: Number, required: false, default: null},
+    step: {type: [Number, String], required: false, default: null},
     autocomplete: {type: [Boolean, String, Object], default: null},
     maxCharLimit: {type: Number, required: false, default: null},
     pattern: {type: String, default: null},

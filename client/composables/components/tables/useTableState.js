@@ -1,6 +1,7 @@
 import { computed, toValue } from 'vue'
 import { useTableColumnPreferences } from './useTableColumnPreferences'
 import debounce from 'debounce'
+import { formHasScoreWeights, getScoreTiers, isScoringEnabled } from '~/lib/forms/scoring'
 
 const normalizeColumnList = (columns) => {
   if (Array.isArray(columns)) {
@@ -111,6 +112,25 @@ export function useTableState(form, withActions = false) {
             accessorKey: 'ip_address',
             header: 'IP Address',
             type: 'ip_address',
+            enableResizing: true,
+            minSize: 100,
+            maxSize: 500,
+           })
+         }
+       }
+
+       // Gated on an actual weight, not just the setting: scoring_enabled
+       // defaults to true, so every legacy form would grow an empty column.
+       if (isScoringEnabled(form.value) && formHasScoreWeights(form.value)) {
+         if (!baseColumns.find(property => property.id === 'score')) {
+           baseColumns.push({
+            id: 'score',
+            accessorKey: 'score',
+            header: 'Score',
+            type: 'score',
+            // Cell renderers only receive `value` and `property`, so the tiers
+            // travel on the column config (same trick as matrix_columns).
+            score_tiers: getScoreTiers(form.value),
             enableResizing: true,
             minSize: 100,
             maxSize: 500,

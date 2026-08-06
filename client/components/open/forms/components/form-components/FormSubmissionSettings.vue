@@ -176,7 +176,7 @@
               <MentionInput
                 name="redirect_url"
                 :form="form"
-                :mentions="form.properties"
+                :mentions="mentionsWithScore"
                 class="w-full max-w-xs"
                 :label="$t('form_blocks.submission.redirect_url_label')"
                 placeholder="https://www.google.com"
@@ -186,7 +186,7 @@
             <template v-else>
               <rich-text-area-input
                 enable-mentions
-                :mentions="form.properties"
+                :mentions="mentionsWithScore"
                 :allow-fullscreen="true"
                 name="submitted_text"
                 class="w-full"
@@ -250,10 +250,19 @@
 
 <script setup>
 import ProTag from "~/components/app/ProTag.vue"
+import { buildScoreMentions } from "~/lib/forms/scoring"
 
 const workingFormStore = useWorkingFormStore()
 const { content: form } = storeToRefs(workingFormStore)
 const crisp = useCrisp()
+const { t } = useI18n()
+
+// The score is only known once the form is submitted, so it is offered here
+// (thank-you text, redirect URL) and nowhere else.
+const mentionsWithScore = computed(() => [
+  ...(form.value?.properties ?? []),
+  ...buildScoreMentions(form.value, t),
+])
 
 const submissionOptions = ref({})
 

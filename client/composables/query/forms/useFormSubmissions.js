@@ -220,6 +220,20 @@ export function useFormSubmissions() {
     })
   }
 
+  // Both the table and the analytics tab read the score, so they have to be
+  // refetched once the job actually finishes.
+  const invalidateScores = (formId) => {
+    queryClient.invalidateQueries({ queryKey: ['forms', formId, 'submissions'] })
+    queryClient.invalidateQueries({ queryKey: ['forms', formId, 'stats-details'] })
+  }
+
+  const recalculateScores = (options = {}) => {
+    return useMutation({
+      mutationFn: ({ formId }) => formsApi.submissions.recalculateScores(formId),
+      ...options
+    })
+  }
+
   const invalidateSubmissions = (formId) => {
     queryClient.invalidateQueries(['forms', formId, 'submissions'])
   }
@@ -233,6 +247,8 @@ export function useFormSubmissions() {
     deleteSubmission,
     deleteMultiSubmissions,
     exportSubmissions,
+    recalculateScores,
+    invalidateScores,
     invalidateSubmissions,
   }
 } 

@@ -190,6 +190,7 @@ import OpenFile from "./components/OpenFile.vue"
 import OpenCheckbox from "./components/OpenCheckbox.vue"
 import OpenPayment from "./components/OpenPayment.vue"
 import OpenSubmissionStatus from "./components/OpenSubmissionStatus.vue"
+import OpenScore from "./components/OpenScore.vue"
 import RecordOperations from "../components/RecordOperations.vue"
 import TableHeader from "./components/TableHeader.vue"
 import TableColumnManager from "./components/TableColumnManager.vue"
@@ -255,6 +256,7 @@ const fieldComponents = {
   barcode: OpenText,
   status: OpenSubmissionStatus,
   ip_address: OpenText,
+  score: OpenScore,
 }
 
 const table = ref(null)

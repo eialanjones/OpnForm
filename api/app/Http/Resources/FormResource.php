@@ -60,7 +60,7 @@ class FormResource extends JsonResource
         }
 
         return array_merge($data, $ownerData, [
-            'settings' => $this->settings ?? new \stdClass(),
+            'settings' => $this->publicSettings(),
             'is_pro' => $this->workspaceIsPro(),
             'is_trialing' => $this->workspaceIsTrialing(),
             'workspace_id' => $this->workspace_id,
@@ -93,12 +93,39 @@ class FormResource extends JsonResource
     private function withoutOwnerOnlyBlockConfig(array $properties): array
     {
         return array_map(function ($property) {
-            if (!is_array($property) || ($property['type'] ?? null) !== 'ai_pdf') {
+            if (!is_array($property)) {
+                return $property;
+            }
+
+            // Block weights and per-option points are evaluated server side
+            // only. Shipping them would let a respondent read off the answers
+            // worth the most points.
+            $property = Arr::except($property, ['scoring']);
+
+            if (($property['type'] ?? null) !== 'ai_pdf') {
                 return $property;
             }
 
             return Arr::except($property, self::AI_PDF_OWNER_ONLY_KEYS);
         }, $properties);
+    }
+
+    /**
+     * Form settings, minus anything that belongs to the owner alone.
+     */
+    private function publicSettings(): mixed
+    {
+        $settings = $this->settings;
+
+        if ($settings === null) {
+            return new \stdClass();
+        }
+
+        if (!$this->userIsFormOwner() && is_array($settings)) {
+            $settings = Arr::except($settings, ['score_tiers']);
+        }
+
+        return $settings;
     }
 
     public function setCleanings(array $cleanings)

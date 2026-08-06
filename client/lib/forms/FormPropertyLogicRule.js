@@ -11,6 +11,19 @@ class FormPropertyLogicRule {
     "require-answer",
     "enable-block",
     "disable-block",
+    "award-score",
+    "zero-score",
+  ]
+  // Scoring actions change what the block is worth, not whether it is shown or
+  // required, so they are legal in every block state.
+  SCORING_ACTIONS = ["award-score", "zero-score"]
+  LAYOUT_BLOCK_TYPES = [
+    "nf-text",
+    "nf-code",
+    "nf-page-break",
+    "nf-divider",
+    "nf-image",
+    "nf-video",
   ]
   CONDITION_MAPPING = OpenFilters
 
@@ -124,39 +137,46 @@ class FormPropertyLogicRule {
   }
 
   checkActions(conditions) {
-    if (Array.isArray(conditions) && conditions.length > 0) {
-      conditions.forEach((val) => {
-        if (
-          this.ACTIONS_VALUES.indexOf(val) === -1 ||
-          ([
-            "nf-text",
-            "nf-code",
-            "nf-page-break",
-            "nf-divider",
-            "nf-image",
-            "nf-video"
-          ].indexOf(this.property["type"]) > -1 &&
-            ["hide-block", "show-block"].indexOf(val) === -1) ||
-          (this.property["hidden"] !== undefined &&
-            this.property["hidden"] &&
-            ["show-block", "require-answer"].indexOf(val) === -1) ||
-          (this.property["required"] !== undefined &&
-            this.property["required"] &&
-            ["make-it-optional", "hide-block", "disable-block"].indexOf(val) ===
-              -1) ||
-          (this.property["disabled"] !== undefined &&
-            this.property["disabled"] &&
-            ["enable-block", "require-answer", "make-it-optional"].indexOf(
-              val,
-            ) === -1)
-        ) {
-          this.isActionCorrect = false
-          return
-        }
-      })
-    } else {
+    if (!Array.isArray(conditions) || conditions.length === 0) {
       this.isActionCorrect = false
+      return
     }
+
+    conditions.forEach((val) => {
+      if (this.ACTIONS_VALUES.indexOf(val) === -1) {
+        this.isActionCorrect = false
+        return
+      }
+
+      const isLayoutBlock =
+        this.LAYOUT_BLOCK_TYPES.indexOf(this.property["type"]) > -1
+
+      if (this.SCORING_ACTIONS.indexOf(val) > -1) {
+        // Layout blocks never produce an answer, so they can never be scored.
+        if (isLayoutBlock) {
+          this.isActionCorrect = false
+        }
+        return
+      }
+
+      if (
+        (isLayoutBlock && ["hide-block", "show-block"].indexOf(val) === -1) ||
+        (this.property["hidden"] !== undefined &&
+          this.property["hidden"] &&
+          ["show-block", "require-answer"].indexOf(val) === -1) ||
+        (this.property["required"] !== undefined &&
+          this.property["required"] &&
+          ["make-it-optional", "hide-block", "disable-block"].indexOf(val) ===
+            -1) ||
+        (this.property["disabled"] !== undefined &&
+          this.property["disabled"] &&
+          ["enable-block", "require-answer", "make-it-optional"].indexOf(
+            val,
+          ) === -1)
+      ) {
+        this.isActionCorrect = false
+      }
+    })
   }
 }
 

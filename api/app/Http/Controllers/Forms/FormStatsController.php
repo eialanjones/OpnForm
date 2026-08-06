@@ -10,6 +10,7 @@ use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Forms\Form;
+use App\Service\Forms\ScoreTierResolver;
 use Illuminate\Support\Facades\DB;
 
 class FormStatsController extends Controller
@@ -118,8 +119,51 @@ class FormStatsController extends Controller
             'submissions' => $totalSubmissions,
             'completion_rate' => $totalViews > 0 ? round(($totalSubmissions / $totalViews) * 100, 2) : 0,
             'average_duration' => $averageDuration ? $this->formatDuration($averageDuration) : null,
-            'meta_stats' => $metaStats
+            'meta_stats' => $metaStats,
+            'score_stats' => $form->scoring_enabled ? $this->getScoreStats($form) : null,
         ];
+    }
+
+    /**
+     * Average score and per-tier counts, in a single conditional aggregate.
+     */
+    private function getScoreStats(Form $form): array
+    {
+        $tiers = ScoreTierResolver::bounds($form);
+
+        return Cache::remember(ScoreTierResolver::statsCacheKey($form), 1800, function () use ($form, $tiers) {
+            $selects = [
+                DB::raw('AVG(score) as average_score'),
+                DB::raw('COUNT(score) as scored_count'),
+            ];
+
+            foreach ($tiers as $index => $tier) {
+                // Bounds come from validated numeric config, and are cast again
+                // here so nothing user-supplied reaches the SQL as a string.
+                $from = (float) $tier['from'];
+                $to = (float) $tier['to'];
+                $selects[] = DB::raw(
+                    "SUM(CASE WHEN score >= {$from} AND score < {$to} THEN 1 ELSE 0 END) as tier_{$index}"
+                );
+            }
+
+            $row = $form->submissions()
+                ->where('status', FormSubmission::STATUS_COMPLETED)
+                ->whereNotNull('score')
+                ->select($selects)
+                ->first();
+
+            return [
+                'average' => $row?->average_score !== null ? round((float) $row->average_score, 1) : null,
+                'scored_count' => (int) ($row?->scored_count ?? 0),
+                'distribution' => array_map(fn ($tier, $index) => [
+                    'label' => $tier['label'],
+                    'color' => $tier['color'],
+                    'from' => $tier['from'],
+                    'count' => (int) ($row?->{"tier_{$index}"} ?? 0),
+                ], $tiers, array_keys($tiers)),
+            ];
+        });
     }
 
     private function formatDuration(int $seconds): string

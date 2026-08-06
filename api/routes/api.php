@@ -172,6 +172,8 @@ Route::group(['middleware' => 'auth.multi'], function () {
                 Route::put('/{submission_id}', [FormSubmissionController::class, 'update'])->name('update');
                 Route::post('/export', [FormSubmissionController::class, 'export'])->name('export');
                 Route::get('/export/status/{jobId}', [FormSubmissionController::class, 'exportStatus'])->name('export.status');
+                Route::post('/recalculate-scores', [FormSubmissionController::class, 'recalculateScores'])->name('recalculate-scores');
+                Route::get('/recalculate-scores/status/{jobId}', [FormSubmissionController::class, 'recalculateScoresStatus'])->name('recalculate-scores.status');
                 Route::get('/file/{filename}', [FormSubmissionController::class, 'submissionFile'])
                     ->middleware('signed')
                     ->withoutMiddleware(['auth.multi'])

@@ -205,6 +205,29 @@ class Form extends Model implements CachableAttributes
         });
     }
 
+    /**
+     * Whether this form actually produces a score.
+     *
+     * The setting defaults to true, so it cannot be the only gate: without the
+     * "has at least one weighted block" clause every legacy form would grow a
+     * score column, a Score row in its notification emails and a score section
+     * in its analytics.
+     */
+    public function getScoringEnabledAttribute(): bool
+    {
+        if (($this->settings['scoring_enabled'] ?? true) === false) {
+            return false;
+        }
+
+        foreach ($this->properties ?? [] as $property) {
+            if (is_array($property) && (float) ($property['scoring']['weight'] ?? 0) > 0) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public function getShareUrlAttribute()
     {
         if ($this->custom_domain) {

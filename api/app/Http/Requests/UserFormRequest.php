@@ -6,6 +6,7 @@ use App\Http\Requests\Workspace\CustomDomainRequest;
 use App\Models\Forms\Form;
 use App\Rules\CustomSlugRule;
 use App\Rules\FormPropertiesRule;
+use App\Rules\ScoreTiersRule;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Contracts\Validation\Validator;
@@ -182,6 +183,13 @@ abstract class UserFormRequest extends \Illuminate\Foundation\Http\FormRequest
             // Settings
             'settings' => 'nullable|array',
             'settings.navigation_arrows' => 'sometimes|boolean',
+
+            // Scoring
+            'settings.scoring_enabled' => 'sometimes|boolean',
+            'settings.score_tiers' => ['sometimes', 'nullable', 'array', 'max:10', new ScoreTiersRule()],
+            'settings.score_tiers.*.label' => ['required', 'string', 'max:40'],
+            'settings.score_tiers.*.from' => ['required', 'numeric', 'min:0', 'max:10'],
+            'settings.score_tiers.*.color' => ['nullable', 'string', 'regex:/^#[0-9A-Fa-f]{6}$/'],
         ];
     }
 

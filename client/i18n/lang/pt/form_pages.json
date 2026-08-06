@@ -178,7 +178,9 @@
             "avg_duration": "Duração média",
             "duration_placeholder": "10 segundos",
             "page_title": "Análises do formulário",
-            "page_title_with_form": "Análises do formulário - {title}"
+            "page_title_with_form": "Análises do formulário - {title}",
+            "average_score": "Score médio",
+            "score_placeholder": "7,5"
         },
         "submissions": {
             "page_title": "Respostas do formulário",

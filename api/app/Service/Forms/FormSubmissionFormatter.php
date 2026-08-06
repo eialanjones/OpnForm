@@ -287,7 +287,37 @@ class FormSubmissionFormatter
             $transformedFields[] = $field;
         }
 
+        $this->appendScoreFields($transformedFields);
+
         return $transformedFields;
+    }
+
+    /**
+     * Appends the computed score as two pseudo fields.
+     *
+     * Every consumer of this method -- notification emails, Slack, Discord,
+     * Telegram, the webhook payload and the mention parser -- picks them up
+     * from here, so this is the only place the score has to be injected.
+     */
+    private function appendScoreFields(array &$transformedFields): void
+    {
+        if (!array_key_exists(FormScoreCalculator::SCORE_FIELD_ID, $this->formData)) {
+            return;
+        }
+
+        $transformedFields[] = [
+            'id' => FormScoreCalculator::SCORE_FIELD_ID,
+            'name' => 'Score',
+            'type' => 'score',
+            'value' => $this->formData[FormScoreCalculator::SCORE_FIELD_ID],
+        ];
+
+        $transformedFields[] = [
+            'id' => FormScoreCalculator::SCORE_TIER_FIELD_ID,
+            'name' => 'Score tier',
+            'type' => 'score_tier',
+            'value' => $this->formData[FormScoreCalculator::SCORE_TIER_FIELD_ID] ?? null,
+        ];
     }
 
     private function formatUrlLink(mixed $value): string

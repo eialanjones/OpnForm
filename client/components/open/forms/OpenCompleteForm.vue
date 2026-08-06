@@ -327,8 +327,16 @@ const triggerSubmit = () => {
     submissionId: submissionId.value
   }).then(result => {
       if (result) {
-        submittedData.value = formManager.form.data()
-        
+        // The score and its tier are computed server side, so they only reach
+        // the thank-you text through the submit response. The tier has to come
+        // from there too: the form's tier configuration is stripped from the
+        // public payload, so it cannot be resolved again on this side.
+        submittedData.value = {
+          ...formManager.form.data(),
+          score: result?.score ?? null,
+          score_tier: result?.score_tier ?? null,
+        }
+
         if (result?.submission_id) {
           submissionId.value = result.submission_id
         }

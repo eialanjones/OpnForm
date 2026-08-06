@@ -58,6 +58,13 @@ class FormExportService
             $filteredData['status'] = $submission->status === FormSubmission::STATUS_PARTIAL ? 'In Progress' : 'Completed';
         }
 
+        // Handled explicitly rather than through getCleanKeyValue(): that
+        // method suffixes every column with " (id)", which the substring match
+        // above would resolve against the wrong key.
+        if (($displayColumns['score'] ?? false) === true && $form->scoring_enabled) {
+            $filteredData['score'] = $submission->score;
+        }
+
         return $filteredData;
     }
 

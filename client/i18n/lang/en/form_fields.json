@@ -211,6 +211,32 @@
                     "generic": "we could not read this file."
                 }
             }
+        },
+        "scoring": {
+            "title": "Score calculation",
+            "weight_label": "Block weight",
+            "budget_hint": "{remaining} of {max} points left to distribute.",
+            "budget_exceeded": "Total weight exceeds {max} points.",
+            "mode_label": "How it scores",
+            "modes": {
+                "answered": "When answered",
+                "options": "Points per option",
+                "proportional": "Proportional to the value",
+                "logic": "By the block logic"
+            },
+            "mode_help": {
+                "answered": "Any filled answer earns the full weight.",
+                "options": "Each option can be worth at most the block weight.",
+                "proportional": "The block earns (value - {min}) / ({max} - {min}) of its weight.",
+                "logic": "The block earns its full weight when the Logic tab conditions are met and the award score action is selected."
+            },
+            "options_title": "Points per option",
+            "option_exceeds_weight": "An option is worth more than the block weight.",
+            "checkbox_checked": "Checked",
+            "checkbox_unchecked": "Unchecked",
+            "proportional_max_label": "Expected maximum value",
+            "proportional_max_help": "Required to compute the ratio on number blocks.",
+            "disabled_notice": "Score calculation is turned off for this form."
         }
     }
 }

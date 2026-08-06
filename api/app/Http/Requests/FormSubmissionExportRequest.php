@@ -24,6 +24,9 @@ class FormSubmissionExportRequest extends FormRequest
         ))->pluck('id')->toArray();
         $validColumns[] = 'created_at';
         $validColumns[] = 'status';
+        if ($this->form->scoring_enabled) {
+            $validColumns[] = 'score';
+        }
 
         return [
             'columns' => [

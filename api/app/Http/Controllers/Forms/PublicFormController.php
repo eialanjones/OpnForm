@@ -9,6 +9,7 @@ use App\Http\Resources\FormResource;
 use App\Http\Resources\FormSubmissionResource;
 use App\Jobs\Form\StoreFormSubmissionJob;
 use App\Service\Forms\Analytics\UserAgentHelper;
+use App\Service\Forms\FormScoreCalculator;
 use App\Service\Forms\FormSubmissionProcessor;
 use App\Service\Forms\FormCleaner;
 use App\Service\Forms\SubmissionUrlService;
@@ -180,11 +181,19 @@ class PublicFormController extends Controller
             dispatch($job);
         }
 
+        $showScoreToRespondent = $form->scoring_enabled && $formSubmissionProcessor->isScoreMentioned($form);
+
         // Return the response
         return $this->success(array_merge([
             'message' => 'Form submission saved.',
             'submission_id' => $encodedSubmissionId ?? null,
             'is_first_submission' => $isFirstSubmission,
+            // Gated on the score actually being shown to the respondent, not on
+            // the submission happening to be processed synchronously: other
+            // features (editable submissions, generated ids in the redirect
+            // URL) take that same branch and must not leak the score.
+            'score' => $showScoreToRespondent ? ($submissionData[FormScoreCalculator::SCORE_FIELD_ID] ?? null) : null,
+            'score_tier' => $showScoreToRespondent ? ($submissionData[FormScoreCalculator::SCORE_TIER_FIELD_ID] ?? null) : null,
         ], $formSubmissionProcessor->getRedirectData($form, $submissionData)));
     }
 

@@ -19,7 +19,8 @@
             "delete_count": "Excluir ({count})",
             "fullscreen": "Tela cheia",
             "exit_fullscreen": "Sair da tela cheia",
-            "delete_selected_confirm": "Você realmente quer excluir {count} registro selecionado? | Você realmente quer excluir {count} registros selecionados?"
+            "delete_selected_confirm": "Você realmente quer excluir {count} registro selecionado? | Você realmente quer excluir {count} registros selecionados?",
+            "score_column": "Score"
         },
         "status": {
             "all": "Todas",
@@ -48,7 +49,8 @@
         },
         "cells": {
             "date_range_separator": "até",
-            "payment": "Pagamento"
+            "payment": "Pagamento",
+            "score_empty": "—"
         },
         "font_picker": {
             "modal_title": "Google fonts",

@@ -254,6 +254,8 @@ const dropdownItems = computed(() => {
 defineShortcuts(extractShortcuts(dropdownItems.value))
 
 const activeTab = ref('options')
+// Lets the scoring panel send the user straight to the Logic tab.
+provide('fieldEditActiveTab', activeTab)
 
 const tabItems = computed(() => {
   const commonTabs = [

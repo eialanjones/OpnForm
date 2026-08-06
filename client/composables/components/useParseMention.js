@@ -1,4 +1,11 @@
 import { FormSubmissionFormatter } from '~/components/forms/components/FormSubmissionFormatter'
+import {
+  SCORE_MENTION_ID,
+  SCORE_TIER_MENTION_ID,
+  formatScore,
+  getScoreTiers,
+  resolveScoreTier,
+} from '~/lib/forms/scoring'
 
 export function useParseMention(content, mentionsAllowed, form, formData) {
   if (!mentionsAllowed || !form || !formData) {
@@ -7,6 +14,20 @@ export function useParseMention(content, mentionsAllowed, form, formData) {
 
   const formatter = new FormSubmissionFormatter(form, formData).setOutputStringsOnly()
   const formattedData = formatter.getFormattedData()
+
+  // The score is computed server side and travels back on the submit response.
+  // formatScore returns a string on purpose: the `if (value)` check below would
+  // drop the mention for a numeric score of 0.
+  if (formData.score !== undefined && formData.score !== null) {
+    formattedData[SCORE_MENTION_ID] = formatScore(formData.score)
+    // The tier resolved by the API wins: respondents never receive the form's
+    // tier configuration, so resolving locally would fall back to the defaults
+    // and show the wrong label on any form with custom tiers.
+    formattedData[SCORE_TIER_MENTION_ID] =
+      formData.score_tier ??
+      resolveScoreTier(formData.score, getScoreTiers(form))?.label ??
+      ''
+  }
 
   // Create a new DOMParser
   const parser = new DOMParser()

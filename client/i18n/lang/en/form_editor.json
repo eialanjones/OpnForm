@@ -177,6 +177,14 @@
             "question_placeholder": "Question title",
             "answer_placeholder": "Question response",
             "add_new": "Add New"
+        },
+        "score_breakdown": {
+            "heading": "Score tier distribution",
+            "no_data": "No scored submissions yet.",
+            "average": "Average score: {score}",
+            "count": "{count} submission | {count} submissions",
+            "pro_required": "You need a Pro subscription to access the score distribution.",
+            "upgrade_modal_title": "Upgrade today to access the score distribution"
         }
     }
 }
