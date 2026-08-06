@@ -83,7 +83,7 @@
             "download": "Download PDF",
             "regenerate": "Generate again",
             "try_again": "Try again",
-            "saved_document": "Generated document",
+            "saved_document": "Your document",
             "progress": {
                 "reading_answers": "Reading your answers…",
                 "consulting_sources": "Consulting the knowledge sources…",
@@ -94,7 +94,9 @@
                 "generation_failed": "We could not build your PDF this time. Your answers are saved — try generating again.",
                 "timed_out": "This took longer than expected. Try again.",
                 "too_many_requests": "Too many attempts in a row. Wait a minute and try again."
-            }
+            },
+            "rebuild_link": "Download my PDF",
+            "link_expired_hint": "Your document is saved. Click to prepare the download again."
         }
     }
 }

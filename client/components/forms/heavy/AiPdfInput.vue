@@ -69,8 +69,25 @@
             />
             {{ $t('forms.ai_pdf.download') }}
           </a>
+          <!-- Without a live link there is nothing else to click, so the way
+               back to the document stays available even when regenerating is
+               otherwise switched off. -->
           <button
-            v-if="canRegenerate"
+            v-if="!downloadUrl"
+            type="button"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-white disabled:opacity-50"
+            :style="{ backgroundColor: color }"
+            :disabled="disabled"
+            @click="startGeneration"
+          >
+            <UIcon
+              name="i-heroicons-arrow-path"
+              class="w-4 h-4"
+            />
+            {{ $t('forms.ai_pdf.rebuild_link') }}
+          </button>
+          <button
+            v-else-if="canRegenerate"
             type="button"
             class="text-sm text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 underline underline-offset-2"
             :disabled="disabled"
@@ -79,6 +96,12 @@
             {{ $t('forms.ai_pdf.regenerate') }}
           </button>
         </div>
+        <p
+          v-if="!downloadUrl"
+          class="text-xs text-neutral-400"
+        >
+          {{ $t('forms.ai_pdf.link_expired_hint') }}
+        </p>
       </template>
 
       <!-- Failed -->
@@ -150,13 +173,6 @@ const emit = defineEmits(['update:modelValue', 'focus', 'blur'])
 const { compVal, inputWrapperProps } = useFormInput(props, { emit })
 const { t } = useI18n()
 
-/**
- * Navigating between pages unmounts this block, so the generation handle is
- * kept outside the component. Coming back re-reads the status instead of
- * paying for a second document.
- */
-const generationHandles = useState('ai-pdf-generation-handles', () => ({}))
-
 const POLL_INTERVAL_MS = 2000
 const MAX_WAIT_MS = 5 * 60 * 1000
 
@@ -171,7 +187,34 @@ let pollTimer = null
 let tickTimer = null
 let startedAt = null
 
-const handleKey = computed(() => `${props.formSlug || 'form'}:${props.name}`)
+/**
+ * The handle that lets us re-read a generation — and mint a fresh download
+ * link — outlives the component: moving between pages unmounts this block, and
+ * the answer itself survives a reload through the saved draft. Keeping it in
+ * localStorage means coming back re-reads the status instead of paying for a
+ * second document.
+ */
+const handleKey = computed(() => `ai-pdf-generation:${props.formSlug || 'form'}:${props.name}`)
+
+const readHandle = () => {
+  if (!import.meta.client) return null
+  try {
+    const raw = window.localStorage.getItem(handleKey.value)
+    return raw ? JSON.parse(raw) : null
+  } catch {
+    return null
+  }
+}
+
+const rememberHandle = (handle) => {
+  if (!import.meta.client) return
+  try {
+    window.localStorage.setItem(handleKey.value, JSON.stringify(handle))
+  } catch {
+    // Private browsing and full quotas both land here; the block still works,
+    // it just cannot restore the link after a reload.
+  }
+}
 
 const canRegenerate = computed(() => props.allowRegenerate && !props.disabled)
 
@@ -276,7 +319,7 @@ const startGeneration = async () => {
       return
     }
 
-    generationHandles.value = { ...generationHandles.value, [handleKey.value]: handle }
+    rememberHandle(handle)
     beginWaiting(handle)
   } catch (error) {
     if (error?.response?.status === 429) {
@@ -292,7 +335,7 @@ const startGeneration = async () => {
  * is fresh, since signed URLs expire.
  */
 const restorePreviousGeneration = async () => {
-  const handle = generationHandles.value?.[handleKey.value]
+  const handle = readHandle()
   if (!handle?.id || !handle?.token || !props.formSlug) return false
 
   try {

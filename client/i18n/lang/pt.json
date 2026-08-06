@@ -83,7 +83,7 @@
             "download": "Baixar PDF",
             "regenerate": "Gerar de novo",
             "try_again": "Tentar de novo",
-            "saved_document": "Documento gerado",
+            "saved_document": "Seu documento",
             "progress": {
                 "reading_answers": "Lendo suas respostas…",
                 "consulting_sources": "Consultando a base de conhecimento…",
@@ -94,7 +94,9 @@
                 "generation_failed": "Não conseguimos montar seu PDF desta vez. Suas respostas estão salvas — tente gerar de novo.",
                 "timed_out": "A geração demorou mais que o esperado. Tente de novo.",
                 "too_many_requests": "Muitas tentativas seguidas. Espere um minuto e tente de novo."
-            }
+            },
+            "rebuild_link": "Baixar meu PDF",
+            "link_expired_hint": "Seu documento está salvo. Clique para preparar o download de novo."
         }
     }
 }
