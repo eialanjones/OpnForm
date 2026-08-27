@@ -65,7 +65,15 @@ apply_php_configuration() {
     
     # Create custom PHP config file
     PHP_CUSTOM_CONFIG_FILE="/usr/local/etc/php/conf.d/99-custom.ini"
-    
+
+    # Truncar antes de escrever. As diretivas abaixo usam >>, e o restart do
+    # Railway reaproveita a camada de escrita do container: cada reinício
+    # acrescentava mais quatro linhas ao arquivo, e o `cat` do fim desta função
+    # despejava o arquivo inteiro no log. Num crash loop isso cresce sem
+    # limite — o worker chegou a 450 mil linhas por segundo, estourou o rate
+    # limit de 500 logs/s do Railway e enterrou o erro que causava o loop.
+    : > "$PHP_CUSTOM_CONFIG_FILE"
+
     # Apply memory limit if provided, otherwise default to 1G
     if [ -n "$PHP_MEMORY_LIMIT" ]; then
         echo "memory_limit = $PHP_MEMORY_LIMIT" >> $PHP_CUSTOM_CONFIG_FILE
