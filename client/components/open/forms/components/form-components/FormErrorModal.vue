@@ -10,11 +10,14 @@
         class="p-4 border border-red-200 rounded-lg bg-red-50"
       >
         <p
-          v-if="validationErrorResponse.message"
+          v-if="validationErrorResponse.message && !hasErrorList"
           class="text-red-800 mb-3"
           v-text="validationErrorResponse.message"
         />
-        <ul class="list-disc list-inside text-red-700 space-y-1">
+        <ul
+          v-if="hasErrorList"
+          class="list-disc list-inside text-red-700 space-y-1"
+        >
           <li
             v-for="(err, key) in validationErrorResponse.errors"
             :key="key"
@@ -46,6 +49,11 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['close'])
+
+const hasErrorList = computed(() => {
+  const errors = props.validationErrorResponse?.errors
+  return !!errors && Object.keys(errors).length > 0
+})
 
 // Modal state
 const isOpen = computed({

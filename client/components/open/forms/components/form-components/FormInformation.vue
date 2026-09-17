@@ -14,6 +14,8 @@
         :form="form"
         name="title"
         class="mt-4 max-w-xs"
+        :max-char-limit="120"
+        show-char-limit
         :label="$t('form_blocks.information.form_name_label')"
         :placeholder="$t('form_blocks.information.form_name_placeholder')"
       />

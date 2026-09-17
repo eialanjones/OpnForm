@@ -172,7 +172,7 @@ return [
         'subject' => 'assunto',
         'text' => 'texto',
         'time' => 'hora',
-        'title' => 'título',
+        'title' => 'nome do formulário',
         'username' => 'usuário',
         'year' => 'ano',
         'email' => 'e-mail',

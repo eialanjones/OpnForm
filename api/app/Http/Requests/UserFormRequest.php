@@ -111,7 +111,7 @@ abstract class UserFormRequest extends \Illuminate\Foundation\Http\FormRequest
 
         return [
             // Form Info
-            'title' => 'required|string|max:60',
+            'title' => 'required|string|max:120',
             'description' => 'nullable|string|max:2000',
             'tags' => 'nullable|array',
             'visibility' => ['required', Rule::in(Form::VISIBILITY)],
