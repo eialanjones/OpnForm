@@ -1,0 +1,66 @@
+# Lives in /opt/opnform, outside Openship: the Openship compose engine drops
+# build:, healthchecks and bind mounts, which this stack needs.
+#
+# This is the "always on" half of the stack: database, cache, queue worker and
+# scheduler. The web half (api, client, ingress) lives in app.yml and runs as
+# two blue/green projects (opnform-blue / opnform-green), see deploy.sh.
+#
+# OPNFORM_IMAGE_REPO and OPNFORM_TAG come from /opt/opnform/.env, which
+# deploy.sh rewrites on every deploy.
+name: opnform
+x-api: &api
+  build:
+    context: ./src
+    dockerfile: docker/Dockerfile.api
+  image: ${OPNFORM_IMAGE_REPO:?}/api:${OPNFORM_TAG:?}
+  restart: always
+  # self-heal/start.sh clears bootstrap/cache before the image entrypoint.
+  entrypoint: ["/opt/opnform-self-heal/start.sh"]
+  volumes: ["./self-heal/start.sh:/opt/opnform-self-heal/start.sh:ro"]
+  depends_on:
+    db:
+      condition: service_healthy
+    redis:
+      condition: service_healthy
+  logging: &logging
+    driver: json-file
+    options: { max-size: "20m", max-file: "3" }
+services:
+  worker:
+    <<: *api
+    env_file: [./env/worker.env]
+    command: ["php", "artisan", "queue:work"]
+    mem_limit: 768m
+  scheduler:
+    <<: *api
+    env_file: [./env/scheduler.env]
+    command: ["php", "artisan", "schedule:work"]
+    mem_limit: 512m
+  db:
+    image: postgres:18-alpine
+    restart: always
+    env_file: [./env/db.env]
+    volumes: [db-data:/var/lib/postgresql]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U opnform -d opnform"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    mem_limit: 512m
+    logging: *logging
+  redis:
+    image: valkey/valkey:8-alpine
+    restart: always
+    env_file: [./env/redis.env]
+    command: ["sh", "-c", "exec valkey-server --requirepass \"$$REDIS_PASSWORD\" --appendonly yes"]
+    volumes: [redis-data:/data]
+    healthcheck:
+      test: ["CMD-SHELL", "valkey-cli -a \"$$REDIS_PASSWORD\" --no-auth-warning ping | grep PONG"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    mem_limit: 256m
+    logging: *logging
+volumes:
+  db-data:
+  redis-data:
