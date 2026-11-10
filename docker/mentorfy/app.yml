@@ -1,0 +1,66 @@
+# Lives in /opt/opnform, outside Openship: the Openship compose engine drops
+# build:, healthchecks and bind mounts, which this stack needs.
+#
+# The web half of the stack (api, client, ingress). deploy.sh runs it as two
+# projects, always with the matching color env file:
+#   docker compose -p opnform-blue  -f app.yml --env-file colors/blue.env  ...
+#   docker compose -p opnform-green -f app.yml --env-file colors/green.env ...
+# Each color has its own network (default) and its own host port, so both can
+# run side by side while the edge vhost is switched from one to the other.
+# db and redis live in the main project (docker-compose.yml) and are reached
+# through the external opnform_default network.
+x-logging: &logging
+  driver: json-file
+  options: { max-size: "20m", max-file: "3" }
+services:
+  # Named app-api (not api) so its DNS alias never collides with the legacy
+  # "api" container on opnform_default during the migration.
+  app-api:
+    build:
+      context: ./src
+      dockerfile: docker/Dockerfile.api
+    image: ${OPNFORM_IMAGE_REPO:?}/api:${OPNFORM_TAG:?}
+    restart: always
+    # self-heal/start.sh clears bootstrap/cache before the image entrypoint.
+    entrypoint: ["/opt/opnform-self-heal/start.sh"]
+    volumes: ["./self-heal/start.sh:/opt/opnform-self-heal/start.sh:ro"]
+    env_file: [./env/api.env]
+    # Overriding entrypoint drops the image CMD, so it is repeated here.
+    command: ["php-fpm"]
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z 127.0.0.1 9000"]
+      interval: 30s
+      timeout: 5s
+      retries: 4
+      start_period: 180s
+    mem_limit: 1g
+    networks: [default, opnform_default]
+    logging: *logging
+  client:
+    build:
+      context: ./src
+      dockerfile: docker/Dockerfile.client
+    image: ${OPNFORM_IMAGE_REPO:?}/client:${OPNFORM_TAG:?}
+    restart: always
+    env_file: [./env/client.env]
+    command: ["node", "./server/index.mjs"]
+    mem_limit: 1g
+    logging: *logging
+  ingress:
+    build:
+      context: ./src
+      dockerfile: docker/Dockerfile.ingress
+    image: ${OPNFORM_IMAGE_REPO:?}/ingress:${OPNFORM_TAG:?}
+    restart: always
+    environment:
+      PORT: "8080"
+      OPNFORM_API_HOST: "app-api:9000"
+      OPNFORM_CLIENT_HOST: "client:3000"
+      NGINX_MAX_BODY_SIZE: "128m"
+    ports: ["127.0.0.1:${OPNFORM_PORT:?}:8080"]
+    depends_on: [app-api, client]
+    mem_limit: 128m
+    logging: *logging
+networks:
+  opnform_default:
+    external: true

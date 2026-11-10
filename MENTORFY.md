@@ -112,3 +112,41 @@ das páginas públicas de formulário.
 
 A AGPL não concede direito de marca: troquem nome, logo e favicon antes de expor
 a instância.
+
+## Deploy (forms.mentorfy.io)
+
+Push na `formsfy` (ou "Run workflow" no Actions) dispara
+`.github/workflows/mentorfy-deploy.yml`:
+
+1. O GitHub constrói as imagens `api`, `client` e `ingress` e publica no GHCR
+   (`ghcr.io/eialanjones/opnform/<nome>:<sha8>`).
+2. O servidor recebe `deploy <sha>` por SSH e faz um deploy blue/green sem downtime:
+   sobe a cor ociosa, confere `/api/content/feature-flags` e `/`, troca a porta do
+   vhost da edge (`20010` blue / `20020` green) com reload suave, confere pelo
+   domínio e só então derruba a cor antiga (depois de 60 s de drenagem).
+3. Falha antes da troca não toca a produção. Falha depois da troca devolve o vhost
+   na hora e derruba a cor nova.
+4. Worker e scheduler reiniciam por alguns segundos; a fila espera no Redis.
+
+O watchdog (cron a cada 5 min) também realinha o vhost da edge com a cor ativa se eles divergirem (fora de um deploy em andamento). E o "Run workflow" só funciona a partir da branch `formsfy`.
+
+Operação (no servidor, como root):
+
+```bash
+/opt/opnform/deploy/deploy.sh status      # estado, porta do vhost, containers
+/opt/opnform/deploy/deploy.sh rollback    # volta para a versão anterior
+```
+
+O rollback também funciona de fora: `ssh root@svr.mentorfy.io /opt/opnform/deploy/deploy.sh rollback`
+(só com a sua própria chave; a chave do GitHub não roda isso). Log em
+`/var/log/opnform-deploy.log`.
+
+**Cuidado com migrações:** o rollback troca só as imagens, as migrações do banco
+não voltam. Migração destrutiva (apagar/renomear coluna) exige deploy em duas
+etapas: primeiro um código que funcione com os dois formatos, depois a migração.
+
+Arquivos de referência em `docker/mentorfy/` (`docker-compose.yml`, `app.yml`,
+`watchdog.sh`, `deploy.sh`). Eles são instalados à mão em `/opt/opnform`, com o
+`deploy.sh` em `/opt/opnform/deploy/`. Secrets do repositório:
+`OPNFORM_DEPLOY_SSH_KEY` e `OPNFORM_DEPLOY_KNOWN_HOSTS`. A chave SSH só consegue
+rodar `deploy <sha>` (comando forçado no `authorized_keys`).
