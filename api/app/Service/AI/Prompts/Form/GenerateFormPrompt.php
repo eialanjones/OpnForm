@@ -10,8 +10,6 @@ class GenerateFormPrompt extends Prompt
 
     protected ?int $maxTokens = null;
 
-    protected string $model = 'o4-mini';
-
     /**
      * The prompt template for generating forms
      */
@@ -138,6 +136,8 @@ class GenerateFormPrompt extends Prompt
         public string $formPrompt,
         public array $params = []
     ) {
+        $this->model = (string) config('ai_form.model');
+
         parent::__construct();
     }
 
