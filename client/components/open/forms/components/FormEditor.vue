@@ -232,8 +232,17 @@ const goBack = () => {
   }
 }
 
+// The API answers in English; translate the two messages we know, pass anything else through.
+const API_MESSAGES = {
+  'Form created.': 'common.alerts.form_created',
+  'Form updated.': 'common.alerts.form_updated'
+}
+
 const displayFormModificationAlert = (responseData) => {
   const alert = useAlert()
+  if (API_MESSAGES[responseData.message]) {
+    responseData = { ...responseData, message: t(API_MESSAGES[responseData.message]) }
+  }
   if (
     responseData.form &&
     responseData.form.cleanings &&
