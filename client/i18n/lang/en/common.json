@@ -106,6 +106,113 @@
             "not_found": "Not found",
             "invalid_email": "Please enter a valid email address.",
             "field_required": "This field is required."
+        },
+        "alerts": {
+            "success": "Success",
+            "error": "Error",
+            "warning": "Warning",
+            "open_form": "Open form",
+            "draft_form": "This form is currently in Draft mode and is not publicly accessible, You can change the form status on the edit form page.",
+            "form_created": "Form created.",
+            "form_updated": "Form updated."
+        },
+        "block_defaults": {
+            "text": {
+                "name": "Your name",
+                "placeholder": "Type your answer"
+            },
+            "rich_text": {
+                "name": "Description",
+                "placeholder": "Write your answer"
+            },
+            "date": {
+                "name": "Date"
+            },
+            "url": {
+                "name": "Link",
+                "placeholder": "https://example.com"
+            },
+            "phone_number": {
+                "name": "Phone Number",
+                "placeholder": "+1 202 555 0142"
+            },
+            "email": {
+                "name": "Email",
+                "placeholder": "name@example.com"
+            },
+            "checkbox": {
+                "name": "Checkbox"
+            },
+            "select": {
+                "name": "Select",
+                "placeholder": "Select an option"
+            },
+            "radio": {
+                "name": "Radio"
+            },
+            "multi_select": {
+                "name": "Multi Select",
+                "placeholder": "Select options"
+            },
+            "matrix": {
+                "name": "Matrix"
+            },
+            "number": {
+                "name": "Number",
+                "placeholder": "Type a number"
+            },
+            "rating": {
+                "name": "Rating"
+            },
+            "scale": {
+                "name": "Scale"
+            },
+            "slider": {
+                "name": "Slider"
+            },
+            "files": {
+                "name": "Files"
+            },
+            "signature": {
+                "name": "Signature"
+            },
+            "barcode": {
+                "name": "Scan Barcode"
+            },
+            "qrcode": {
+                "name": "Scan QR Code"
+            },
+            "password": {
+                "name": "Password",
+                "placeholder": "Enter your password"
+            },
+            "toggle_switch": {
+                "name": "Toggle"
+            },
+            "payment": {
+                "name": "Payment"
+            },
+            "ai_pdf": {
+                "name": "Your document"
+            },
+            "nf-text": {
+                "name": "Text"
+            },
+            "nf-page-break": {
+                "name": "Page Break"
+            },
+            "nf-divider": {
+                "name": "Divider"
+            },
+            "nf-image": {
+                "name": "Image"
+            },
+            "nf-video": {
+                "name": "Video Block"
+            },
+            "nf-code": {
+                "name": "Code Block"
+            }
         }
     }
 }

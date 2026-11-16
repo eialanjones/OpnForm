@@ -106,6 +106,113 @@
             "not_found": "Não encontrado",
             "invalid_email": "Informe um endereço de e-mail válido.",
             "field_required": "Este campo é obrigatório."
+        },
+        "alerts": {
+            "success": "Pronto",
+            "error": "Erro",
+            "warning": "Atenção",
+            "open_form": "Abrir formulário",
+            "draft_form": "Este formulário está em rascunho e ainda não está público. Você pode mudar o status na página de edição do formulário.",
+            "form_created": "Formulário criado com sucesso.",
+            "form_updated": "Formulário salvo com sucesso."
+        },
+        "block_defaults": {
+            "text": {
+                "name": "Seu nome",
+                "placeholder": "Digite sua resposta"
+            },
+            "rich_text": {
+                "name": "Descrição",
+                "placeholder": "Escreva sua resposta"
+            },
+            "date": {
+                "name": "Data"
+            },
+            "url": {
+                "name": "Link",
+                "placeholder": "https://exemplo.com.br"
+            },
+            "phone_number": {
+                "name": "Telefone",
+                "placeholder": "+55 11 91234-5678"
+            },
+            "email": {
+                "name": "E-mail",
+                "placeholder": "nome@exemplo.com.br"
+            },
+            "checkbox": {
+                "name": "Caixa de seleção"
+            },
+            "select": {
+                "name": "Seleção",
+                "placeholder": "Selecione uma opção"
+            },
+            "radio": {
+                "name": "Opção única"
+            },
+            "multi_select": {
+                "name": "Seleção múltipla",
+                "placeholder": "Selecione as opções"
+            },
+            "matrix": {
+                "name": "Matriz"
+            },
+            "number": {
+                "name": "Número",
+                "placeholder": "Digite um número"
+            },
+            "rating": {
+                "name": "Avaliação"
+            },
+            "scale": {
+                "name": "Escala"
+            },
+            "slider": {
+                "name": "Controle deslizante"
+            },
+            "files": {
+                "name": "Arquivos"
+            },
+            "signature": {
+                "name": "Assinatura"
+            },
+            "barcode": {
+                "name": "Ler código de barras"
+            },
+            "qrcode": {
+                "name": "Ler QR Code"
+            },
+            "password": {
+                "name": "Senha",
+                "placeholder": "Digite sua senha"
+            },
+            "toggle_switch": {
+                "name": "Botão liga/desliga"
+            },
+            "payment": {
+                "name": "Pagamento"
+            },
+            "ai_pdf": {
+                "name": "Seu documento"
+            },
+            "nf-text": {
+                "name": "Texto"
+            },
+            "nf-page-break": {
+                "name": "Quebra de página"
+            },
+            "nf-divider": {
+                "name": "Divisor"
+            },
+            "nf-image": {
+                "name": "Imagem"
+            },
+            "nf-video": {
+                "name": "Vídeo"
+            },
+            "nf-code": {
+                "name": "Código"
+            }
         }
     }
 }
