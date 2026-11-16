@@ -7,6 +7,18 @@ import { useIsAuthenticated } from '~/composables/useAuthFlow'
 
 import { useForm } from '~/composables/useForm'
 
+// Default name/placeholder of a new block, translated when the locale has it
+// (common.block_defaults.<type>.<field>); otherwise the English text from blocks_types.json.
+function blockDefaultText (type, field, fallback) {
+  try {
+    const { t, te } = useNuxtApp().$i18n
+    const key = `common.block_defaults.${type}.${field}`
+    return te(key) ? t(key) : fallback
+  } catch {
+    return fallback
+  }
+}
+
 export const useWorkingFormStore = defineStore("working_form", {
   state: () => ({
     content: null,
@@ -260,7 +272,7 @@ export const useWorkingFormStore = defineStore("working_form", {
       }
       
       this.blockForm.type = effectiveType
-      this.blockForm.name = originalBlockDefinition?.default_block_name ?? effectiveBlockDefinition?.default_block_name ?? 'New Block'
+      this.blockForm.name = blockDefaultText(type, 'name', originalBlockDefinition?.default_block_name ?? effectiveBlockDefinition?.default_block_name ?? 'New Block')
       const newBlock = this.prefillDefault({ ...this.blockForm.data() })
       newBlock.id = generateUUID()
       newBlock.hidden = false
@@ -275,6 +287,11 @@ export const useWorkingFormStore = defineStore("working_form", {
       // (e.g., password secret_input, toggle_switch use_toggle_switch)
       if (originalBlockDefinition?.actual_input && originalBlockDefinition?.default_values) {
         Object.assign(newBlock, originalBlockDefinition.default_values)
+      }
+
+      // blocks_types.json is English-only: show the default placeholder in the builder's language.
+      if (typeof newBlock.placeholder === 'string') {
+        newBlock.placeholder = blockDefaultText(type, 'placeholder', newBlock.placeholder)
       }
 
       // A fresh literal per block. This cannot live in blocks_types.json:

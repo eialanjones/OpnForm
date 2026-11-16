@@ -1,5 +1,15 @@
 import { h } from 'vue'
 
+// Toast texts follow the app language; the English text is the fallback.
+function tr (key, fallback) {
+  try {
+    const { t, te } = useNuxtApp().$i18n
+    return te(key) ? t(key) : fallback
+  } catch {
+    return fallback
+  }
+}
+
 export function useAlert() {
 
   function success (message, autoClose = 10000, options = {}) {
@@ -13,12 +23,12 @@ export function useAlert() {
     const shareUrl = form?.share_url || options.shareUrl
     if (form && shareUrl) {
       composedActions.push({
-        label: options.openFormLabel ?? 'Open form',
+        label: options.openFormLabel ?? tr('common.alerts.open_form', 'Open form'),
         icon: 'i-heroicons-arrow-top-right-on-square',
         onClick: () => {
           if (form.visibility === 'draft') {
             useAlert().warning(
-              'This form is currently in Draft mode and is not publicly accessible, You can change the form status on the edit form page.'
+              tr('common.alerts.draft_form', 'This form is currently in Draft mode and is not publicly accessible, You can change the form status on the edit form page.')
             )
           } else if (import.meta.client) {
             window.open(shareUrl, '_blank')
@@ -34,7 +44,7 @@ export function useAlert() {
 
     return useToast().add({
       icon: 'i-heroicons-check-circle',
-      title: options.title ?? 'Success',
+      title: options.title ?? tr('common.alerts.success', 'Success'),
       description: message,
       color: 'success',
       closeIcon: 'i-heroicons-x-mark-20-solid',
@@ -46,7 +56,7 @@ export function useAlert() {
   function error (message, autoClose = 10000, options = {}) {
     return useToast().add({
       icon: 'i-heroicons-exclamation-circle',
-      title: options.title ?? 'Error',
+      title: options.title ?? tr('common.alerts.error', 'Error'),
       description: message,
       color: 'error',
       duration: autoClose,
@@ -58,7 +68,7 @@ export function useAlert() {
   function warning (message, autoClose = 10000, options = {}) {
     return useToast().add({
       icon: 'i-heroicons-exclamation-triangle',
-      title: options.title ?? 'Warning',
+      title: options.title ?? tr('common.alerts.warning', 'Warning'),
       description: message,
       color: 'warning',
       duration: autoClose,
@@ -76,13 +86,13 @@ export function useAlert() {
   ) {
     return useToast().add({
       icon: 'i-heroicons-question-mark-circle',
-      title: options.title ?? 'Are you sure?',
+      title: options.title ?? tr('common.confirm.are_you_sure', 'Are you sure?'),
       description: message,
       color: 'info',
       duration: autoClose,
       actions: [
-        { label: options.successLabel ?? 'Yes', onClick: onSuccess },
-        { label: options.failureLabel ?? 'No', onClick: onFailure }
+        { label: options.successLabel ?? tr('common.labels.yes', 'Yes'), onClick: onSuccess },
+        { label: options.failureLabel ?? tr('common.labels.no', 'No'), onClick: onFailure }
       ],
       ...options
     })
