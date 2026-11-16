@@ -281,7 +281,7 @@ const generateForm = () => {
       }
     })
     .then((response) => {
-      useAlert().success(response.message)
+      // The spinner already says we're working on it: no "Success" toast before the result exists
       fetchGeneratedForm(response.ai_form_completion_id)
     })
     .catch((error) => {
@@ -297,7 +297,7 @@ const fetchGeneratedForm = (generationId) => {
     formsApi.ai.get(generationId)
       .then((data) => {
         if (data.ai_form_completion.status === "completed") {
-          useAlert().success(data.message)
+          useAlert().success(t('form_pages.create_modal.ai_generation_ready'), 10000, { title: t('form_pages.create_modal.ai_generation_ready_title') })
           const generated = JSON.parse(data.ai_form_completion.result)
           // Apply seeding based on user's style choice in the modal
           if (selectedStyle.value === 'focused') {
@@ -306,18 +306,17 @@ const fetchGeneratedForm = (generationId) => {
           emit("form-generated", generated)
           emit("close")
         } else if (data.ai_form_completion.status === "failed") {
-          useAlert().error(t('form_pages.create_modal.ai_generation_failed'))
-          currentStep.value = 2
+          // Stay on the AI step so the user keeps the description they typed
+          useAlert().error(t('form_pages.create_modal.ai_generation_failed'), 10000, { title: t('form_pages.create_modal.ai_generation_failed_title') })
+          currentStep.value = 3
           loading.value = false
         } else {
           fetchGeneratedForm(generationId)
         }
       })
       .catch((error) => {
-        if (error?.data?.message) {
-          useAlert().error(error.data.message)
-        }
-        currentStep.value = 2
+        useAlert().error(error?.data?.message || t('form_pages.create_modal.ai_generation_failed'), 10000, { title: t('form_pages.create_modal.ai_generation_failed_title') })
+        currentStep.value = 3
         loading.value = false
       })
   }, 4000)
