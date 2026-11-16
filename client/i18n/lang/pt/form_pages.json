@@ -26,7 +26,10 @@
             "ai_generate_button": "Gerar um formulário",
             "ai_generate_eta": "~30 seg",
             "back_to_form_types": "Voltar aos tipos de formulário",
-            "ai_generation_failed": "Algo deu errado, tente novamente."
+            "ai_generation_failed_title": "Não foi possível gerar o formulário",
+            "ai_generation_ready": "Seu formulário está pronto. Revise e ajuste antes de publicar.",
+            "ai_generation_ready_title": "Formulário gerado",
+            "ai_generation_failed": "Não conseguimos gerar o formulário agora. Sua descrição foi mantida: tente de novo em alguns minutos ou comece pelo \"Formulário de contato simples\"."
         },
         "advanced_url_settings": {
             "heading": "Configurações avançadas",

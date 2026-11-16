@@ -29,8 +29,14 @@ class AiFormController extends Controller
             return $this->error('You are not authorized to view this AI completion.', 403);
         }
 
+        $message = match ($aiFormCompletion->status) {
+            AiFormCompletion::STATUS_COMPLETED => 'Your data is ready! Feel free to customize it to your needs before publishing.',
+            AiFormCompletion::STATUS_FAILED => 'We could not generate your form. Please try again in a few minutes.',
+            default => 'We\'re still working on your form, please wait.',
+        };
+
         return $this->success([
-            'message' => 'Your data is ready! Feel free to customize it to your needs before publishing.',
+            'message' => $message,
             'ai_form_completion' => $aiFormCompletion,
         ]);
     }

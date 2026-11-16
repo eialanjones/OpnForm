@@ -26,7 +26,10 @@
             "ai_generate_button": "Generate a form",
             "ai_generate_eta": "~30 sec",
             "back_to_form_types": "Back to form types",
-            "ai_generation_failed": "Something went wrong, please try again."
+            "ai_generation_failed_title": "Couldn't generate the form",
+            "ai_generation_ready": "Your form is ready. Review and customize it before publishing.",
+            "ai_generation_ready_title": "Form generated",
+            "ai_generation_failed": "We couldn't generate the form right now. Your description was kept: try again in a few minutes or start from the \"Simple contact form\"."
         },
         "advanced_url_settings": {
             "heading": "Advanced Settings",
