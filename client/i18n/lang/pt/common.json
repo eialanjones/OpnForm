@@ -138,7 +138,7 @@
             },
             "email": {
                 "name": "E-mail",
-                "placeholder": "nome@exemplo.com.br"
+                "placeholder": "nome{'@'}exemplo.com.br"
             },
             "checkbox": {
                 "name": "Caixa de seleção"
