@@ -114,7 +114,9 @@
             "open_form": "Abrir formulário",
             "draft_form": "Este formulário está em rascunho e ainda não está público. Você pode mudar o status na página de edição do formulário.",
             "form_created": "Formulário criado com sucesso.",
-            "form_updated": "Formulário salvo com sucesso."
+            "form_updated": "Formulário salvo com sucesso.",
+            "form_deleted": "Formulário excluído.",
+            "form_duplicated": "Formulário duplicado. Agora você está editando a cópia."
         },
         "block_defaults": {
             "text": {
