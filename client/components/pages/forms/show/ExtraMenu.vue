@@ -169,15 +169,15 @@ const duplicateForm = () => {
       name: "forms-slug-show",
       params: { slug: data.new_form.slug },
     })
-    useAlert().success(data.message)
+    useAlert().success(t('common.alerts.form_duplicated'))
   }).catch((error) => {
     useAlert().error(error.data?.message || t('form_pages.extra_menu.duplicate_failed'))
   })
 }
 
 const deleteForm = () => {
-  deleteFormMutation.mutateAsync(props.form.id).then((data) => {
-    useAlert().success(data.message)
+  deleteFormMutation.mutateAsync(props.form.id).then(() => {
+    useAlert().success(t('common.alerts.form_deleted'))
     showDeleteFormModal.value = false
     router.push({ name: "home" })
   }).catch((error) => {

@@ -114,7 +114,9 @@
             "open_form": "Open form",
             "draft_form": "This form is currently in Draft mode and is not publicly accessible, You can change the form status on the edit form page.",
             "form_created": "Form created.",
-            "form_updated": "Form updated."
+            "form_updated": "Form updated.",
+            "form_deleted": "Form was deleted.",
+            "form_duplicated": "Form successfully duplicated. You are now editing the duplicated version of the form."
         },
         "block_defaults": {
             "text": {
