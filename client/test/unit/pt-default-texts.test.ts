@@ -52,6 +52,8 @@ describe('default texts of new blocks', () => {
     expect(Object.keys(pt).sort()).toEqual(Object.keys(en).sort())
     expect(pt.open_form).toBe('Abrir formulário')
     expect(pt.form_created).toBe('Formulário criado com sucesso.')
+    expect(pt.form_deleted).toBe('Formulário excluído.')
+    expect(pt.form_duplicated).toMatch(/^Formulário duplicado/)
   })
 
   it('pt and en common.json compile with vue-i18n (no bare "@")', () => {
